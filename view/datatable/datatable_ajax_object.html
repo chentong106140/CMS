@@ -313,9 +313,9 @@
                         </form>-->
             <!--侧边栏菜单-->
             <ul class="sidebar-menu" data-widget="tree">
-                <li class="active"><a href="/CMS/view/main/main.html"><i class="fa fa-circle-o text-yellow"></i> <span>概览</span></a></li>
+                <li><a href="/CMS/view/main/main.html"><i class="fa fa-circle-o text-yellow"></i> <span>概览</span></a></li>
                 <li class="header">案例</li>
-                <li class="treeview">
+                <li class="treeview active">
                     <a href="#">
                         <i class="fa fa-dashboard"></i> <span>DataTable</span>
                         <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
@@ -323,12 +323,7 @@
                     <ul class="treeview-menu">
                         <li><a href="/CMS/view/datatable/datatable_ajax_array.html"><i class="fa fa-circle-o"></i>ajax获取数组类型数据</a></li>
                         <li><a href="/CMS/view/datatable/datatable_dom.html"><i class="fa fa-circle-o"></i>使用DOM作为数据源</a></li>
-                        <li><a href="/CMS/view/datatable/datatable_array.html"><i class="fa fa-circle-o"></i>使用js数组作为数据源</a></li>
-                        <li><a href="/CMS/view/datatable/datatable_ajax_server.html"><i class="fa fa-circle-o"></i>从服务器端处理数据</a></li>
-                        <li><a href="/CMS/view/datatable/datatable_ajax_object.html"><i class="fa fa-circle-o"></i>ajax获取对象类型数据</a></li>
-                        <li><a href="/CMS/view/datatable/datatable_ajax_object_dataSrc.html"><i class="fa fa-circle-o"></i>ajax获取对象类型dataSrc指定数据</a></li>
-                        <li><a href="/CMS/view/datatable/datatable_ajax_object_processing.html"><i class="fa fa-circle-o"></i>ajax获取嵌套对象类型数据</a></li>
-                        <li><a href="/CMS/view/datatable/datatable_ajax_object_auto_defined.html"><i class="fa fa-circle-o"></i>生成自定义内容</a></li>
+                        <li class="active"><a href="/CMS/view/datatable/datatable_ajax_object"><i class="fa fa-circle-o"></i>ajax获取对象类型数据</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
@@ -365,12 +360,100 @@
     <div class="content-wrapper">
         <div id="card" class="layui-card layadmin-header">
             <span class="layui-breadcrumb" lay-separator="/">
-              <a href="/CMS/view/main/main.html">首页</a>
-               <a><cite>概览</cite></a>
+              <a href="#">DataTable</a>
+               <a><cite>ajax获取对象类型数据</cite></a>
             </span>
         </div>
         <section class="content">
+            <div class="box box-default "><!--默认关闭盒子添加collapsed-box-->
+                <div class="box-header with-border">
+                    <h3 class="box-title">查询</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                class="fa fa-minus"></i></button>
+                        <!--加号按钮<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>-->
+                        <!--关闭按钮 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                    </div>
+                </div>
+                <div class="box-body" style="height: auto;">
+                    <div class="layui-form" lay-filter="layui-form">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">类型名称：</label>
+                                <div class="layui-input-block">
+                                    <input class="layui-input" type="text" name="type" required lay-verify=""
+                                           placeholder="请输入标题" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">英文名称：</label>
+                                <div class="layui-input-block">
+                                    <input class="layui-input" type="text" name="ename" required lay-verify=""
+                                           placeholder="请输入名称" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">所属产品：</label>
+                                <div class="layui-input-block">
+                                    <select name="city" lay-verify="required" lay-search>
+                                        <option value="" disabled>请选择一个城市</option>
+                                        <option value="010">北京</option>
+                                        <option value="021">上海</option>
+                                        <option value="0571" selected>杭州</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">所属页面：</label>
+                                <div class="layui-input-block">
+                                    <select name="city" lay-verify="required" lay-search>
+                                        <option value="" disabled>请选择一个城市</option>
+                                        <option value="010">北京</option>
+                                        <option value="021">上海</option>
+                                        <option value="0571" selected>杭州</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label"></label>
+                                <div class="layui-input-block">
+                                    <button class="layui-btn" lay-submit="" lay-filter="LAY-user-back-search">
+                                        <i class="layui-icon layui-icon-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <div class="box box-default box-solid"><!--默认关闭盒子添加collapsed-box-->
+                <div class="box-header with-border">
+                    <h3 class="box-title">查询结果</h3>
+                </div>
 
+                <div class="box-body" style="height: auto;">
+                    <!--内容-->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!--width:100% 设置表格随着父容器的宽度变化进行变化-->
+                            <table id="test" class="table table-striped table-bordered" style="width:100%">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Position</th>
+                                    <th>Office</th>
+                                    <th>Age</th>
+                                    <th>Start date</th>
+                                    <th>Salary</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box -->
         </section>
         <footer class="content-footer">
             <div class="pull-right hidden-xs">
@@ -386,9 +469,8 @@
     <aside class="control-sidebar control-sidebar-dark"></aside>
     <div class="control-sidebar-bg"></div>
     <script type="text/javascript">
-        //$.widget.bridge('uibutton', $.ui.button);
-        layui.element.render({elem: "#card"});
         layui.form.render(null,"layui-form");
+        layui.element.render({elem: "#card"});
         //layui.laydate.render({elem: "#date"});
         layui.form.on('submit(LAY-user-back-search)', function (data) {
             console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
@@ -411,7 +493,12 @@
         }).on("page.dt",function () {
             console.log("page.dt触发翻页",arguments);
         }).DataTable({
-            ajax:'../../api/datatable.demo1.json',
+            //通过ajax请求服务端数据加载，切记如果服务端返回的数据格式二维数组类型的数据，
+            // 就不能指定columns下的data属性，因为他需要服务端的json数据是key/value的形式，
+            // 所以本案例内加载json数据是二维数组，不符合要求，故删除columns下的data配置
+
+            //本案例是通过ajax获取对象类型的数据，所以可以在colums下指定data属性
+            ajax:'../../api/datatable.ajax.object.json',
             /**
              numbers - 只有只有数字按钮
              simple - 只有上一页、下一页两个按钮
@@ -438,7 +525,7 @@
             //此处是以第4列降序排序，以第5列降序排序
             order: [[ 3, "desc" ],[4,"desc"]],
             //设置长度菜单，每页显示多少条，二维数组的作用就是第一个数组就是实际长度值，第二个数组是用于下拉框显示的值
-            lengthMenu: [[2, 10, 20, -1],["2条", "10条", "20条", "全部显示"]],
+            lengthMenu: [[10, 20, 50, -1], ["10条", "20条", "50条", "全部显示"]],
             //国际化
             language: {
                 lengthMenu: "每页 _MENU_ 条记录",
@@ -457,14 +544,14 @@
             },
             //为每一列设置属性，如下，写了6个列，对应表格的6个列，同时为每一个列指定了data属性，即指定了列的key值，通过获取一整行的数据即可通过data属性指定的属性值获取到
             //获取某一行某一列的数据方式：table.row( this ).data().name/position/office/age/start_date/salary
-            /*columns: [
+            "columns": [
                 { "data": "name" },
                 { "data": "position" },
                 { "data": "office" },
-                { "data": "age" },
+                { "data": "extn" },
                 { "data": "start_date" },
                 { "data": "salary" }
-            ],*/
+            ],
             columnDefs: [
                 {
                     //控制第一列

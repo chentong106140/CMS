@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>首页</title>
+    <link rel="stylesheet" href="../../resource/plugins/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../../resource/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../resource/plugins/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="../../resource/plugins/AdminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="../../resource/plugins/AdminLTE/css/skins/_all-skins.css">
+    <link rel="stylesheet" href="../../resource/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="../../resource/plugins/bootstrap-daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="../../resource/plugins/layui/css/layui.css">
+    <link rel="stylesheet" href="../../resource/plugins/select2/css/select2.min.css">
+    <!--<link rel="stylesheet" href="../../resource/plugins/jquery-datatable/css/jquery.dataTables.min.css">-->
+    <link rel="stylesheet" href="../../resource/plugins/jquery-datatable/css/dataTables.bootstrap.css">
+
+
+    <script src="../../resource/plugins/html5/html5shiv.min.js"></script>
+    <script src="../../resource/plugins/html5/respond.min.js"></script>
+    <script src="../../resource/plugins/jquery/jquery.min.js"></script>
+    <script src="../../resource/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../../resource/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../resource/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script src="../../resource/plugins/AdminLTE/js/adminlte.js"></script>
+    <script src="../../resource/plugins/layui/layui.all.js"></script>
+    <script src="../../resource/plugins/select2/js/select2.js"></script>
+    <script src="../../resource/plugins/jquery-datatable/js/jquery.dataTables.min.js"></script>
+    <script src="../../resource/plugins/jquery-datatable/js/dataTables.bootstrap.min.js"></script>
+
+    <style type="text/css">
+        .layui-layout-admin .layui-body {
+            top: 0;
+            bottom: 0;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: 400;
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+
+        .main-header {
+            max-height: 101px;
+        }
+
+        .layui-body {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 998;
+            width: auto;
+            overflow: hidden;
+            overflow-y: hidden;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+
+        .layadmin-header {
+            display: block;
+            height: 50px;
+            line-height: 50px;
+            margin-bottom: 0;
+            border-radius: 0;
+        }
+
+        .layadmin-header .layui-breadcrumb {
+            border-top: 1px solid #f6f6f6;
+            padding: 0 15px;
+        }
+
+        .layui-breadcrumb {
+            visibility: visible;
+            font-size: 0;
+        }
+
+        .wrapper {
+            height: 100%;
+            position: relative;
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+
+        .content-wrapper {
+            position: relative;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+
+        .content-footer {
+            background: #fff;
+            padding: 15px;
+            color: #444;
+            border-top: 1px solid #d2d6de;
+            z-index: 820;
+            display: block;
+        }
+
+        .layui-form, .layui-form * {
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
+        }
+
+        .layui-form-select .layui-input {
+            padding-right: 0;
+            cursor: pointer;
+        }
+
+        .layui-input, .layui-textarea {
+            display: block;
+            width: auto;
+            padding-left: 10px;
+        }
+
+    </style>
+
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <!--头部区域-->
+    <header class="main-header">
+        <!-- Logo -->
+        <a href="index2.html" class="logo">
+            <span class="logo-mini"><b>奇果</b></span>
+            <span class="logo-lg"><b>南京奇果</b>后台管理</span>
+        </a>
+        <!--导航栏，随着页面一起滚动的导航栏-->
+        <nav class="navbar navbar-static-top">
+            <!-- 侧边栏切换按钮-->
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <!--头部导航-自定义菜单栏-->
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li class="">
+                        <a href="javascript:openFullscreen(this)">
+                            <i class="fa fa-yahoo"></i>
+                        </a>
+                    </li>
+                    <!--用户通知信息-->
+                    <li class="dropdown notifications-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-bell-o"></i>
+                            <span class="label label-warning">10</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">你有10个通知</li>
+                            <li>
+                                <ul class="menu">
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-users text-aqua"></i>今天有10个推荐位被设置
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-warning text-yellow"></i>你的密码已过期，需要重置密码
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="footer"><a href="#">查看更多</a></li>
+                        </ul>
+                    </li>
+                    <!--用户任务信息-->
+                    <li class="dropdown tasks-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-flag-o"></i>
+                            <span class="label label-danger">9</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">你有9个任务</li>
+                            <li>
+                                <ul class="menu">
+                                    <li>
+                                        <a href="#">
+                                            <h3>
+                                                推荐位设置进度
+                                                <small class="pull-right">90%</small>
+                                            </h3>
+                                            <div class="progress sm">
+                                                <div class="progress-bar progress-bar-aqua" style="width: 90%"
+                                                     role="progressbar"
+                                                     aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="sr-only">90% 已完成</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <h3>
+                                                项目创建进度
+                                                <small class="pull-right">40%</small>
+                                            </h3>
+                                            <div class="progress xs">
+                                                <div class="progress-bar progress-bar-green" style="width: 40%"
+                                                     role="progressbar"
+                                                     aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="sr-only">40% 已完成</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <h3>
+                                                内容注入进度
+                                                <small class="pull-right">60%</small>
+                                            </h3>
+                                            <div class="progress xs">
+                                                <div class="progress-bar progress-bar-red" style="width: 60%"
+                                                     role="progressbar"
+                                                     aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="sr-only">60% 已完成</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="footer">
+                                <a href="#">查看更多任务</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--用户账户信息-->
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="../../resource/plugins/AdminLTE/img/user2-160x160.jpg" class="user-image"
+                                 alt="用户头像">
+                            <span class="hidden-xs">Morgan</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- 用户头像 -->
+                            <li class="user-header">
+                                <img src="../../resource/plugins/AdminLTE/img/user2-160x160.jpg" class="img-circle"
+                                     alt="用户头像">
+                                <p>
+                                    Morgan - 前端开发人员
+                                    <small>开发人员</small>
+                                </p>
+                            </li>
+                            <!-- Menu Body -->
+                            <li class="user-body">
+                                <div class="row">
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">我的任务</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">我的通知</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">我的信息</a>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </li>
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="#" class="btn btn-default btn-flat">编辑</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="#" class="btn btn-default btn-flat">退出</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--编辑-->
+                    <li>
+                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!--左侧边栏区域-->
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            <!--用户概要信息模块-->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="../../resource/plugins/AdminLTE/img/user2-160x160.jpg" class="img-circle" alt="用户头像">
+                </div>
+                <div class="pull-left info">
+                    <p>Morgan</p>
+                    <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
+                </div>
+            </div>
+            <!--全文搜索模块-->
+            <!--            <form action="#" method="get" class="sidebar-form">
+                            <div class="input-group">
+                                &lt;!&ndash;搜索内容输入元素&ndash;&gt;
+                                <input type="text" name="q" class="form-control" placeholder="搜索...">
+                                &lt;!&ndash;提交搜索内容元素&ndash;&gt;
+                                <span class="input-group-btn">
+                                    <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>-->
+            <!--侧边栏菜单-->
+            <ul class="sidebar-menu" data-widget="tree">
+                <li><a href="/CMS/view/main/main.html"><i class="fa fa-circle-o text-yellow"></i> <span>概览</span></a>
+                </li>
+                <li class="header">案例</li>
+                <li class="treeview active">
+                    <a href="#">
+                        <i class="fa fa-dashboard"></i> <span>DataTable</span>
+                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/CMS/view/datatable/datatable_ajax_array.html"><i
+                                class="fa fa-circle-o"></i>ajax获取数组类型数据</a></li>
+                        <li class="active"><a href="/CMS/view/datatable/datatable_dom.html"><i
+                                class="fa fa-circle-o"></i>使用DOM作为数据源</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-files-o"></i>
+                        <span>基础信息管理</span>
+                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                        <!--<span class="pull-right-container"><span class="label label-primary pull-right">4</span></span>-->
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="#"><i class="fa fa-circle-o"></i>视频类型管理</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i>视频管理</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i>集数管理</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i>cp视频管理</a></li>
+                    </ul>
+                </li>
+
+                <li class="header">权限管理</li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-dashboard"></i> <span>系统管理</span>
+                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="#"><i class="fa fa-circle-o"></i>用户管理</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i>角色管理</a></li>
+                    </ul>
+                </li>
+                <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>上传设置</span></a></li>
+                <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>资源管理</span></a></li>
+            </ul>
+        </section>
+    </aside>
+    <div class="content-wrapper">
+        <div id="card" class="layui-card layadmin-header">
+            <span class="layui-breadcrumb" lay-separator="/">
+              <a href="#">DataTable</a>
+               <a><cite>使用DOM作为数据源</cite></a>
+            </span>
+        </div>
+        <section class="content">
+            <div class="box box-default "><!--默认关闭盒子添加collapsed-box-->
+                <div class="box-header with-border">
+                    <h3 class="box-title">查询</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                class="fa fa-minus"></i></button>
+                        <!--加号按钮<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>-->
+                        <!--关闭按钮 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                    </div>
+                </div>
+                <div class="box-body" style="height: auto;">
+                    <div class="layui-form" lay-filter="layui-form">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">类型名称：</label>
+                                <div class="layui-input-block">
+                                    <input class="layui-input" type="text" name="type" required lay-verify=""
+                                           placeholder="请输入标题" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">英文名称：</label>
+                                <div class="layui-input-block">
+                                    <input class="layui-input" type="text" name="ename" required lay-verify=""
+                                           placeholder="请输入名称" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">所属产品：</label>
+                                <div class="layui-input-block">
+                                    <select name="city" lay-verify="required" lay-search>
+                                        <option value="" disabled>请选择一个城市</option>
+                                        <option value="010">北京</option>
+                                        <option value="021">上海</option>
+                                        <option value="0571" selected>杭州</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">所属页面：</label>
+                                <div class="layui-input-block">
+                                    <select name="city" lay-verify="required" lay-search>
+                                        <option value="" disabled>请选择一个城市</option>
+                                        <option value="010">北京</option>
+                                        <option value="021">上海</option>
+                                        <option value="0571" selected>杭州</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label"></label>
+                                <div class="layui-input-block">
+                                    <button class="layui-btn" lay-submit="" lay-filter="LAY-user-back-search">
+                                        <i class="layui-icon layui-icon-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <div class="box box-default box-solid"><!--默认关闭盒子添加collapsed-box-->
+                <div class="box-header with-border">
+                    <h3 class="box-title">查询结果</h3>
+                </div>
+
+                <div class="box-body" style="height: auto;">
+                    <!--内容-->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!--width:100% 设置表格随着父容器的宽度变化进行变化-->
+                            <table id="test" class="table table-striped table-bordered" style="width:100%">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Position</th>
+                                    <th>Office</th>
+                                    <th>Age</th>
+                                    <th>Start date</th>
+                                    <th>Salary</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Tiger Nixon</td>
+                                    <td>System Architect</td>
+                                    <td>Edinburgh</td>
+                                    <td>61</td>
+                                    <td>2011/04/25</td>
+                                    <td>$320,800</td>
+                                </tr>
+                                <tr>
+                                    <td>Garrett Winters</td>
+                                    <td>Accountant</td>
+                                    <td>Tokyo</td>
+                                    <td>63</td>
+                                    <td>2011/07/25</td>
+                                    <td>$170,750</td>
+                                </tr>
+                                <tr>
+                                    <td>Ashton Cox</td>
+                                    <td>Junior Technical Author</td>
+                                    <td>San Francisco</td>
+                                    <td>66</td>
+                                    <td>2009/01/12</td>
+                                    <td>$86,000</td>
+                                </tr>
+                                <tr>
+                                    <td>Cedric Kelly</td>
+                                    <td>Senior Javascript Developer</td>
+                                    <td>Edinburgh</td>
+                                    <td>22</td>
+                                    <td>2012/03/29</td>
+                                    <td>$433,060</td>
+                                </tr>
+                                <tr>
+                                    <td>Airi Satou</td>
+                                    <td>Accountant</td>
+                                    <td>Tokyo</td>
+                                    <td>33</td>
+                                    <td>2008/11/28</td>
+                                    <td>$162,700</td>
+                                </tr>
+                                <tr>
+                                    <td>Brielle Williamson</td>
+                                    <td>Integration Specialist</td>
+                                    <td>New York</td>
+                                    <td>61</td>
+                                    <td>2012/12/02</td>
+                                    <td>$372,000</td>
+                                </tr>
+                                <tr>
+                                    <td>Herrod Chandler</td>
+                                    <td>Sales Assistant</td>
+                                    <td>San Francisco</td>
+                                    <td>59</td>
+                                    <td>2012/08/06</td>
+                                    <td>$137,500</td>
+                                </tr>
+                                <tr>
+                                    <td>Rhona Davidson</td>
+                                    <td>Integration Specialist</td>
+                                    <td>Tokyo</td>
+                                    <td>55</td>
+                                    <td>2010/10/14</td>
+                                    <td>$327,900</td>
+                                </tr>
+                                <tr>
+                                    <td>Colleen Hurst</td>
+                                    <td>Javascript Developer</td>
+                                    <td>San Francisco</td>
+                                    <td>39</td>
+                                    <td>2009/09/15</td>
+                                    <td>$205,500</td>
+                                </tr>
+                                <tr>
+                                    <td>Sonya Frost</td>
+                                    <td>Software Engineer</td>
+                                    <td>Edinburgh</td>
+                                    <td>23</td>
+                                    <td>2008/12/13</td>
+                                    <td>$103,600</td>
+                                </tr>
+                                <tr>
+                                    <td>Jena Gaines</td>
+                                    <td>Office Manager</td>
+                                    <td>London</td>
+                                    <td>30</td>
+                                    <td>2008/12/19</td>
+                                    <td>$90,560</td>
+                                </tr>
+                                <tr>
+                                    <td>Quinn Flynn</td>
+                                    <td>Support Lead</td>
+                                    <td>Edinburgh</td>
+                                    <td>22</td>
+                                    <td>2013/03/03</td>
+                                    <td>$342,000</td>
+                                </tr>
+                                <tr>
+                                    <td>Charde Marshall</td>
+                                    <td>Regional Director</td>
+                                    <td>San Francisco</td>
+                                    <td>36</td>
+                                    <td>2008/10/16</td>
+                                    <td>$470,600</td>
+                                </tr>
+                                <tr>
+                                    <td>Haley Kennedy</td>
+                                    <td>Senior Marketing Designer</td>
+                                    <td>London</td>
+                                    <td>43</td>
+                                    <td>2012/12/18</td>
+                                    <td>$313,500</td>
+                                </tr>
+                                <tr>
+                                    <td>Tatyana Fitzpatrick</td>
+                                    <td>Regional Director</td>
+                                    <td>London</td>
+                                    <td>19</td>
+                                    <td>2010/03/17</td>
+                                    <td>$385,750</td>
+                                </tr>
+                                <tr>
+                                    <td>Michael Silva</td>
+                                    <td>Marketing Designer</td>
+                                    <td>London</td>
+                                    <td>66</td>
+                                    <td>2012/11/27</td>
+                                    <td>$198,500</td>
+                                </tr>
+                                <tr>
+                                    <td>Paul Byrd</td>
+                                    <td>Chief Financial Officer (CFO)</td>
+                                    <td>New York</td>
+                                    <td>64</td>
+                                    <td>2010/06/09</td>
+                                    <td>$725,000</td>
+                                </tr>
+                                <tr>
+                                    <td>Gloria Little</td>
+                                    <td>Systems Administrator</td>
+                                    <td>New York</td>
+                                    <td>59</td>
+                                    <td>2009/04/10</td>
+                                    <td>$237,500</td>
+                                </tr>
+                                <tr>
+                                    <td>Bradley Greer</td>
+                                    <td>Software Engineer</td>
+                                    <td>London</td>
+                                    <td>41</td>
+                                    <td>2012/10/13</td>
+                                    <td>$132,000</td>
+                                </tr>
+                                <tr>
+                                    <td>Dai Rios</td>
+                                    <td>Personnel Lead</td>
+                                    <td>Edinburgh</td>
+                                    <td>35</td>
+                                    <td>2012/09/26</td>
+                                    <td>$217,500</td>
+                                </tr>
+                                <tr>
+                                    <td>Jenette Caldwell</td>
+                                    <td>Development Lead</td>
+                                    <td>New York</td>
+                                    <td>30</td>
+                                    <td>2011/09/03</td>
+                                    <td>$345,000</td>
+                                </tr>
+                                <tr>
+                                    <td>Yuri Berry</td>
+                                    <td>Chief Marketing Officer (CMO)</td>
+                                    <td>New York</td>
+                                    <td>40</td>
+                                    <td>2009/06/25</td>
+                                    <td>$675,000</td>
+                                </tr>
+                                <tr>
+                                    <td>Caesar Vance</td>
+                                    <td>Pre-Sales Support</td>
+                                    <td>New York</td>
+                                    <td>21</td>
+                                    <td>2011/12/12</td>
+                                    <td>$106,450</td>
+                                </tr>
+                                <tr>
+                                    <td>Doris Wilder</td>
+                                    <td>Sales Assistant</td>
+                                    <td>Sidney</td>
+                                    <td>23</td>
+                                    <td>2010/09/20</td>
+                                    <td>$85,600</td>
+                                </tr>
+                                <tr>
+                                    <td>Angelica Ramos</td>
+                                    <td>Chief Executive Officer (CEO)</td>
+                                    <td>London</td>
+                                    <td>47</td>
+                                    <td>2009/10/09</td>
+                                    <td>$1,200,000</td>
+                                </tr>
+                                <tr>
+                                    <td>Gavin Joyce</td>
+                                    <td>Developer</td>
+                                    <td>Edinburgh</td>
+                                    <td>42</td>
+                                    <td>2010/12/22</td>
+                                    <td>$92,575</td>
+                                </tr>
+                                <tr>
+                                    <td>Jennifer Chang</td>
+                                    <td>Regional Director</td>
+                                    <td>Singapore</td>
+                                    <td>28</td>
+                                    <td>2010/11/14</td>
+                                    <td>$357,650</td>
+                                </tr>
+                                <tr>
+                                    <td>Brenden Wagner</td>
+                                    <td>Software Engineer</td>
+                                    <td>San Francisco</td>
+                                    <td>28</td>
+                                    <td>2011/06/07</td>
+                                    <td>$206,850</td>
+                                </tr>
+                                <tr>
+                                    <td>Fiona Green</td>
+                                    <td>Chief Operating Officer (COO)</td>
+                                    <td>San Francisco</td>
+                                    <td>48</td>
+                                    <td>2010/03/11</td>
+                                    <td>$850,000</td>
+                                </tr>
+                                <tr>
+                                    <td>Shou Itou</td>
+                                    <td>Regional Marketing</td>
+                                    <td>Tokyo</td>
+                                    <td>20</td>
+                                    <td>2011/08/14</td>
+                                    <td>$163,000</td>
+                                </tr>
+                                <tr>
+                                    <td>Michelle House</td>
+                                    <td>Integration Specialist</td>
+                                    <td>Sidney</td>
+                                    <td>37</td>
+                                    <td>2011/06/02</td>
+                                    <td>$95,400</td>
+                                </tr>
+                                <tr>
+                                    <td>Suki Burks</td>
+                                    <td>Developer</td>
+                                    <td>London</td>
+                                    <td>53</td>
+                                    <td>2009/10/22</td>
+                                    <td>$114,500</td>
+                                </tr>
+                                <tr>
+                                    <td>Prescott Bartlett</td>
+                                    <td>Technical Author</td>
+                                    <td>London</td>
+                                    <td>27</td>
+                                    <td>2011/05/07</td>
+                                    <td>$145,000</td>
+                                </tr>
+                                <tr>
+                                    <td>Gavin Cortez</td>
+                                    <td>Team Leader</td>
+                                    <td>San Francisco</td>
+                                    <td>22</td>
+                                    <td>2008/10/26</td>
+                                    <td>$235,500</td>
+                                </tr>
+                                <tr>
+                                    <td>Martena Mccray</td>
+                                    <td>Post-Sales support</td>
+                                    <td>Edinburgh</td>
+                                    <td>46</td>
+                                    <td>2011/03/09</td>
+                                    <td>$324,050</td>
+                                </tr>
+                                <tr>
+                                    <td>Unity Butler</td>
+                                    <td>Marketing Designer</td>
+                                    <td>San Francisco</td>
+                                    <td>47</td>
+                                    <td>2009/12/09</td>
+                                    <td>$85,675</td>
+                                </tr>
+                                <tr>
+                                    <td>Howard Hatfield</td>
+                                    <td>Office Manager</td>
+                                    <td>San Francisco</td>
+                                    <td>51</td>
+                                    <td>2008/12/16</td>
+                                    <td>$164,500</td>
+                                </tr>
+                                <tr>
+                                    <td>Hope Fuentes</td>
+                                    <td>Secretary</td>
+                                    <td>San Francisco</td>
+                                    <td>41</td>
+                                    <td>2010/02/12</td>
+                                    <td>$109,850</td>
+                                </tr>
+                                <tr>
+                                    <td>Vivian Harrell</td>
+                                    <td>Financial Controller</td>
+                                    <td>San Francisco</td>
+                                    <td>62</td>
+                                    <td>2009/02/14</td>
+                                    <td>$452,500</td>
+                                </tr>
+                                <tr>
+                                    <td>Timothy Mooney</td>
+                                    <td>Office Manager</td>
+                                    <td>London</td>
+                                    <td>37</td>
+                                    <td>2008/12/11</td>
+                                    <td>$136,200</td>
+                                </tr>
+                                <tr>
+                                    <td>Jackson Bradshaw</td>
+                                    <td>Director</td>
+                                    <td>New York</td>
+                                    <td>65</td>
+                                    <td>2008/09/26</td>
+                                    <td>$645,750</td>
+                                </tr>
+                                <tr>
+                                    <td>Olivia Liang</td>
+                                    <td>Support Engineer</td>
+                                    <td>Singapore</td>
+                                    <td>64</td>
+                                    <td>2011/02/03</td>
+                                    <td>$234,500</td>
+                                </tr>
+                                <tr>
+                                    <td>Bruno Nash</td>
+                                    <td>Software Engineer</td>
+                                    <td>London</td>
+                                    <td>38</td>
+                                    <td>2011/05/03</td>
+                                    <td>$163,500</td>
+                                </tr>
+                                <tr>
+                                    <td>Sakura Yamamoto</td>
+                                    <td>Support Engineer</td>
+                                    <td>Tokyo</td>
+                                    <td>37</td>
+                                    <td>2009/08/19</td>
+                                    <td>$139,575</td>
+                                </tr>
+                                <tr>
+                                    <td>Thor Walton</td>
+                                    <td>Developer</td>
+                                    <td>New York</td>
+                                    <td>61</td>
+                                    <td>2013/08/11</td>
+                                    <td>$98,540</td>
+                                </tr>
+                                <tr>
+                                    <td>Finn Camacho</td>
+                                    <td>Support Engineer</td>
+                                    <td>San Francisco</td>
+                                    <td>47</td>
+                                    <td>2009/07/07</td>
+                                    <td>$87,500</td>
+                                </tr>
+                                <tr>
+                                    <td>Serge Baldwin</td>
+                                    <td>Data Coordinator</td>
+                                    <td>Singapore</td>
+                                    <td>64</td>
+                                    <td>2012/04/09</td>
+                                    <td>$138,575</td>
+                                </tr>
+                                <tr>
+                                    <td>Zenaida Frank</td>
+                                    <td>Software Engineer</td>
+                                    <td>New York</td>
+                                    <td>63</td>
+                                    <td>2010/01/04</td>
+                                    <td>$125,250</td>
+                                </tr>
+                                <tr>
+                                    <td>Zorita Serrano</td>
+                                    <td>Software Engineer</td>
+                                    <td>San Francisco</td>
+                                    <td>56</td>
+                                    <td>2012/06/01</td>
+                                    <td>$115,000</td>
+                                </tr>
+                                <tr>
+                                    <td>Jennifer Acosta</td>
+                                    <td>Junior Javascript Developer</td>
+                                    <td>Edinburgh</td>
+                                    <td>43</td>
+                                    <td>2013/02/01</td>
+                                    <td>$75,650</td>
+                                </tr>
+                                <tr>
+                                    <td>Cara Stevens</td>
+                                    <td>Sales Assistant</td>
+                                    <td>New York</td>
+                                    <td>46</td>
+                                    <td>2011/12/06</td>
+                                    <td>$145,600</td>
+                                </tr>
+                                <tr>
+                                    <td>Hermione Butler</td>
+                                    <td>Regional Director</td>
+                                    <td>London</td>
+                                    <td>47</td>
+                                    <td>2011/03/21</td>
+                                    <td>$356,250</td>
+                                </tr>
+                                <tr>
+                                    <td>Lael Greer</td>
+                                    <td>Systems Administrator</td>
+                                    <td>London</td>
+                                    <td>21</td>
+                                    <td>2009/02/27</td>
+                                    <td>$103,500</td>
+                                </tr>
+                                <tr>
+                                    <td>Jonas Alexander</td>
+                                    <td>Developer</td>
+                                    <td>San Francisco</td>
+                                    <td>30</td>
+                                    <td>2010/07/14</td>
+                                    <td>$86,500</td>
+                                </tr>
+                                <tr>
+                                    <td>Shad Decker</td>
+                                    <td>Regional Director</td>
+                                    <td>Edinburgh</td>
+                                    <td>51</td>
+                                    <td>2008/11/13</td>
+                                    <td>$183,000</td>
+                                </tr>
+                                <tr>
+                                    <td>Michael Bruce</td>
+                                    <td>Javascript Developer</td>
+                                    <td>Singapore</td>
+                                    <td>29</td>
+                                    <td>2011/06/27</td>
+                                    <td>$183,000</td>
+                                </tr>
+                                <tr>
+                                    <td>Donna Snider</td>
+                                    <td>Customer Support</td>
+                                    <td>New York</td>
+                                    <td>27</td>
+                                    <td>2011/01/25</td>
+                                    <td>$112,000</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box -->
+        </section>
+        <footer class="content-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 2.4.0
+            </div>
+            <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+            reserved.
+        </footer>
+    </div>
+    <!--标题-->
+
+
+    <aside class="control-sidebar control-sidebar-dark"></aside>
+    <div class="control-sidebar-bg"></div>
+    <script type="text/javascript">
+        layui.form.render(null, "layui-form");
+        layui.element.render({elem: "#card"});
+        //layui.laydate.render({elem: "#date"});
+        layui.form.on('submit(LAY-user-back-search)', function (data) {
+            console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
+            console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
+            console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+            alert(JSON.stringify(data.field));
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+
+        var table = $('#test').on("order.dt", function () {
+            console.log("order.dt触发排序", arguments);
+        }).on("search.dt", function () {
+            console.log("search.dt触发搜索", arguments);
+        }).on("page.dt", function () {
+            console.log("page.dt触发翻页", arguments);
+        }).DataTable({
+            /**
+             numbers - 只有只有数字按钮
+             simple - 只有上一页、下一页两个按钮
+             simple_numbers - 除了上一页、下一页两个按钮还有页数按钮，Datatables默认是这个
+             full - 有四个按钮首页、上一页、下一页、末页
+             full_numbers - 除首页、上一页、下一页、末页四个按钮还有页数按钮
+             first_last_numbers - 除首页、末页两个按钮还有页数按钮
+             */
+            pagingType: 'simple_numbers',
+            //开启本地缓存，记录上一次页数,开启之后，设置columnDefs列隐藏会失效
+            stateSave: false,
+            //是否开启分页
+            paging: true,
+            //是否开启列头排序
+            ordering: true,
+            //是否开启信息栏
+            info: true,
+            //当希望将表格放在一个固定高度的容器内，就需要开启垂直滚动条，此时需要设置2个参数scrollCollapse，scrollY
+            //scrollCollapse:'false',
+            //scrollY:'300px',
+            //开启表格水平滚动条，一般在表格容器宽度固定的时候，无法呈现所有列的数据，就需要开启
+            scrollX: true,
+            //设置初始化时，默认以第几列进行排序，并且设置排序规则，如果开启了本地缓存，此设置就会不起作用
+            //此处是以第4列降序排序，以第5列降序排序
+            order: [[3, "desc"], [4, "desc"]],
+            //设置长度菜单，每页显示多少条，二维数组的作用就是第一个数组就是实际长度值，第二个数组是用于下拉框显示的值
+            lengthMenu: [[10, 20, 50, -1], ["10条", "20条", "50条", "全部显示"]],
+            //国际化
+            language: {
+                lengthMenu: "每页 _MENU_ 条记录",
+                zeroRecords: "没有找到记录",
+                info: "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+                infoEmpty: "无记录",
+                infoFiltered: "(从 _MAX_ 条记录过滤)"
+            },
+            //国际化引用文件
+            language: {
+                url: "../../resource/common/config/datatables_zh_CN.json"
+            },
+            createdRow: function (row, data, index) {
+                console.log("-----------------------createdRow创建行回调---------------");
+                console.log(row, data, index);
+            },
+            //为每一列设置属性，如下，写了6个列，对应表格的6个列，同时为每一个列指定了data属性，即指定了列的key值，通过获取一整行的数据即可通过data属性指定的属性值获取到
+            //获取某一行某一列的数据方式：table.row( this ).data().name/position/office/age/start_date/salary
+            columns: [
+                { "data": "name" },
+                { "data": "position" },
+                { "data": "office" },
+                { "data": "age" },
+                { "data": "start_date" },
+                { "data": "salary" }
+            ],
+            columnDefs: [
+                {
+                    //控制第一列
+                    "targets": 0,
+                    //是否隐藏该列，如果开启了本地缓存，此设置就会不起作用
+                    "visible": true,
+                    //是否参与搜索
+                    "searchable": true,
+                    /**
+                     * data:当前列的值
+                     * type: 当前列显示的方式，display,sort,filter
+                     * row：当前行所有的数据，包括每一列的数据，是一个数组，索引从0开始，代表每一列的数据——》[ "Caesar Vance", "Pre-Sales Support", "New York", "21", "2011/12/12", "$106,450" ]
+                     * meta：当前列的的列数与行数信息    ——》{ settings: {…}, row: 23, col: 0 }
+                     */
+                    render: function (data, type, row, meta) {
+                        if (meta.row == 0 && meta.col == 0) {
+                            console.log("------------------------columnDefs.render-----------------------");
+                            console.log(data, type, row, meta);
+                        }
+                        return data;
+                    }
+                }
+            ]
+        });
+
+        /**
+         * 点击每行获取那一行的数据
+         */
+        $('#test tbody').on('click', 'tr', function () {
+            console.log("------------------------点击行-----------------------");
+            console.log(this);//tr DOM对象
+            console.log(table.row());//Object
+            console.log(table.row().data());//获取第一行的数据[ "Michael Silva", "Marketing Designer", "London", "66", "2012/11/27", "$198,500" ]
+            console.log(table.row(this));//Object
+            console.log(table.row(this).data());//获取选中行的数据
+            // table.row( this ).data()如果没有设置columns内指定每一列的data属性，默认获取到行的数据是一个数组
+            // [ "Michael Silva", "Marketing Designer", "London", "66", "2012/11/27", "$198,500" ]
+
+            // table.row( this ).data()如果设置了columns，并且指定了每一列的data属性，获取到的行的数据是一个对象
+            //{ name: "Michael Silva", position: "Marketing Designer", office: "London", age: "66", start_date: "2012/11/27", salary: "$198,500" }
+
+            alert(JSON.stringify(table.row(this).data()));
+        });
+    </script>
+</div>
+</body>
+</html>
