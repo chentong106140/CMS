@@ -142,6 +142,27 @@
             div.dataTables_wrapper div.buttons {
                 text-align: left;
             }
+
+            div.dataTables_wrapper td .dropdown-menu
+            {
+                min-width: 63px;
+                padding: 5px;
+            }
+
+            div.dataTables_wrapper td .dropdown-menu .fa
+            {
+                margin: 0;
+            }
+
+            div.dataTables_wrapper td .dropdown-menu a
+            {
+                padding: 3px 0;
+                text-align: center;
+                display: block;
+                width: 100%;
+            }
+
+
         }
         @media screen and (min-width: 767px) {
             div.dataTables_wrapper div.dataTables_length,
@@ -156,11 +177,36 @@
             {
                 display: none;
             }
+
+            div.dataTables_wrapper td ul.dropdown-menu
+            {
+                min-width: inherit;
+                padding: 5px;
+            }
+
+            div.dataTables_wrapper td .dropdown-menu a
+            {
+                padding: 3px 0;
+                text-align: left;
+                display: block;
+                width: 100%;
+            }
+
         }
+
+
+
+
+
+
 
         div.dataTables_wrapper div.dataTables_length select
         {
             min-width: 100px;
+        }
+
+        .dt-center{
+            text-align: center;
         }
 </style>
 
@@ -410,7 +456,7 @@
             </span>
         </div>
         <section class="content">
-            <div class="box box-default "><!--默认关闭盒子添加collapsed-box-->
+            <div class="box box-primary "><!--默认关闭盒子添加collapsed-box-->
                 <div class="box-header with-border">
                     <h3 class="box-title">查询</h3>
                     <div class="box-tools pull-right">
@@ -472,7 +518,7 @@
                 </div>
                 <!-- /.box-body -->
             </div>
-            <div class="box box-default box-solid"><!--默认关闭盒子添加collapsed-box-->
+            <div class="box box-primary box-solid"><!--默认关闭盒子添加collapsed-box-->
                 <div class="box-header with-border">
                     <h3 class="box-title">查询结果</h3>
                 </div>
@@ -551,7 +597,7 @@
                 {
                     text:function (a, b) {
                         console.log("编辑",arguments);
-                        return  '<a class="" title="编辑"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;编辑</a>';
+                        return  '<a class="" title="编辑"><i class="fa fa-edit"></i>&nbsp;编辑</a>';
                     },
                    // className : 'btn btn-default',
                     action:function (e, dt, node, config) {
@@ -561,7 +607,7 @@
                     node:"<i></i>"
                 },
                 {
-                    text:"删除",
+                    text:'<a class="" title="删除"><i class="fa fa-trash-o"></i>&nbsp;删除</a>',
                     action:function (e, dt, node, config) {
                         console.log(e, dt, node, config);
                     }
@@ -622,8 +668,13 @@
             ],
             columnDefs: [
                 {
+                    targets:[0,1,2,3],
+                    className:'dt-center'
+                },
+                {
                     //控制最后一列,负数代表从右往左数
                     "targets": -1,
+                    className:'dt-center',
                     //是否隐藏该列，如果开启了本地缓存，此设置就会不起作用
                     "visible": true,
                     //width:"20%",
@@ -645,7 +696,26 @@
                             console.log("------------------------columnDefs.render-----------------------");
                             console.log(data, type, row, meta);
                         }
-                        var html =  '<a class="btn " title="点我  "><i class="fa fa-pencil" aria-hidden="true"></i></a>';
+                        var html =  '<div class="btn-group">'+
+                                        '<button type="button" class="btn btn-default" data-toggle="dropdown">' +
+                                            '<i class="fa fa-bars" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;' +
+                                            '<span class="caret"></span>'+
+                                        '</button>'+
+                                        '<ul class="dropdown-menu" role="menu">' +
+                                            '<li>'+
+                                                '<a class="btn " title="详情"><i class="fa fa-info-circle" aria-hidden="true"></i><span class="hidden-xs">详情</span></a>' +
+                                            '</li>'+
+                                            '<li>'+
+                                                '<a class="btn " title="修改"><i class="fa fa-edit" aria-hidden="true"></i><span class="hidden-xs">修改</span></a>' +
+                                            '</li>'+
+                                            '<li>'+
+                                                '<a class="btn " title="详情管理"><i class="fa fa-list" aria-hidden="true"></i><span class="hidden-xs">详情管理</span></a>' +
+                                            '</li>'+
+                                            '<li>'+
+                                                    '<a class="btn " title="删除"><i class="fa fa-trash-o" aria-hidden="true"></i><span class="hidden-xs">删除</span></a>' +
+                                            '</li>'+
+                                        '</ul>'+
+                                    '</div>';
                         return html;
                     }
                 }
@@ -700,7 +770,7 @@
         /**
          * 点击每行获取那一行的数据
          */
-        $('#test tbody').on('click', 'tr', function () {
+/*        $('#test tbody').on('click', 'tr', function () {
             console.log("------------------------点击行-----------------------");
             console.log(this);//tr DOM对象
             console.log(table.row());//Object
@@ -714,14 +784,17 @@
             //{ name: "Michael Silva", position: "Marketing Designer", office: "London", age: "66", start_date: "2012/11/27", salary: "$198,500" }
 
             alert("行："+JSON.stringify( table.row( this ).data()));
-        } );
+        } );*/
 
-        $('#test tbody').on('click', 'button', function () {
+        /**
+         * 点击行内按钮
+         */
+        /*$('#test tbody').on('click', 'div', function () {
             console.log("------------------------点击按钮-----------------------");
 
             alert("按钮："+JSON.stringify( table.row( $(this).parents('tr') ).data()));
             return false;
-        } );
+        } );*/
 
 
     </script>

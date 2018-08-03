@@ -1,0 +1,58 @@
+html {
+    font-size: 15px;
+}
+
+h1, h2, h3, h4 {
+    color: #797979;
+    padding: 5px 0;
+}
+
+h1, h2 {
+    border-bottom: 2px solid #797979;
+}
+
+a,a:hover{
+    text-decoration: none;
+    color:#797979;
+}
+
+pre .code-copy{
+    text-decoration: none !important;
+    right:0px;
+    cursor: pointer;
+    padding: 5px;
+    position: absolute;
+    top: 0;
+    color: white;
+}
+
+p, pre {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #797979;
+    color: white;
+    position:relative;
+    word-break:break-all;
+}
+p, h1, h2, h3, h4, pre {
+    margin: 15px 0;
+}
+
+.box-item {
+    width: 200px;
+    height: 200px;
+    line-height: 1.5rem;
+    background-color: white;
+    margin: 5px;
+    text-align: center;
+    display: flex;
+}
+
+
+
+
+code ,pre,p{
+    font-size: 1.2rem;
+    border-radius: 5px;
+    word-break:break-all;
+}
