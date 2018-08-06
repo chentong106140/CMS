@@ -332,7 +332,7 @@
                 <li><a href="/CMS/view/main/main.html"><i class="fa fa-circle-o text-yellow"></i> <span>概览</span></a>
                 </li>
                 <li class="header">案例</li>
-                <li class="treeview active">
+                <li class="treeview">
                     <a href="#">
                         <i class="fa fa-dashboard"></i> <span>DataTable</span>
                         <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
@@ -346,11 +346,9 @@
                         </li>
                         <li><a href="/CMS/view/datatable/datatable_ajax_object_processing.html"><i
                                 class="fa fa-circle-o"></i>ajax获取嵌套对象类型数据</a></li>
-                        <li class="active"><a href="/CMS/view/datatable/datatable_ajax_object_auto_defined.html"><i
-                                class="fa fa-circle-o"></i>生成自定义内容</a></li>
                     </ul>
                 </li>
-                <li class="treeview">
+                <li class="treeview active">
                     <a href="#">
                         <i class="fa fa-files-o"></i>
                         <span>layer弹窗</span>
@@ -358,10 +356,8 @@
                         <!--<span class="pull-right-container"><span class="label label-primary pull-right">4</span></span>-->
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-circle-o"></i>视频类型管理</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i>视频管理</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i>集数管理</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i>cp视频管理</a></li>
+                        <li class="active"><a href="/CMS/view/layer/layer_文档.html"><i class="fa fa-circle-o"></i>layer_文档</a></li>
+                        <li><a href="/CMS/view/layer/layer_快速上手.html"><i class="fa fa-circle-o"></i>layer_快速上手</a></li>
                     </ul>
                 </li>
 
@@ -385,7 +381,7 @@
         <div id="card" class="layui-card layadmin-header">
             <span class="layui-breadcrumb" lay-separator="/">
               <a href="#">layer弹窗</a>
-               <a><cite>生成自定义内容</cite></a>
+               <a href="http://www.layui.com/doc/modules/layer.html" target="_blank"><cite>layer_文档</cite></a>
             </span>
         </div>
         <section class="content">
@@ -425,23 +421,52 @@ title支持3中类型的值
 
 </div>
 <h1>content内容</h1>
-<pre>
+<pre class="javascript hljs ">
 类型：String/DOM/Array，默认：''
 可以放html字符，url地址，DOM对象等
 </pre>
 <h1>area宽高</h1>
-<pre>
+<pre class="javascript hljs ">
 类型：String/Array，默认：'auto'自适应
 area:"auto"     自适应，一般会在屏幕中央，宽高最小尺寸显示
-area:"500px"    设置宽度，高度自适应
+area:"500px"    设置宽度，高度自适应，高度以最小尺寸显示
 area:["500px","500px"]  设置宽高
 </pre>
 <div class="box box-primary">
-    <button class="btn btn-default test9">area:"auto"</button><br/>
+    <button class="btn btn-default test9">area:"auto"     自适应，一般会在屏幕中央，宽高最小尺寸显示</button><br/>
+    <button class="btn btn-default test10">area:"500px"    设置宽度，高度自适应，高度以最小尺寸显示</button><br/>
+    <button class="btn btn-default test11">area:["500px","500px"]  设置宽高</button><br/>
 
 </div>
+<h1>offset坐标</h1>
+<pre class="javascript hljs ">
+    类型：String/Array，默认：垂直水平居中
 
+值 	                        备注
+offset: 'auto' 	            默认坐标，即垂直水平居中
+offset: '100px' 	    只定义top坐标，水平保持居中
+offset: ['100px', '50px']   同时定义top、left坐标
+offset: 't' 	            快捷设置顶部坐标
+offset: 'r' 	            快捷设置右边缘坐标
+offset: 'b' 	            快捷设置底部坐标
+offset: 'l' 	            快捷设置左边缘坐标
+offset: 'lt' 	            快捷设置左上角
+offset: 'lb' 	            快捷设置左下角
+offset: 'rt' 	            快捷设置右上角
+offset: 'rb' 	            快捷设置右下角
+</pre>
+<div class="box box-primary">
+    <button class="btn btn-default test12">offset: 't'  快捷设置顶部坐标</button><br/>
+    <button class="btn btn-default test13">offset: 'r'  快捷设置右边缘坐标</button><br/>
+    <button class="btn btn-default test14">offset: 'b' 	快捷设置底部坐标</button><br/>
+    <button class="btn btn-default test15">offset: 'l' 	快捷设置左边缘坐标</button><br/>
+    <button class="btn btn-default test16">offset: 'lt' 快捷设置左上角</button><br/>
+    <button class="btn btn-default test17">offset: 'rt' 快捷设置右上角</button><br/>
+    <button class="btn btn-default test18">offset: 'lb' 快捷设置左下角</button><br/>
+    <button class="btn btn-default test19">offset: 'rb' 快捷设置右上角</button><br/>
 
+</div>
+<h1>icon - 图标</h1>
 
 
 
@@ -471,6 +496,8 @@ area:["500px","500px"]  设置宽高
     layui.element.render({elem: "#card"});
 
     var layer = layui.layer;
+
+    var nf = function () {};
 
     /**
      * type等于0
@@ -577,6 +604,139 @@ area:["500px","500px"]  设置宽高
         });
     });
 
+    $(".test10").hover(function () {
+        layer.tips('layer.open({\n' +
+            '            type:1,\n' +
+            '            area:"500px",\n' +
+            '            title:\'area:"500px"\',\n' +
+            '            shadeClose:true,\n' +
+            '            content:\'内容插入成功！\'\n' +
+            '        });',this);
+    },nf).click(function () {
+        layer.open({
+            type:1,
+            area:"500px",
+            title:'area:"500px"',
+            shadeClose:true,
+            content:'内容插入成功！'
+        });
+    });
+
+
+    $(".test11").hover(function () {
+        layer.tips('layer.open({\n' +
+            '            type:1,\n' +
+            '            area:["500px","500px"],\n' +
+            '            title:\'area:["500px","500px"]\',\n' +
+            '            shadeClose:true,\n' +
+            '            content:\'内容插入成功！\'\n' +
+            '        });',this);
+    },nf).click(function () {
+        layer.open({
+            type:1,
+            area:["500px","500px"],
+            title:'area:["500px","500px"]',
+            shadeClose:true,
+            content:'内容插入成功！'
+        });
+    });
+
+    $(".test12").hover(function () {
+        layer.tips('layer.open({\n' +
+            '            type:1,\n' +
+            '            area:["500px","500px"],\n' +
+            '            offset:"t",\n' +
+            '            title:\' offset:"t" 显示在顶部\',\n' +
+            '            shadeClose:true,\n' +
+            '            content:\'内容插入成功！\'\n' +
+            '        });', this)
+    },nf).click(function () {
+        layer.open({
+            type:1,
+            area:["500px","500px"],
+            offset:"t",
+            title:' offset:"t" 显示在顶部',
+            shadeClose:true,
+            content:'内容插入成功！'
+        });
+    });
+
+    $(".test13").click(function () {
+        layer.open({
+            type:1,
+            area:["500px","500px"],
+            offset:"r",
+            title:' offset:"t" 显示在右边缘',
+            shadeClose:true,
+            content:'内容插入成功！'
+        });
+    });
+
+    $(".test14").click(function () {
+        layer.open({
+            type:1,
+            area:["500px","500px"],
+            offset:"b",
+            title:' offset:"b" 显示在底部边缘',
+            shadeClose:true,
+            content:'内容插入成功！'
+        });
+    });
+
+    $(".test15").click(function () {
+        layer.open({
+            type:1,
+            area:["500px","500px"],
+            offset:"l",
+            title:' offset:"l" 显示在左边缘',
+            shadeClose:true,
+            content:'内容插入成功！'
+        });
+    });
+
+    $(".test16").click(function () {
+        layer.open({
+            type:1,
+            area:["500px","500px"],
+            offset:"lt",
+            title:' offset:"lt" 显示在左上角',
+            shadeClose:true,
+            content:'内容插入成功！'
+        });
+    });
+
+    $(".test17").click(function () {
+        layer.open({
+            type:1,
+            area:["500px","500px"],
+            offset:"rt",
+            title:' offset:"rt" 显示在右上角',
+            shadeClose:true,
+            content:'内容插入成功！'
+        });
+    });
+
+    $(".test18").click(function () {
+        layer.open({
+            type:1,
+            area:["500px","500px"],
+            offset:"lb",
+            title:' offset:"lb" 显示在左下角',
+            shadeClose:true,
+            content:'内容插入成功！'
+        });
+    });
+
+    $(".test19").click(function () {
+        layer.open({
+            type:1,
+            area:["500px","500px"],
+            offset:"rb",
+            title:' offset:"rb" 显示在右下角',
+            shadeClose:true,
+            content:'内容插入成功！'
+        });
+    });
 </script>
 </div>
 </body>
