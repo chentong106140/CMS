@@ -390,8 +390,110 @@
                     <h3 class="box-title">查询结果</h3>
                 </div>
 
-                <div class="box-body" style="height: auto;">
+                <div class="box-body" style="height: 20000px;">
                     <!--内容-->
+
+<h1>最全配置</h1>
+<pre class="javascript hljs ">
+    <code>
+            /**
+     *  完整案例
+     */
+    $(".test57").click(function () {
+        layer.open({
+            type:1,//  设置类型，1：html内容层
+            title:'完成例子',//设置标题
+            area:["500px","500px"],//设置宽高
+            shadeClose: true,//开启关闭按钮
+            closeBtn :1,//关闭按钮的风格样式
+            content:'加载成功了吗？',//内容
+            btn:['按钮1','按钮2','按钮3'],//设置按钮
+            offset:"auto",//显示坐标
+            shade: [0.8, '#393D49'],//修改遮罩层透明度与背景颜色
+            shadeClose:true,//是否点击遮罩关闭
+            time:600000,//自动关闭弹出框的时间
+            id:"myLayer",//设置弹出框父级容器的id
+            anim:6,//设置显示动画
+            isOutAnim:true,//开启关闭弹出框时的动画
+            maxmin:true,//显示最大小化按钮
+            scrollbar:false,//允许浏览器出现滚动条
+            maxWidth:500,//最大宽度，只有当area: 'auto'时，maxWidth的设定才有效
+            maxHeight:500,// 最大高度 只有当高度自适应时，maxHeight的设定才有效
+            //zIndex:10000,//层叠顺序 一般用于解决和其它组件的层叠冲突。
+            move:'.layui-layer-title',//触发拖动的元素,默认标题栏，配置设定move: false来禁止拖拽
+            moveOut:true,//是否允许拖拽到窗口外   默认只能在窗口内拖拽，如果你想让拖到窗外，那么设定moveOut: true即可
+            moveEnd:function (layero) {//拖动完毕后的回调方法,其中layero为当前层的DOM对象
+                console.log("拖动完毕后回调",layero);
+                layer.msg("拖动完毕后回调"+layero);
+            },
+            resize:true,//允许拉伸
+            resizing:function (layero) {//拉伸回调
+                console.log("拉伸回调",layero);
+                layer.msg("拉伸回调"+layero);
+            },
+            yes:function (index, layero) {
+                console.log("yes确定按钮回调成功！",index,layero);
+                layer.msg("yes确定按钮回调成功！"+index+'---'+layero);
+            },
+            btn2:function (index,layero) {
+                console.log(index,layero);
+                layer.msg("btn2回调成功！"+index+'---'+layero);
+            },btn3:function (index, layero) {
+                console.log(index,layero);
+                layer.msg("btn3回调成功！"+index+'---'+layero);
+            },
+            success:function (layero, index) {//层弹出后的成功回调方法 success会携带两个参数，分别是当前层DOM当前层索引
+                console.log("层弹出后的成功回调！",index,layero);
+                layer.msg("层弹出后的成功回调！"+index+'---'+layero);
+            },
+            /**
+             *             右上角关闭按钮触发的回调 回调携带两个参数，
+             *             分别为：当前层索引参数（index）、当前层的DOM对象（layero），
+             *             默认会自动触发关闭。如果不想关闭，return false
+             */
+            cancel:function (index, layero) {
+                console.log("右上角关闭按钮触发的回调！",index,layero);
+                layer.msg("右上角关闭按钮触发的回调！"+index+'---'+layero);
+            },
+            /**
+             * 层销毁后触发的回调
+             * 无论是确认还是取消，只要层被销毁了，end都会执行，不携带任何参数。
+             */
+            end:function () {
+                console.log("层销毁后触发的回调");
+                layer.msg("层销毁后触发的回调");
+            },
+            /**
+             * 最大化触发的回调，携带一个参数，即当前层DOM
+             */
+            full:function () {
+                console.log("最大化触发的回调");
+                layer.msg("最大化触发的回调");
+            },
+            /**
+             * 最小化触发的回调
+             */
+            min:function () {
+                console.log("最小化触发的回调");
+                layer.msg("最小化触发的回调");
+            },
+            /**
+             * 还原触发的回调
+             */
+            restore:function () {
+                console.log("还原触发的回调");
+                layer.msg("还原触发的回调");
+            }
+
+        });
+    });
+    </code>
+</pre>
+<div class="box box-primary">
+    <button class="btn btn-default test57">resize</button>
+</div>
+
+
 <h1>type类型</h1>
 <pre class="javascript hljs ">
     0：信息框,默认
@@ -466,17 +568,228 @@ offset: 'rb' 	            快捷设置右下角
     <button class="btn btn-default test19">offset: 'rb' 快捷设置右上角</button><br/>
 
 </div>
-<h1>icon - 图标</h1>
+<h1>icon - 图标   信息框和加载层的私有参数</h1>
+<pre class="javascript hljs ">
+    类型：Number，默认：-1（信息框）/0（加载层）
+    信息框默认不显示图标。当你想显示图标时，默认皮肤可以传入0-6如果是加载层，可以传入0-2。
+
+    信息框：layer.alert/layer.msg
+        icon:0      信息
+        icon:1      正确
+        icon:2      错误
+        icon:3      疑问
+        icon:4      加锁
+        icon:5      哭脸
+        icon:6      笑脸
+</pre>
+<div class="box box-primary">
+    <button class="btn btn-default test20">信息框 layer.alert("信息",{icon:0});</button>
+    <button class="btn btn-default test21">信息框 layer.alert("正确",{icon:1});</button>
+    <button class="btn btn-default test22">信息框 layer.alert("错误",{icon:2});</button>
+    <button class="btn btn-default test23">信息框 layer.alert("疑问",{icon:3});</button>
+    <button class="btn btn-default test24">信息框 layer.alert("加锁",{icon:4});</button>
+    <button class="btn btn-default test25">信息框 layer.alert("哭脸",{icon:5});</button>
+    <button class="btn btn-default test26">信息框 layer.alert("笑脸",{icon:6});</button>
+</div>
+<div class="box box-primary">
+    <button class="btn btn-default test27">信息框 layer.msg("信息",{icon:0});</button>
+    <button class="btn btn-default test28">信息框 layer.msg("正确",{icon:1});</button>
+    <button class="btn btn-default test29">信息框 layer.msg("错误",{icon:2});</button>
+    <button class="btn btn-default test30">信息框 layer.msg("疑问",{icon:3});</button>
+    <button class="btn btn-default test31">信息框 layer.msg("加锁",{icon:4});</button>
+    <button class="btn btn-default test32">信息框 layer.msg("哭脸",{icon:5});</button>
+    <button class="btn btn-default test33">信息框 layer.msg("笑脸",{icon:6});</button>
+</div>
+<div class="box box-primary">
+    <button class="btn btn-default test34">加载层-3个圆圈滚动加载 layer.load(0);</button>
+    <button class="btn btn-default test35">加载层-粗的太阳滚动加载 layer.load(1);</button>
+    <button class="btn btn-default test36">加载层-细的太阳滚动加载 layer.load(2);</button>
+
+</div>
+<h1>btn - 按钮</h1>
+<pre class="javascript hljs ">
+类型：String/Array，默认：'确认'
+
+信息框模式时，btn默认是一个确认按钮，其它层类型则默认不显示，加载层和tips层则无效。
+当您只想自定义一个按钮时，你可以btn: '我知道了'，当你要定义两个按钮时，
+    你可以btn: ['yes', 'no']。
+    当然，你也可以定义更多按钮，
+    比如：btn: ['按钮1', '按钮2', '按钮3', …]，按钮1的回调是yes，
+    而从按钮2开始，则回调为btn2: function(){}，以此类推。
+</pre>
+<div class="box box-primary">
+    <button class="btn btn-default test37">btn:['按钮1','按钮2','按钮3']</button>
+
+</div>
+<h1>closeBtn - 关闭按钮</h1>
+<pre class="javascript hljs ">
+    layer提供了两种风格的关闭按钮，可通过配置1和2来展示，如果不显示，则closeBtn: 0
+</pre>
+<div class="box box-primary">
+    <button class="btn btn-default test38">closeBtn:0   不显示</button>
+    <button class="btn btn-default test39">closeBtn:1   默认x按钮</button>
+    <button class="btn btn-default test40">closeBtn:2   圆圈x按钮</button>
+
+</div>
+<h1>shade - 遮罩</h1>
+<pre class="javascript hljs ">
+    类型：String/Array/Boolean，默认：0.3
+</pre>
+<div class="box box-primary">
+    <button class="btn btn-default test41">shade: [0.8, '#393D49'] 改变遮罩层背景颜色与透明度</button>
+</div>
+<h1>shadeClose - 是否点击遮罩关闭</h1>
+<pre class="javascript hljs ">
+    类型：Boolean，默认：false
+    如果你的shade是存在的，那么你可以设定shadeClose来控制点击弹层外区域关闭。
+</pre>
+<div class="box box-primary">
+    <button class="btn btn-default test42">shadeClose:true,允许点击遮罩关闭信息框</button>
+    <button class="btn btn-default test43">shadeClose:false,不允许点击遮罩关闭信息框</button>
+</div>
+<h1>time - 自动关闭所需毫秒</h1>
+<pre class="javascript hljs ">
+    类型：Number，默认：0
+    默认不会自动关闭。当你想自动关闭时，可以time: 5000，即代表5秒后自动关闭，注意单位是毫秒（1秒=1000毫秒）
+</pre>
+<div class="box box-primary">
+    <button class="btn btn-default test44">time:3000设置3秒之后自动关闭信息框</button>
+</div>
+<h1>id - 用于控制弹层唯一标识</h1>
+<pre class="javascript hljs ">
+    类型：String，默认：空字符
+    设置该值后，不管是什么类型的层，都只允许同时弹出一个。一般用于页面层和iframe层模式
+</pre>
+<div class="box box-primary">
+    <button class="btn btn-default test45">设置id后，弹框内容区域的父级容器的id就是我们指定的id</button>
+</div>
+<h1>anim - 弹出动画</h1>
+<pre class="javascript hljs ">
+类型：Number，默认：0
+我们的出场动画全部采用CSS3。
+这意味着除了ie6-9，其它所有浏览器都是支持的。
+目前anim可支持的动画类型有0-6 如果不想显示动画，设置 anim: -1 即可。
+另外需要注意的是，3.0之前的版本用的是 shift 参数
+值 	        备注
+anim: 0 	平滑放大。默认
+anim: 1 	从上掉落
+anim: 2 	从最底部往上滑入
+anim: 3 	从左滑入
+anim: 4 	从左翻滚
+anim: 5 	渐显
+anim: 6 	抖动
+</pre>
+<div class="box box-primary">
+    <button class="btn btn-default test46">anim:-1  无动画</button>
+    <button class="btn btn-default test47">anim:0  平滑放大。默认</button>
+    <button class="btn btn-default test48">anim:1  从上掉落</button>
+    <button class="btn btn-default test49">anim:2  从最底部往上滑入</button>
+    <button class="btn btn-default test50">anim:3  从左滑入</button>
+    <button class="btn btn-default test51">anim:4  从左翻滚</button>
+    <button class="btn btn-default test52">anim:5  渐显</button>
+    <button class="btn btn-default test53">anim:6  抖动</button>
+</div>
+<h1>maxmin - 最大最小化。</h1>
+<pre class="javascript hljs ">
+    类型：Boolean，默认：false
+    该参数值对type:1和type:2有效。默认不显示最大小化按钮。需要显示配置maxmin: true即可
+</pre>
+<div class="box box-primary">
+    <button class="btn btn-default test54">maxmin:true  开启最大化与最小化按钮，前提type值必须是1或者2，也就是必须是页面层与iframe层</button>
+</div>
+
+<h1>fixed - 固定</h1>
+<pre class="javascript hljs ">
+    类型：Boolean，默认：true
+    即鼠标滚动时，层是否固定在可视区域。如果不想，设置fixed: false即可
+</pre>
+<div class="box box-primary">
+    <button class="btn btn-default test55">fixed:true,</button>
+    <button class="btn btn-default test56">fixed:false,</button>
+</div>
+<h1>layer.alert(content, options, yes) - 普通信息框</h1>
+<pre class="javascript hljs ">
+    它的参数是自动向左补齐的。通过第二个参数，可以设定各种你所需要的基础参数，但如果你不需要的话，直接写回调即可。如
+</pre>
+<div class="box box-primary">
+    <button class="btn btn-default test58">layer.alert(content, options, yes),如果有回调函数，需要手动进行关闭</button>
+</div>
+<h1>layer.confirm(content, options, yes, cancel) - 询问框</h1>
+<pre class="javascript hljs ">
+    不是和系统的confirm一样阻塞你需要把交互的语句放在回调体中。同样的，它的参数也是自动补齐的。
+
+    与layer.alert不同的是，layer.confirm有2个按钮，一个是确定，一个是取消，对应的按钮点击后，都有回调函数
+
+    yes:确定键，默认不关闭弹窗，需要使用layer.close(index)手动关闭
+    cancle:取消键，默认关闭弹窗，如果需要不关闭弹窗，可以使用return false;阻止关闭。
+</pre>
+<div class="box box-primary">
+    <button class="btn btn-default test59">layer.confirm(content, options, yes,cancle),如果有回调函数，需要手动进行关闭</button>
+</div>
+
+
+<h1>layer.msg(content, options, end) - 提示框</h1>
+<pre class="javascript hljs ">
+    默认还会3秒后自动消失
+</pre>
+<div class="box box-primary">
+    <button class="btn btn-default test60">layer.msg(content,options,end);提示框，消失后，调用end回调</button>
+</div>
+
+<h1>layer.load(icon, options) - 加载层</h1>
+<pre class="javascript hljs ">
+    load默认是不会自动关闭的，因为你一般会在ajax回调体中关闭它。
+
+    layer.load(icon, options) - 加载层,如果不手动关闭加载层，需要使用参数time,代表最长多长时间消失
+</pre>
+<div class="box box-primary">
+    <button class="btn btn-default test61">layer.load(icon, options) - 加载层,如果不手动关闭加载层，需要使用参数time,代表最长多长时间消失</button>
+</div>
+
+
+<h1>layer.tips(content, follow, options) - tips层</h1>
+<pre class="javascript hljs ">
+    会智能定位，即灵活地判断它应该出现在哪边。默认是在元素右边弹出
+
+    tips层的私有参数。支持上右下左四个方向，通过1-4进行方向设定。
+    如tips: 3则表示在元素的下面出现。
+    有时你还可能会定义一些颜色，可以设定tips: [1, '#c00']
+</pre>
+<div class="box box-primary">
+    <button class="btn btn-default test62">layer.tips("我在上面出现了哦",this,{tips:[1, '#c00']});</button>
+    <button class="btn btn-default test63">layer.tips("我在右边出现了哦",this,{tips:[2, '#c00']});</button>
+    <button class="btn btn-default test64">layer.tips("我在下面出现了哦",this,{tips:[3, '#c00']});</button>
+    <button class="btn btn-default test65">layer.tips("我在左边出现了哦",this,{tips:[4, '#c00']});</button>
+</div>
+
+<h1>layer.close(index)  获取index的途径</h1>
+<pre class="javascript hljs ">
+//当你想关闭当前页的某个层时
+var index = layer.open();
+var index = layer.alert();
+var index = layer.load();
+var index = layer.tips();
+//正如你看到的，每一种弹层调用方式，都会返回一个index
+layer.close(index); //此时你只需要把获得的index，轻轻地赋予layer.close即可
+
+//如果你想关闭最新弹出的层，直接获取layer.index即可
+layer.close(layer.index); //它获取的始终是最新弹出的某个层，值是由layer内部动态递增计算的
+
+//当你在iframe页面关闭自身时
+var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+parent.layer.close(index); //再执行关闭
+</pre>
+<div class="box box-primary">
+    <button class="btn btn-default test62">layer.tips("我在上面出现了哦",this,{tips:[1, '#c00']});</button>
+    <button class="btn btn-default test63">layer.tips("我在右边出现了哦",this,{tips:[2, '#c00']});</button>
+    <button class="btn btn-default test64">layer.tips("我在下面出现了哦",this,{tips:[3, '#c00']});</button>
+    <button class="btn btn-default test65">layer.tips("我在左边出现了哦",this,{tips:[4, '#c00']});</button>
+</div>
 
 
 
 
 
-
-
-
-
-                </div>
             </div>
     </div>
     <!-- /.box -->
@@ -735,6 +1048,548 @@ offset: 'rb' 	            快捷设置右下角
             title:' offset:"rb" 显示在右下角',
             shadeClose:true,
             content:'内容插入成功！'
+        });
+    });
+
+    /**
+     * 信息框 layer.alert("信息",{icon:0});
+     */
+    $(".test20").click(function () {
+        layer.alert("信息",{icon:0});
+    });
+
+    /**
+     * 信息框 layer.alert("正确",{icon:1});
+     */
+    $(".test21").click(function () {
+        layer.alert("正确",{icon:1});
+    });
+    /**
+     * 信息框 layer.alert("错误",{icon:2});
+     */
+    $(".test22").click(function () {
+        layer.alert("错误",{icon:2});
+    });
+
+    /**
+     * 信息框 layer.alert("疑问",{icon:3});
+     */
+    $(".test23").click(function () {
+        layer.alert("{疑问",{icon:3});
+    });
+
+    /**
+     * 信息框 layer.alert("加锁",{icon:4});
+     */
+    $(".test24").click(function () {
+        layer.alert("{加锁",{icon:4});
+    });
+
+    /**
+     * 信息框 layer.alert("哭脸",{icon:5});
+     */
+    $(".test25").click(function () {
+        layer.alert("哭脸",{icon:5});
+    });
+
+    /**
+     * 信息框 layer.alert("笑脸",{icon:6});
+     */
+    $(".test26").click(function () {
+        layer.alert("笑脸",{icon:6});
+    });
+
+    /**
+     * 信息框 layer.alert("笑脸",{icon:0});
+     */
+    $(".test27").click(function () {
+        layer.msg("信息",{icon:0});
+    });
+
+
+    /**
+     * 信息框 layer.msg("正确",{icon:1});
+     */
+    $(".test28").click(function () {
+        layer.msg("正确",{icon:1});
+    });
+    /**
+     * 信息框 layer.msg("错误",{icon:2});
+     */
+    $(".test29").click(function () {
+        layer.msg("错误",{icon:2});
+    });
+
+    /**
+     * 信息框 layer.msg("疑问",{icon:3});
+     */
+    $(".test30").click(function () {
+        layer.msg("{疑问",{icon:3});
+    });
+
+    /**
+     * 信息框 layer.alert("加锁",{icon:4});
+     */
+    $(".test31").click(function () {
+        layer.msg("{加锁",{icon:4});
+    });
+
+    /**
+     * 信息框 layer.alert("哭脸",{icon:5});
+     */
+    $(".test32").click(function () {
+        layer.msg("哭脸",{icon:5});
+    });
+
+    /**
+     * 信息框 layer.alert("笑脸",{icon:6});
+     */
+    $(".test33").click(function () {
+        layer.msg("笑脸",{icon:6});
+    });
+
+    /**
+     * 加载层 layer.load(0);
+     */
+    $(".test34").click(function () {
+        var l = layer.load(0);
+        setTimeout(function () {
+            layer.close(l)
+        }, 3000);
+    });
+
+    /**
+     * 加载层 layer.load(1);
+     */
+    $(".test35").click(function () {
+        var l = layer.load(1);
+        setTimeout(function () {
+            layer.close(l)
+        }, 3000);
+    });
+
+    /**
+     * 加载层 layer.load(2);
+     */
+    $(".test36").click(function () {
+        var l = layer.load(2);
+        setTimeout(function () {
+            layer.close(l)
+        }, 3000);
+    });
+
+    /**
+     * 按钮回调
+     */
+    $(".test37").click(function () {
+       layer.open({
+           title:'按钮回调',
+           content:'加载成功了吗？',
+           btn:['按钮1','按钮2','按钮3'],
+           closeBtn :2,
+           yes:function (index, layero) {
+               console.log(index,layero);
+               layer.msg("yes回调成功！"+index+'---'+layero);
+           },
+           btn2:function (index,layero) {
+               console.log(index,layero);
+               layer.msg("btn2回调成功！"+index+'---'+layero);
+           },btn3:function (index, layero) {
+               console.log(index,layero);
+               layer.msg("btn3回调成功！"+index+'---'+layero);
+           }
+
+       });
+    });
+
+
+    /**
+     * 无关闭按钮
+     */
+    $(".test38").click(function () {
+        layer.open({
+            closeBtn:0,
+            title:' closeBtn:0 无关闭按钮！ ',
+            content:'内容插入成功！'
+        });
+    });
+
+    /**
+     * 关闭按钮，closeBtn:1,样式 x
+     */
+    $(".test39").click(function () {
+        layer.open({
+            closeBtn:1,
+            title:' closeBtn:1 ',
+            content:'内容插入成功！'
+        });
+    });
+
+    /**
+     * 关闭按钮，closeBtn:2,样式 圆圈x
+     */
+    $(".test40").click(function () {
+        layer.open({
+            closeBtn:2,
+            title:' closeBtn:2 ',
+            content:'内容插入成功！'
+        });
+    });
+
+    /**
+     * 改变遮罩层背景颜色与透明度  shade: [0.8, '#393D49']
+     */
+    $(".test41").click(function () {
+        layer.open({
+            shade: [0.8, '#393D49'],
+            title:'shade: [0.8, \'#393D49\']',
+            content:'内容插入成功！'
+        });
+    });
+
+    /**
+     *  是否允许点击遮罩层，关闭信息框shadeClose:true
+     */
+    $(".test42").click(function () {
+        layer.open({
+            shadeClose:true,
+            title:'是否允许点击遮罩层，关闭信息框shadeClose:true',
+            content:'内容插入成功！'
+        });
+    });
+
+    /**
+     *  是否允许点击遮罩层，关闭信息框shadeClose:false
+     */
+    $(".test43").click(function () {
+        layer.open({
+            shadeClose:false,
+            title:'是否允许点击遮罩层，关闭信息框shadeClose:false',
+            content:'内容插入成功！'
+        });
+    });
+
+
+    /**
+     *  是否允许点击遮罩层，关闭信息框shadeClose:false
+     */
+    $(".test44").click(function () {
+        layer.open({
+            time:3000,
+            title:'time:3000设置3秒之后自动关闭信息框',
+            content:'内容插入成功！'
+        });
+    });
+
+
+    /**
+     *  设置id后，弹框内容区域的父级容器的id就是我们指定的id
+     */
+    $(".test45").click(function () {
+        layer.open({
+            id:'myLayer',
+            title:'设置id后，弹框内容区域的父级容器的id就是我们指定的id',
+            content:'内容插入成功！'
+        });
+    });
+
+    /**
+     *  anim:-1  无动画
+     */
+    $(".test46").click(function () {
+        layer.open({
+            anim:-1,
+            title:'anim:-1  无动画',
+            content:'内容插入成功！'
+        });
+    });
+
+    /**
+     *  anim:0  平滑放大。默认
+     */
+    $(".test47").click(function () {
+        layer.open({
+            anim:0,
+            title:'anim:0  平滑放大。默认',
+            content:'内容插入成功！'
+        });
+    });
+
+    /**
+     *  anim:1  从上掉落
+     */
+    $(".test48").click(function () {
+        layer.open({
+            anim:1,
+            title:'anim:1  从上掉落',
+            content:'内容插入成功！'
+        });
+    });
+
+    /**
+     *  anim:2  从最底部往上滑入
+     */
+    $(".test49").click(function () {
+        layer.open({
+            anim:2,
+            title:'anim:2  从最底部往上滑入',
+            content:'内容插入成功！'
+        });
+    });
+
+    /**
+     *  anim:3  从左滑入
+     */
+    $(".test50").click(function () {
+        layer.open({
+            anim:3,
+            title:'anim:3  从左滑入',
+            content:'内容插入成功！'
+        });
+    });
+
+    /**
+     *  anim:4  从左翻滚
+     */
+    $(".test51").click(function () {
+        layer.open({
+            anim:4,
+            title:'anim:4  从左翻滚',
+            content:'内容插入成功！'
+        });
+    });
+
+    /**
+     *  anim:5  从左翻滚
+     */
+    $(".test52").click(function () {
+        layer.open({
+            anim:5,
+            title:'anim:5  渐显',
+            content:'内容插入成功！'
+        });
+    });
+
+    /**
+     *  anim:6  从左翻滚
+     */
+    $(".test53").click(function () {
+        layer.open({
+            anim:6,
+            title:'anim:6  抖动',
+            content:'内容插入成功！'
+        });
+    });
+
+    /**
+     * maxmin:true  开启最大化与最小化按钮，前提type值必须是1或者2，也就是必须是页面层与iframe层
+     */
+    $(".test54").click(function () {
+        layer.open({
+            type:1,
+            maxmin:true,
+            title:'maxmin:true  开启最大化与最小化按钮，前提type值必须是1或者2，也就是必须是页面层与iframe层',
+            content:'内容插入成功！'
+        });
+    });
+
+    /**
+     *
+     */
+    $(".test55").click(function () {
+        layer.open({
+            fixed :true,
+            title:'fixed:true,',
+            content:'内容插入成功！'
+        });
+    });
+
+    /**
+     *
+     */
+    $(".test56").click(function () {
+        layer.open({
+            fixed :false,
+            title:'fixed:false,',
+            content:'内容插入成功！'
+        });
+    });
+
+    /**
+     * layer.alert(content, options, yes),如果有回调函数，需要手动进行关闭
+     */
+    $(".test58").click(function () {
+        layer.alert("酷毙了！",{icon:1,anim:6,btn:['你真的酷毙了！']},function (index) {
+            alert("你点击了确定按钮哦！"+index);
+            //手动进行关闭
+            layer.close(index);
+        });
+    });
+
+    /**
+     * layer.confirm(content, options, yes,cancle),如果有回调函数，需要手动进行关闭
+     * 与layer.alert不同的是，layer.confirm有2个按钮，一个是确定，一个是取消，对应的按钮点击后，都有回调函数
+     *
+     */
+    $(".test59").click(function () {
+        layer.confirm("你确定要关闭嘛？",{icon:1,anim:6,title:"询问标题",btn:['关闭嘛','不关闭']},function (index) {
+            alert("你点击了确定按钮哦！"+index);
+            //确定键点击后，默认不关闭弹窗，需要手动进行关闭
+            layer.close(index);
+        },function (index) {
+            alert("你点击了取消按钮哦！"+index);
+            //取消键点击后，默认关闭弹窗，无需手动关闭
+            //如果取消键点击后，需要不关闭弹窗，就return false;
+            return false;
+        });
+    });
+
+    /**
+     * layer.msg(content,options,end);提示框，消失后，调用end回调
+     */
+    $(".test60").click(function () {
+       layer.msg('你点击按钮了，我就弹出来了哦！',{
+           icon:6,
+           time:2000,
+           anim:6
+       },function () {
+           layer.msg("提示框消失了，我再提示下哦！");
+       });
+    });
+
+    /**
+     * layer.load(icon, options) - 加载层,如果不手动关闭加载层，需要使用参数time,代表最长多长时间消失
+     */
+    $(".test61").click(function () {
+        layer.load(2,{time:5000});
+    });
+
+    /**
+     * layer.tips(content, follow, options) - tips层, 1 控制在上面弹出提示消息，并且更改了背景颜色
+     */
+    $(".test62").click(function () {
+        layer.tips("我在上面出现了哦",this,{tips:[1, '#c00']});
+    });
+
+    /**
+     * layer.tips(content, follow, options) - tips层, 2 控制在上面弹出提示消息，并且更改了背景颜色
+     */
+    $(".test63").click(function () {
+        layer.tips("我在右边出现了哦",this,{tips:[2, '#c00']});
+    });
+
+    /**
+     * layer.tips(content, follow, options) - tips层, 3 控制在上面弹出提示消息，并且更改了背景颜色
+     */
+    $(".test64").click(function () {
+        layer.tips("我在下面出现了哦",this,{tips:[3, '#c00']});
+    });
+
+    /**
+     * layer.tips(content, follow, options) - tips层, 4 控制在上面弹出提示消息，并且更改了背景颜色
+     */
+    $(".test65").click(function () {
+        layer.tips("我在左边出现了哦",this,{tips:[4, '#c00']});
+    });
+
+    /**
+     * 页面一加载就打开弹窗，需要在layer.ready()回调函数内执行
+     */
+    layer.ready(function () {
+        layer.msg("页面加载成功！");
+    });
+
+    /**
+     *  完整案例
+     */
+    $(".test57").click(function () {
+        layer.open({
+            type:1,//  设置类型，1：html内容层
+            title:'完整案例',//设置标题
+            area:["500px","500px"],//设置宽高
+            shadeClose: true,//开启关闭按钮
+            closeBtn :1,//关闭按钮的风格样式
+            content:'加载成功了吗？',//内容
+            btn:['按钮1','按钮2','按钮3'],//设置按钮
+            offset:"auto",//显示坐标
+            shade: [0.8, '#393D49'],//修改遮罩层透明度与背景颜色
+            shadeClose:true,//是否点击遮罩关闭
+            time:600000,//自动关闭弹出框的时间
+            id:"myLayer",//设置弹出框父级容器的id
+            anim:6,//设置显示动画
+            isOutAnim:true,//开启关闭弹出框时的动画
+            maxmin:true,//显示最大小化按钮
+            scrollbar:false,//允许浏览器出现滚动条
+            maxWidth:500,//最大宽度，只有当area: 'auto'时，maxWidth的设定才有效
+            maxHeight:500,// 最大高度 只有当高度自适应时，maxHeight的设定才有效
+            //zIndex:10000,//层叠顺序 一般用于解决和其它组件的层叠冲突。
+            move:'.layui-layer-title',//触发拖动的元素,默认标题栏，配置设定move: false来禁止拖拽
+            moveOut:true,//是否允许拖拽到窗口外   默认只能在窗口内拖拽，如果你想让拖到窗外，那么设定moveOut: true即可
+            moveEnd:function (layero) {//拖动完毕后的回调方法,其中layero为当前层的DOM对象
+                console.log("拖动完毕后回调",layero);
+                layer.msg("拖动完毕后回调"+layero);
+            },
+            resize:true,//允许拉伸
+            resizing:function (layero) {//拉伸回调
+                console.log("拉伸回调",layero);
+                layer.msg("拉伸回调"+layero);
+            },
+            yes:function (index, layero) {
+                console.log("yes确定按钮回调成功！",index,layero);
+                layer.msg("yes确定按钮回调成功！"+index+'---'+layero);
+            },
+            btn2:function (index,layero) {
+                console.log(index,layero);
+                layer.msg("btn2回调成功！使用return false阻止默认关闭弹框"+index+'---'+layero);
+                return false;
+            },btn3:function (index, layero) {
+                console.log(index,layero);
+                layer.msg("btn3回调成功！使用return false阻止默认关闭弹框"+index+'---'+layero);
+                return false;
+            },
+            success:function (layero, index) {//层弹出后的成功回调方法 success会携带两个参数，分别是当前层DOM当前层索引
+                console.log("层弹出后的成功回调！",index,layero);
+                layer.msg("层弹出后的成功回调！"+index+'---'+layero);
+            },
+            /**
+             * 右上角关闭按钮触发的回调 回调携带两个参数，
+             * 分别为：当前层索引参数（index）、当前层的DOM对象（layero），
+             * 默认会自动触发关闭。如果不想关闭，return false
+             */
+            cancel:function (index, layero) {
+                console.log("右上角关闭按钮触发的回调！",index,layero);
+                layer.msg("右上角关闭按钮触发的回调！"+index+'---'+layero);
+            },
+            /**
+             * 层销毁后触发的回调
+             * 无论是确认还是取消，只要层被销毁了，end都会执行，不携带任何参数。
+             */
+            end:function () {
+                console.log("层销毁后触发的回调");
+                layer.msg("层销毁后触发的回调");
+            },
+            /**
+             * 最大化触发的回调，携带一个参数，即当前层DOM
+             */
+            full:function () {
+                console.log("最大化触发的回调");
+                layer.msg("最大化触发的回调");
+            },
+            /**
+             * 最小化触发的回调
+             */
+            min:function () {
+                console.log("最小化触发的回调");
+                layer.msg("最小化触发的回调");
+            },
+            /**
+             * 还原触发的回调
+             */
+            restore:function () {
+                console.log("还原触发的回调");
+                layer.msg("还原触发的回调");
+            }
+
         });
     });
 </script>
