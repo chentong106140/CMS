@@ -2,16 +2,16 @@ html {
     font-size: 15px;
 }
 
-h1, h2, h3, h4 {
+.box-body h1,.box-body  h2,.box-body  h3,.box-body  h4 {
     color: #797979;
     padding: 5px 0;
 }
 
-h1, h2 {
+.box-body h1, .box-body h2 {
     border-bottom: 2px solid #797979;
 }
 
-a,a:hover{
+.box-body a,.box-body  a:hover{
     text-decoration: none;
     color:#797979;
 }
@@ -26,7 +26,7 @@ pre .code-copy{
     color: white;
 }
 
-p, pre {
+.box-body p, .box-body pre {
     padding: 10px;
     border-radius: 5px;
     background-color: #797979;
@@ -34,7 +34,7 @@ p, pre {
     position:relative;
     word-break:break-all;
 }
-p, h1, h2, h3, h4, pre {
+.box-body p, .box-body h1, .box-body h2, .box-body h3, .box-body h4, .box-body pre {
     margin: 15px 0;
 }
 
@@ -51,8 +51,38 @@ p, h1, h2, h3, h4, pre {
 
 
 
-code ,pre,p{
+.box-body code ,.box-body pre,p{
     font-size: 1.2rem;
     border-radius: 5px;
     word-break:break-all;
+}
+
+.custom-box {
+    background-color: #ffd200;
+    margin: 15px 0 40px;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.custom-box .box-item {
+    width: 200px;
+    height: 200px;
+    line-height: 1.5rem;
+    background-color: white;
+
+
+    margin: 5px;
+    text-align: center;
+    display: flex;/*只是为了内容居中才设置的flex*/
+}
+
+.custom-box .box-item span {
+    margin: auto;
+    background-color: #ffd200;
+    color: white;
+    border-radius:50%;
+    font-size: 2rem;
+    width:100px;
+    height:100px;
+    line-height: 100px;
 }

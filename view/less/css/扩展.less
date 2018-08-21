@@ -1,0 +1,21 @@
+/*Less 扩展*/
+
+.class1 {
+  font-size: 15px;
+}
+
+.class2 {
+  font-weight: 600;
+}
+
+/*.class3,.class4:extend(.class1,.class2) {
+  color: red;
+}*/
+
+/*如下写法跟上面的写法作用不一样*/
+.class5, .class6 {
+  &:extend(.class1,.class2);
+  color: yellow;
+}
+
+

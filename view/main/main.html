@@ -343,7 +343,65 @@
                         <li><a href="/CMS/view/layer/layer_快速上手.html"><i class="fa fa-circle-o"></i>layer_快速上手</a></li>
                     </ul>
                 </li>
-
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-files-o"></i>
+                        <span>animate</span>
+                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                        <!--<span class="pull-right-container"><span class="label label-primary pull-right">4</span></span>-->
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="/CMS/view/animate/animate.html"><i class="fa fa-circle-o"></i>动画</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-files-o"></i>
+                        <span>flex</span>
+                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                        <!--<span class="pull-right-container"><span class="label label-primary pull-right">4</span></span>-->
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/CMS/view/flex/flex文档.html"><i class="fa fa-circle-o"></i>flex文档</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-files-o"></i>
+                        <span>less</span>
+                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/CMS/view/less/less文档.html#变量计算"><i class="fa fa-circle-o"></i>变量计算</a></li>
+                        <li><a href="/CMS/view/less/less文档.html#嵌套规则"><i class="fa fa-circle-o"></i>嵌套规则</a></li>
+                        <li><a href="/CMS/view/less/less文档.html#Less转义~"><i class="fa fa-circle-o"></i>Less 转义 ~</a></li>
+                        <li><a href="/CMS/view/less/less文档.html#Less命名空间和访问器"><i class="fa fa-circle-o"></i>Less 命名空间和访问器</a></li>
+                        <li><a href="/CMS/view/less/less文档.html#Less变量范围"><i class="fa fa-circle-o"></i>Less 变量范围</a></li>
+                        <li><a href="/CMS/view/less/less文档.html#Less注释"><i class="fa fa-circle-o"></i>Less 注释</a></li>
+                        <li><a href="/CMS/view/less/less文档.html#Less导入"><i class="fa fa-circle-o"></i>Less 导入</a></li>
+                        <li><a href="/CMS/view/less/less文档.html#Less变量"><i class="fa fa-circle-o"></i>Less 变量</a></li>
+                        <li><a href="/CMS/view/less/less文档.html#Less扩展"><i class="fa fa-circle-o"></i>Less 扩展</a></li>
+                        <li class="treeview">
+                            <!--由于上面使用了treeview修饰了，代表上面的li是一个父菜单，那么下面的a标签也就是父菜单的文字描述-->
+                            <a href="/CMS/view/less/less文档.html#LessMixins函数">
+                                <i class="fa fa-dashboard"></i> <span>Less Mixins函数</span>
+                                <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                            </a>
+                            <!--（2级子菜单）父菜单下点击后，需要有很多子菜单，所以ul下的所有li都是一个子菜单-->
+                            <ul class="treeview-menu">
+                                <li><a href="/CMS/view/less/less文档.html#Mixin范围"><i class="fa fa-circle-o"></i>Mixin范围</a></li>
+                                <li><a href="/CMS/view/less/less文档.html#Mixin返回值"><i class="fa fa-circle-o"></i> Mixin返回值</a></li>
+                                <li><a href="/CMS/view/less/less文档.html#mixin定义在另一个mixin"><i class="fa fa-circle-o"></i>mixin定义在另一个mixin</a></li>
+                                <li><a href="/CMS/view/less/less文档.html#定义和调用范围可见性"><i class="fa fa-circle-o"></i>定义和调用范围可见性</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                
+                
+                
                 <li class="header">权限管理</li>
                 <li class="treeview">
                     <a href="#">
@@ -384,129 +442,7 @@
     <aside class="control-sidebar control-sidebar-dark"></aside>
     <div class="control-sidebar-bg"></div>
     <script type="text/javascript">
-        //$.widget.bridge('uibutton', $.ui.button);
         layui.element.render({elem: "#card"});
-        layui.form.render(null,"layui-form");
-        //layui.laydate.render({elem: "#date"});
-        layui.form.on('submit(LAY-user-back-search)', function (data) {
-            console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
-            console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
-            console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
-            alert(JSON.stringify(data.field));
-            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-        });
-
-
-
-
-
-
-
-        var table = $('#test').on("order.dt",function () {
-            console.log("order.dt触发排序",arguments);
-        }).on("search.dt",function () {
-            console.log("search.dt触发搜索",arguments);
-        }).on("page.dt",function () {
-            console.log("page.dt触发翻页",arguments);
-        }).DataTable({
-            ajax:'../../api/datatable.demo1.json',
-            /**
-             numbers - 只有只有数字按钮
-             simple - 只有上一页、下一页两个按钮
-             simple_numbers - 除了上一页、下一页两个按钮还有页数按钮，Datatables默认是这个
-             full - 有四个按钮首页、上一页、下一页、末页
-             full_numbers - 除首页、上一页、下一页、末页四个按钮还有页数按钮
-             first_last_numbers - 除首页、末页两个按钮还有页数按钮
-             */
-            pagingType:'simple_numbers',
-            //开启本地缓存，记录上一次页数,开启之后，设置columnDefs列隐藏会失效
-            stateSave: false,
-            //是否开启分页
-            paging:   true,
-            //是否开启列头排序
-            ordering: true,
-            //是否开启信息栏
-            info:     true,
-            //当希望将表格放在一个固定高度的容器内，就需要开启垂直滚动条，此时需要设置2个参数scrollCollapse，scrollY
-            //scrollCollapse:'false',
-            //scrollY:'300px',
-            //开启表格水平滚动条，一般在表格容器宽度固定的时候，无法呈现所有列的数据，就需要开启
-            scrollX: true,
-            //设置初始化时，默认以第几列进行排序，并且设置排序规则，如果开启了本地缓存，此设置就会不起作用
-            //此处是以第4列降序排序，以第5列降序排序
-            order: [[ 3, "desc" ],[4,"desc"]],
-            //设置长度菜单，每页显示多少条，二维数组的作用就是第一个数组就是实际长度值，第二个数组是用于下拉框显示的值
-            lengthMenu: [[2, 10, 20, -1],["2条", "10条", "20条", "全部显示"]],
-            //国际化
-            language: {
-                lengthMenu: "每页 _MENU_ 条记录",
-                zeroRecords: "没有找到记录",
-                info: "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-                infoEmpty: "无记录",
-                infoFiltered: "(从 _MAX_ 条记录过滤)"
-            },
-            //国际化引用文件
-            language: {
-                url: "../../resource/common/config/datatables_zh_CN.json"
-            },
-            createdRow:function (row, data, index ) {
-                console.log("-----------------------createdRow创建行回调---------------");
-                console.log(row, data, index);
-            },
-            //为每一列设置属性，如下，写了6个列，对应表格的6个列，同时为每一个列指定了data属性，即指定了列的key值，通过获取一整行的数据即可通过data属性指定的属性值获取到
-            //获取某一行某一列的数据方式：table.row( this ).data().name/position/office/age/start_date/salary
-            /*columns: [
-                { "data": "name" },
-                { "data": "position" },
-                { "data": "office" },
-                { "data": "age" },
-                { "data": "start_date" },
-                { "data": "salary" }
-            ],*/
-            columnDefs: [
-                {
-                    //控制第一列
-                    "targets": 0,
-                    //是否隐藏该列，如果开启了本地缓存，此设置就会不起作用
-                    "visible": true,
-                    //是否参与搜索
-                    "searchable": true,
-                    /**
-                     * data:当前列的值
-                     * type: 当前列显示的方式，display,sort,filter
-                     * row：当前行所有的数据，包括每一列的数据，是一个数组，索引从0开始，代表每一列的数据——》[ "Caesar Vance", "Pre-Sales Support", "New York", "21", "2011/12/12", "$106,450" ]
-                     * meta：当前列的的列数与行数信息    ——》{ settings: {…}, row: 23, col: 0 }
-                     */
-                    render: function(data, type, row, meta) {
-                        if(meta.row==0 && meta.col==0)
-                        {
-                            console.log("------------------------columnDefs.render-----------------------");
-                            console.log(data, type, row, meta);
-                        }
-                        return data;
-                    }
-                }
-            ]
-        } );
-
-        /**
-         * 点击每行获取那一行的数据
-         */
-        $('#test tbody').on('click', 'tr', function () {
-            console.log("------------------------点击行-----------------------");
-            console.log(this);//tr DOM对象
-            console.log(table.row());//Object
-            console.log(table.row().data());//获取第一行的数据[ "Michael Silva", "Marketing Designer", "London", "66", "2012/11/27", "$198,500" ]
-            console.log(table.row( this ));//Object
-            console.log(table.row( this ).data());//获取选中行的数据
-            // table.row( this ).data()如果没有设置columns内指定每一列的data属性，默认获取到行的数据是一个数组
-            // [ "Michael Silva", "Marketing Designer", "London", "66", "2012/11/27", "$198,500" ]
-
-            // table.row( this ).data()如果设置了columns，并且指定了每一列的data属性，获取到的行的数据是一个对象
-            //{ name: "Michael Silva", position: "Marketing Designer", office: "London", age: "66", start_date: "2012/11/27", salary: "$198,500" }
-
-            alert(JSON.stringify( table.row( this ).data()));
-        } );
     </script>
 </div>
 </body>

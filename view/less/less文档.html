@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>首页</title>
+    <link rel="stylesheet" href="../../resource/plugins/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../../resource/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../resource/plugins/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="../../resource/plugins/AdminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="../../resource/plugins/AdminLTE/css/skins/_all-skins.css">
+    <link rel="stylesheet" href="../../resource/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="../../resource/plugins/bootstrap-daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="../../resource/plugins/layui/css/layui.css">
+    <link rel="stylesheet" href="../../resource/plugins/select2/css/select2.min.css">
+    <!--<link rel="stylesheet" href="../../resource/plugins/jquery-datatable/css/jquery.dataTables.min.css">-->
+    <link rel="stylesheet" href="../../resource/plugins/jquery-datatable/css/dataTables.bootstrap.css">
+    <link rel="stylesheet" href="../../resource/plugins/jquery-datatable-fixed-columns/css/fixedColumns.bootstrap.css">
+    <link rel="stylesheet" href="../../resource/plugins/Buttons-1.5.2/css/buttons.bootstrap.css">
+    <link rel="stylesheet" href="../../resource/plugins/highlight/styles/dark.css">
+    <link rel="stylesheet" href="../../resource/common/css/code.css">
+
+    <!--注意必须指明rel="stylesheet/less" type="text/css"-->
+    <link rel="stylesheet/less" href="css/变量计算.less">
+    <link rel="stylesheet/less" href="css/嵌套规则.less">
+    <link rel="stylesheet/less" href="css/转义.less">
+    <link rel="stylesheet/less" href="css/命名空间和访问器.less">
+    <link rel="stylesheet/less" href="css/变量范围.less">
+    <link rel="stylesheet/less" href="css/导入.less">
+    <link rel="stylesheet/less" href="css/扩展.less">
+    <link rel="stylesheet/less" href="css/Mixins函数.less">
+
+    <script src="../../resource/plugins/html5/html5shiv.min.js"></script>
+    <script src="../../resource/plugins/html5/respond.min.js"></script>
+    <script src="../../resource/plugins/jquery/jquery.min.js"></script>
+    <script src="../../resource/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../../resource/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../resource/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script src="../../resource/plugins/AdminLTE/js/adminlte.js"></script>
+    <script src="../../resource/plugins/layui/layui.all.js"></script>
+    <script src="../../resource/plugins/select2/js/select2.js"></script>
+    <script src="../../resource/plugins/jquery-datatable/js/jquery.dataTables.min.js"></script>
+    <script src="../../resource/plugins/jquery-datatable/js/dataTables.bootstrap.min.js"></script>
+    <script src="../../resource/plugins/jquery-datatable-fixed-columns/js/dataTables.fixedColumns.js"></script>
+    <script src="../../resource/plugins/highlight/highlight.pack.js"></script>
+    <script src="../../resource/plugins/clipboard/clipboard.js"></script>
+
+    <!--datatable按钮-->
+    <script src="../../resource/plugins/Buttons-1.5.2/js/dataTables.buttons.js"></script>
+    <script src="../../resource/plugins/Buttons-1.5.2/js/buttons.bootstrap.js"></script>
+    <script src="../../resource/plugins/Buttons-1.5.2/js/buttons.flash.js"></script>
+    <script src="../../resource/plugins/JSZip-2.5.0/jszip.min.js"></script>
+    <script src="../../resource/plugins/pdfmake-0.1.36/pdfmake.min.js"></script>
+    <script src="../../resource/plugins/pdfmake-0.1.36/vfs_fonts.js"></script>
+    <script src="../../resource/plugins/Buttons-1.5.2/js/buttons.html5.js"></script>
+    <script src="../../resource/plugins/Buttons-1.5.2/js/buttons.print.js"></script>
+    <script src="../../resource/plugins/Buttons-1.5.2/js/buttons.colVis.js"></script>
+    <!--less编译环境-->
+    <script src="js/less.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+
+            //添加复制按钮
+            $(' <a class=\"code-copy\" title=\"复制到剪切板\"><i class=\"fa fa-copy\"></i></a>').insertBefore("code")
+
+
+            /***** 复制按钮 开始*******/
+            var clipboardSnippets = new Clipboard('.code-copy', {
+                'text': function (trigger) {
+                    return $(trigger).parents("pre").children("code").html();
+                }
+
+            });
+            clipboardSnippets.on('success', function (e) {
+                e.clearSelection();
+                alert("复制成功")
+            });
+            clipboardSnippets.on('error', function (e) {
+                alert("复制失败");
+
+            });
+            hljs.initHighlightingOnLoad();
+
+        });
+
+
+    </script>
+
+    <style type="text/css">
+
+        body {
+            font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: 400;
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+
+        .main-header {
+            max-height: 101px;
+        }
+
+        .layadmin-header {
+            display: block;
+            height: 50px;
+            line-height: 50px;
+            margin-bottom: 0;
+            border-radius: 0;
+        }
+
+        .layadmin-header .layui-breadcrumb {
+            border-top: 1px solid #f6f6f6;
+            padding: 0 15px;
+        }
+
+        .layui-breadcrumb {
+            visibility: visible;
+            font-size: 0;
+        }
+
+        .wrapper {
+            height: 100%;
+            position: relative;
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+
+        .content-wrapper {
+            position: relative;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+
+        .content-footer {
+            background: #fff;
+            padding: 15px;
+            color: #444;
+            border-top: 1px solid #d2d6de;
+            z-index: 820;
+            display: block;
+        }
+
+        .box-body button {
+            color: tomato;
+            margin: 20px 50px;
+        }
+        
+
+
+    </style>
+
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <!--头部区域-->
+    <header class="main-header">
+        <!-- Logo -->
+        <a href="index2.html" class="logo">
+            <span class="logo-mini"><b>奇果</b></span>
+            <span class="logo-lg"><b>南京奇果</b>后台管理</span>
+        </a>
+        <!--导航栏，随着页面一起滚动的导航栏-->
+        <nav class="navbar navbar-static-top">
+            <!-- 侧边栏切换按钮-->
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <!--头部导航-自定义菜单栏-->
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li class="">
+                        <a href="javascript:openFullscreen(this)">
+                            <i class="fa fa-yahoo"></i>
+                        </a>
+                    </li>
+                    <!--用户通知信息-->
+                    <li class="dropdown notifications-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-bell-o"></i>
+                            <span class="label label-warning">10</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">你有10个通知</li>
+                            <li>
+                                <ul class="menu">
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-users text-aqua"></i>今天有10个推荐位被设置
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-warning text-yellow"></i>你的密码已过期，需要重置密码
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="footer"><a href="#">查看更多</a></li>
+                        </ul>
+                    </li>
+                    <!--用户任务信息-->
+                    <li class="dropdown tasks-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-flag-o"></i>
+                            <span class="label label-danger">9</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">你有9个任务</li>
+                            <li>
+                                <ul class="menu">
+                                    <li>
+                                        <a href="#">
+                                            <h3>
+                                                推荐位设置进度
+                                                <small class="pull-right">90%</small>
+                                            </h3>
+                                            <div class="progress sm">
+                                                <div class="progress-bar progress-bar-aqua" style="width: 90%"
+                                                     role="progressbar"
+                                                     aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="sr-only">90% 已完成</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <h3>
+                                                项目创建进度
+                                                <small class="pull-right">40%</small>
+                                            </h3>
+                                            <div class="progress xs">
+                                                <div class="progress-bar progress-bar-green" style="width: 40%"
+                                                     role="progressbar"
+                                                     aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="sr-only">40% 已完成</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <h3>
+                                                内容注入进度
+                                                <small class="pull-right">60%</small>
+                                            </h3>
+                                            <div class="progress xs">
+                                                <div class="progress-bar progress-bar-red" style="width: 60%"
+                                                     role="progressbar"
+                                                     aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="sr-only">60% 已完成</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="footer">
+                                <a href="#">查看更多任务</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--用户账户信息-->
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="../../resource/plugins/AdminLTE/img/user2-160x160.jpg" class="user-image"
+                                 alt="用户头像">
+                            <span class="hidden-xs">Morgan</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- 用户头像 -->
+                            <li class="user-header">
+                                <img src="../../resource/plugins/AdminLTE/img/user2-160x160.jpg" class="img-circle"
+                                     alt="用户头像">
+                                <p>
+                                    Morgan - 前端开发人员
+                                    <small>开发人员</small>
+                                </p>
+                            </li>
+                            <!-- Menu Body -->
+                            <li class="user-body">
+                                <div class="row">
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">我的任务</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">我的通知</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">我的信息</a>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </li>
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="#" class="btn btn-default btn-flat">编辑</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="#" class="btn btn-default btn-flat">退出</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--编辑-->
+                    <li>
+                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!--左侧边栏区域-->
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            <!--用户概要信息模块-->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="../../resource/plugins/AdminLTE/img/user2-160x160.jpg" class="img-circle" alt="用户头像">
+                </div>
+                <div class="pull-left info">
+                    <p>Morgan</p>
+                    <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
+                </div>
+            </div>
+            <!--全文搜索模块-->
+            <!--            <form action="#" method="get" class="sidebar-form">
+                            <div class="input-group">
+                                &lt;!&ndash;搜索内容输入元素&ndash;&gt;
+                                <input type="text" name="q" class="form-control" placeholder="搜索...">
+                                &lt;!&ndash;提交搜索内容元素&ndash;&gt;
+                                <span class="input-group-btn">
+                                    <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>-->
+            <!--侧边栏菜单-->
+            <ul class="sidebar-menu" data-widget="tree">
+                <li><a href="/CMS/view/main/main.html"><i class="fa fa-circle-o text-yellow"></i> <span>概览</span></a>
+                </li>
+                <li class="header">案例</li>
+                <li class="treeview active">
+                    <a href="#">
+                        <i class="fa fa-files-o"></i>
+                        <span>less</span>
+                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/CMS/view/less/less文档.html#变量计算"><i class="fa fa-circle-o"></i>变量计算</a></li>
+                        <li><a href="/CMS/view/less/less文档.html#嵌套规则"><i class="fa fa-circle-o"></i>嵌套规则</a></li>
+                        <li><a href="/CMS/view/less/less文档.html#Less转义~"><i class="fa fa-circle-o"></i>Less 转义 ~</a></li>
+                        <li><a href="/CMS/view/less/less文档.html#Less命名空间和访问器"><i class="fa fa-circle-o"></i>Less 命名空间和访问器</a></li>
+                        <li><a href="/CMS/view/less/less文档.html#Less变量范围"><i class="fa fa-circle-o"></i>Less 变量范围</a></li>
+                        <li><a href="/CMS/view/less/less文档.html#Less注释"><i class="fa fa-circle-o"></i>Less 注释</a></li>
+                        <li><a href="/CMS/view/less/less文档.html#Less导入"><i class="fa fa-circle-o"></i>Less 导入</a></li>
+                        <li><a href="/CMS/view/less/less文档.html#Less变量"><i class="fa fa-circle-o"></i>Less 变量</a></li>
+                        <li><a href="/CMS/view/less/less文档.html#Less扩展"><i class="fa fa-circle-o"></i>Less 扩展</a></li>
+                        <li class="treeview">
+                            <!--由于上面使用了treeview修饰了，代表上面的li是一个父菜单，那么下面的a标签也就是父菜单的文字描述-->
+                            <a href="/CMS/view/less/less文档.html#LessMixins函数">
+                                <i class="fa fa-dashboard"></i> <span>Less Mixins函数</span>
+                                <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                            </a>
+                            <!--（2级子菜单）父菜单下点击后，需要有很多子菜单，所以ul下的所有li都是一个子菜单-->
+                            <ul class="treeview-menu">
+                                <li><a href="/CMS/view/less/less文档.html#Mixin范围"><i class="fa fa-circle-o"></i>Mixin范围</a></li>
+                                <li><a href="/CMS/view/less/less文档.html#Mixin返回值"><i class="fa fa-circle-o"></i> Mixin返回值</a></li>
+                                <li><a href="/CMS/view/less/less文档.html#mixin定义在另一个mixin"><i class="fa fa-circle-o"></i>mixin定义在另一个mixin</a></li>
+                                <li><a href="/CMS/view/less/less文档.html#定义和调用范围可见性"><i class="fa fa-circle-o"></i>定义和调用范围可见性</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    </aside>
+    <div class="content-wrapper">
+        <div id="card" class="layui-card layadmin-header">
+            <span class="layui-breadcrumb" lay-separator="/">
+              <a href="#">less</a>
+               <a href="http://www.layui.com/doc/modules/layer.html" target="_blank"><cite>less文档</cite></a>
+            </span>
+        </div>
+        <section class="content">
+            <div class="box box-primary box-solid"><!--默认关闭盒子添加collapsed-box-->
+                <div class="box-header with-border">
+                    <h3 class="box-title">查询结果</h3>
+                </div>
+<div class="box-body" style="height: 20000px;">
+
+    <h1 style="margin-top: 50px;">less教程</h1>
+    <p>
+        参考教程：<br/>
+        https://www.cnblogs.com/landeanfen/p/6047031.html<br/>
+        https://www.w3cschool.cn/less/scope.html<br/>
+        http://www.bootcss.com/p/lesscss/#-variables<br/>
+        本文访问地址：https://chentong106140.github.io/ES6/less/less%E6%95%99%E7%A8%8B.html
+    </p>
+    <h2><a href="#变量计算" name="变量计算">变量计算</a></h2>
+    <pre>
+    <code>
+/*编译之前*/
+@nice-blue:#f938ab;
+@light-blue:@nice-blue + #333;
+
+.box-1 .box-item{
+  background-color: @light-blue;
+}
+
+/*编译之后*/
+.box-1 .box-item {
+  background-color: #ff6bde;
+}
+        </code>
+</pre>
+    <div class="custom-box box-1">
+        <div class="box-item">
+            <span>demo1</span>
+        </div>
+    </div>
+    <h2><a href="#嵌套规则" name="嵌套规则">嵌套规则</a></h2>
+    <pre>
+    <code>
+/*编译之前*/
+.box-2 {
+  flex-direction: row;
+}
+
+.box-2{
+  .box-item{
+    width: 100%;
+    height: auto;
+    span{
+      width:600px;
+      height:200px;
+      line-height: 200px;
+    }
+  }
+}
+
+/*编译之后*/
+.box-2 {
+  flex-direction: row;
+}
+.box-2 .box-item {
+  width: 100%;
+  height: auto;
+}
+.box-2 .box-item span {
+  width: 600px;
+  height: 200px;
+  line-height: 200px;
+}
+
+</code>
+</pre>
+    <div class="custom-box box-2">
+        <div class="box-item">
+            <span>demo2</span>
+        </div>
+    </div>
+    <h2><a href="#Less转义~" name="Less转义~">Less 转义 ~</a></h2>
+    <p>
+        通过~转义，能够将字符串，转换为css属性，~后面的必须是字符串
+    </p>
+    <pre>
+    <code>
+/*编译之前*/
+.box-3 {
+  flex-direction: row;
+}
+.box-3{
+  .box-item {
+    background-color: ~'red';/*字符串转义为属性red*/
+  }
+}
+
+/*编译之后*/
+.box-3 {
+  flex-direction: row;
+}
+.box-3 .box-item {
+  background-color: red;
+}
+        </code>
+</pre>
+    <div class="custom-box box-3">
+        <div class="box-item">
+            <span>demo3</span>
+        </div>
+    </div>
+    <h2><a href="#Less命名空间和访问器" name="Less命名空间和访问器">Less 命名空间和访问器</a></h2>
+    <p>
+        可以将样式进行封装打包，然后可以通过>箭头重复调用打包封装好的样式
+    </p>
+    <pre>
+    <code>
+/*编译之前*/
+
+//定义命名空间与打包
+.box{
+  .box-item{
+    /*bgColor由于加入了变量混合，最终不会编译到css中*/
+    .bgColor(@param:2rem){
+      background-color: aqua;
+      font-size: @param;
+    }
+
+    .border-radius{
+      border-radius:50%;
+    }
+
+    /*width由于加入了变量混合，最终不会编译到css中*/
+    .width(@param:100px){
+      width:@param;
+    }
+
+    span{
+      background-color: #ffd200;
+    }
+  }
+}
+
+//根据命名空间进行调用
+.box-4{
+  .box-item{
+    span{
+      .box > .box-item > .bgColor(1rem);    //通过>号，将bgColor内写好的样式复制过来
+    }
+  }
+}
+
+
+/*编译之后*/
+.box {
+}
+.box .box-item {
+}
+.box .box-item .border-radius {
+  border-radius: 50%;
+}
+.box .box-item span {
+  background-color: #ffd200;
+}
+.box-4 .box-item span {
+  background-color: aqua;
+  font-size: 1rem;//根据编译结果，我们会看到bgColor并没有被编译到css样式表中，而是直接将内部定义好的样式复制过来了
+}
+</code>
+</pre>
+    <div class="custom-box box-4">
+        <div class="box-item">
+            <span>demo4</span>
+        </div>
+    </div>
+    <h2><a href="#Less变量范围" name="Less变量范围">Less 变量范围</a></h2>
+    <p>
+        1:本地作用域定义的变量，如果变量名与父作用域的变量名一样，此时，本地变量会覆盖父类变量<br/>
+        2:如果本地作用域没有定义变量，而父作用域定义了变量，本地会自动去父作用域查找变量并使用
+
+    </p>
+    <pre>
+    <code>
+/*编译之前*/
+.box{
+  .box-item{
+    //定义父作用域变量
+    @width:200px;
+    @height:100px;
+    .width{
+      @width:100px;//定义本地作用域的变量
+      width:@width;//如果本地作用域定义了该变量，将首先取本地的变量
+    }
+    .height{
+      height:@height;//如果本地作用域不存在该变量，将从父作用域搜索
+    }
+  }
+}
+//调用样式
+.box-5{
+  .box-item{
+    span{
+      .box > .box-item > .width;  //将定义好的样式复制过来
+      .box > .box-item > .height;
+    }
+  }
+}
+
+/*编译之后*/
+.box .box-item .width {
+  width: 100px;
+}
+.box .box-item .height {
+  height: 100px;
+}
+.box-5 .box-item span {
+  width: 100px;
+  height: 100px;
+}
+        </code>
+</pre>
+    <div class="custom-box box-5">
+        <div class="box-item">
+            <span>demo5</span>
+        </div>
+    </div>
+    <h2><a href="#Less注释" name="Less注释">Less 注释</a></h2>
+    <p>
+        Less 支持两种类型的注释：多行注释和单行注释。<br/>
+        当编译LESS代码时，单行注释不会显示在CSS文件中,而多行注释可以显示在CSS文件中
+    </p>
+
+    <h2><a href="#Less导入" name="Less导入">Less 导入</a></h2>
+    <p>
+        通过@import("文件路径")导入其他Less文件内容
+    </p>
+    <pre>
+    <code>
+/*编译之前*/
+//demo6_1.less
+.box{
+  .box-item{
+    .color{
+      color: red;
+    }
+  }
+}
+//demo6.less
+@path:'./';
+@import "@{path}demo6_1.less";  //变量可以在URL中使用
+//调用上面样式
+.box-6{
+  .box-item{
+    span{
+      .box > .box-item > .color;  //将定义好的样式复制过来
+    }
+  }
+}
+
+/*编译之后*/
+.box .box-item .color {
+  color: red;
+}
+.box-6 .box-item span {
+  color: red;
+}
+</code>
+</pre>
+    <div class="custom-box box-6">
+        <div class="box-item">
+            <span>demo6</span>
+        </div>
+    </div>
+    <h2><a href="#Less变量" name="Less变量">Less 变量</a></h2>
+    <pre>
+    <code>
+    1：如果某些值被多次重复使用，可以使用变量来避免
+    2：使用 @ 符号定义变量，变量分配使用冒号(:)完成
+    3：格式为“@变量名：变量值”
+    4：选择器插值：@selector:div; @{selector} { background: #2ECCFA; }
+    5：URL插值：@images: "http://www.w3cschool.cn";      background : url("@{images}/less/images/less_variables/birds.jpg");
+    6：import插值：@path : "//www.w3cschool.cn/less";    @import "@{path}/external1.less";
+    7：属性插值：@my-property: color;                  background-@{my-property}: #81F7D8;
+    8：变量名为一个值：@col: #ca428b;    @color: "col";  background-color: @@color;  最终编译为：background-color: #ca428b;
+    9：变量延迟加载，它们尚未声明，也可以使用变量：font-size: @a;  @a: @b; @b: 25px; 最终解析为：font-size: 25px;
+    10：变量值进行字符串拼接：.test(@a,@b){margin: "@{a}px @{b}px"} ;.test(10,20)；最终解析为：margin:10px 20px;
+    11：定义函数与定义css样式的区别：
+        函数    —— 1:@函数名:{} ; 2:.函数名(){} ; 3:.函数名(参数列表){}
+        css样式 —— .样式名称{}
+        区别：函数不会编译到css文件中，css样式可以编译到css样式中；
+              函数以@符号开头，或者函数名后面加上括号，或者加上参数，都会被认为是函数，所以不会编译到css文件中
+</code>
+</pre>
+    <h2><a href="#Less扩展" name="Less扩展">Less 扩展</a></h2>
+    <p>
+        1：使用:extend 选择器在一个选择器中扩展其他选择器样式<br/>
+        2：意思就是将当前的选择器，也要复制:extend后面选择器的样式<br/>
+        3：.a{font-size:16px;} .b:extend(.a){color:red;}---编译之后----.b{color:red;} .a,.b{font-size:16px;}<br/>
+        4：选择器A,选择器B:extend(选择器){xxx}与选择器A,选择器B{&:extend(选择器);xxx}的区别：<br/>
+        前者只扩展:冒号前面的选择器，后者会同时扩展大括号前面所有的选择器
+    </p>
+    <pre>
+    <code>
+/*:extend()编译之前*/
+.class1 {
+  font-size: 15px;
+}
+
+.class2 {
+  font-weight: 600;
+}
+
+//只给class4继承class1,class2
+.class3,.class4:extend(.class1,.class2) {
+  color: red;
+}
+
+/*编译之后*/
+//见效果后，发现:extend只给写在它前面的选择器进行扩展样式，同级选择器，只会共同扩展{}里面的样式
+.class1,
+.class4 {
+  font-size: 15px;
+}
+.class2,
+.class4 {
+  font-weight: 600;
+}
+//如下效果，class3与class4共同的样式只有:extend(){}大括号内的样式
+.class3,
+.class4 {
+  color: red;
+}
+        </code>
+</pre>
+    <pre>
+    <code>
+/*&:extend()编译之前*/
+.class1 {
+  font-size: 15px;
+}
+.class2 {
+  font-weight: 600;
+}
+.class5, .class6 {
+  &:extend(.class1,.class2);
+  color: yellow;
+}
+
+/*编译之后*/
+.class1,
+.class5,
+.class6 {
+  font-size: 15px;
+}
+.class2,
+.class5,
+.class6 {
+  font-weight: 600;
+}
+.class5,
+.class6 {
+  color: yellow;
+}
+</code>
+</pre>
+    <h2><a href="#LessMixins函数" name="LessMixins函数">Less Mixins函数</a></h2>
+    <h3><a href="#Mixin范围" name="Mixin范围">Mixin范围</a></h3>
+    <pre>
+    <code>
+/*编译之前*/
+
+//Mixin范围
+.test-fanwei(){
+  @bgcolor:#cccccc;             //在mixin函数内定义变量
+  float:left;                   //在mixin函数内定义正常的css样式
+}
+
+.test-fanwei-diaoyong{
+  .test-fanwei();               //调用mixin函数
+  background-color: @bgcolor;   //调用mixin函数内的变量
+}
+
+/*编译之后*/
+.test-fanwei-diaoyong {
+  float: left;                  //.test-fanwei()函数内定义的css样式被复制过来了
+  background-color: #cccccc;    //@bgcolor变量的值，也成功的被复制过来了
+}
+//根据编译结果来看，在其他css作用域内调用定义的mixin函数，而mixin函数作用域内定义了变量，在调用的css作用域内也能调用
+mixin函数内定义的变量，比如@bgcolor变量；虽然它是在其他函数内定义的，只要在调用函数内，执行了mixin函数，那么同时也可以
+调用mixin函数内的定义的变量。
+
+结论：简单说就是：mixin函数内定义的变量可以被其他css样式作用域内访问到。
+        </code>
+</pre>
+    <h3><a href="#Mixin返回值" name="Mixin返回值">Mixin返回值</a></h3>
+    <pre>
+    <code>
+/*编译之前*/
+//Mixin返回值
+.test-fanhui(@x,@y){
+  @padding:((@x+@y)/2)px;    //在mixin函数内定义变量
+  margin: ~"@{x}px @{y}px";   //写法1   margin: 80px 120px;
+  //margin:@x+px @y+px;       //写法2   margin: 80 px 120 px;
+  //margin:@x~"px" @y~"px";   //写法3   margin: 80 px 120 px;
+
+}
+
+.test-fanhui-diaoyong{
+  .test-fanhui(80,120);         //调用mixin函数
+  padding-left:@padding;        //调用mixin函数内的变量
+}
+
+/*编译之后*/
+.test-fanhui-diaoyong {
+  margin: 80px 120px;
+  padding-left: 100 px;
+}
+通过编译结果，我们定义了一个叫做.test-fanhui(@x,@y)的mixin函数，接收2个参数，函数内部，定义了@padding变量，变量值通过
+计算的来，同时，函数内部，也定义了一个margin的css样式。
+最后，在其他作用域的css样式中，进行调用mixin函数，并且传值：test-fanhui(80,120)；该函数执行后，同时又调用了这个函数内的
+@padding变量，并且成功将变量值获取到。
+
+结论：简单的说就是mixin函数能够使用进行传递参数，同时能够将内部的变量进行计算后进行返回，只要调用者调用了mixin函数，就能
+    使用其内部定义的变量与样式。
+        </code>
+</pre>
+    <h3><a href="#mixin定义在另一个mixin" name="mixin定义在另一个mixin">mixin定义在另一个mixin</a></h3>
+    <pre>
+<code>
+/*编译之前*/
+//mixin定义在另一个mixin
+.test-other-mixin(@value){
+  padding:~"@{value}px";        //定义css样式
+  .test-nested-mixin(){         //内部定义mixin函数
+    font-size:~"@{value}px";    //定义内部mixin函数内的css样式
+    @borderRadis:@value;        //定义内部mixin函数内的变量
+  }
+}
+
+.test-other-mixin-diaoyong{
+  border-radius:@borderRadis;       //调用内部mixin变量
+  .test-other-mixin(20);            //调用mixin函数
+  .test-nested-mixin();             //调用mixin函数内部mixin函数
+  border-bottom-width:@borderRadis; //调用内部mixin变量
+}
+
+/*编译之后*/
+//mixin定义在另一个mixin
+.test-other-mixin-diaoyong {
+  border-radius: 20;                //开头就能访问到变量值
+  padding: 20px;
+  font-size: 20px;
+  border-bottom-width: 20;
+}
+    根据结果，我们首先定义了一个.test-other-mixin(@value)mixix函数，同时在函数内，我们定义了内部的css样式，以及，
+    内部的mixin函数，在内部mixin函数内，我们也有自己的内部样式，同时，也定义了@borderRadis，按照理论来说，
+    在调用者样式内部作用域内，应该无法调用内部的变量，但是Less的mixin可以，
+
+    通过编译之后的结果来看，虽然我们border-radius:@borderRadis；开头就使用了内部mixin的变量，都还没有调用test-other-mixin
+    函数就访问了内部mixin变量，并且也访问到了值。说明，在调用者作用域内，只要调用了mixin函数，无法代码的执行先后，都能
+    访问到mixin的函数。
+
+总结：1：mixin函数无需调用先后，调用者作用域内，都能访问到mixin函数内定义的变量，前提是，作用域内调用了mixin函数
+      2：在mixin函数内，在定义一个mixin函数，作为调用者来说，也可以类似调用变量一样，调用mixin函数内部定义的mixin函数
+</code>
+</pre>
+    <h3><a href="#定义和调用范围可见性" name="定义和调用范围可见性">定义和调用范围可见性</a></h3>
+    <pre>
+<code>
+/*编译之前*/
+//定义一个函数，给别人调用，但是内部需要的参数，其实是在调用者里面定义的
+@test-dingyi-varible:{
+  background-color:@caller-variable;    //该变量定义在调用者内
+  .caller-mixin();                      //该函数定义在调用者内
+}
+
+//调用者
+.test-dingyi-varible-diaoyong{
+  @caller-variable:#aa86EE;       //定义外部函数需要的变量
+  @test-dingyi-varible();         //调用外部函数
+
+  .caller-mixin(){
+    font-style: inherit;
+  }
+}
+
+/*编译之后*/
+.test-dingyi-varible-diaoyong {
+  background-color: #aa86EE;
+  font-style: inherit;
+}
+
+总结：
+1：函数是不能被编译到css文件中
+2：定义者与调用者之间的变量都可以访问，没有作用域限制，前提是，调用者调用了定义者。
+3：在调用者内，必须要使用()括号执行定义者，否则定义者无法访问调用者内定义的变量。如：@test-dingyi-varible()必须加上括号
+</code>
+</pre>
+</div>
+    </div>
+    <!-- /.box -->
+    </section>
+    <footer class="content-footer">
+        <div class="pull-right hidden-xs">
+            <b>Version</b> 2.4.0
+        </div>
+        <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+        reserved.
+    </footer>
+</div>
+
+<aside class="control-sidebar control-sidebar-dark"></aside>
+<div class="control-sidebar-bg"></div>
+<script type="text/javascript">
+    layui.element.render({elem: "#card"});
+    var layer = layui.layer;
+    /**
+     * 页面一加载就打开弹窗，需要在layer.ready()回调函数内执行
+     */
+    layer.ready(function () {
+        layer.msg("页面加载成功！");
+    });
+</script>
+</div>
+</body>
+</html>

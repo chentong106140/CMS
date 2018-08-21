@@ -1,0 +1,47 @@
+//Less 命名空间和访问器
+
+/**
+    定义命名空间与打包样式
+ */
+.custom-box{
+
+  /*注意：.box-item下没有定义自己的样式，而是直接嵌套子样式*/
+  .box-item{
+
+    /*在box下的box-item下定义了bgColor样式,接收@param参数，默认值2rem*/
+    /*注意：由于加了混合参数，.bgColor不会编译到.css样式表中，可以通过命名空间调用到该样式*/
+    .bgColor(@param:2rem){
+      background-color: aqua;
+      font-size: @param;
+    }
+
+    /*在box下的box-item下定义了.border-radius样式*/
+    .border-radius{
+      border-radius:50%;
+    }
+
+    /*在box下的box-item下定义了.width样式*/
+    /*注意：由于加了混合参数，.width不会编译到.css样式表中，可以通过命名空间调用到该样式*/
+    .width(@param:100px){
+      width:@param;
+    }
+
+    /*控制整个页面，样式box下样式box-item下的span的背景色为黄色*/
+    span{
+      background-color: #ffd200;
+    }
+  }
+}
+
+/**
+    通过>符号，根据命名空间调用打包好的样式
+    将box-4下的box-item下的span修改样式，而需要修改的样式，通过命名空间的方式调用已经打包好的样式，不用重复写相同的样式
+ */
+.box-4{
+  .box-item{
+    span{
+      .custom-box > .box-item > .bgColor(1rem);
+    }
+  }
+}
+

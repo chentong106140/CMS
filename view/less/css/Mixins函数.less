@@ -1,0 +1,64 @@
+//Mixins函数
+
+
+/*Mixin范围*/
+.test-fanwei(){
+  @bgcolor:#cccccc;             //在mixin函数内定义变量
+  float:left;                   //在mixin函数内定义正常的css样式
+}
+
+
+.test-fanwei-diaoyong{
+  .test-fanwei();               //调用mixin函数
+  background-color: @bgcolor;   //调用mixin函数内的变量
+}
+
+/*Mixin返回值*/
+.test-fanhui(@x,@y){
+  @padding:((@x+@y)/2)px;    //在mixin函数内定义变量
+  margin: ~"@{x}px @{y}px";   //写法1   margin: 80px 120px;
+  //margin:@x+px @y+px;       //写法2   margin: 80 px 120 px;
+  //margin:@x~"px" @y~"px";   //写法3   margin: 80 px 120 px;
+
+}
+
+.test-fanhui-diaoyong{
+  .test-fanhui(80,120);         //调用mixin函数
+  padding-left:@padding;        //调用mixin函数内的变量
+}
+
+
+/*mixin定义在另一个mixin*/
+.test-other-mixin(@value){
+  padding:~"@{value}px";        //定义css样式
+  .test-nested-mixin(){         //内部定义mixin函数
+    font-size:~"@{value}px";    //定义内部mixin函数内的css样式
+    @borderRadis:@value;        //定义内部mixin函数内的变量
+  }
+}
+
+.test-other-mixin-diaoyong{
+  border-radius:@borderRadis;       //调用内部mixin变量
+  .test-other-mixin(20);            //调用mixin函数
+  .test-nested-mixin();             //调用mixin函数内部mixin函数
+  border-bottom-width:@borderRadis; //调用内部mixin变量
+}
+
+
+/*定义和调用范围可见性（函数定义与调用者之间的变量可见性）*/
+
+//定义一个函数，给别人调用，但是内部需要的参数，其实是在调用者里面定义的
+@test-dingyi-varible:{
+  background-color:@caller-variable;    //该变量定义在调用者内
+  .caller-mixin();                      //该函数定义在调用者内
+}
+
+//调用者
+.test-dingyi-varible-diaoyong{
+  @caller-variable:#aa86EE;       //定义外部函数需要的变量
+  @test-dingyi-varible();         //调用外部函数
+
+  .caller-mixin(){
+    font-style: inherit;
+  }
+}

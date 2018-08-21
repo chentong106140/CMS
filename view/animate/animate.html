@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>首页</title>
+    <link rel="stylesheet" href="../../resource/plugins/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../../resource/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../resource/plugins/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="../../resource/plugins/AdminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="../../resource/plugins/AdminLTE/css/skins/_all-skins.css">
+    <link rel="stylesheet" href="../../resource/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="../../resource/plugins/bootstrap-daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="../../resource/plugins/layui/css/layui.css">
+    <link rel="stylesheet" href="../../resource/plugins/select2/css/select2.min.css">
+    <!--<link rel="stylesheet" href="../../resource/plugins/jquery-datatable/css/jquery.dataTables.min.css">-->
+    <link rel="stylesheet" href="../../resource/plugins/jquery-datatable/css/dataTables.bootstrap.css">
+    <link rel="stylesheet" href="../../resource/plugins/jquery-datatable-fixed-columns/css/fixedColumns.bootstrap.css">
+    <link rel="stylesheet" href="../../resource/plugins/Buttons-1.5.2/css/buttons.bootstrap.css">
+    <link rel="stylesheet" href="../../resource/plugins/highlight/styles/dark.css">
+    <link rel="stylesheet" href="../../resource/plugins/animate/animate.css">
+
+    <script src="../../resource/plugins/html5/html5shiv.min.js"></script>
+    <script src="../../resource/plugins/html5/respond.min.js"></script>
+    <script src="../../resource/plugins/jquery/jquery.min.js"></script>
+    <script src="../../resource/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../../resource/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../resource/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script src="../../resource/plugins/AdminLTE/js/adminlte.js"></script>
+    <script src="../../resource/plugins/layui/layui.all.js"></script>
+    <script src="../../resource/plugins/select2/js/select2.js"></script>
+    <script src="../../resource/plugins/jquery-datatable/js/jquery.dataTables.min.js"></script>
+    <script src="../../resource/plugins/jquery-datatable/js/dataTables.bootstrap.min.js"></script>
+    <script src="../../resource/plugins/jquery-datatable-fixed-columns/js/dataTables.fixedColumns.js"></script>
+    <script src="../../resource/plugins/highlight/highlight.pack.js"></script>
+    <script src="../../resource/plugins/clipboard/clipboard.js"></script>
+
+    <!--datatable按钮-->
+    <script src="../../resource/plugins/Buttons-1.5.2/js/dataTables.buttons.js"></script>
+    <script src="../../resource/plugins/Buttons-1.5.2/js/buttons.bootstrap.js"></script>
+    <script src="../../resource/plugins/Buttons-1.5.2/js/buttons.flash.js"></script>
+    <script src="../../resource/plugins/JSZip-2.5.0/jszip.min.js"></script>
+    <script src="../../resource/plugins/pdfmake-0.1.36/pdfmake.min.js"></script>
+    <script src="../../resource/plugins/pdfmake-0.1.36/vfs_fonts.js"></script>
+    <script src="../../resource/plugins/Buttons-1.5.2/js/buttons.html5.js"></script>
+    <script src="../../resource/plugins/Buttons-1.5.2/js/buttons.print.js"></script>
+    <script src="../../resource/plugins/Buttons-1.5.2/js/buttons.colVis.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+
+            //添加复制按钮
+            $(' <a class=\"code-copy\" title=\"复制到剪切板\"><i class=\"fa fa-copy\"></i></a>').insertBefore("code")
+
+
+            /***** 复制按钮 开始*******/
+            var clipboardSnippets = new Clipboard('.code-copy', {
+                'text': function (trigger) {
+                    return $(trigger).parents("pre").children("code").html();
+                }
+
+            });
+            clipboardSnippets.on('success', function (e) {
+                e.clearSelection();
+                alert("复制成功")
+            });
+            clipboardSnippets.on('error', function (e) {
+                alert("复制失败");
+
+            });
+            hljs.initHighlightingOnLoad();
+
+        });
+
+
+    </script>
+
+    <style type="text/css">
+
+        body {
+            font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: 400;
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+
+        .main-header {
+            max-height: 101px;
+        }
+
+        .layadmin-header {
+            display: block;
+            height: 50px;
+            line-height: 50px;
+            margin-bottom: 0;
+            border-radius: 0;
+        }
+
+        .layadmin-header .layui-breadcrumb {
+            border-top: 1px solid #f6f6f6;
+            padding: 0 15px;
+        }
+
+        .layui-breadcrumb {
+            visibility: visible;
+            font-size: 0;
+        }
+
+        .wrapper {
+            height: 100%;
+            position: relative;
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+
+        .content-wrapper {
+            position: relative;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+
+        .content-footer {
+            background: #fff;
+            padding: 15px;
+            color: #444;
+            border-top: 1px solid #d2d6de;
+            z-index: 820;
+            display: block;
+        }
+
+        .box-body button {
+            color: tomato;
+            margin: 20px 50px;
+        }
+
+        .site__title {
+            color: #f35626;
+            background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -webkit-animation: hue 60s infinite linear;
+            font-size: 10rem;
+        }
+        fieldset {
+            padding: .35em .625em .75em;
+            margin: 50px 0;
+            border: 1px solid #c0c0c0;
+        }
+        legend{
+            font-weight: 600;
+        }
+    </style>
+
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
+<div class="wrapper">
+    <!--头部区域-->
+    <header class="main-header">
+        <!-- Logo -->
+        <a href="index2.html" class="logo">
+            <span class="logo-mini"><b>奇果</b></span>
+            <span class="logo-lg"><b>南京奇果</b>后台管理</span>
+        </a>
+        <!--导航栏，随着页面一起滚动的导航栏-->
+        <nav class="navbar navbar-static-top">
+            <!-- 侧边栏切换按钮-->
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <!--头部导航-自定义菜单栏-->
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li class="">
+                        <a href="javascript:openFullscreen(this)">
+                            <i class="fa fa-yahoo"></i>
+                        </a>
+                    </li>
+                    <!--用户通知信息-->
+                    <li class="dropdown notifications-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-bell-o"></i>
+                            <span class="label label-warning">10</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">你有10个通知</li>
+                            <li>
+                                <ul class="menu">
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-users text-aqua"></i>今天有10个推荐位被设置
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-warning text-yellow"></i>你的密码已过期，需要重置密码
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="footer"><a href="#">查看更多</a></li>
+                        </ul>
+                    </li>
+                    <!--用户任务信息-->
+                    <li class="dropdown tasks-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-flag-o"></i>
+                            <span class="label label-danger">9</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">你有9个任务</li>
+                            <li>
+                                <ul class="menu">
+                                    <li>
+                                        <a href="#">
+                                            <h3>
+                                                推荐位设置进度
+                                                <small class="pull-right">90%</small>
+                                            </h3>
+                                            <div class="progress sm">
+                                                <div class="progress-bar progress-bar-aqua" style="width: 90%"
+                                                     role="progressbar"
+                                                     aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="sr-only">90% 已完成</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <h3>
+                                                项目创建进度
+                                                <small class="pull-right">40%</small>
+                                            </h3>
+                                            <div class="progress xs">
+                                                <div class="progress-bar progress-bar-green" style="width: 40%"
+                                                     role="progressbar"
+                                                     aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="sr-only">40% 已完成</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <h3>
+                                                内容注入进度
+                                                <small class="pull-right">60%</small>
+                                            </h3>
+                                            <div class="progress xs">
+                                                <div class="progress-bar progress-bar-red" style="width: 60%"
+                                                     role="progressbar"
+                                                     aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="sr-only">60% 已完成</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="footer">
+                                <a href="#">查看更多任务</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--用户账户信息-->
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="../../resource/plugins/AdminLTE/img/user2-160x160.jpg" class="user-image"
+                                 alt="用户头像">
+                            <span class="hidden-xs">Morgan</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- 用户头像 -->
+                            <li class="user-header">
+                                <img src="../../resource/plugins/AdminLTE/img/user2-160x160.jpg" class="img-circle"
+                                     alt="用户头像">
+                                <p>
+                                    Morgan - 前端开发人员
+                                    <small>开发人员</small>
+                                </p>
+                            </li>
+                            <!-- Menu Body -->
+                            <li class="user-body">
+                                <div class="row">
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">我的任务</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">我的通知</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">我的信息</a>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </li>
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="#" class="btn btn-default btn-flat">编辑</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="#" class="btn btn-default btn-flat">退出</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--编辑-->
+                    <li>
+                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!--左侧边栏区域-->
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            <!--用户概要信息模块-->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="../../resource/plugins/AdminLTE/img/user2-160x160.jpg" class="img-circle" alt="用户头像">
+                </div>
+                <div class="pull-left info">
+                    <p>Morgan</p>
+                    <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
+                </div>
+            </div>
+            <ul class="sidebar-menu" data-widget="tree">
+                <li>
+                    <a href="/CMS/view/main/main.html"><i class="fa fa-circle-o text-yellow"></i> <span>概览</span></a>
+                </li>
+                <li class="header">案例</li>
+                <!--（1级父菜单）父层定义treeview类  激活使用active-->
+                <li class="treeview active">
+                    <!--父层菜单对应的文字描述-->
+                    <a href="#">
+                        <i class="fa fa-dashboard"></i> <span>animate动画</span>
+                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                    </a>
+                    <!--（1级子菜单）由于父级菜单下面又有很多列表所以，还需要使用ul,同时ul需要使用treeview-menu修饰-->
+                    <ul class="treeview-menu">
+                        <!--正常情况下父类下面的ul下就可以定义每一个子菜单了，一个li就是一个子菜单-->
+                        <!--（2级父菜单）如果希望子菜单也是一个父菜单，就需要将li使用treeview修饰，如果只是普通的子菜单li不用treeview修饰-->
+                        <li class="treeview active">
+                            <!--由于上面使用了treeview修饰了，代表上面的li是一个父菜单，那么下面的a标签也就是父菜单的文字描述-->
+                            <a href="#">
+                                <i class="fa fa-dashboard"></i> <span>animate</span>
+                                <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                            </a>
+                            <!--（2级子菜单）父菜单下点击后，需要有很多子菜单，所以ul下的所有li都是一个子菜单-->
+                            <ul class="treeview-menu">
+                                <li class="active">
+                                    <a href="/CMS/view/animate/animate.html"><i class="fa fa-circle-o"></i>动画</a>
+                                </li>
+                                <!--(3级父菜单)-->
+                                <li class="treeview active">
+                                    <a href="#">
+                                        <i class="fa fa-dashboard"></i> <span>animate</span>
+                                        <span class="pull-right-container"><i
+                                                class="fa fa-angle-left pull-right"></i></span>
+                                    </a>
+                                    <!--(3级子菜单)-->
+                                    <ul class="treeview-menu">
+                                        <li>
+                                            <a href="/CMS/view/animate/animate.html"><i
+                                                    class="fa fa-circle-o"></i>动画</a>
+                                        </li>
+                                        <li>
+                                            <a href="/CMS/view/animate/animate.html"><i
+                                                    class="fa fa-circle-o"></i>动画</a>
+                                        </li>
+                                        <li>
+                                            <a href="/CMS/view/animate/animate.html"><i
+                                                    class="fa fa-circle-o"></i>动画</a>
+                                        </li>
+                                        <li>
+                                            <a href="/CMS/view/animate/animate.html"><i
+                                                    class="fa fa-circle-o"></i>动画</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/CMS/view/animate/animate.html"><i class="fa fa-circle-o"></i>动画</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    </aside>
+    <div class="content-wrapper">
+        <div id="card" class="layui-card layadmin-header">
+            <span class="layui-breadcrumb" lay-separator="/">
+              <a href="#">layer弹窗</a>
+               <a href="http://www.layui.com/doc/modules/layer.html" target="_blank"><cite>layer_文档</cite></a>
+            </span>
+        </div>
+        <section class="content">
+            <div class="box box-primary box-solid"><!--默认关闭盒子添加collapsed-box-->
+                <div class="box-header with-border">
+                    <h3 class="box-title">查询结果</h3>
+                </div>
+
+                <div class="box-body" style="height: 20000px;">
+
+                    <div style="height: auto; max-width: 30%; margin: 0 auto; text-align: center;position: fixed;z-index: 999;left: 0;right: 0;border: 1px solid aquamarine; ">
+                        <span id="animationSandbox" style="display: block;" class="">
+                            <h1 class="site__title">Animate.css</h1>
+                        </span>
+                    </div>
+                    <div style="width:100%; height: auto; position:relative; margin-top: 50px;">
+                        <fieldset>
+                            <legend>attention_seekers(渴求关注的人)</legend>
+                            <button class="btn btn-default" value="bounce">bounce 上下弹跳，类似球体下落，上下回弹2下</button>
+                            <button class="btn btn-default" value="flash">flash 闪烁2次</button>
+                            <button class="btn btn-default" value="headShake">headShake 左右来回移动2次</button>
+                            <button class="btn btn-default" value="heartBeat">heartBeat 放大2下</button>
+                            <button class="btn btn-default" value="jello">jello 先稍微拉伸变扁的同时，上下摇摆2下</button>
+                            <button class="btn btn-default" value="pulse">pulse 放大1下</button>
+                            <button class="btn btn-default" value="rubberBand">rubberBand 变扁的同时，元素再拉长变短，有回弹效果</button>
+                            <button class="btn btn-default" value="shake">shake 左右来回移动4下</button>
+                            <button class="btn btn-default" value="swing">swing 中心点在中上，左右摇晃2下</button>
+                            <button class="btn btn-default" value="tada">tada 先缩小，再左右摇摆3下</button>
+                            <button class="btn btn-default" value="wobble">wobble 左右摇晃3下，中心点为圆心，有指针按照圆心点来回晃动效果</button>
+                        </fieldset>
+                        <fieldset>
+                            <legend>bouncing_entrances(跳跃的入口，从外部隐藏位置，回到原位置显示，有回弹效果)</legend>
+                            <button class="btn btn-default" value="bounceIn">bounceIn 先隐藏一下再显示，同时放大2下与heartBeat类似</button>
+                            <button class="btn btn-default" value="bounceInDown">bounceInDown 先隐藏，在上面显示出来，  同时，从上往下下落到原位置，再上下回弹2下</button>
+                            <button class="btn btn-default" value="bounceInLeft">bounceInLeft 先隐藏，在左边显示出来，同时，从左边滑入到原位置，再左右回弹2下</button>
+                            <button class="btn btn-default" value="bounceInRight">bounceInRight 先隐藏，在右边显示出来，同时，从右边滑入到原位置，再左右回弹2下</button>
+                            <button class="btn btn-default" value="bounceInUp">bounceInUp 先隐藏，在下面显示出来，同时，从下往上滑入到原位置，再上下回弹2下</button>
+                        </fieldset>
+                        <fieldset>
+                            <legend>bouncing_exits(跳跃的出口，从原位置显示，到外部位置隐藏，有回弹效果)</legend>
+                            <button class="btn btn-default" value="bounceOut">bounceOut 先放大缩小2次，再缩小到元素隐藏</button>
+                            <button class="btn btn-default" value="bounceOutDown">bounceOutDown 先上下回弹2此，再向下滑出到隐藏</button>
+                            <button class="btn btn-default" value="bounceOutLeft">bounceOutLeft 先在原位置往右移动一点，再向左滑出到隐藏</button>
+                            <button class="btn btn-default" value="bounceOutRight">bounceOutRight 先在原位置往左移动一点，再向右滑出到隐藏</button>
+                            <button class="btn btn-default" value="bounceOutUp">bounceOutUp 先在原位置上下回弹2此，再向上滑出到隐藏</button>
+                        </fieldset>
+                        <fieldset>
+                            <legend>fading_entrances(褪色的入口，从外部隐藏位置，回到原位置显示，与bouncing_entrances区别是，fading_entrances没有回弹效果，而是很顺滑的动画)</legend>
+                            <button class="btn btn-default" value="fadeIn">fadeIn 元素初始状态是在原位置隐藏，再慢慢从原位置显示</button>
+                            <button class="btn btn-default" value="fadeInDown">fadeInDown 元素初始状态是在上面隐藏，再从上面显示出来，同时从上滑到原位置</button>
+                            <button class="btn btn-default" value="fadeInDownBig">fadeInDownBig 与fadeInDown效果一致，区别是初始状态在上面的距离与原位置要大</button>
+                            <button class="btn btn-default" value="fadeInLeft">fadeInLeft 元素初始状态是在左边隐藏，再从左边显示出来，同时从左滑到原位置</button>
+                            <button class="btn btn-default" value="fadeInLeftBig">fadeInLeftBig 与fadeInLeft效果一致，区别是初始状态在左边的距离与原位置要大</button>
+                            <button class="btn btn-default" value="fadeInRight">fadeInRight 元素初始状态是在右边隐藏，再从右边显示出来，同时从右滑到原位置<</button>
+                            <button class="btn btn-default" value="fadeInRightBig">fadeInRightBig 与fadeInRight效果一致，区别是初始状态在右边的距离与原位置要大</button>
+                            <button class="btn btn-default" value="fadeInUp">fadeInUp 元素初始状态是在下边隐藏，再从下边显示出来，同时从下边滑到原位置</button>
+                            <button class="btn btn-default" value="fadeInUpBig">fadeInUpBig 与fadeInUp效果一致，区别是初始状态在下边的距离与原位置要大</button>
+                        </fieldset>
+                        <fieldset>
+                            <legend>fading_exits(渐退出，从原位置显示，到外部位置隐藏，与bouncing_exits区别就是，没有回弹效果，动画很顺滑)</legend>
+                            <button class="btn btn-default" value="fadeOut">fadeOut 元素初始状态是在原位置显示，再慢慢从原位置隐藏</button>
+                            <button class="btn btn-default" value="fadeOutDown">fadeOutDown 元素初始状态是在原位置显示，再慢慢从原位置往下隐藏</button>
+                            <button class="btn btn-default" value="fadeOutDownBig">fadeOutDownBig 与fadeOutDown效果一致，区别是在浏览器最下边缘位置隐藏</button>
+                            <button class="btn btn-default" value="fadeOutLeft">fadeOutLeft 元素初始状态是在原位置显示，再慢慢从原位置向左滑动到隐藏</button>
+                            <button class="btn btn-default" value="fadeOutLeftBig">fadeOutLeftBig 与fadeOutLeft效果一致，区别是在浏览器最左边缘位置隐藏</button>
+                            <button class="btn btn-default" value="fadeOutRight">fadeOutRight 元素初始状态是在原位置显示，再慢慢从原位置向右滑动到隐藏<</button>
+                            <button class="btn btn-default" value="fadeOutRightBig">fadeOutRightBig 与fadeOutRight效果一致，区别是在浏览器最右边缘位置隐藏</button>
+                            <button class="btn btn-default" value="fadeOutUp">fadeOutUp 元素初始状态是在原位置显示，再慢慢从原位置往上隐藏</button>
+                            <button class="btn btn-default" value="fadeOutUpBig">fadeOutUpBig 与fadeOutUp效果一致，区别是在浏览器最上边缘位置隐藏</button>
+                        </fieldset>
+                        <fieldset>
+                            <legend>flippers(脚蹼，3D效果显示或者隐藏，)</legend>
+                            <button class="btn btn-default" value="flip">flip 3D旋转效果</button>
+                            <button class="btn btn-default" value="flipInX">flipInX 初始状态为隐藏，以x轴正中为中心点，上往下翻转显示，有回弹效果</button>
+                            <button class="btn btn-default" value="flipInY">flipInY 初始状态为隐藏，以y轴正中为中心点，左右前后摇摆显示，有回弹效果</button>
+                            <button class="btn btn-default" value="flipOutX">flipOutX 与flipInX相反，初始状态为显示，以x轴正中为中心点，从下往上翻转隐藏，有回弹效果</button>
+                            <button class="btn btn-default" value="flipOutY">flipOutY 与flipInY相反，初始状态为显示，以y轴正中为中心点，左右前后摇摆隐藏</button>
+                        </fieldset>
+                        <fieldset>
+                            <legend>lightspeed(变形方式，左右滑入显示或隐藏，感觉像是元素到达终点时，是一个急刹车状态)</legend>
+                            <button class="btn btn-default" value="lightSpeedIn">lightSpeedIn  初始状态为隐藏，从右往左，变形方式显示</button>
+                            <button class="btn btn-default" value="lightSpeedOut">lightSpeedOut 初始状态为显示，从左往右，变形方式隐藏</button>
+                        </fieldset>
+                        <fieldset>
+                            <legend>rotating_entrances(旋转进入，以旋转的方式，从隐藏状态到显示)</legend>
+                            <button class="btn btn-default" value="rotateIn">rotateIn  初始状态为隐藏，元素以元素中心点旋转360°显示，旋转方向为逆时针方向</button>
+                            <button class="btn btn-default" value="rotateInDownLeft">rotateInDownLeft 从上往下旋转显示，，圆心点在左下角</button>
+                            <button class="btn btn-default" value="rotateInDownRight">rotateInDownRight 从上往下旋转显示，圆心点在右下角</button>
+                            <button class="btn btn-default" value="rotateInUpLeft">rotateInUpLeft 从下往上旋转显示，圆心点在左下角</button>
+                            <button class="btn btn-default" value="rotateInUpRight">rotateInUpRight 从下往上旋转显示，圆心点在右下角</button>
+                        </fieldset>
+                        <fieldset>
+                            <legend>rotating_exits(旋转退出，以旋转的方式，从显示状态到隐藏)</legend>
+                            <button class="btn btn-default" value="rotateOut">rotateOut  初始状态为显示，元素以元素中心点旋转360°隐藏，旋转方向为逆时针方向</button>
+                            <button class="btn btn-default" value="rotateOutDownLeft">rotateOutDownLeft 从上往下旋转隐藏，圆心点在左下角</button>
+                            <button class="btn btn-default" value="rotateOutDownRight">rotateOutDownRight 从上往下旋转隐藏，圆心点在右下角</button>
+                            <button class="btn btn-default" value="rotateOutUpLeft">rotateOutUpLeft 从下往上旋转隐藏，圆心点在左下角</button>
+                            <button class="btn btn-default" value="rotateOutUpRight">rotateOutUpRight 从下往上旋转隐藏，圆心点在右下角</button>
+                        </fieldset>
+                        <fieldset>
+                            <legend>sliding_entrances(滑动进入，初始状态与结束状态都是显示状态)</legend>
+                            <button class="btn btn-default" value="slideInDown">slideInDown  从上往下滑动到原位置显示</button>
+                            <button class="btn btn-default" value="slideInLeft">slideInLeft 从左往右滑动到原位置显示</button>
+                            <button class="btn btn-default" value="slideInRight">slideInRight 从右往左滑动到原位置显示</button>
+                            <button class="btn btn-default" value="slideInUp">slideInUp 从下往上滑动到原位置显示</button>
+                        </fieldset>
+                        <fieldset>
+                            <legend>sliding_exits(滑动退出，初始状态为显示，结束状态为隐藏，显示到隐藏没有过渡效果)</legend>
+                            <button class="btn btn-default" value="slideOutDown">slideOutDown  从原位置往下，滑动到最后直接隐藏</button>
+                            <button class="btn btn-default" value="slideOutLeft">slideOutLeft 从原位置往左，滑动到最后直接隐藏</button>
+                            <button class="btn btn-default" value="slideOutRight">slideOutRight 从原位置往右，滑动到最后直接隐藏</button>
+                            <button class="btn btn-default" value="slideOutUp">slideOutUp 从原位置往上，滑动到最后直接隐藏</button>
+                        </fieldset>
+                        <fieldset>
+                            <legend>specials(特殊效果，通过旋转让元素显示或隐藏)</legend>
+                            <button class="btn btn-default" value="hinge">hinge 初始化状态为显示， 从原位置往下掉落，圆心点在左下角，先晃一晃，再直接掉落到浏览器最下面，隐藏</button>
+                            <button class="btn btn-default" value="jackInTheBox">jackInTheBox 初始化状态为隐藏，元素从最小尺寸，左右摇晃的同时，显示出来</button>
+                            <button class="btn btn-default" value="rollIn">rollIn  初始化状态为隐藏，元素从最左，旋转180°到原位置，显示</button>
+                            <button class="btn btn-default" value="rollOut">rollOut 初始化状态为显示，元素从原位置，旋转180°向右，隐藏</button>
+                        </fieldset>
+                        <fieldset>
+                            <legend>zooming_entrances(缩放进入，元素由小变大显示出来)</legend>
+                            <button class="btn btn-default" value="zoomIn">zoomIn 由小变大显示出来</button>
+                            <button class="btn btn-default" value="zoomInDown">zoomInDown 由小变大，从上面显示出来</button>
+                            <button class="btn btn-default" value="zoomInLeft">zoomInLeft  由小变大，从左边显示出来</button>
+                            <button class="btn btn-default" value="zoomInRight">zoomInRight 由小变大，从右面显示出来</button>
+                            <button class="btn btn-default" value="zoomInUp">zoomInUp 由小变大，从下面显示出来</button>
+                        </fieldset>
+                        <fieldset>
+                            <legend>zooming_exits(缩放退出，元素由小变大进行隐藏)</legend>
+                            <button class="btn btn-default" value="zoomOut">zoomOut 由大变小，进行隐藏</button>
+                            <button class="btn btn-default" value="zoomOutDown">zoomOutDown 由大变小，元素最终从下面隐藏</button>
+                            <button class="btn btn-default" value="zoomOutLeft">zoomOutLeft  由大变小，元素最终从左边隐藏</button>
+                            <button class="btn btn-default" value="zoomOutRight">zoomOutRight 由大变小，元素最终从右边隐藏</button>
+                            <button class="btn btn-default" value="zoomOutUp">zoomOutUp 由大变小，元素最终从上边隐藏</button>
+                        </fieldset>
+
+                    </div>
+                </div>
+            </div>
+            <!-- /.box -->
+            </section>
+            <footer class="content-footer">
+                <div class="pull-right hidden-xs">
+                    <b>Version</b> 2.4.0
+                </div>
+                <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All
+                rights
+                reserved.
+            </footer>
+    </div>
+
+    <aside class="control-sidebar control-sidebar-dark"></aside>
+    <div class="control-sidebar-bg"></div>
+    <script type="text/javascript">
+        layui.element.render({elem: "#card"});
+
+        var layer = layui.layer;
+
+        /**
+         * 页面一加载就打开弹窗，需要在layer.ready()回调函数内执行
+         */
+        layer.ready(function () {
+            layer.msg("页面加载成功！");
+        });
+
+
+        /**
+         * .one()：目的是在将元素添加动画之后，如果动画执行完之后触发动画完成事件就执行一次,
+         * .one()：时间监听后，这里使用removeClass()目的是将元素回到初始状态，
+         *          如果去除removeClass()，元素将保留动画最后状态，无法重复执行该动画
+         *          如果不去除removeClass(),元素将在动画执行完之后，移除之前的动画，元素回到初始状态，又可以继续执行该动画
+         *
+         * @param x
+         */
+        function testAnim(x) {
+            $('#animationSandbox').removeClass().addClass('animated ' + x).one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                $(this).removeClass();
+            });
+        };
+
+        $(document).ready(function () {
+            $('.box-body button').click(function (e) {
+                var anim = $(this).val();
+                testAnim(anim);
+            });
+
+
+        });
+    </script>
+</div>
+</body>
+</html>

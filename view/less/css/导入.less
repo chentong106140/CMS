@@ -1,0 +1,17 @@
+/*Less 导入*/
+@path:'./';
+@import "@{path}demo6_1.less";  //变量可以在URL中使用
+
+//调用上面样式
+.box-6{
+  .box-item{
+    span{
+      .custom-box > .box-item > .color;  //将定义好的样式复制过来
+    }
+  }
+}
+
+
+
+
+

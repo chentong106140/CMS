@@ -1,0 +1,32 @@
+//Less 命名空间和访问器
+
+.custom-box{
+
+  .box-item{
+
+    //定义父作用域变量
+    @width:200px;
+    @height:100px;
+
+    .width{
+      @width:100px;//定义本地作用域的变量
+      width:@width;//如果本地作用域定义了该变量，将首先取本地的变量
+    }
+
+    .height{
+      height:@height;//如果本地作用域不存在该变量，将从父作用域搜索
+    }
+
+  }
+}
+
+//调用样式
+.box-5{
+  .box-item{
+    span{
+      .custom-box > .box-item > .width;  //将定义好的样式复制过来
+      .custom-box > .box-item > .height;
+    }
+  }
+}
+
