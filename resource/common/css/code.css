@@ -7,7 +7,10 @@ body {
     overflow-x: hidden;
     overflow-y: hidden;
 }
-
+.main-sidebar-scroll{
+    max-height: 100%;
+    overflow-y: scroll;
+}
 .main-header {
     max-height: 101px;
 }
@@ -68,7 +71,6 @@ body {
 
 .box-body a,.box-body  a:hover{
     text-decoration: none;
-    color:#797979;
 }
 
 pre .code-copy{

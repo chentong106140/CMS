@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>事件</title>
+    <link rel="stylesheet" href="../../../resource/plugins/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../../../resource/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../resource/plugins/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="../../../resource/plugins/AdminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="../../../resource/plugins/AdminLTE/css/skins/_all-skins.css">
+    <link rel="stylesheet" href="../../../resource/plugins/highlight/styles/dark.css">
+    <link rel="stylesheet" href="../../../resource/common/css/code.css">
+
+    <script src="../../../resource/plugins/html5/html5shiv.min.js"></script>
+    <script src="../../../resource/plugins/html5/respond.min.js"></script>
+    <script src="../../../resource/plugins/jquery/jquery.min.js"></script>
+    <script src="../../../resource/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../../resource/plugins/AdminLTE/js/adminlte.js"></script>
+    <script src="../../../resource/plugins/layui/layui.all.js"></script>
+    <script src="../../../resource/plugins/highlight/highlight.pack.js"></script>
+    <script src="../../../resource/plugins/clipboard/clipboard.js"></script>
+    <script src="../../../resource/common/js/code.js"></script>
+    <script type="text/javascript">
+
+    </script>
+
+    <style type="text/css">
+        
+    </style>
+
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
+<div class="wrapper">
+    <!--头部区域-->
+    <header class="main-header">
+        <!-- Logo -->
+        <a href="index2.html" class="logo">
+            <span class="logo-mini"><b>奇果</b></span>
+            <span class="logo-lg"><b>南京奇果</b>后台管理</span>
+        </a>
+        <!--导航栏，随着页面一起滚动的导航栏-->
+        <nav class="navbar navbar-static-top">
+            <!-- 侧边栏切换按钮-->
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <!--头部导航-自定义菜单栏-->
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li class="">
+                        <a href="javascript:openFullscreen(this)">
+                            <i class="fa fa-yahoo"></i>
+                        </a>
+                    </li>
+                    <!--用户通知信息-->
+                    <li class="dropdown notifications-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-bell-o"></i>
+                            <span class="label label-warning">10</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">你有10个通知</li>
+                            <li>
+                                <ul class="menu">
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-users text-aqua"></i>今天有10个推荐位被设置
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-warning text-yellow"></i>你的密码已过期，需要重置密码
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="footer"><a href="#">查看更多</a></li>
+                        </ul>
+                    </li>
+                    <!--用户任务信息-->
+                    <li class="dropdown tasks-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-flag-o"></i>
+                            <span class="label label-danger">9</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">你有9个任务</li>
+                            <li>
+                                <ul class="menu">
+                                    <li>
+                                        <a href="#">
+                                            <h3>
+                                                推荐位设置进度
+                                                <small class="pull-right">90%</small>
+                                            </h3>
+                                            <div class="progress sm">
+                                                <div class="progress-bar progress-bar-aqua" style="width: 90%"
+                                                     role="progressbar"
+                                                     aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="sr-only">90% 已完成</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <h3>
+                                                项目创建进度
+                                                <small class="pull-right">40%</small>
+                                            </h3>
+                                            <div class="progress xs">
+                                                <div class="progress-bar progress-bar-green" style="width: 40%"
+                                                     role="progressbar"
+                                                     aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="sr-only">40% 已完成</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <h3>
+                                                内容注入进度
+                                                <small class="pull-right">60%</small>
+                                            </h3>
+                                            <div class="progress xs">
+                                                <div class="progress-bar progress-bar-red" style="width: 60%"
+                                                     role="progressbar"
+                                                     aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="sr-only">60% 已完成</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="footer">
+                                <a href="#">查看更多任务</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--用户账户信息-->
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="../../../resource/plugins/AdminLTE/img/user2-160x160.jpg" class="user-image"
+                                 alt="用户头像">
+                            <span class="hidden-xs">Morgan</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- 用户头像 -->
+                            <li class="user-header">
+                                <img src="../../../resource/plugins/AdminLTE/img/user2-160x160.jpg" class="img-circle"
+                                     alt="用户头像">
+                                <p>
+                                    Morgan - 前端开发人员
+                                    <small>开发人员</small>
+                                </p>
+                            </li>
+                            <!-- Menu Body -->
+                            <li class="user-body">
+                                <div class="row">
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">我的任务</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">我的通知</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">我的信息</a>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </li>
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="#" class="btn btn-default btn-flat">编辑</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="#" class="btn btn-default btn-flat">退出</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--编辑-->
+                    <li>
+                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!--左侧边栏区域-->
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            <!--用户概要信息模块-->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="../../../resource/plugins/AdminLTE/img/user2-160x160.jpg" class="img-circle" alt="用户头像">
+                </div>
+                <div class="pull-left info">
+                    <p>Morgan</p>
+                    <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
+                </div>
+            </div>
+            <!--侧边栏菜单-->
+            <ul class="sidebar-menu" data-widget="tree">
+                <li><a href="/CMS/view/main/main.html"><i class="fa fa-circle-o text-yellow"></i> <span>概览</span></a>
+                </li>
+                <li class="header">案例</li>
+                <li class="treeview active">
+                    <a href="/CMS/view/ES6/Array.html">
+                        <i class="fa fa-files-o"></i>
+                        <span>Array</span>
+                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                        <!--<span class="pull-right-container"><span class="label label-primary pull-right">4</span></span>-->
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/CMS/view/ES6/Array.html#会替换原数组的方法"><i class="fa fa-circle-o"></i>会替换原数组的方法</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </section>
+    </aside>
+    <div class="content-wrapper">
+            <section class="content">
+                <div class="box box-primary box-solid"><!--默认关闭盒子添加collapsed-box-->
+                    <div class="box-header with-border">
+                        <h3 class="box-title">查询结果</h3>
+                    </div>
+                    <div class="box-body" >
+                        
+                        
+                    </div><!--box-body-->
+                </div><!--box box-primary box-solid-->
+            </section>
+            <footer class="content-footer">
+                <div class="pull-right hidden-xs">
+                    <b>Version</b> 2.4.0
+                </div>
+                <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+                reserved.
+            </footer>
+    </div>
+
+<aside class="control-sidebar control-sidebar-dark"></aside>
+<div class="control-sidebar-bg"></div>
+<script type="text/javascript">
+
+</script>
+</div>
+</body>
+</html>
