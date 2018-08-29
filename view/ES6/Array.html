@@ -284,6 +284,8 @@
   6：shift() 方法用于把数组的第一个元素从其中删除，并返回第一个元素的值。
   7：sort(sortfunction(a,b))对数组的元素进行排序。返回一个排序后的数组
   8：splice(开始索引,需要替换个数,替换元素,.....,itemX)选择需要替换的元素进行替换，表达式返回被替换的元素组成的新的数组，原数组保留替换后的数组，并不是表达式返回值
+  9：unshift(item1,item2, ..., itemX)方法可向数组的开头添加一个或更多元素，并返回新的长度。
+                    
             </pre>
             
                 <h2><a href="#不会替换原数组的方法-返回改变后的数组" name="不会替换原数组的方法-返回改变后的数组">不会替换原数组的方法-返回改变后的数组</a></h2>
@@ -330,7 +332,7 @@
             
             
             </pre>
-                <script src="js/array.concat().js"></script>
+                <script src="array/array.concat().js"></script>
                 <pre class="javascript hljs ">
                 <code >
                         var a1 = [],
@@ -385,7 +387,7 @@
                     </tr>
                     </tbody>
                 </table>
-                <script src="js/array.copyWithin().js"></script>
+                <script src="array/array.copyWithin().js"></script>
                 <pre class="javascript hljs ">
                 <code>
                 var a1 = [0,1,2,3,4,5,6,7,8,9];
@@ -429,7 +431,7 @@
                     Iterator对象
             
             </pre>
-                <script src="js/array.entries().js"></script>
+                <script src="array/array.entries().js"></script>
                 <pre class="javascript hljs ">
                 <code>
                     var a1 = [ "one", "two", "three", "four", "five", "six" ];
@@ -478,7 +480,7 @@
                     不会替换原数组
             
             </pre>
-                <script src="js/array.every().js"></script>
+                <script src="array/array.every().js"></script>
                 <pre class="javascript hljs ">
                 <code>
                 //用于演示替换回调函数内的this值
@@ -532,7 +534,7 @@
                     会替换原数组
             
             </pre>
-                <script src="js/array.fill().js"></script>
+                <script src="array/array.fill().js"></script>
                 <pre class="javascript hljs ">
                 <code>
                 var a = [0,1,2,3,4,5,6,7,8,9];
@@ -608,7 +610,7 @@
                     4：在不指定第二个参数的情况下，回调函数内的this指向的是window对象
                     
             </pre>
-                <script src="js/array.filter().js"></script>
+                <script src="array/array.filter().js"></script>
                 <pre class="javascript hljs ">
                 <code>
                 //用于演示替换回调函数内的this值
@@ -681,7 +683,7 @@
                     返回值：
                         返回数组符合测试条件的第一个元素值，如果没有符合条件的则返回 undefined。
                 </pre>
-                <script src="js/array.find().js"></script>
+                <script src="array/array.find().js"></script>
                 <pre class="javascript hljs ">
                     <code>
                 //用于演示替换回调函数内的this值
@@ -769,7 +771,7 @@
                     返回值：
                         返回符合测试条件的第一个数组元素索引，如果没有符合条件的则返回 -1。
                 </pre>
-                <script src="js/array.findIndex().js"></script>
+                <script src="array/array.findIndex().js"></script>
                 <pre class="javascript hljs ">
                     <code>
                 //用于演示替换回调函数内的this值
@@ -828,7 +830,7 @@
                     返回值：
                         undefined
                 </pre>
-                <script src="js/array.forEach().js"></script>
+                <script src="array/array.forEach().js"></script>
                 <pre class="javascript hljs ">
                     <code>
                 //用于演示替换回调函数内的this值
@@ -880,7 +882,7 @@
                     返回值：
                         数组对象。
                 </pre>
-                <script src="js/Array.from().js"></script>
+                <script src="array/Array.from().js"></script>
                 <pre class="javascript hljs ">
                     <code>
                 //用于演示替换回调函数内的this值
@@ -922,7 +924,7 @@
                     返回值：
                         布尔值。如果找到指定值返回 true，否则返回 false。
                 </pre>
-                <script src="js/array.includes().js"></script>
+                <script src="array/array.includes().js"></script>
                 <pre class="javascript hljs ">
                     <code>
                 console.log([1, 2, 3].includes(2));     // true
@@ -951,7 +953,7 @@
                     返回值：
                         元素在数组中的位置,如果没与搜索到则返回 -1
                 </pre>
-                <script src="js/array.indexOf().js"></script>
+                <script src="array/array.indexOf().js"></script>
                 <pre class="javascript hljs ">
                     <code>
                 var fruits=["Banana","Orange","Apple","Mango","Banana","Orange","Apple"];
@@ -987,7 +989,7 @@
                     返回值：
                         布尔值，如果对象是数组返回 true，否则返回 false。
                 </pre>
-                <script src="js/Array.isArray().js"></script>
+                <script src="array/Array.isArray().js"></script>
                 <pre class="javascript hljs ">
                     <code>
                 console.log(Array.isArray({}));//false
@@ -1018,7 +1020,7 @@
             返回值：
                 String  返回一个字符串
         </pre>
-                <script src="js/array.join().js"></script>
+                <script src="array/array.join().js"></script>
                 <pre class="javascript hljs ">
                     <code>
     var a = ["c","h","e","n"," ","t","o","n","g"];
@@ -1048,7 +1050,7 @@
     返回值：
         Number  最后出现的索引位置
     </pre>
-                <script src="js/array.lastIndexOf().js"></script>
+                <script src="array/array.lastIndexOf().js"></script>
                 <pre class="javascript hljs ">
                     <code>
     var a = ["a","b","c","d","b","e"];
@@ -1081,7 +1083,7 @@
     返回值：
         返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值。
     </pre>
-                <script src="js/array.map().js"></script>
+                <script src="array/array.map().js"></script>
                 <pre class="javascript hljs ">
                     <code>
     var numbers = [4, 9, 16, 25];
@@ -1118,7 +1120,7 @@
                     返回值：
                     返回删除的元素。
 </pre>
-                <script src="js/array.pop().js"></script>
+                <script src="array/array.pop().js"></script>
                 <pre class="javascript hljs ">
                     <code>
     var a = [0,1,2,3,4,5];
@@ -1150,7 +1152,7 @@
             返回值：
                      Number	数组新长度
 </pre>
-                <script src="js/array.push().js"></script>
+                <script src="array/array.push().js"></script>
                 <pre class="javascript hljs ">
             <code>
     var a = [0,1,2,3,4,5];
@@ -1186,7 +1188,7 @@
     返回值：
              返回计算结果
 </pre>
-                <script src="js/array.reduce().js"></script>
+                <script src="array/array.reduce().js"></script>
                 <pre class="javascript hljs ">
             <code>
     /*************拼接字符案例****************/
@@ -1249,7 +1251,7 @@
 返回值：
      返回计算结果
 </pre>
-                <script src="js/array.reduceRight().js"></script>
+                <script src="array/array.reduceRight().js"></script>
                 <pre class="javascript hljs ">
             <code>
     /*************拼接字符案例****************/
@@ -1307,7 +1309,7 @@
                     返回值：
                         返回颠倒的数组
 </pre>
-                <script src="js/array.reverse().js"></script>
+                <script src="array/array.reverse().js"></script>
                 <pre class="javascript hljs ">
             <code>
     var a = ["c","h","e","n"," ","t","o","n","g"];
@@ -1336,7 +1338,7 @@
             返回值：
                 数组原来的第一个元素的值（移除的元素）。
 </pre>
-                <script src="js/array.shift().js"></script>
+                <script src="array/array.shift().js"></script>
                 <pre class="javascript hljs ">
             <code>
                 var a = [0,1,2,3,4,5];
@@ -1365,7 +1367,7 @@
     返回值：
         返回一个新的数组，包含从 start 到 end （不包括该元素）的 arrayObject 中的元素。
 </pre>
-                <script src="js/array.slice().js"></script>
+                <script src="array/array.slice().js"></script>
                 <pre class="javascript hljs ">
             <code>
     var a = [0,1,2,3,4,5];
@@ -1408,7 +1410,7 @@
     返回值：
         布尔值。如果数组中有元素满足条件返回 true，否则返回 false。
 </pre>
-                <script src="js/array.some().js"></script>
+                <script src="array/array.some().js"></script>
                 <pre class="javascript hljs ">
                     <code>
                             //用于演示替换回调函数内的this值
@@ -1465,7 +1467,7 @@
     返回值：
         Array   对数组的引用。请注意，数组在原数组上进行排序，不生成副本。
 </pre>
-                <script src="js/array.sort().js"></script>
+                <script src="array/array.sort().js"></script>
                 <pre class="javascript hljs ">
                     <code>
     var a = ["d","M","a","B","b","D","E","S","s","e"];
@@ -1510,7 +1512,7 @@
     返回值：
         Array   如果从 arrayObject 中删除了元素，则返回的是含有被删除的元素的数组。
 </pre>
-                <script src="js/array.splice().js"></script>
+                <script src="array/array.splice().js"></script>
                 <pre class="javascript hljs ">
                     <code>
     //案例一：在数组内选择部分元素，替换为新元素
@@ -1526,6 +1528,37 @@
     console.log(a);//Array [ "a", "b", 2, 3, 4, 5, 6, 7, 8, 9, "c","d"]
     //总结：
     //splice()在末尾添加元素，不会替换任何元素返回空数组
+                    </code>
+                </pre>
+                        
+                        
+                <h2><a href="#unshift()" name="unshift()">unshift()</a></h2>
+                <pre class="javascript hljs ">
+    描述：
+        1： unshift() 方法可向数组的开头添加一个或更多元素，并返回新的长度。
+        2： 这种方法会改变原始数组！。
+        3： 将新项添加到数组末尾，请使用 push() 方法。
+    
+    语法：
+        array.unshift(item1,item2, ..., itemX)
+    
+    参数：
+        item1,item2, ..., itemX 	可选。向数组起始位置添加一个或者多个元素。
+   
+    返回值：
+         Number 数组新长度 
+</pre>
+                <script src="array/array.unshift().js"></script>
+                <pre class="javascript hljs ">
+                    <code>
+    var a = [0,1,2,3,4,5,6,7,8,9];
+    console.log(a.unshift("a","b"));//12
+    
+    console.log(a);//Array [ "a", "b", 0, 1, 2, 3, 4, 5, 6, 7, … ]
+    
+    //总结：
+    //unshift()方法在数组开始位置添加一个或多个元素，方法返回修改后的数组的长度
+    //该方法会修改原数组
                     </code>
                 </pre>
 

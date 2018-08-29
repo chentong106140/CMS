@@ -1155,20 +1155,21 @@ $(function () {
     $.extend({
         sidebarMenuScroll: function () {
             //浏览器可视高度-元素offset().top
-            var viewHeight = $(document).height();
-            if ($(".treeview-menu:visible") && $(".treeview-menu:visible").offset()) {
-                var menuTop = $(".treeview-menu:visible").offset().top;
+            var viewHeight = $(window).height();
+            var treeView = $(this).parent(".treeview-menu:visible");
+            if (treeView && treeView.offset()) {
+                var menuTop = treeView.offset().top;
                 //如果菜单列表的真实高度+距离浏览器顶部的高度，大于浏览器总的高度
-                if ((menuTop + $(".treeview-menu:visible").outerHeight() > viewHeight)) {
-                    $(".treeview-menu:visible").css({"height": (viewHeight - menuTop) + "px", "overflow-y": "scroll"});
+                if ((menuTop + treeView.outerHeight() > viewHeight)) {
+                    treeView.css({"height": (viewHeight - menuTop) + "px", "overflow-y": "scroll"});
                 }
             }
         }
     });
 
     //处理菜单数量大于浏览器总的能够存放的菜单数量时被隐藏问题 add by morgan
-    $(".sidebar-menu > li").hover(function () {
-        $.sidebarMenuScroll();
+    $(".treeview-menu > li").hover(function () {
+        $.sidebarMenuScroll.call(this);
     }, function () {
         return false;
     })
