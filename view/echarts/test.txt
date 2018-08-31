@@ -1,0 +1,16 @@
+{
+                    title: {text: '2018全国宏观经济指标'},
+                    series: [
+                        {data: dataMap.chenshan['2018']},
+                        {data: dataMap.yangmaoshan['2018']},
+                        {data: dataMap.xuefagnshan['2018']},
+                        {data: dataMap.kuzi['2018']},
+                        {data: dataMap.gaogenxie['2018']},
+                        {data: dataMap.wazi['2018']},
+                        {data: [
+                            {name: '第一产业', value: dataMap.kuzi['2018sum']},
+                            {name: '第二产业', value: dataMap.gaogenxie['2018sum']},
+                            {name: '第三产业', value: dataMap.wazi['2018sum']}
+                        ]}
+                    ]
+                },

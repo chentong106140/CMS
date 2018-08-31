@@ -1161,7 +1161,12 @@ $(function () {
                 var menuTop = treeView.offset().top;
                 //如果菜单列表的真实高度+距离浏览器顶部的高度，大于浏览器总的高度
                 if ((menuTop + treeView.outerHeight() > viewHeight)) {
-                    treeView.css({"height": (viewHeight - menuTop) + "px", "overflow-y": "scroll"});
+                    treeView.css({"height": (viewHeight - menuTop) + "px", "overflow-y": "hidden"});
+                    var id = 'id'+(new Date()).getTime();
+                    treeView.attr("id",id);
+                    if(PerfectScrollbar){
+                        new PerfectScrollbar('#'+id);
+                    }
                 }
             }
         }

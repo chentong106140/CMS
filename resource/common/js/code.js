@@ -30,8 +30,6 @@ $(function () {
     {
         hljs.initHighlightingOnLoad();
     }
-    
-
 
     var layer = layui.layer;
 

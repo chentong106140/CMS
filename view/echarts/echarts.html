@@ -261,196 +261,371 @@
     <aside class="control-sidebar control-sidebar-dark"></aside>
     <div class="control-sidebar-bg"></div>
     <script type="text/javascript">
+        var dataMap = {};
+        /**
+         * 将{2001:[1234.56,....],2002:[1234.56,...]}这种格式的数据进行再次处理
+         */ 
+        function dataFormatter(obj) {
+            var pList = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+            var temp;
+            for (var year = 2001; year <= 2018; year++) {
+                var max = 0;
+                var sum = 0;
+                temp = obj[year];
+                for (var i = 0, l = temp.length; i < l; i++) {
+                    max = Math.max(max, temp[i]);
+                    sum += temp[i];
+                    obj[year][i] = {
+                        name : pList[i],
+                        value : temp[i]
+                    }
+                }
+                obj[year + 'max'] = max;
+                obj[year + 'sum'] = sum;
+            }
+            return obj;
+        }
+        /**
+         * 随机获取一年内12个月，每月的销售数量
+         */ 
+        function random() {
+            var Min = 0;
+            var Max = 10000;
+            
+            var arr = [];
+            for(var i =0;i<12;i++)
+            {
+                var num = Number((Min + Math.random() * (Max - Min)).toFixed(2));
+                arr.push(num);
+            }
+            return arr;
+        }
+        /**
+         * 生成系列的数据
+         * {
+         *      2001: Array [ {…}, {…}, {…}, … ],
+         *      2001max: 9717.58,
+         *      2001sum: 66488.89000000001,
+         *      2002: Array [ {…}, {…}, {…}, … ],
+         *      2002max: 9940.62,
+         *      2002sum: 62734.99
+         *  }
+         */ 
+        function getData() {
+            /**
+             * 生成衬衫2001-2018年的销售数据
+             * {
+             *      2001:[1234.56,......],//对应2001年每一个月的数据
+             *      2002:[1234.56,......],//对应2002年每一个月的数据
+             * }
+             */
+            var data = {};
+            for(var i= 2001;i<=2018;i++)
+            {
+                data[i] = (function () {
+                    return random();
+                })();
+            }
+            /**
+             * 生成衬衫2001-2018年的销售数据
+             * {
+             *      2001:[
+             *              {name : '1月',value : 1234.56},
+             *              {name : '2月',value : 1234.56},
+             *              ...12月的数据
+             *            ],
+             *       2001max: 500 ,
+                     2001sum: 4556.240000000001,
+             *            ......
+             * }
+             */
+            
+            return dataFormatter(data);
+        }
+        //衬衫
+        dataMap.chenshan = getData();
+        //羊毛衫
+        dataMap.yangmaoshan = getData();
+        //雪纺衫
+        dataMap.xuefagnshan = getData();
+        //裤子
+        dataMap.kuzi = getData();
+        //高跟鞋
+        dataMap.gaogenxie =getData();
+        //袜子
+        dataMap.wazi =getData();
+
+        dataMap.options = (function () {
+            var arr = [];
+            for(var i = 2001;i<=2018;i++)
+            {
+                arr.push(
+                    {
+                        title: {text: i+'全国宏观经济指标'},
+                        series: [
+                            {data: dataMap.chenshan[i]},
+                            {data: dataMap.yangmaoshan[i]},
+                            {data: dataMap.xuefagnshan[i]},
+                            {data: dataMap.kuzi[i]},
+                            {data: dataMap.gaogenxie[i]},
+                            {data: dataMap.wazi[i]},
+                            {data: [
+                                {name: '裤子销售总和', value: dataMap.kuzi[i+'sum']},
+                                {name: '高跟鞋销售总和', value: dataMap.gaogenxie[i+'sum']},
+                                {name: '袜子销售总和', value: dataMap.wazi[i+'sum']}
+                            ]}
+                        ]
+                    }
+                )
+            }
+            return arr;
+        })();
+        
+
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('demo'), "macarons");
 
         // 指定图表的配置项和数据
         var option = {
-            //标题组件，包含主标题和副标题。
-            title: {
-                id:'demo_title_id',
-                show: true,//是否显示标题组件。
-                text: 'ECharts 入门示例',//主标题文本，支持使用 \n 换行。
-                link: '#',//主标题文本超链接。
-                target: 'blank',//指定窗口打开主标题超链接。'self' 当前窗口打开 'blank' 新窗口打开
-                textStyle:{
-                    //主标题文字的颜色。
-                    //color:'#333',
-                    fontStyle:'oblique',//主标题文字字体的风格'normal' 'italic' 'oblique'
-                    fontWeight:'bolder',//主标题文字字体的粗细
-                    fontSize:24,//主标题文字的字体大小 默认18
-                    align:'right',//文字水平对齐方式，默认自动。'left' 'center' 'right'
-                    verticalAlign:'bottom'
+            baseOption:{
+                //标题组件，包含主标题和副标题。
+                title: {
+                    id:'demo_title_id',
+                    show: true,//是否显示标题组件。
+                    text: 'ECharts 入门示例',//主标题文本，支持使用 \n 换行。
+                    link: '#',//主标题文本超链接。
+                    target: 'blank',//指定窗口打开主标题超链接。'self' 当前窗口打开 'blank' 新窗口打开
+                    textStyle:{
+                        //主标题文字的颜色。
+                        //color:'#333',
+                        fontStyle:'oblique',//主标题文字字体的风格'normal' 'italic' 'oblique'
+                        fontWeight:'bolder',//主标题文字字体的粗细
+                        fontSize:24,//主标题文字的字体大小 默认18
+                        align:'right',//文字水平对齐方式，默认自动。'left' 'center' 'right'
+                        verticalAlign:'bottom'
+                    },
+                    subtext:'我是富文本',//副标题文本，支持使用 \n 换行。
+                    sublink:'#',//副标题文本超链接。
+                    subtarget:'blank',//'self' 当前窗口打开  'blank' 新窗口打开
+                    subtextStyle:{},
+                    padding:[5,5,5,5],//标题内边距，单位px
+                    itemGap:30,//主副标题之间的间距。
+                    //zlevel:1,//所有图形的 //zlevel 值。
+                    //z:2,//组件的所有图形的z值。控制图形的前后顺序。z值小的图形会被z值大的图形覆盖。
+                    left:'500',//grid 组件离容器左侧的距离。
+                    top:'auto',//grid 组件离容器上侧的距离。
+                    right: 'auto',//grid 组件离容器右侧的距离。
+                    bottom: 'auto',//grid 组件离容器下侧的距离。
+                    backgroundColor:'transparent',//标题背景色，默认透明。[ default: 'transparent' ] 
+                    borderColor:'#ccc',//标题的边框颜色。支持的颜色格式同 backgroundColor。
+
                 },
-                subtext:'我是富文本',//副标题文本，支持使用 \n 换行。
-                sublink:'#',//副标题文本超链接。
-                subtarget:'blank',//'self' 当前窗口打开  'blank' 新窗口打开
-                subtextStyle:{},
-                padding:[5,5,5,5],//标题内边距，单位px
-                itemGap:30,//主副标题之间的间距。
-                zlevel:1,//所有图形的 zlevel 值。
-                z:2,//组件的所有图形的z值。控制图形的前后顺序。z值小的图形会被z值大的图形覆盖。
-                left:'500',//grid 组件离容器左侧的距离。
-                top:'auto',//grid 组件离容器上侧的距离。
-                right: 'auto',//grid 组件离容器右侧的距离。
-                bottom: 'auto',//grid 组件离容器下侧的距离。
-                backgroundColor:'transparent',//标题背景色，默认透明。[ default: 'transparent' ] 
-                borderColor:'#ccc',//标题的边框颜色。支持的颜色格式同 backgroundColor。
-                
-            },
-            //图例组件。
-            legend: {
-                type:'plain',//图例的类型。'plain'：普通图例。缺省就是普通图例。'scroll'：可滚动翻页的图例。当图例数量较多时可以使用。
-                //data:  ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"],//如果不指定data数据，默认使用series下面指定的那么值，如果需要指定data，那么必须保证data里面的值要与series下的name属性值要一致
-                //data:[//使用对象的话，必须要保证name属性与series下的name保持一致，同时可以自定义每一个图例的样式
-                 //   {
-                 //       name:'衬衫',
-                 //       icon: 'circle',
-                 //       textStyle: {
-                 //           color: 'red'// 设置文本为红色
-                 //       }
-                 //   }
-                //],
-                id:'demo_legend_id',//组件 ID。默认不指定。指定则可用于在 option 或者 API 中引用组件。
-                show:true,
-                zlevel:2,//所有图形的 zlevel 值。
-                z:3,//组件的所有图形的z值。控制图形的前后顺序。z值小的图形会被z值大的图形覆盖。
-                //left:'auto',//图例组件离容器左侧的距离。
-                //top:10,//图例组件离容器上侧的距离。
-                right:10,//图例组件离容器右侧的距离。
-                //bottom:50,//图例组件离容器下侧的距离。
-                width:'auto',//图例组件的宽度。默认自适应。
-                height:'auto',//图例组件的高度。默认自适应。
-                orient:'vertical',//图例列表的布局朝向。'horizontal'  'vertical'
-                align:'auto',//图例标记和文本的对齐。默认自动
-                itemGap:25,//图例每项之间的间隔。横向布局时为水平间隔，纵向布局时为纵向间隔。
-                //formatter:(name)=>{return '项目_'+name},//用来格式化图例文本，支持字符串模板和回调函数两种形式。
-                formatter:'【{name}】',
-                itemWidth:25,//图例标记的图形宽度。
-                itemHeight:14,//图例标记的图形高度。
-                padding:5 ,//图例内边距，单位px，默认各方向内边距为5，接受数组分别设定上右下左边距。
-                selectedMode:true,//是否开启点击效果，图例选择的模式，控制是否可以通过点击图例改变系列的显示状态。默认开启图例选择，可以设成 false 关闭。
-                inactiveColor: '#ccc',//图例关闭时的颜色。
-                selected: {//控制图例默认是否选中，图例选中状态表。
-                    '衬衫': true,
-                    '羊毛衫': false,//默认不选中
-                    '雪纺衫': true,//默认选中
-                    '裤子': true,
-                    '高跟鞋': false,
-                    '袜子': false,
+                //图例组件。
+                legend: {
+                    type:'plain',//图例的类型。'plain'：普通图例。缺省就是普通图例。'scroll'：可滚动翻页的图例。当图例数量较多时可以使用。
+                    //data:  ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"],//如果不指定data数据，默认使用series下面指定的那么值，如果需要指定data，那么必须保证data里面的值要与series下的name属性值要一致
+                    //data:[//使用对象的话，必须要保证name属性与series下的name保持一致，同时可以自定义每一个图例的样式
+                    //   {
+                    //       name:'衬衫',
+                    //       icon: 'circle',
+                    //       textStyle: {
+                    //           color: 'red'// 设置文本为红色
+                    //       }
+                    //   }
+                    //],
+                    id:'demo_legend_id',//组件 ID。默认不指定。指定则可用于在 option 或者 API 中引用组件。
+                    show:true,
+                    //zlevel:2,//所有图形的 //zlevel 值。
+                    //z:3,//组件的所有图形的z值。控制图形的前后顺序。z值小的图形会被z值大的图形覆盖。
+                    //left:'auto',//图例组件离容器左侧的距离。
+                    top:300,//图例组件离容器上侧的距离。
+                    right:10,//图例组件离容器右侧的距离。
+                    //bottom:50,//图例组件离容器下侧的距离。
+                    width:'auto',//图例组件的宽度。默认自适应。
+                    height:'auto',//图例组件的高度。默认自适应。
+                    orient:'vertical',//图例列表的布局朝向。'horizontal'  'vertical'
+                    align:'auto',//图例标记和文本的对齐。默认自动
+                    itemGap:25,//图例每项之间的间隔。横向布局时为水平间隔，纵向布局时为纵向间隔。
+                    //formatter:(name)=>{return '项目_'+name},//用来格式化图例文本，支持字符串模板和回调函数两种形式。
+                    formatter:'【{name}】',
+                    itemWidth:25,//图例标记的图形宽度。
+                    itemHeight:14,//图例标记的图形高度。
+                    padding:5 ,//图例内边距，单位px，默认各方向内边距为5，接受数组分别设定上右下左边距。
+                    selectedMode:true,//是否开启点击效果，图例选择的模式，控制是否可以通过点击图例改变系列的显示状态。默认开启图例选择，可以设成 false 关闭。
+                    inactiveColor: '#ccc',//图例关闭时的颜色。
+                    selected: {//控制图例默认是否选中，图例选中状态表。
+                        '衬衫': true,
+                        '羊毛衫': true,//默认不选中
+                        '雪纺衫': false,//默认选中
+                        '裤子': false,
+                        '高跟鞋': false,
+                        '袜子': false,
+                    },
+                    tooltip: {
+                        show: true,//是否开启鼠标悬停，提示文字
+                    },
+                    backgroundColor:'transparent',//图例整体的背景色，并不是某一个图例的背景色，默认透明。
+                    borderColor:'rgba(0, 0, 0, 0.3)',//图例的边框颜色。支持的颜色格式同 backgroundColor。
+                    borderWidth:1,//图例的边框线宽。
+                    borderRadius:5,//圆角半径，单位px，支持传入数组分别指定 4 个圆角半径。 如:
                 },
+                //x轴
+                xAxis: {
+                    id:'demo_xAxis_id',
+                    gridIndex:0,//x 轴所在的 grid 的索引，默认位于第一个 grid。
+                    position:'bottom',//x 轴的位置。'top''bottom'
+                    type:'category',//坐标轴类型。'value' 数值轴，适用于连续数据。category' 类目轴，适用于离散的类目数据，为该类型时必须通过 data 设置类目数据。'time' 时间轴，适用于连续的时序数据，'log' 对数轴。适用于对数数据。
+                    show:true,
+                    name:'月份',//坐标轴名称。
+                    nameLocation:'end',//坐标轴名称显示位置。'start' 'middle' 或者 'center''end'
+                    nameGap:50,//坐标轴名称与轴线之间的距离。
+                    inverse:false,//x坐标轴数据倒序显示，是否是反向坐标轴。ECharts 3 中新加。
+                    data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],//类目数据，在类目轴（type: 'category'）中有效。
+                    axisPointer:{
+                        show:true,
+                        label:{
+                            show:true,
+                            formatter: '{value}份'
+                        }
+                    },
+                },
+                //y轴
+                yAxis: {
+                    id:'demo_yAxis_id',
+                    show:true,
+                    gridIndex:0,
+                    position:'left',//y 轴的位置。'left' 'right'
+                    type: 'value',//坐标轴类型。'value' 数值轴，适用于连续数据。'category' 类目轴，适用于离散的类目数据，为该类型时必须通过 data 设置类目数据。'time' 时间轴，'log' 对数轴
+                    name: '销量',//坐标轴名称。
+                    nameLocation:'end',//坐标轴名称显示位置。'start'  'middle' 或者 'center'  'end'
+                    nameGap:50,//坐标轴名称与轴线之间的距离。
+                    min: 0,//坐标轴刻度最小值。
+                    max: 10000,//坐标轴刻度最大值。
+                    //interval: 10,//强制设置坐标轴分割间隔。只在type为'value'时有效
+                    splitNumber:20,//坐标轴的分割段数,与interval不能同时使用，只在type为'value'时有效
+                    axisLabel: {
+                        formatter: '{value} 件'
+                    },
+                    axisPointer:{
+                        show:true,
+                        label:{
+                            show:true,
+                            formatter: '销量{value}件'
+                        }
+                    },
+                },
+                //x轴具体系列的数据
+                series: [
+                    {name: '衬衫',type: 'bar',},
+                    {name: '羊毛衫',type: 'line',},
+                    {name: '雪纺衫',type: 'bar',},
+                    {name: '裤子',type: 'bar',},
+                    {name: '高跟鞋',type: 'bar',},
+                    {name: '袜子',type: 'bar',},
+                    {
+                        name: 'GDP占比',
+                        type: 'pie',
+                        center: ['85%', '20%'],
+                        radius: '28%'
+                    }
+                ],
+                //显示虚线提示线，并有数值提示
                 tooltip: {
-                    show: true,//是否开启鼠标悬停，提示文字
-                },
-                backgroundColor:'transparent',//图例整体的背景色，并不是某一个图例的背景色，默认透明。
-                borderColor:'rgba(0, 0, 0, 0.3)',//图例的边框颜色。支持的颜色格式同 backgroundColor。
-                borderWidth:1,//图例的边框线宽。
-                borderRadius:5,//圆角半径，单位px，支持传入数组分别指定 4 个圆角半径。 如:
-            },
-            //x轴
-            xAxis: {
-                id:'demo_xAxis_id',
-                gridIndex:0,//x 轴所在的 grid 的索引，默认位于第一个 grid。
-                position:'bottom',//x 轴的位置。'top''bottom'
-                type:'category',//坐标轴类型。'value' 数值轴，适用于连续数据。category' 类目轴，适用于离散的类目数据，为该类型时必须通过 data 设置类目数据。'time' 时间轴，适用于连续的时序数据，'log' 对数轴。适用于对数数据。
-                show:true,
-                name:'月份',//坐标轴名称。
-                nameLocation:'end',//坐标轴名称显示位置。'start' 'middle' 或者 'center''end'
-                nameGap:50,//坐标轴名称与轴线之间的距离。
-                inverse:false,//x坐标轴数据倒序显示，是否是反向坐标轴。ECharts 3 中新加。
-                data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],//类目数据，在类目轴（type: 'category'）中有效。
-                axisPointer:{
                     show:true,
-                    label:{
-                        show:true,
-                        formatter: '{value}份'
-                    }
-                },
-            },
-            //y轴
-            yAxis: {
-                id:'demo_yAxis_id',
-                show:true,
-                gridIndex:0,
-                position:'left',//y 轴的位置。'left' 'right'
-                type: 'value',//坐标轴类型。'value' 数值轴，适用于连续数据。'category' 类目轴，适用于离散的类目数据，为该类型时必须通过 data 设置类目数据。'time' 时间轴，'log' 对数轴
-                name: '销量',//坐标轴名称。
-                nameLocation:'end',//坐标轴名称显示位置。'start'  'middle' 或者 'center'  'end'
-                nameGap:50,//坐标轴名称与轴线之间的距离。
-                min: 0,//坐标轴刻度最小值。
-                max: 200,//坐标轴刻度最大值。
-                //interval: 10,//强制设置坐标轴分割间隔。只在type为'value'时有效
-                splitNumber:20,//坐标轴的分割段数,与interval不能同时使用，只在type为'value'时有效
-                axisLabel: {
-                    formatter: '{value} 件'
-                },
-                axisPointer:{
-                    show:true,
-                    label:{
-                        show:true,
-                        formatter: '销量{value}件'
-                    }
-                },
-            },
-            //x轴具体系列的数据
-            series: [
-                {
-                    name: '衬衫',
-                    type: 'bar',
-                    data: [5, 20, 36, 10, 10, 99,11,33,3,44,22,88]
-                },
-                {
-                    name: '羊毛衫',
-                    type: 'bar',
-                    data: [44, 55, 2, 77, 2, 45,88,2,122,12,156,3]
-                },
-                {
-                    name: '雪纺衫',
-                    type: 'bar',
-                    data: [233, 11, 56, 145, 88, 34,156,2,98,76,89,122]
-                },
-                {
-                    name: '裤子',
-                    type: 'line',
-                    data: [23, 56, 32, 11, 65, 177,12,3,188,23,22,66]
-                },
-                {
-                    name: '高跟鞋',
-                    type: 'bar',
-                    data: [111, 21, 45, 77, 33, 123,89,23,12,155,3,222]
-                },
-                {
-                    name: '袜子',
-                    type: 'bar',
-                    data: [3, 22, 45, 123, 67, 99,145,188,144,23,11,90]
-                },
-                
-            ],
-            //显示虚线提示线，并有数值提示
-            tooltip: {
-                show:true,
-                trigger: 'axis',//触发类型。 'item'数据项图形触发，主要在散点图，饼图等无类目轴的图表中使用。'axis'坐标轴触发，主要在柱状图，折线图等会使用类目轴的图表中使用。
-                axisPointer: {//坐标轴指示器配置项。
+                    trigger: 'axis',//触发类型。 'item'数据项图形触发，主要在散点图，饼图等无类目轴的图表中使用。'axis'坐标轴触发，主要在柱状图，折线图等会使用类目轴的图表中使用。
+                    axisPointer: {//坐标轴指示器配置项。
                         type: 'cross',//指示器类型。'line' 直线指示器'shadow' 阴影指示器'cross' 十字准星指示器。其实是种简写，表示启用两个正交的轴的 axisPointer。
-                }
-            },
-            
-            //网格
-            grid:{
-                id:'demo_grid_id',//组件 ID。默认不指定。指定则可用于在 option 或者 API 中引用组件。
-                show:true,//是否显示直角坐标系网格。默认false
-                zlevel:3,
-                z:5,
-                left:'10%',//grid 组件离容器左侧的距离。
-                top:150,//grid 组件离容器上侧的距离。
-                width:'auto',//grid 组件的宽度。默认自适应。[ default: 'auto' ] 
-                height:'auto',//grid 组件的宽度。默认自适应。
-                backgroundColor:'transparent',//网格背景色，默认透明。
-                tooltip:{
-                    show:true,
-                    trigger:'axis',//axis item none控制提示框内显示的内容为所有系列的数据，如果不设置，提示框将显示某一个系列的数据
+                    }
                 },
-            }
+                //工具栏。内置有导出图片，数据视图，动态类型切换，数据区域缩放，重置五个工具。
+                toolbox:{
+                    id:'demo_toolbox_id',
+                    show:true,
+                    orient:'horizontal',//工具栏 icon 的布局朝向。'horizontal''vertical'
+                    itemSize:15,//工具栏 icon 的大小。
+                    itemGap:15,//工具栏 icon 每项之间的间隔。横向布局时为水平间隔，纵向布局时为纵向间隔。
+                    showTitle:true,//是否在鼠标 hover 的时候显示每个工具 icon 的标题。
+                    left:'auto',
+                    top:'auto',
+                    right:'30',
+                    bottom:'auto',
+                    width:'auto',
+                    height:'auto',
+                    feature: {//各工具配置项。
+                        dataZoom: {//数据区域缩放。目前只支持直角坐标系的缩放。
+                            yAxisIndex: 'none',//指定哪些 yAxis 被控制。如果缺省则控制所有的y轴。如果设置为 false 则不控制任何y轴。如果设置成 3 则控制 axisIndex 为 3 的y轴。如果设置为 [0, 3] 则控制 axisIndex 为 0 和 3 的y轴。
+                        },
+                        dataView: {//数据视图工具，可以展现当前图表所用的数据，编辑后可以动态更新。
+                            readOnly: false
+                        },
+                        magicType: {//动态类型切换
+                            type: ['line', 'bar'],//启用的动态类型，包括'line'（切换为折线图）, 'bar'（切换为柱状图）, 'stack'（切换为堆叠模式）, 'tiled'（切换为平铺模式）。
+                        },
+                        restore: {//配置项还原。
+                            show:true,
+                        },
+                        saveAsImage: {//保存为图片。
+                            show:true,
+                        },
+                    }
+                },
+                //网格
+                grid:{
+                    id:'demo_grid_id',//组件 ID。默认不指定。指定则可用于在 option 或者 API 中引用组件。
+                    show:true,//是否显示直角坐标系网格。默认false
+                    //zlevel:3,
+                    //z:5,
+                    left:'10%',//grid 组件离容器左侧的距离。
+                    top:150,//grid 组件离容器上侧的距离。
+                    width:'auto',//grid 组件的宽度。默认自适应。[ default: 'auto' ] 
+                    height:'auto',//grid 组件的宽度。默认自适应。
+                    backgroundColor:'transparent',//网格背景色，默认透明。
+                    tooltip:{
+                        show:true,
+                        trigger:'axis',//axis item none控制提示框内显示的内容为所有系列的数据，如果不设置，提示框将显示某一个系列的数据
+                    },
+                },
+                //timeline 组件，提供了在多个 ECharts option 间进行切换、播放等操作的功能。
+                timeline:{
+                    show:true,
+                    axisType:'category',//'value' 数值轴，适用于连续数据。'category' 类目轴，适用于离散的类目数据。'time' 时间轴，适用于连续的时序数据，与数值轴相比时间轴带有时间的格式化
+                    autoPlay:true,//表示是否自动播放。
+                    loop:true,//表示是否循环播放。
+                    playInterval:10000,//表示播放的速度（跳动的间隔），单位毫秒（ms）。
+                    realtime:true,//拖动圆点的时候，是否实时更新视图。
+                    orient:'horizontal',//'vertical'：竖直放置。'horizontal'：水平放置。
+                    data: [
+                        '2001-01-01','2002-01-01','2003-01-01',
+                        {
+                            value: '2004-01-01',
+                            tooltip: {
+                                formatter: '{b} GDP达到一个高度'
+                            },
+                            symbol: 'diamond',
+                            symbolSize: 16
+                        },
+                        '2005-01-01','2006-01-01', '2007-01-01','2008-01-01','2009-01-01','2010-01-01',
+                        {
+                            value: '2011-01-01',
+                            tooltip: {
+                                formatter: function (params) {
+                                    return params.name + 'GDP达到又一个高度';
+                                }
+                            },
+                            symbol: 'diamond',
+                            symbolSize: 18
+                        },
+                        '2012-01-01','2013-01-01','2014-01-01','2015-01-01','2016-01-01','2017-01-01','2018-01-01',
+                    ],
+                    label: {
+                        formatter : function(s) {
+                            return (new Date(s)).getFullYear();
+                        }
+                    }
+                },
+                calculable : true,//是否显示拖拽用的手柄（手柄能拖拽调整选中范围）。
+            },
+            options:dataMap.options
         };
 
         // 使用刚指定的配置项和数据显示图表。
