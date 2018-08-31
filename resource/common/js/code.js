@@ -7,22 +7,30 @@ $(function () {
     $(' <a class=\"code-copy\" title=\"复制到剪切板\"><i class=\"fa fa-copy\"></i></a>').insertBefore("code")
 
 
-    /***** 复制按钮 开始*******/
-    var clipboardSnippets = new Clipboard('.code-copy', {
-        'text': function (trigger) {
-            return $(trigger).parents("pre").children("code").text();
-        }
+    if(Clipboard)
+    {
+        /***** 复制按钮 开始*******/
+        var clipboardSnippets = new Clipboard('.code-copy', {
+            'text': function (trigger) {
+                return $(trigger).parents("pre").children("code").text();
+            }
 
-    });
-    clipboardSnippets.on('success', function (e) {
-        e.clearSelection();
-        alert("复制成功")
-    });
-    clipboardSnippets.on('error', function (e) {
-        alert("复制失败");
+        });
+        clipboardSnippets.on('success', function (e) {
+            e.clearSelection();
+            alert("复制成功")
+        });
+        clipboardSnippets.on('error', function (e) {
+            alert("复制失败");
 
-    });
-    hljs.initHighlightingOnLoad();
+        });
+    }
+    
+    if(hljs)
+    {
+        hljs.initHighlightingOnLoad();
+    }
+    
 
 
     var layer = layui.layer;

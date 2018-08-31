@@ -618,7 +618,7 @@ if (typeof jQuery === 'undefined') {
             if (windowHeight >= sidebarHeight) {
                 $(Selector.contentWrapper).css('min-height', windowHeight - neg);
                 $(Selector.contentWrapper).css('max-height', windowHeight - neg);
-                var contentHeader = $(".layadmin-header").outerHeight();
+                var contentHeader = $(".layadmin-header").outerHeight() || 0;
                 var contentFooter = $(".content-footer").outerHeight();
                 $(".content").css('min-height', windowHeight - neg - contentHeader - contentFooter);
                 postSetHeight = windowHeight - neg;
