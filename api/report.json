@@ -1,0 +1,170 @@
+{
+  "reportInfo": {
+    "id": "1001",
+    "title": "运营数据报表",
+    "url": "http://www.baidu.com",
+    "autoCommit":1 
+  },
+  "paramList": [
+    {
+      "id": 1,
+      "cName": "年份",
+      "eName": "year",
+      "dataType": 1,
+      "desc": "请输入年份",
+      "rank": 1,
+      "defaultValue": 2018,
+      "enumList": [],
+      "min": 2010,
+      "max": 2018,
+      "format": "",
+      "required": 1,
+      "hidden": 0,
+      "readOnly": 0,
+      "disabled": 0
+    },
+    {
+      "id": 2,
+      "cName": "cp名称",
+      "eName": "cpName",
+      "dataType": 2,
+      "desc": "请输入名称",
+      "rank": 2,
+      "defaultValue": "",
+      "enumList": [],
+      "min": "",
+      "max": "",
+      "format": "",
+      "required": 1 ,
+      "hidden": 0,
+      "readOnly": 0,
+      "disabled": 0
+    },
+    {
+      "id": 3,
+      "cName": "开始时间",
+      "eName": "startTime",
+      "dataType": 3,
+      "desc": "请选择开始时间",
+      "rank": 3,
+      "defaultValue": "2018-09-11",
+      "enumList": [],
+      "min": "2018-01-01",
+      "max": "2018-09-11",
+      "format": "yyyy-MM-dd",
+      "required": 0,
+      "hidden": 0,
+      "readOnly": 0,
+      "disabled": 0
+    },
+    {
+      "id": 4,
+      "cName": "合作伙伴",
+      "eName": "partner",
+      "dataType": 4,
+      "desc": "请选择合作伙伴",
+      "rank": 4,
+      "defaultValue": "淘宝",
+      "enumList": [
+        {
+          "rank": 0,
+          "key": 0,
+          "value": "淘宝"
+        },
+        {
+          "rank": 1,
+          "key": 1,
+          "value": "京东"
+        },
+        {
+          "rank": 2,
+          "key": 2,
+          "value": "国美"
+        },
+        {
+          "rank": 3,
+          "key": 3,
+          "value": "聚划算"
+        },
+        {
+          "rank": 4,
+          "key": 4,
+          "value": "苏宁"
+        },
+        {
+          "rank": 5,
+          "key": 5,
+          "value": "亚马逊"
+        },
+        {
+          "rank": 6,
+          "key": 6,
+          "value": "当当网"
+        },
+        {
+          "rank": 7,
+          "key": 7,
+          "value": "一号购物网"
+        }
+      ],
+      "min": "",
+      "max": "",
+      "format": "",
+      "required": 0,
+      "hidden": 0,
+      "readOnly": 0,
+      "disabled": 0
+    },
+    {
+      "id": 5,
+      "cName": "用户登录token",
+      "eName": "token",
+      "dataType": 2,
+      "desc": "",
+      "rank": 5,
+      "defaultValue": "1234567890",
+      "enumList": [],
+      "min": "",
+      "max": "",
+      "format": "",
+      "required": 0,
+      "hidden": 1,
+      "readOnly": 0,
+      "disabled": 0
+    },
+    {
+      "id": 6,
+      "cName": "用户名",
+      "eName": "userName",
+      "dataType": 2,
+      "desc": "用户名称",
+      "rank": 6,
+      "defaultValue": "张三",
+      "enumList": [],
+      "min": "",
+      "max": "",
+      "format": "",
+      "required": 0,
+      "hidden": 0,
+      "readOnly": 1,
+      "disabled": 0
+    },
+    {
+      "id": 7,
+      "cName": "密码",
+      "eName": "password",
+      "dataType": 5,
+      "desc": "用户密码",
+      "rank": 6,
+      "defaultValue": "1234567",
+      "enumList": [],
+      "min": "",
+      "max": "",
+      "format": "",
+      "required": 0,
+      "hidden": 0,
+      "readOnly": 0,
+      "disabled": 1
+    }
+  ]
+}

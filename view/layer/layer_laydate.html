@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>首页</title>
+    <link rel="stylesheet" href="../../resource/plugins/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../../resource/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../resource/plugins/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="../../resource/plugins/AdminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="../../resource/plugins/AdminLTE/css/skins/_all-skins.css">
+    <link rel="stylesheet" href="../../resource/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="../../resource/plugins/bootstrap-daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="../../resource/plugins/select2/css/select2.min.css">
+    <!--<link rel="stylesheet" href="../../resource/plugins/jquery-datatable/css/jquery.dataTables.min.css">-->
+    <link rel="stylesheet" href="../../resource/plugins/jquery-datatable/css/dataTables.bootstrap.css">
+    <link rel="stylesheet" href="../../resource/plugins/jquery-datatable-fixed-columns/css/fixedColumns.bootstrap.css">
+    <link rel="stylesheet" href="../../resource/plugins/Buttons-1.5.2/css/buttons.bootstrap.css">
+    <link rel="stylesheet" href="../../resource/plugins/highlight/styles/dark.css">
+    <link rel="stylesheet" href="../../resource/common/css/code.css">
+
+    <script src="../../resource/plugins/html5/html5shiv.min.js"></script>
+    <script src="../../resource/plugins/html5/respond.min.js"></script>
+    <script src="../../resource/plugins/jquery/jquery.min.js"></script>
+    <script src="../../resource/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../../resource/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../resource/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script src="../../resource/plugins/AdminLTE/js/adminlte.js"></script>
+    <script src="../../resource/plugins/select2/js/select2.js"></script>
+    <script src="../../resource/plugins/jquery-datatable/js/jquery.dataTables.min.js"></script>
+    <script src="../../resource/plugins/jquery-datatable/js/dataTables.bootstrap.min.js"></script>
+    <script src="../../resource/plugins/jquery-datatable-fixed-columns/js/dataTables.fixedColumns.js"></script>
+    <script src="../../resource/plugins/highlight/highlight.pack.js"></script>
+    <script src="../../resource/plugins/clipboard/clipboard.js"></script>
+    <script src="../../resource/plugins/layer/layer.js"></script>
+    <script src="../../resource/plugins/laydate/laydate.js"></script>
+
+
+    <!--datatable按钮-->
+    <script src="../../resource/plugins/Buttons-1.5.2/js/dataTables.buttons.js"></script>
+    <script src="../../resource/plugins/Buttons-1.5.2/js/buttons.bootstrap.js"></script>
+    <script src="../../resource/plugins/Buttons-1.5.2/js/buttons.flash.js"></script>
+    <script src="../../resource/plugins/JSZip-2.5.0/jszip.min.js"></script>
+    <script src="../../resource/plugins/pdfmake-0.1.36/pdfmake.min.js"></script>
+    <script src="../../resource/plugins/pdfmake-0.1.36/vfs_fonts.js"></script>
+    <script src="../../resource/plugins/Buttons-1.5.2/js/buttons.html5.js"></script>
+    <script src="../../resource/plugins/Buttons-1.5.2/js/buttons.print.js"></script>
+    <script src="../../resource/plugins/Buttons-1.5.2/js/buttons.colVis.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+
+            //添加复制按钮
+            $(' <a class=\"code-copy\" title=\"复制到剪切板\"><i class=\"fa fa-copy\"></i></a>').insertBefore("code")
+
+
+            /***** 复制按钮 开始*******/
+            var clipboardSnippets = new Clipboard('.code-copy', {
+                'text': function (trigger) {
+                    return $(trigger).parents("pre").children("code").html();
+                }
+
+            });
+            clipboardSnippets.on('success', function (e) {
+                e.clearSelection();
+                alert("复制成功")
+            });
+            clipboardSnippets.on('error', function (e) {
+                alert("复制失败");
+
+            });
+            hljs.initHighlightingOnLoad();
+
+        });
+
+
+    </script>
+
+    <style type="text/css">
+
+        .form-group div , .form-group label{
+            margin-top:5px;
+            margin-bottom: 5px;
+        }
+
+    </style>
+
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <!--头部区域-->
+    <header class="main-header">
+        <!-- Logo -->
+        <a href="index2.html" class="logo">
+            <span class="logo-mini"><b>奇果</b></span>
+            <span class="logo-lg"><b>南京奇果</b>后台管理</span>
+        </a>
+        <!--导航栏，随着页面一起滚动的导航栏-->
+        <nav class="navbar navbar-static-top">
+            <!-- 侧边栏切换按钮-->
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <!--头部导航-自定义菜单栏-->
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li class="">
+                        <a href="javascript:openFullscreen(this)">
+                            <i class="fa fa-yahoo"></i>
+                        </a>
+                    </li>
+                    <!--用户通知信息-->
+                    <li class="dropdown notifications-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-bell-o"></i>
+                            <span class="label label-warning">10</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">你有10个通知</li>
+                            <li>
+                                <ul class="menu">
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-users text-aqua"></i>今天有10个推荐位被设置
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-warning text-yellow"></i>你的密码已过期，需要重置密码
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="footer"><a href="#">查看更多</a></li>
+                        </ul>
+                    </li>
+                    <!--用户任务信息-->
+                    <li class="dropdown tasks-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-flag-o"></i>
+                            <span class="label label-danger">9</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">你有9个任务</li>
+                            <li>
+                                <ul class="menu">
+                                    <li>
+                                        <a href="#">
+                                            <h3>
+                                                推荐位设置进度
+                                                <small class="pull-right">90%</small>
+                                            </h3>
+                                            <div class="progress sm">
+                                                <div class="progress-bar progress-bar-aqua" style="width: 90%"
+                                                     role="progressbar"
+                                                     aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="sr-only">90% 已完成</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <h3>
+                                                项目创建进度
+                                                <small class="pull-right">40%</small>
+                                            </h3>
+                                            <div class="progress xs">
+                                                <div class="progress-bar progress-bar-green" style="width: 40%"
+                                                     role="progressbar"
+                                                     aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="sr-only">40% 已完成</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <h3>
+                                                内容注入进度
+                                                <small class="pull-right">60%</small>
+                                            </h3>
+                                            <div class="progress xs">
+                                                <div class="progress-bar progress-bar-red" style="width: 60%"
+                                                     role="progressbar"
+                                                     aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="sr-only">60% 已完成</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="footer">
+                                <a href="#">查看更多任务</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--用户账户信息-->
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="../../resource/plugins/AdminLTE/img/user2-160x160.jpg" class="user-image"
+                                 alt="用户头像">
+                            <span class="hidden-xs">Morgan</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- 用户头像 -->
+                            <li class="user-header">
+                                <img src="../../resource/plugins/AdminLTE/img/user2-160x160.jpg" class="img-circle"
+                                     alt="用户头像">
+                                <p>
+                                    Morgan - 前端开发人员
+                                    <small>开发人员</small>
+                                </p>
+                            </li>
+                            <!-- Menu Body -->
+                            <li class="user-body">
+                                <div class="row">
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">我的任务</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">我的通知</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">我的信息</a>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </li>
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="#" class="btn btn-default btn-flat">编辑</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="#" class="btn btn-default btn-flat">退出</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--编辑-->
+                    <li>
+                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!--左侧边栏区域-->
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            <!--用户概要信息模块-->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="../../resource/plugins/AdminLTE/img/user2-160x160.jpg" class="img-circle" alt="用户头像">
+                </div>
+                <div class="pull-left info">
+                    <p>Morgan</p>
+                    <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
+                </div>
+            </div>
+            <ul class="sidebar-menu" data-widget="tree">
+                <li><a href="/CMS/view/main/main.html"><i class="fa fa-circle-o text-yellow"></i> <span>概览</span></a>
+                </li>
+                <li class="header">案例</li>
+                <li class="treeview active">
+                    <a href="#">
+                        <i class="fa fa-files-o"></i>
+                        <span>laydate</span>
+                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                        <!--<span class="pull-right-container"><span class="label label-primary pull-right">4</span></span>-->
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="active"><a href="/CMS/view/layer/layer_文档.html"><i class="fa fa-circle-o"></i>layer_文档</a>
+                        </li>
+                        <li><a href="/CMS/view/layer/layer_快速上手.html"><i class="fa fa-circle-o"></i>layer_快速上手</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </section>
+    </aside>
+    <div class="content-wrapper">
+        <section class="content">
+            <div class="box box-primary box-solid"><!--默认关闭盒子添加collapsed-box-->
+                <div class="box-header with-border">
+                    <h3 class="box-title">查询结果</h3>
+                </div>
+
+                <div class="box-body" style="height: 20000px;">
+                    <form class="form-horizontal" role="form">
+                        <h3>时间选择器</h3>
+                        <div class="form-group">
+                            <label for="a" class="col-sm-2 control-label">年选择器</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="a" class="form-control" id="a" placeholder="年选择器" value="" readonly>
+                            </div>
+                            <label for="aa" class="col-sm-2 control-label">年月选择器</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="aa" name="aa" placeholder="年月选择器" value="" readonly>
+                            </div>
+                            <label for="aaa" class="col-sm-2 control-label">时间选择器</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="aaa" name="aaa" placeholder="时间选择器" value="" readonly>
+                            </div>
+                            <label for="aaaa" class="col-sm-2 control-label">日期时间选择器</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="aaaa" placeholder="时间选择器" value="" readonly>
+                            </div>
+                        </div>
+                        <h3>选择范围</h3>
+                        <div class="form-group">
+                            <label for="b" class="col-sm-2 control-label">日期范围</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="b" name="b" placeholder="日期范围" value="" readonly>
+                            </div>
+
+                            <label for="bb" class="col-sm-2 control-label">年范围</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="bb" name="bb" placeholder="年范围" value="" readonly>
+                            </div>
+                            <label for="bbb" class="col-sm-2 control-label">年月范围</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="bbb" name="bbb" placeholder="年月范围" value="" readonly>
+                            </div>
+                            <label for="bbbb" class="col-sm-2 control-label">时间范围</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="bbbb" name="bbbb" placeholder="时间范围" value="" readonly>
+                            </div>
+                            <label for="bbbbb" class="col-sm-2 control-label">日期时间范围</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="bbbbb" name="bbbbb" placeholder="日期时间范围" value="" readonly>
+                            </div>
+                        </div>
+                        <h3>自定义格式</h3>
+                        <div class="form-group">
+                            <label for="c" class="col-sm-2 control-label">yyyy年MM月dd日</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="c" name="c" placeholder="yyyy年MM月dd日" value="" readonly>
+                            </div>
+                        </div>
+                        <h3>控制可选的日期与时间</h3>
+                        <div class="form-group">
+                            <label for="d" class="col-sm-2 control-label">限定可选日期</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="d" name="d" placeholder="限定可选日期" value="" readonly>
+                            </div>
+                            <label for="dd" class="col-sm-2 control-label">前后若干可选</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="dd" name="dd" placeholder="前后若干可选" value="" readonly>
+                            </div>
+                            <label for="ddd" class="col-sm-2 control-label">限定可选时间</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="ddd" name="ddd" placeholder="限定可选时间" value="" readonly>
+                            </div>
+                        </div>
+                        <h3>同时创建多个日期插件</h3>
+                        <div class="form-group">
+                            <div class=" col-sm-offset-2 col-sm-2">
+                                <input type="text" class="form-control test-item" id="e" name="e" placeholder=".test-item" value="" readonly>
+                            </div>
+                            <div class="col-sm-2 col-sm-offset-2">
+                                <input type="text" class="form-control test-item" id="ee" name="ee" placeholder=".test-item" value="" readonly>
+                            </div>
+                            <div class="col-sm-2 col-sm-offset-2">
+                                <input type="text" class="form-control test-item" id="eee" name="eee" placeholder=".test-item" value="" readonly>
+                            </div>
+                        </div>
+                        <h3>其他功能</h3>
+                        <div class="form-group">
+                            <label for="f" class="col-sm-2 control-label">初始赋值</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="f" name="f" placeholder="初始赋值" value="" readonly>
+                            </div>
+                            <label for="ff" class="col-sm-2 control-label">选中后回调</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="ff" name="ff" placeholder="选中后回调" value="" readonly>
+                            </div>
+                            <label for="fff" class="col-sm-2 control-label">不出现底部</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="fff" name="fff" placeholder="不出现底部" value="" readonly>
+                            </div>
+                            <label for="ffff" class="col-sm-2 control-label">只出现确定按钮</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="ffff" name="ffff" placeholder="只出现确定按钮" value="" readonly>
+                            </div>
+                        </div>
+                        <h3>其他主题</h3>
+                        <div class="form-group">
+                            <label for="g" class="col-sm-2 control-label">墨绿主题</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="g" name="g" placeholder="墨绿主题" value="" readonly>
+                            </div>
+                            <label for="gg" class="col-sm-2 control-label">自定义颜色主题</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="gg" name="gg" placeholder="自定义颜色主题" value="" readonly>
+                            </div>
+                            <label for="ggg" class="col-sm-2 control-label">格子主题</label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="ggg" name="ggg" placeholder="格子主题" value="" readonly>
+                            </div>
+                        </div>
+                        <h3>下拉框</h3>
+                        <div class="form-group">
+                            <label for="h" class="col-sm-2 control-label">下拉</label>
+                            <div class="col-sm-2">
+                                <select id="h" class="form-control" name="h">
+                                        <option value="10" selected="selected">请选择</option>
+                                        <option value="1">用户管理</option>
+                                        <option value="2">角色管理</option>
+                                        <option value="3">部门管理</option>
+                                        <option value="4">菜单管理</option>
+                                        <option value="5">订单查询</option>
+                                        <option value="6">订单导入</option>
+                                        <option value="7">订单删除</option>
+                                        <option value="8">订单撤销</option>
+                                        <option value="9">基础数据维护</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="button" class="btn btn-primary" id="searchBtn">
+                                    <i class="glyphicon glyphicon-search"></i>查询
+                                </button>
+                                <button type="reset" class="btn btn-default">&nbsp;重置&nbsp;</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- /.box -->
+        </section>
+        <footer class="content-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 2.4.0
+            </div>
+            <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+            reserved.
+        </footer>
+    </div>
+
+    <aside class="control-sidebar control-sidebar-dark"></aside>
+    <div class="control-sidebar-bg"></div>
+    <script type="text/javascript">
+
+
+        var nf = function () {};
+        //年选择器
+        laydate.render({
+            elem: '#a', 
+            type:'year',
+        });
+
+        //年月选择器
+        laydate.render({
+            elem: '#aa',
+            type:'month',
+        });
+
+        //时间选择器
+        laydate.render({
+            elem: '#aaa',
+            type:'time',
+        });
+
+        //日期时间选择器
+        laydate.render({
+            elem: '#aaaa',
+            type:'datetime',
+        });
+
+        //日期范围
+        laydate.render({
+            elem: '#b',
+            range: true
+        });
+
+        //年范围
+        laydate.render({
+            elem: '#bb',
+            type:'year',
+            range: true
+        });
+
+        //年月范围
+        laydate.render({
+            elem: '#bbb',
+            type:'month',
+            range: true
+        });
+
+        //时间范围
+        laydate.render({
+            elem: '#bbbb',
+            type:'time',
+            range: true
+        });
+
+        //日期时间范围
+        laydate.render({
+            elem: '#bbbbb',
+            type:'datetime',
+            range: true
+        });
+
+        //日期格式化
+        laydate.render({
+            elem: '#c',
+            type:'date',
+            format: 'yyyy年MM月dd日'
+        });
+
+        //限定可选日期
+        var d = laydate.render({
+            elem: '#d'
+            ,min: '2018-08-1'
+            ,max: '2018-10-31'
+            ,ready: function(){
+                d.hint('日期可选值设定在 <br> 2018-08-1 到 2018-10-31');
+            }
+        });
+
+        //前后若干天可选，这里以7天为例
+        laydate.render({
+            elem: '#dd'
+            ,min: -7
+            ,max: 7
+        });
+
+        //限定可选时间
+        laydate.render({
+            elem: '#ddd'
+            ,type: 'time'
+            ,min: '09:30:00'
+            ,max: '17:30:00'
+            ,btns: ['clear', 'confirm'],//指定只有2个按钮
+        });
+
+        //同时创建多个日期插件
+        $('.test-item').each(function(){
+            laydate.render({
+                elem: this
+                ,trigger: 'click'
+            });
+        });
+
+        //初始赋值
+        laydate.render({
+            elem: '#f',
+            value:'1997-01-01'
+        });
+
+        //选中后回调
+        laydate.render({
+            elem: '#ff',
+            value:'1997-01-01',
+            done: function(value, date){
+                alert('你选择的日期是：' + value + '\n\n获得的对象是' + JSON.stringify(date));
+            }
+        });
+
+        //不出现底部
+        laydate.render({
+            elem: '#fff',
+            value:'1997-01-01',
+            showBottom: false
+        });
+
+        //只出现确定按钮
+        laydate.render({
+            elem: '#ffff',
+            value:'1997-01-01',
+            btns: ['confirm']
+        });
+
+        //墨绿主题
+        laydate.render({
+            elem: '#g'
+            ,theme: 'molv'
+        });
+        //自定义颜色
+        laydate.render({
+            elem: '#gg'
+            ,theme: '#393D49'
+        });
+        //格子主题
+        laydate.render({
+            elem: '#ggg'
+            ,theme: 'grid'
+        });
+        
+        $("#h").select2();
+
+        $.fn.serializeJson = function () {
+            var serializeObj = {};
+            $(this.serializeArray()).each(function () {
+                serializeObj[this.name] = this.value;
+            });
+            return serializeObj;
+        };
+        
+        $("#searchBtn").click(function () {
+            console.log($(".form-horizontal").serializeJson());
+        });
+    </script>
+</div>
+</body>
+</html>
