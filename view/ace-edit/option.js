@@ -18,7 +18,6 @@ var option = {
              */
             trigger: 'item',
             formatter: "{a} <br/>{b} : {c} ({d}%)",
-
         },
         /**
          * visualMap 是视觉映射组件，用于进行『视觉编码』，也就是将数据映射到视觉元素（视觉通道）。
@@ -103,8 +102,8 @@ var option = {
                 label: {
                     normal: {
                         textStyle: {
-                           // color: 'rgba(255, 255, 255, 0.3)',
-                            //color:'red'
+// color: 'rgba(255, 255, 255, 0.3)',
+//color:'red'
                         }
                     }
                 },
@@ -138,7 +137,7 @@ var option = {
                         /**
                          * 图形的颜色。 默认从全局调色盘 option.color 获取颜色
                          */
-                        //color: '#c23531',
+//color: '#c23531',
                         /**
                          * 图形阴影的模糊大小。
                          */
@@ -169,6 +168,5 @@ var option = {
                 }
             }
         ]
-
     }
 };

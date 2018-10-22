@@ -22,7 +22,8 @@
     <script src="../../resource/plugins/highlight/highlight.pack.js"></script>
     <script src="../../resource/plugins/clipboard/clipboard.js"></script>
     <script src="../../resource/plugins/echarts/echarts.js"></script>
-    <script src="../../resource/plugins/echarts/theme/macarons.js"></script>
+    <script src="../../resource/plugins/echarts/china.js"></script>
+    <script src="../../resource/plugins/echarts/theme/dark.js"></script>
     <script src="../../resource/common/js/code.js"></script>
 
     <!--datatable按钮-->
@@ -38,14 +39,6 @@
         }
 
     </style>
-    <script src="../../resource/plugins/ace/src/ace.js"></script>
-    <script src="../../resource/plugins/ace/src/mode-javascript.js"></script>
-    <script src="../../resource/plugins/ace/src/worker-javascript.js"></script>
-    <script src="../../resource/plugins/ace/src/theme-monokai.js"></script>
-    <script src="../../resource/plugins/ace/src/snippets/text.js"></script>
-    <script src="../../resource/plugins/ace/src/snippets/javascript.js"></script>
-    <script src="../../resource/plugins/ace/src/ext-language_tools.js"></script>
-    <script src="../../resource/common/js/editor.js"></script>
 
 
 </head>
@@ -272,8 +265,7 @@
                     <h3 class="box-title">查询结果</h3>
                 </div>
                 <div class="box-body" style="height: 100%;">
-                    <div id="code-panel" style="width:100%; height: 500px; margin-bottom: 50px;"></div>
-                    <div id="demo" style="height:700px;"></div>
+                    <div id="demo" style="height:700px"></div>
 
                 </div><!--box-body-->
             </div><!--box box-primary box-solid-->
@@ -290,42 +282,172 @@
     <aside class="control-sidebar control-sidebar-dark"></aside>
     <div class="control-sidebar-bg"></div>
     <script type="text/javascript">
+        /**
+         * 嵌套环形图（http://echarts.baidu.com/examples/editor.html?c=pie-nest）
+         *
+         *
+         */
         
         
-        $("#code-panel").initEditor({
-            ajax:'./option.js',
-            success:function (data) {
-                run(data);
-                //编辑器内容发生变化回调
-                this.editor().on('change', function() {
-                    setTimeout(run,500);
-                });
-            }
-        });
+            // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('demo'),"dark");
 
-
-        
-
-        
-        
-        function run(data) {
-            data = data? data : $("#code-panel").editor().getValue();
-            if(!$("#code-panel").hasEditorError() && data)
-            {
-                try{
-                    eval(data);
-                    myChart.setOption(option);
-                }catch(e){
-                    //console.error(e);
+        // 指定图表的配置项和数据
+        var option = {
+            title : {
+                text: 'iphone销量',
+                subtext: '纯属虚构',
+                left: 'center'
+            },
+            tooltip : {
+                trigger: 'item'
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                //data:['iphone3','iphone4','iphone5']
+            },
+            visualMap: {
+                min: 0,
+                max: 2500,
+                left: 'left',
+                top: 'bottom',
+                text:['高','低'],           // 文本，默认为数值文本
+                calculable : true
+            },
+            toolbox: {
+                show: true,
+                orient : 'vertical',
+                left: 'right',
+                top: 'center',
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
                 }
-                
-            }
-        }
+            },
+            series : [
+                {
+                    name: 'iphone4',
+                    type: 'map',
+                    mapType: 'china',
+                    roam: true,
+                    label: {
+                        normal: {
+                            show: false
+                        },
+                        emphasis: {
+                            show: true
+                        }
+                    },
+                    data:[
+                        {name: '浙江',value: Math.round(Math.random()*1000)},
+                        /*{name: '北京',value: Math.round(Math.random()*1000)},
+                        {name: '天津',value: Math.round(Math.random()*1000)},
+                        {name: '上海',value: Math.round(Math.random()*1000)},
+                        {name: '重庆',value: Math.round(Math.random()*1000)},
+                        {name: '河北',value: Math.round(Math.random()*1000)},
+                        {name: '安徽',value: Math.round(Math.random()*1000)},
+                        {name: '新疆',value: Math.round(Math.random()*1000)},
+                        {name: '江西',value: Math.round(Math.random()*1000)},
+                        {name: '山西',value: Math.round(Math.random()*1000)},
+                        {name: '内蒙古',value: Math.round(Math.random()*1000)},
+                        {name: '吉林',value: Math.round(Math.random()*1000)},
+                        {name: '福建',value: Math.round(Math.random()*1000)},
+                        {name: '广东',value: Math.round(Math.random()*1000)},
+                        {name: '西藏',value: Math.round(Math.random()*1000)},
+                        {name: '四川',value: Math.round(Math.random()*1000)},
+                        {name: '宁夏',value: Math.round(Math.random()*1000)},
+                        {name: '香港',value: Math.round(Math.random()*1000)},
+                        {name: '澳门',value: Math.round(Math.random()*1000)}*/
+                    ]
+                },
+                {
+                    name: 'iphone5',
+                    type: 'map',
+                    mapType: 'china',
+                    roam: true,
+                    label: {
+                        normal: {
+                            show: true
+                        },
+                        emphasis: {
+                            show: true
+                        }
+                    },
+                    data:[
+                        {name: '北京',value: Math.round(Math.random()*1000)},
+                        /*{name: '天津',value: Math.round(Math.random()*1000)},
+                        {name: '上海',value: Math.round(Math.random()*1000)},
+                        {name: '广东',value: Math.round(Math.random()*1000)},
+                        {name: '台湾',value: Math.round(Math.random()*1000)},
+                        {name: '香港',value: Math.round(Math.random()*1000)},
+                        {name: '澳门',value: Math.round(Math.random()*1000)}*/
+                    ]
+                },
+                {
+                    name: 'iphone3',
+                    type: 'map',
+                    mapType: 'china',
+                    /**
+                     * 是否开启鼠标缩放和平移漫游。默认不开启。如果只想要开启缩放或者平移，可以设置成 'scale' 或者 'move'。设置成 true 为都开启
+                     */
+                    roam: true,
+                    /**
+                     * 当前视角的中心点，用经纬度表示
+                     */
+                    //center: [115.97, 29.71],
+                    label: {
+                        normal: {
+                            show: false
+                        },
+                        emphasis: {
+                            show: true
+                        }
+                    },
+                    data:[
+                        /*{name: '北京',value: Math.round(Math.random()*1000)},
+                         {name: '天津',value: Math.round(Math.random()*1000)},
+                         {name: '上海',value: Math.round(Math.random()*1000)},
+                         {name: '重庆',value: Math.round(Math.random()*1000)},
+                         {name: '河北',value: Math.round(Math.random()*1000)},
+                         {name: '河南',value: Math.round(Math.random()*1000)},
+                         {name: '云南',value: Math.round(Math.random()*1000)},
+                         {name: '辽宁',value: Math.round(Math.random()*1000)},
+                         {name: '黑龙江',value: Math.round(Math.random()*1000)},
+                         {name: '湖南',value: Math.round(Math.random()*1000)},
+                         {name: '安徽',value: Math.round(Math.random()*1000)},
+                         {name: '山东',value: Math.round(Math.random()*1000)},
+                         {name: '新疆',value: Math.round(Math.random()*1000)},*/
+                        {name: '江苏',value: Math.round(Math.random()*1000)},
+                        /*{name: '浙江',value: Math.round(Math.random()*1000)},
+                         {name: '江西',value: Math.round(Math.random()*1000)},
+                         {name: '湖北',value: Math.round(Math.random()*1000)},
+                         {name: '广西',value: Math.round(Math.random()*1000)},
+                         {name: '甘肃',value: Math.round(Math.random()*1000)},
+                         {name: '山西',value: Math.round(Math.random()*1000)},
+                         {name: '内蒙古',value: Math.round(Math.random()*1000)},
+                         {name: '陕西',value: Math.round(Math.random()*1000)},
+                         {name: '吉林',value: Math.round(Math.random()*1000)},
+                         {name: '福建',value: Math.round(Math.random()*1000)},
+                         {name: '贵州',value: Math.round(Math.random()*1000)},
+                         {name: '广东',value: Math.round(Math.random()*1000)},
+                         {name: '青海',value: Math.round(Math.random()*1000)},
+                         {name: '西藏',value: Math.round(Math.random()*1000)},
+                         {name: '四川',value: Math.round(Math.random()*1000)},
+                         {name: '宁夏',value: Math.round(Math.random()*1000)},
+                         {name: '海南',value: Math.round(Math.random()*1000)},
+                         {name: '台湾',value: Math.round(Math.random()*1000)},
+                         {name: '香港',value: Math.round(Math.random()*1000)},
+                         {name: '澳门',value: Math.round(Math.random()*1000)}*/
+                    ]
+                },
+            ]
+        };
 
-        // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('demo'), "macarons");
-
-        
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
     </script>
 </div>
 </body>

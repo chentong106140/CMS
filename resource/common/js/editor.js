@@ -50,11 +50,25 @@
         //设置皮肤
         editor.setTheme(theme);
         if(ajax){
+            ajax+=ajax.indexOf("?")>-1 ? "&r="+Math.random() : "?r="+Math.random();
             $.ajax({
                 url:ajax,
                 dataType:'text',
                 success:function (data) {
                     editor.setValue(data);
+                    //根据代码行数，重置编辑器高度
+                    var len = editor.session.getLength();
+                    var height = 16;
+                    //获取每一行代码的高度
+                    if (editor.session.getUseWrapMode()) {
+                        height = $(".ace_line_group").height();
+                    } else {
+                        height = $(".ace_line").height();
+                    }
+                    //重置父容器的高度
+                    this_.height(len*(height+1));
+                    //重置编辑器宽高
+                    editor.resize();
                     success && success.call(this_,data);
                 },
                 error:function () {
@@ -66,6 +80,7 @@
             editor.setValue(value);
         }
         this.data('editor',editor);
+        return this;
     }
 
     function hasEditorError() {

@@ -4,48 +4,57 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>echarts</title>
-    <link rel="stylesheet" href="../../resource/plugins/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="../../resource/plugins/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../../resource/plugins/Ionicons/css/ionicons.min.css">
-    <link rel="stylesheet" href="../../resource/plugins/AdminLTE/css/AdminLTE.css">
-    <link rel="stylesheet" href="../../resource/plugins/AdminLTE/css/skins/_all-skins.css">
-    <link rel="stylesheet" href="../../resource/plugins/highlight/styles/dark.css">
-    <link rel="stylesheet" href="../../resource/common/css/code.css">
+    <title>选择器</title>
+    <link rel="stylesheet" href="../../../resource/plugins/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../../../resource/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../resource/plugins/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="../../../resource/plugins/AdminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="../../../resource/plugins/AdminLTE/css/skins/_all-skins.css">
+    <link rel="stylesheet" href="../../../resource/plugins/highlight/styles/dark.css">
+    <link rel="stylesheet" href="../../../resource/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="../../../resource/common/css/code.css">
 
-    <script src="../../resource/plugins/html5/html5shiv.min.js"></script>
-    <script src="../../resource/plugins/html5/respond.min.js"></script>
-    <script src="../../resource/plugins/jquery/jquery.min.js"></script>
-    <script src="../../resource/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../../resource/plugins/AdminLTE/js/adminlte.js"></script>
-    <script src="../../resource/plugins/layui/layui.all.js"></script>
-    <script src="../../resource/plugins/highlight/highlight.pack.js"></script>
-    <script src="../../resource/plugins/clipboard/clipboard.js"></script>
-    <script src="../../resource/plugins/echarts/echarts.js"></script>
-    <script src="../../resource/plugins/echarts/theme/macarons.js"></script>
-    <script src="../../resource/common/js/code.js"></script>
+    <script src="../../../resource/plugins/html5/html5shiv.min.js"></script>
+    <script src="../../../resource/plugins/html5/respond.min.js"></script>
+    <script src="../../../resource/plugins/jquery/jquery.min.js"></script>
+    <script src="../../../resource/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../../resource/plugins/AdminLTE/js/adminlte.js"></script>
+    <script src="../../../resource/plugins/layui/layui.all.js"></script>
+    <script src="../../../resource/plugins/highlight/highlight.pack.js"></script>
+    <script src="../../../resource/plugins/clipboard/clipboard.js"></script>
+    <script src="../../../resource/plugins/select2/js/select2.js"></script>
+    <script src="../../../resource/plugins/laydate/laydate.js"></script>
+    <script src="../../../resource/common/js/code.js"></script>
 
-    <!--datatable按钮-->
+    <script src="../../../resource/plugins/ace/src/ace.js"></script>
+    <script src="../../../resource/plugins/ace/src/mode-javascript.js"></script>
+    <script src="../../../resource/plugins/ace/src/mode-css.js"></script>
+    <script src="../../../resource/plugins/ace/src/mode-html.js"></script>
+    <script src="../../../resource/plugins/ace/src/mode-json.js"></script>
+    <script src="../../../resource/plugins/ace/src/mode-text.js"></script>
+    <script src="../../../resource/plugins/ace/src/worker-html.js"></script>
+    <script src="../../../resource/plugins/ace/src/worker-css.js"></script>
+    <script src="../../../resource/plugins/ace/src/worker-json.js"></script>
+    <script src="../../../resource/plugins/ace/src/worker-javascript.js"></script>
+    <script src="../../../resource/plugins/ace/src/snippets/text.js"></script>
+    <script src="../../../resource/plugins/ace/src/snippets/javascript.js"></script>
+    <script src="../../../resource/plugins/ace/src/snippets/html.js"></script>
+    <script src="../../../resource/plugins/ace/src/snippets/json.js"></script>
+    <script src="../../../resource/plugins/ace/src/snippets/css.js"></script>
+    <script src="../../../resource/plugins/ace/src/theme-monokai.js"></script>
+    <script src="../../../resource/plugins/ace/src/ext-language_tools.js"></script>
+    <script src="../../../resource/common/js/editor.js"></script>
     <script type="text/javascript">
 
 
     </script>
 
     <style type="text/css">
-        .box {
-            -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        .custom-box {
+            flex-direction: row; /*默认水平从左往右排列*/
+            flex-wrap: wrap;
         }
-
     </style>
-    <script src="../../resource/plugins/ace/src/ace.js"></script>
-    <script src="../../resource/plugins/ace/src/mode-javascript.js"></script>
-    <script src="../../resource/plugins/ace/src/worker-javascript.js"></script>
-    <script src="../../resource/plugins/ace/src/theme-monokai.js"></script>
-    <script src="../../resource/plugins/ace/src/snippets/text.js"></script>
-    <script src="../../resource/plugins/ace/src/snippets/javascript.js"></script>
-    <script src="../../resource/plugins/ace/src/ext-language_tools.js"></script>
-    <script src="../../resource/common/js/editor.js"></script>
 
 
 </head>
@@ -163,14 +172,14 @@
                     <!--用户账户信息-->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="../../resource/plugins/AdminLTE/img/user2-160x160.jpg" class="user-image"
+                            <img src="../../../resource/plugins/AdminLTE/img/user2-160x160.jpg" class="user-image"
                                  alt="用户头像">
                             <span class="hidden-xs">Morgan</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- 用户头像 -->
                             <li class="user-header">
-                                <img src="../../resource/plugins/AdminLTE/img/user2-160x160.jpg" class="img-circle"
+                                <img src="../../../resource/plugins/AdminLTE/img/user2-160x160.jpg" class="img-circle"
                                      alt="用户头像">
                                 <p>
                                     Morgan - 前端开发人员
@@ -217,7 +226,7 @@
             <!--用户概要信息模块-->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="../../resource/plugins/AdminLTE/img/user2-160x160.jpg" class="img-circle" alt="用户头像">
+                    <img src="../../../resource/plugins/AdminLTE/img/user2-160x160.jpg" class="img-circle" alt="用户头像">
                 </div>
                 <div class="pull-left info">
                     <p>Morgan</p>
@@ -230,34 +239,14 @@
                 </li>
                 <li class="header">案例</li>
                 <li class="treeview active">
-                    <a href="/CMS/view/ES6/Array.html">
+                    <a href="/CMS/view/jquery/事件/事件.html">
                         <i class="fa fa-files-o"></i>
-                        <span>echarts</span>
+                        <span>选择器</span>
                         <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         <!--<span class="pull-right-container"><span class="label label-primary pull-right">4</span></span>-->
                     </a>
                     <ul class="treeview-menu">
-                        <li class="treeview ">
-                            <a href="#">
-                                <i class="fa fa-dashboard"></i> <span>折线图</span>
-                                <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li class="">
-                                    <a href="/CMS/view/animate/animate.html"><i class="fa fa-circle-o"></i>动画</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="treeview ">
-                            <a href="#">
-                                <i class="fa fa-dashboard"></i> <span>饼图</span>
-                                <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li class="">
-                                    <a href="/CMS/view/animate/animate.html"><i class="fa fa-circle-o"></i>动画</a>
-                                </li>
-                            </ul>
+                        <li><a href="/CMS/view/jquery/事件/事件.html#Event()"><i class="fa fa-circle-o"></i>$.Event()</a>
                         </li>
                     </ul>
                 </li>
@@ -271,9 +260,12 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">查询结果</h3>
                 </div>
-                <div class="box-body" style="height: 100%;">
-                    <div id="code-panel" style="width:100%; height: 500px; margin-bottom: 50px;"></div>
-                    <div id="demo" style="height:700px;"></div>
+                <div class="box-body">
+                    
+                    <div id="demo-html" style="width:100%; height: 100px; font-size: 1.2rem;"></div>
+                    <div id="demo-js" style="width:100%; height: 100px; font-size: 1.2rem;margin-top:100px;"></div>
+
+
 
                 </div><!--box-body-->
             </div><!--box box-primary box-solid-->
@@ -290,42 +282,35 @@
     <aside class="control-sidebar control-sidebar-dark"></aside>
     <div class="control-sidebar-bg"></div>
     <script type="text/javascript">
-        
-        
-        $("#code-panel").initEditor({
-            ajax:'./option.js',
+
+        $("#demo-html").initEditor({
+            ajax: 'js/选择器.html',
+            readOnly: true,
+            language:'ace/mode/html',
             success:function (data) {
-                run(data);
-                //编辑器内容发生变化回调
-                this.editor().on('change', function() {
-                    setTimeout(run,500);
-                });
+                $(data).insertBefore(this)
+
             }
         });
 
 
-        
-
-        
-        
-        function run(data) {
-            data = data? data : $("#code-panel").editor().getValue();
-            if(!$("#code-panel").hasEditorError() && data)
-            {
+        $("#demo-js").initEditor({
+            ajax: 'js/选择器.js',
+            readOnly: true,
+            success:function (data) {
                 try{
                     eval(data);
-                    myChart.setOption(option);
                 }catch(e){
-                    //console.error(e);
+                    console.error(e)
                 }
-                
-            }
-        }
 
-        // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('demo'), "macarons");
+            }
+        });
+        
 
         
+
+
     </script>
 </div>
 </body>

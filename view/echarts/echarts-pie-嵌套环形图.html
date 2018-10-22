@@ -38,14 +38,6 @@
         }
 
     </style>
-    <script src="../../resource/plugins/ace/src/ace.js"></script>
-    <script src="../../resource/plugins/ace/src/mode-javascript.js"></script>
-    <script src="../../resource/plugins/ace/src/worker-javascript.js"></script>
-    <script src="../../resource/plugins/ace/src/theme-monokai.js"></script>
-    <script src="../../resource/plugins/ace/src/snippets/text.js"></script>
-    <script src="../../resource/plugins/ace/src/snippets/javascript.js"></script>
-    <script src="../../resource/plugins/ace/src/ext-language_tools.js"></script>
-    <script src="../../resource/common/js/editor.js"></script>
 
 
 </head>
@@ -272,8 +264,7 @@
                     <h3 class="box-title">查询结果</h3>
                 </div>
                 <div class="box-body" style="height: 100%;">
-                    <div id="code-panel" style="width:100%; height: 500px; margin-bottom: 50px;"></div>
-                    <div id="demo" style="height:700px;"></div>
+                    <div id="demo" style="height:700px"></div>
 
                 </div><!--box-body-->
             </div><!--box box-primary box-solid-->
@@ -290,42 +281,168 @@
     <aside class="control-sidebar control-sidebar-dark"></aside>
     <div class="control-sidebar-bg"></div>
     <script type="text/javascript">
-        
-        
-        $("#code-panel").initEditor({
-            ajax:'./option.js',
-            success:function (data) {
-                run(data);
-                //编辑器内容发生变化回调
-                this.editor().on('change', function() {
-                    setTimeout(run,500);
-                });
-            }
-        });
+        /**
+         * 嵌套环形图（http://echarts.baidu.com/examples/editor.html?c=pie-nest）
+         *
+         * 实现-嵌套环形图-主要是在series数组下，定义两个对象
+         * 第一个对象对应内圈拼图，同时设置radius: [0, '30%'],内半径为0也就是实心，外半径为30%，也就是半径占整个容器的30%
+         * 第二个对象对应外圈饼图，同时设置radius: ['40%', '55%'],内半径为40%，也就是将中心挖空挖空的半径为整个容器的40%，外半径为55%，也就是外半径的长度为整个容器的55%
+         * 
+         * 每一个系列的label描述，也是在series下定义，同时指定format，来自定义显示样式
+         *
+         */
 
-
-        
-
-        
-        
-        function run(data) {
-            data = data? data : $("#code-panel").editor().getValue();
-            if(!$("#code-panel").hasEditorError() && data)
-            {
-                try{
-                    eval(data);
-                    myChart.setOption(option);
-                }catch(e){
-                    //console.error(e);
-                }
-                
-            }
-        }
-
-        // 基于准备好的dom，初始化echarts实例
+            // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('demo'), "macarons");
 
-        
+        // 指定图表的配置项和数据
+        var option = {
+            baseOption: {
+                tooltip: {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b}: {c} ({d}%)"
+                },
+                legend: {
+                    orient: 'vertical',
+                    x: 'left',
+                },
+                series: [
+                    {
+                        name:'访问来源',
+                        type:'pie',
+                        /**
+                         * 选中模式，表示是否支持多个选中，默认关闭，支持布尔值和字符串，字符串取值可选'single'，'multiple'，分别表示单选还是多选。
+                         */
+                        selectedMode: 'single',
+                        radius: [0, '30%'],
+                        /**
+                         * 饼图图形上的文本标签，可用于说明图形的一些数据信息，比如值，名称等
+                         */
+                        label: {
+                            normal: {
+                                /**
+                                 * 标签的位置。
+                                 * 'outside'    饼图扇区外侧，通过视觉引导线连到相应的扇区。
+                                 * 'inside'     饼图扇区内部。
+                                 * 'inner'      同 'inside'。
+                                 * 'center'     在饼图中心位置。见圆环图示例
+                                 */
+                                position: 'inner'
+                            }
+                        },
+                        /**
+                         * 标签的视觉引导线样式，在 label 位置 设置为'outside'的时候会显示视觉引导线。
+                         */
+                        labelLine: {
+                            normal: {
+                                show: false
+                            }
+                        },
+                        data:[
+                            /**
+                             * selected 该数据项是否被选中。
+                             */
+                            {value:335, name:'直达', selected:true},
+                            {value:679, name:'营销广告'},
+                            {value:1548, name:'搜索引擎'}
+                        ]
+                    },
+                    {
+                        name:'访问来源',
+                        type:'pie',
+                        radius: ['40%', '55%'],
+                        label: {
+                            normal: {
+                                /**
+                                 * {a}：系列名。
+                                 * {b}：数据名。
+                                 * {c}：数据值。
+                                 * {d}：百分比。
+                                 * 注意 {a-d}在字符串中只能使用一次
+                                 */
+                                //formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                                formatter: function (params) {
+                                    /**
+                                     "$vars": Array [ ]
+                                     color: undefined
+                                     componentSubType: "pie"
+                                     componentType: "series"
+                                     data: Object { value: 335, name: "直达" }
+                                     dataIndex: 0
+                                     dataType: undefined
+                                     marker: ""
+                                     name: "直达"
+                                     percent: 13.08
+                                     seriesId: "\u0000访问来源\u00001"
+                                     seriesIndex: 1
+                                     seriesName: "访问来源"
+                                     seriesType: "pie"
+                                     status: "normal"
+                                     value: 335
+                                     */ 
+                                    return '{a|'+params.seriesName+'}{abg|}\n{hr|}\n  {b|'+params.data.name2+'：}'+params.data.value+'  {per|'+params.percent+'%}  ';
+                                },
+                                backgroundColor: '#eee',
+                                borderColor: '#aaa',
+                                borderWidth: 1,
+                                borderRadius: 4,
+                                // shadowBlur:3,
+                                // shadowOffsetX: 2,
+                                // shadowOffsetY: 2,
+                                // shadowColor: '#999',
+                                // padding: [0, 7],
+                                /**
+                                 * 在 rich 里面，可以自定义富文本样式。利用富文本样式，可以在标签中做出非常丰富的效果。
+                                 */
+                                rich: {
+                                    a: {
+                                        color: '#999',
+                                        lineHeight: 22,
+                                        align: 'center'
+                                    },
+                                    // abg: {
+                                    //     backgroundColor: '#333',
+                                    //     width: '100%',
+                                    //     align: 'right',
+                                    //     height: 22,
+                                    //     borderRadius: [4, 4, 0, 0]
+                                    // },
+                                    hr: {
+                                        borderColor: '#aaa',
+                                        width: '100%',
+                                        borderWidth: 0.5,
+                                        height: 0
+                                    },
+                                    b: {
+                                        fontSize: 16,
+                                        lineHeight: 33
+                                    },
+                                    per: {
+                                        color: '#eee',
+                                        backgroundColor: '#334455',
+                                        padding: [2, 4],
+                                        borderRadius: 2
+                                    }
+                                }
+                            }
+                        },
+                        data:[
+                            {value:335, name:'直达', name2:'直达'},
+                            {value:310, name:'营销广告', name2:'邮件营销'},
+                            {value:234, name:'营销广告', name2:'联盟广告'},
+                            {value:135, name:'营销广告', name2:'视频广告'},
+                            {value:1048, name:'搜索引擎', name2:'百度'},
+                            {value:251, name:'搜索引擎', name2:'谷歌'},
+                            {value:147, name:'搜索引擎', name2:'必应'},
+                            {value:102, name:'搜索引擎', name2:'其他'}
+                        ]
+                    }
+                ]
+            }
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
     </script>
 </div>
 </body>
