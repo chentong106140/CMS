@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>constructor</title>
+</head>
+<body>
+<script type="text/javascript">
+    /**
+     * 构造函数
+     */ 
+    function F() {
+        //在构造函数内创建属性方法
+        this.name = "seven";
+        this.getName = function () {
+            alert(this.name);
+        };
+    }
+
+    /**
+     * 在原型中创建属性方法
+     */ 
+    F.prototype.setName = function (name) {
+        this.name = name;
+    };
+
+    /**
+     * 鉴别是否是原型上创建的属性或方法
+     * in用于判断该对象是否存在该属性，无论是自有属性还是通过prototype创建的属性，都返回true,不存在该属性将返回false
+     * hasOwnProperty用于判断是自有属性才会返回false
+     * 
+     * 结论：先判断该对象是否存在该属性，如果存在，在判断是否不是自有属性，如果不是自有属性，就是prototype中创建的属性或方法
+     */
+    function hasPrototypeProperty(obj, name){
+        return name in obj && !obj.hasOwnProperty(name);
+    }
+    
+    var f = new F();
+
+    console.log("-----------函数就是构造函数-----------");
+    console.dir('F.prototype.constructor === F |',F.prototype.constructor === F);//true
+
+    console.log("-----------构造函数的原型就是函数的原型----------");
+    console.dir('F.prototype.constructor.prototype === F.prototype |',F.prototype.constructor.prototype === F.prototype);//true
+
+    console.log("-----------实例对象的__proto__指向的是构造函数的prototype对象----------");
+    console.dir('f.__proto__ === F.prototype |',f.__proto__ === F.prototype);//true
+    
+    console.dir('Object.getPrototypeOf(f) === F.prototype |',Object.getPrototypeOf(f) === F.prototype);//true
+    
+    console.dir('Object.getPrototypeOf(f) === f.__proto__ |',Object.getPrototypeOf(f) === f.__proto__);//true
+    
+    console.log("-----------对象的字面量{}的__proto__属性指向的是构造函数Object.prototype-----------");
+    console.log('{}.__proto__ === Object.prototype |',{}.__proto__ === Object.prototype);//true
+    
+    
+    
+    console.log('-----------判断是否是自有属性-------------');
+    
+    console.dir('f.hasOwnProperty("name") |',f.hasOwnProperty("name"));//true
+    
+    console.dir('f.hasOwnProperty("getName") |',f.hasOwnProperty("getName"));//true
+    
+    console.dir('f.hasOwnProperty("setName") |',f.hasOwnProperty("setName"));//false
+    
+    console.log('-----------判断是否存在该属性-------------');
+    
+    console.dir('"name" in f |',"name" in f);//true
+    
+    console.dir('"getName" in f |',"getName" in f);//true
+    
+    console.dir('"setName" in f |',"setName" in f);//true
+    
+    console.dir('"x" in f |',"x" in f);//false
+
+    console.log('-----------判断是否是原型中创建的属性-------------');
+
+    console.dir('hasPrototypeProperty(f,"name") |',hasPrototypeProperty(f,"name"));//false
+
+    console.dir('hasPrototypeProperty(f,"getName") |',hasPrototypeProperty(f,"getName"));//false
+
+    console.dir('hasPrototypeProperty(f,"setName") |',hasPrototypeProperty(f,"setName"));//true
+    
+    
+
+
+    /**
+     * 总结：
+     * 1：__proto__是每一个对象都会有的一个属性
+     * 2：prototype只有函数才会有的一个属性
+     * 3：hasOwnProperty用于判断属性或方法是否是实例对象对应构造函数的自有属性或方法，如果是通过构造函数的prototype中指定的属性或方法，将返回false
+     * 4：in操作符，用于判断属性或方法是否存在于实例对象中，无论是构造函数内指定的属性或方法，还是通过prototype指定的属性或方法，都返回true,除非该实例对象不存在此属性或方法，将返回false
+     * 5：实例对象的__proto__属性指向的是，对应构造函数的prototype对象，如案例f.__proto__ = F.prototype
+     */
+
+
+
+</script>
+</body>
+</html>

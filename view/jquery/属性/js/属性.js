@@ -96,4 +96,86 @@ $(function () {
     console.log(a7);
     //<input id="ct" name="chentong" class="selected1 selected2 selected3">
 
+
+
+    console.log("------ removeClass([class|fn]) ------");
+
+    /**
+     * removeClass(class)
+     * 删除指定的类
+     */
+    var a8 = $("input[id='ct']",".custom-box.box-1").removeClass("item-0");
+    console.log(a8);
+
+    /**
+     * removeClass(fn)
+     * 删除指定的类
+     */
+    var a9 = $("input[id='ct']",".custom-box.box-1")
+        .removeClass(function () {
+            return "selected2 selected3";
+        });
+    console.log(a9);
+
+    /**
+     * removeClass()
+     * 不传递参数就删除所有class
+     */
+    var a10 = $("input[id='ct']",".custom-box.box-1")
+        .removeClass();
+    console.log(a10);
+
+
+    /**
+     * 如果存在（不存在）就删除（添加）一个类。
+     */
+    console.log("------ toggleClass(class|fn[,sw]) ------");
+
+
+    /**
+     * toggleClass(class)
+     * 如果存在（不存在）就删除（添加）一个类。
+     */
+    var a11 = $("input[id='ct']",".custom-box.box-1")
+        .toggleClass("selected1");
+    console.log(a10);
+
+    var a12 = $("input[id='ct']",".custom-box.box-1")
+        .toggleClass("selected1");
+    console.log(a12);
+    
+    
+
+    /**
+     * toggleClass(class,switch)
+     * 如果switch为true就新增class，为false就删除class
+     */
+    var a13 = $("input[id='ct']",".custom-box.box-1")
+        .toggleClass("selected2",true);
+    console.log(a13);
+
+    var a14 = $("input[id='ct']",".custom-box.box-1")
+        .toggleClass("selected2",false);
+    console.log(a14);
+
+
+    /**
+     * toggleClass(fn)
+     * 如果存在（不存在）就删除（添加）一个类。
+     */
+    var a15 = $("input[id='ct']",".custom-box.box-1")
+        .toggleClass(function (index,cla) {
+            console.log(index,cla);//0,''
+            return "selected3";
+        });
+    console.log(a15);//'selected3'
+
+    var a16 = $("input[id='ct']",".custom-box.box-1")
+        .toggleClass(function (index,cla) {
+            console.log(index,cla);//0,selected3
+            return "selected3"
+        });
+    console.log(a16);//''
+    
+    
 });
