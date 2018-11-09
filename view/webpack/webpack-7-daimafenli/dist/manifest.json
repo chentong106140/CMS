@@ -1,0 +1,6 @@
+{
+  "/dist/another.js": "another.bundle.js",
+  "/dist/app.js": "app.bundle.js",
+  "/dist/common.js": "common.bundle.js",
+  "/dist/index.html": "index.html"
+}
