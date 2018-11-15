@@ -1,6 +1,7 @@
 {
-  "/dist/another.js": "another.3b6a39b500c87d6c8555.js",
-  "/dist/app.js": "app.b2b8b27e1342730deef6.js",
-  "/dist/common.js": "common.982071d8a8cb5bbf3ccc.js",
+  "/dist/another.js": "another.e0a662ac26d7d6996634.js",
+  "/dist/app.js": "app.3cbd26e2492ee2d6b1b4.js",
+  "/dist/runtime.js": "runtime.a136eed977b1987a18e2.js",
+  "/dist/vendors.js": "vendors.abcbf4055d26bddcbd12.js",
   "/dist/index.html": "index.html"
 }

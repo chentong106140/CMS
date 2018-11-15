@@ -7,6 +7,7 @@ const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const webpack = require('webpack');
 
 module.exports = {
     entry: {
@@ -19,11 +20,19 @@ module.exports = {
     },
     optimization: {
         splitChunks: {
-            chunks: 'all',
-            name: 'common'
-        }
+            cacheGroups: {
+                vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all'
+                }
+            }
+        },
+        runtimeChunk: 'single'
     },
     plugins: [
+        //公共模块vendors块的文件我们一般不会修改，所以避免vendors文件打包后也跟着更新chunkhash文件名
+        new webpack.HashedModuleIdsPlugin(),
         new CleanWebpackPlugin(['dist']),
         //该插件可以显示出编译之前的文件和编译之后的文件的映射
         new ManifestPlugin({
@@ -36,7 +45,7 @@ module.exports = {
     ],
     module: {
         rules: [
-            {
+            /*{
                 test: /\.js$/,
                 exclude: /(node_modules)/,
                 use: [{
@@ -45,7 +54,7 @@ module.exports = {
                         presets: ['es2015']
                     }
                 }]
-            },
+            },*/
             {
                 test: /\.css$/,
                 use: [

@@ -4,6 +4,7 @@
 
 import _ from 'lodash';
 import printMe from './print.js';
+import event from './event.js';
 
 if (process.env.NODE_ENV === 'development') {
     console.log('当前是开发环境');
@@ -18,7 +19,7 @@ function component() {
 
     var btn = document.createElement('button');
     btn.innerHTML = 'Click me and check the console!';
-    btn.onclick = printMe;
+    btn.onclick = event.bind(null,"点击时，手动传参成功！");
     element.appendChild(btn);
 
     return element;
