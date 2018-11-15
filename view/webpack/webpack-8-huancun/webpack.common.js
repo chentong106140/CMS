@@ -15,7 +15,8 @@ module.exports = {
         another: './src/another-module.js'
     },
     output: {
-        filename: '[name].[chunkhash].js',
+        //filename: '[name].[chunkhash].js',
+        filename: '[name].js',
         path: path.resolve(__dirname, 'dist')
     },
     optimization: {
@@ -45,7 +46,7 @@ module.exports = {
     ],
     module: {
         rules: [
-            /*{
+            {
                 test: /\.js$/,
                 exclude: /(node_modules)/,
                 use: [{
@@ -54,7 +55,7 @@ module.exports = {
                         presets: ['es2015']
                     }
                 }]
-            },*/
+            },
             {
                 test: /\.css$/,
                 use: [
