@@ -15,8 +15,7 @@ module.exports = {
         another: './src/another-module.js'
     },
     output: {
-        //filename: '[name].[chunkhash].js',
-        filename: '[name].js',
+        filename: '[name].[chunkhash].js',
         path: path.resolve(__dirname, 'dist')
     },
     optimization: {

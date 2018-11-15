@@ -1,7 +1,7 @@
 {
-  "/dist/another.js": "another.js",
-  "/dist/app.js": "app.js",
-  "/dist/runtime.js": "runtime.js",
-  "/dist/vendors.js": "vendors.js",
+  "/dist/another.js": "another.811b27f67cebfb67bfde.js",
+  "/dist/app.js": "app.0becdc4a4feb0ea097bd.js",
+  "/dist/runtime.js": "runtime.a136eed977b1987a18e2.js",
+  "/dist/vendors.js": "vendors.abcbf4055d26bddcbd12.js",
   "/dist/index.html": "index.html"
 }
