@@ -2,23 +2,16 @@
  * Created by cherish on 2018/11/15.
  */
 
-
-import _ from 'lodash';
-import numRef from './ref.json';
-
-export function numToWord(num) {
-     return _.reduce(numRef,function (accum, ref) {
-         console.log(accum,ref);
-         return ref.num === num ? ref.word : accum;
-     },'')
-    
+function numToWord({a=0,b='word'}) {
+    console.log("numToWord","a:"+a,"b:"+b);
+    return a;
 }
 
-export function wordToNum(word) {
-     return _.reduce(numRef,function (accum,ref) {
-         console.log(accum,ref);
-         return ref.word === word && word.toLowerCase() ? ref.num : accum;
-     },-1);
+function wordToNum(word) {
+    console.log("numToWord",word);
+    return word;
 }
-console.log(numToWord(4));
-console.log(wordToNum("Three"));
+
+var a = 10;
+
+export {numToWord as default,wordToNum,a}

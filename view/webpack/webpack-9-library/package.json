@@ -1,6 +1,6 @@
 {
   "name": "morganchen-demo-webpack-number",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "",
   "main": "dist/morganchen-demo-webpack-number.js",
   "scripts": {
@@ -15,8 +15,10 @@
     "babel-loader": "^7.1.4",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-preset-env": "^1.6.1",
+    "clean-webpack-plugin": "^1.0.0",
     "eslint": "^5.9.0",
     "eslint-loader": "^2.1.1",
+    "html-webpack-plugin": "^3.2.0",
     "lodash": "^4.17.11",
     "webpack": "^4.25.1",
     "webpack-cli": "^3.1.2"
