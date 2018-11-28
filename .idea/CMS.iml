@@ -17,6 +17,7 @@
 	  <excludeFolder url="file://$MODULE_DIR$/view/webpack/webpack-9-library/node_modules" />
 	  <excludeFolder url="file://$MODULE_DIR$/view/webpack/webpack-9-library-yanzheng/node_modules" />
 	  <excludeFolder url="file://$MODULE_DIR$/view/webpack/webpack-10-shimming/node_modules" />
+	  <excludeFolder url="file://$MODULE_DIR$/view/webpack/iptv-core/node_modules" />
     </content>
     <content url="file://$MODULE_DIR$/view/webpack/webpack-2-ziyuanguanli/node_modules" />
     <content url="file://$MODULE_DIR$/view/webpack/webpack-3-ziyuanshuchu/node_modules" />

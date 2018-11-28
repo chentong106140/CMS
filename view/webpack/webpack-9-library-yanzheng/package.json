@@ -35,6 +35,7 @@
     "xml-loader": "^1.2.1"
   },
   "dependencies": {
+    "iptv-core": "^1.0.0",
     "morganchen-demo-webpack-number": "^1.0.5"
   }
 }
