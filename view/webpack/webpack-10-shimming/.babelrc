@@ -1,0 +1,9 @@
+{
+  "presets": [
+    "env"
+    //["env", {"loose": true,"modules": false}]//必须写错这样，否则模块内顶层的this将会编译为undefined
+  ],
+  "plugins": [
+    "add-module-exports"
+  ]
+}
