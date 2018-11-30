@@ -5,4 +5,6 @@
 import iptv from 'morgan-iptv-core'
 import 'morgan-iptv-key'
 
-console.log(iptv.key)
+console.log(iptv.key);
+console.log(iptv);
+console.log(iptv(window));

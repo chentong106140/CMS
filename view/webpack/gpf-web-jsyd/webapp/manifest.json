@@ -1,6 +1,7 @@
 {
-  "../webapp/login.js": "login.a668c95624ff72c66c9c.js",
-  "../webapp/runtime.js": "runtime.a136eed977b1987a18e2.js",
-  "../webapp/vendors.js": "vendors.e47af99e494f7263f043.js",
+  "../webapp/login.js": "common/js/login.9d8df373b62875328ce4.js",
+  "../webapp/runtime.js": "common/js/runtime.a136eed977b1987a18e2.js",
+  "../webapp/vendors.js": "common/js/vendors.c1668023c4d1ed673bfb.js",
+  "../webapp/favicon.ico": "favicon.ico",
   "../webapp/login.html": "login.html"
 }
