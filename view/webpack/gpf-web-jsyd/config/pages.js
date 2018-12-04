@@ -5,15 +5,15 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // 获取html-webpack-plugin参数的方法 
-const getHtmlConfig = function(path , name, title){
+const getHtmlConfig = function(path, title){
+    let pathAlias = path && path.indexOf('/')>-1 ? path.replace(/\//g,'-') : path;
     return new HtmlWebpackPlugin({
-        template    : './src/'+path + name + '.html',
-        filename    : path + name + '.html',
-        favicon     : './favicon.ico',
+        template    : 'html-withimg-loader!' +'./src/'+path + '.html',
+        filename    : path + '.html',
         title       : title,
         inject      : 'body',
         hash        : false,
-        chunks      : ['runtime','vendors',name],
+        chunks      : ['runtime','vendors',pathAlias],
         showErrors  : true,
     });
 };
@@ -22,8 +22,10 @@ const getHtmlConfig = function(path , name, title){
 module.exports = {
     entry: {
         login: './src/login.js',
+        '720p-edu-newmain-main': './src/720p/edu/newmain/main.js',
     },
     plugins: [
-        getHtmlConfig('','login','登陆')
+        getHtmlConfig('login','登陆'),
+        getHtmlConfig('720p/edu/newmain/main','首页')
         ]
 };

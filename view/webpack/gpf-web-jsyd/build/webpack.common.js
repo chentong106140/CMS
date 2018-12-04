@@ -17,7 +17,8 @@ module.exports = merge(pages, {
         filename: 'common/js/[name].[chunkhash].js',
         path: path.resolve(__dirname, '../webapp'),
         //指定所有打包文件的文件路径前缀
-        publicPath: '',
+        publicPath: '/gpf-web-jsyd/',
+        //这些文件名需要在 runtime 根据 chunk 发送的请求去生成
         chunkFilename: 'common/js/[name].[chunkhash].js',
     },
     optimization: {
@@ -42,7 +43,8 @@ module.exports = merge(pages, {
          */
         new ExtractTextPlugin({
             filename: 'common/css/common.[hash].css',
-            ignoreOrder: true
+            ignoreOrder: true,
+            publicPath:''
         }),
         //如果多个模块中都引用了同一个模块里面的变量，就把他放到provideplugin插件内，好处就是不需要在每一个模块内在import这个变量了
         new webpack.ProvidePlugin({
@@ -58,16 +60,12 @@ module.exports = merge(pages, {
         //该插件可以显示出编译之前的文件和编译之后的文件的映射
         new ManifestPlugin({
             fileName: 'manifest.json',
-            basePath: "../webapp/",
+            basePath: 'src/',
         })
 
     ],
     module: {
         rules: [
-            {
-                test: /\.(htm|html)$/i,
-                loader: 'html-withimg-loader'
-            },
             /**
              * html中使用require导入图片方式如下：
              * <img src="${require('./720p/bg2.png')}"/>
@@ -78,10 +76,10 @@ module.exports = merge(pages, {
                     {
                         loader: 'url-loader',
                         options: {
-                            name: '[name].[hash:8].[ext]',//文件名中的hash字符长度限制在8个
+                            name: 'common/image/[name].[hash:8].[ext]',//文件名中的hash字符长度限制在8个
                             limit: 8192,//文件大小小于这个数，就打包data数据，文件大小大于这个数据就打包文件
-                            useRelativePath:true,//文件在src下什么目录结构，打包后还是什么目录结构
-                            publicPath: "",//填充在src路径的前缀，如果是域名的话就需要填写
+                            useRelativePath:false,//文件在src下什么目录结构，打包后还是什么目录结构,但是1：在css文件中会出现找不到图片的路径问题。2：使用相对位置，必须配合name: '[name].[hash:8].[ext]'这种写法，如果在name中加了[path]或者'image/[name].[hash:8].[ext]'都将失效
+                            publicPath: '',//填充在src路径的前缀，如果是域名的话就需要填写,如果在这边填写的话，那么useRelativePath相对位置就无效，所以如果需要填写域名，那就在output下面填写publicPath
                             outputPath: '', // html和css中图片的输出路径 不填写将是打包根目录下
                         }
                     }

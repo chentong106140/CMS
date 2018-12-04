@@ -1,15 +1,111 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%= require('html-loader!./common/html/header.html')  %>
+    #include("./common/html/header.html")
     <title>登陆</title>
-    <link rel="stylesheet" href="common/css/common.css">
+    <style type="text/css">
+
+        * {
+            margin: 0px;
+            padding: 0px;
+            border: 0px;
+        }
+
+        html {
+            width: 1280px;
+            height: 720px;
+        }
+
+        body {
+            width: 1280px;
+            height: 720px;
+            overflow: hidden;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            background-color: black;
+        }
+
+        .index-loading {
+            position:absolute;
+            width:500px;
+            height:100px;
+            top: 0;
+            left: 0;
+            right:0;
+            bottom:0;
+            margin:auto;
+            z-index: 0;
+            text-align: center;
+            color: white;
+            font-size: 36px;
+        }
+
+        .index-loading .spinner {
+            margin: 0 auto 0;
+            text-align: center;
+            line-height: 100px;
+        }
+
+        .index-loading .spinner > div {
+            width: 18px;
+            height: 18px;
+            background-color: #29e;
+            border-radius: 100%;
+            display: inline-block;
+            -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
+            animation: bouncedelay 1.4s infinite ease-in-out;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both
+        }
+
+        .index-loading .spinner .bounce1 {
+            -webkit-animation-delay: -.32s;
+            animation-delay: -.32s
+        }
+
+        .index-loading .spinner .bounce2 {
+            -webkit-animation-delay: -.16s;
+            animation-delay: -.16s
+        }
+
+        @-webkit-keyframes bouncedelay {
+            0%,
+            100%,
+            80% {
+                -webkit-transform: scale(0)
+            }
+            40% {
+                -webkit-transform: scale(1)
+            }
+        }
+
+        @keyframes bouncedelay {
+            0%,
+            100%,
+            80% {
+                transform: scale(0);
+                -webkit-transform: scale(0)
+            }
+            40% {
+                transform: scale(1);
+                -webkit-transform: scale(1)
+            }
+        }
+    </style>
 </head>
 <body>
-
-<div id="text" style="background-image: url('./720p/bg2.png');  width:1280px; height:720px; position:absolute; top:0px; left:0px; text-align: center; line-height: 720px; color:white; font-size: 36px;">
-    正在加载中...
-    
+<div  style="width:1280px; height:720px; position:absolute; top:0px; left:0px; ">
+    <div class="index-loading" style="display: block;">
+        <div class="spinner">
+            <!--[if !IE]>-->
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+            <!--<![endif]-->
+            &nbsp;&nbsp;正在加载中，请稍候...
+        </div>
+    </div>
 </div>
 </body>
 </html>

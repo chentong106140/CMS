@@ -40,7 +40,11 @@
         /**
          * 平台接口路径
          */
-        PlatFormApiPath: iptv.getHostPath() + "/orchard-api-jsdx/",
+        PlatFormApiPath: iptv.getHostPath() + "/orchard-api-jsyd/",
+        /**
+         * 平台上下文地址
+         */
+        PlatFormWebContextPath:iptv.getHostPath() + "/gpf-web-jsyd/",
         /**
          * 首页actionName名称
          */
@@ -127,7 +131,7 @@
     });
 
     //添加页面关闭事件
-    iptv(window).addEventListener('load', function () {
+    iptv(window).addEventListener('unload', function () {
         //播放页面，不进行缓存
         if (iptv.config.ActionName && !(iptv(iptv.config.ExcludeCacheActionName).contains(iptv.config.ActionName))) {
             iptv.setCookie("lastPageAction", iptv.config.ActionName);
@@ -209,6 +213,159 @@
             {
                 this.outvideosSize = (this.currPage -1) * this.pageSize;
             }
-        }
+        },
+        
     });
+    function AndroidJS() {
+        this.androidObj = window.njqg_jsbridge || {};
+
+        /**
+         * 获取机顶盒登陆信息
+         * @returns {null}
+         * @constructor
+         */
+        this.STBInfo = function () {
+            return this.androidObj.getSTBInfo ? this.androidObj.getSTBInfo() : null;
+        };
+
+        /**
+         * 更新和获取令牌
+         * @param token
+         * @returns {string}
+         * @constructor
+         */
+        this.PlatformToken = function (token) {
+            if (token) {
+                return this.androidObj.setPlatformToken && this.androidObj.setPlatformToken(token);
+            } else {
+                return this.androidObj.getPlatformToken ? this.androidObj.getPlatformToken() : '';
+            }
+        };
+
+        /**
+         * 登陆结果回调   code=0 登陆成功 code=1 登陆失败
+         * @param code
+         * @returns {*}
+         * @constructor
+         */
+        this.LoginCallBack = function (code) {
+            return this.androidObj.loginBack && this.androidObj.loginBack(code);
+        };
+
+        /**
+         * 日志输出
+         * @param msg
+         * @returns {*}
+         * @constructor
+         */
+        this.Log = function (msg) {
+            return this.androidObj.log && this.androidObj.log(msg);
+        };
+
+        /**
+         * 弹出消息
+         * @param msg
+         * @returns {*}
+         * @constructor
+         */
+        this.Message = function (msg) {
+            return this.androidObj.toastMessage && this.androidObj.toastMessage(msg);
+        };
+
+        /**
+         * 窗口播放
+         * @param imgUrl
+         * @param videoUrl
+         * @param leftMargin
+         * @param topMargin
+         * @param width
+         * @param height
+         * @returns {*}
+         * @constructor
+         */
+        this.SmallScreenPlay = function (imgUrl, videoUrl, leftMargin, topMargin, width, height) {
+            return this.androidObj.smallScreenPlay && this.androidObj.smallScreenPlay(imgUrl, videoUrl, leftMargin, topMargin, width, height);
+        };
+
+        /**
+         * 退出app
+         * @returns {*}
+         * @constructor
+         */
+        this.ExitApp = function () {
+            return this.androidObj.exitApp && this.androidObj.exitApp();
+        };
+
+        /**
+         * 退出确认
+         * @returns {*}
+         * @constructor
+         */
+        this.ExitVerify = function () {
+            return this.androidObj.exitVerify && this.androidObj.exitVerify();
+        };
+
+        /**
+         * 跳转地址
+         * @param url
+         * @returns {*}
+         * @constructor
+         */
+        this.Redirect = function (url) {
+            if(!url)return;
+            return this.androidObj.goUrl && this.androidObj.goUrl(url);
+        };
+
+        /**
+         * 隐藏视频组件
+         * @returns {*}
+         * @constructor
+         */
+        this.HideVideo = function () {
+            return this.androidObj.hideVideo && this.androidObj.hideVideo();
+        };
+
+        /**
+         * 全屏播放
+         * @param videosId
+         * @param videoId
+         * @returns {*}
+         * @constructor
+         */
+        this.FullScreenPlay = function (videosId, videoId) {
+            return this.androidObj.fullScreenPlay && this.androidObj.fullScreenPlay(videosId, videoId);
+        };
+        /**
+         * 安卓获取令牌
+         * @returns {*}
+         * @constructor
+         */
+        this.AndroidGetPlatFromToken = function () {
+            return this.PlatformToken(CT.getCookie("PLATFORM_USER_TOKEN_ID"));
+        };
+
+        /**
+         * 心跳
+         * @param ottUserToken
+         * @returns {*}
+         * @constructor
+         */
+        this.OTTUserToken = function (ottUserToken) {
+            if(!ottUserToken)return;
+            return this.androidObj.setOTTUserToken && this.androidObj.setOTTUserToken(ottUserToken);
+        };
+
+        /**
+         * apk执行更新
+         * @returns {*}
+         * @constructor
+         */
+        this.Update = function () {
+            return this.androidObj.requestUpdate && this.androidObj.requestUpdate();
+        }
+
+
+    }
+    iptv.androidJS = new AndroidJS();
+
 })(window, iptv);
