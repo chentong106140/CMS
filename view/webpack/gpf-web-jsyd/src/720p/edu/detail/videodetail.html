@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    ${ require("html-loader!../../../common/html/header.html")}
+    <style type="text/css">
+        .wrapper_{
+            width: 1280px;
+            height: 720px;
+            top: 0px;
+            left: 0px;
+            z-index: 3;
+            overflow: hidden;
+        }
+        .font_xj{
+            font-family: 微软雅黑,宋体;
+            color: #ffffff;
+            width: 320px;
+            height: 38px;
+            line-height: 38px;
+            font-size: 20px;
+            left: 817px;
+            white-space: nowrap;
+            overflow: hidden;
+            z-index: 3;
+        }
+        .font_index{
+            width: 31px;
+            height: 38px;
+            color: #ffffff;
+            line-height: 38px;
+            text-align: center;
+            left: 760px;
+            z-index: 3;
+            font-size: 20px;
+        }
+
+        body{
+            background: transparent;
+        }
+    </style>
+</head>
+<body  onunload="javascript:iptv.common.closeVideo()">
+<!--页面背景-->
+<div class="position bg" style="z-index: 2;">
+    <img id="bg" src="../../../common/image/empty.png" />
+</div>
+<div id="smallvod" style="left:59px; top:129px; width:669px; height:377px; position:absolute; z-index: 0; ">
+</div>
+<div id="wrapper_" class="position wrapper_ ">
+    <!--收藏-->
+    <div class="position" style="width: 85px; height: 69px; top: 42px; left: 1107px; z-index: 1;">
+        <img id="collect_img" src="../../../common/image/empty.png" />
+    </div>
+    <div id="hands_x0_y0_collect_" style="position: absolute; width: 85px; height: 69px; top: 42px; left: 1107px; z-index: 2;">
+        <img src="../../../common/image/empty.png" id="collect" style="visibility: hidden;"/>
+    </div>
+
+    <!--返回-->
+    <div class="position" style="width: 56px; height: 79px; top: 37px; left: 1189px; z-index: 1;">
+        <img id="back_img" src="image/back.png" />
+    </div>
+    <div id="hands_x0_y0_back_" style="position: absolute; width: 56px; height: 79px; top: 37px; left: 1189px; z-index: 2;">
+        <img src="image/back_.png" id="back" style="visibility: hidden;"/>
+    </div>
+    <!--视频焦点-->
+    <div id="hands_x0_y0_videos_" style="position: absolute; width: 715px; height: 424px; top: 105px; left: 36px; z-index: 3;">
+        <img src="image/v_.png" id="videos" style="visibility: hidden;"/>
+    </div>
+
+
+    <!--视频名称-->
+    <div id="detailName" style="width: 456px; height: 50px; font-size: 30px; position: absolute; z-index: 2; text-align: left; color:#ffffff; left: 776px; top: 124px; line-height: 50px; overflow: hidden; font-weight: bolder;"></div>
+
+    <!--选集-->
+    <!--第1集-->
+    <div id="xj1_index" class="position font_index" style="top: 192px;"></div>
+    <div id="xj1_txt" class="position font_xj" style="top: 192px;"></div>
+
+
+    <div id="xj2_index" class="position font_index" style="top: 236px;"></div>
+    <div id="xj2_txt" class="position font_xj" style="top: 236px;"></div>
+
+    <div id="xj3_index" class="position font_index" style="top: 280px;"></div>
+    <div id="xj3_txt" class="position font_xj" style="top: 280px;"></div>
+
+
+    <div id="xj4_index" class="position font_index" style="top: 326px;"></div>
+    <div id="xj4_txt" class="position font_xj" style="top: 326px;"></div>
+
+
+    <div id="xj5_index" class="position font_index" style="top: 372px;"></div>
+    <div id="xj5_txt" class="position font_xj" style="top: 372px;"></div>
+
+    <div id="xj6_index" class="position font_index" style="top: 418px;"></div>
+    <div id="xj6_txt" class="position font_xj" style="top: 418px;"></div>
+
+    <!--选集移动框-->
+    <div class="position" id="xjSelection" style="width: 496px; height: 81px; top: 170px; left: 762px; z-index: 4; overflow: hidden; visibility: hidden;">
+        <img  src="image/s_.png" />
+    </div>
+
+    <!-- 选集焦点 -->
+    <div id="hands_x0_y0_xj1_" style="position: absolute; width: 0px; height: 0px; top: 170px; left: 785px;  z-index: 1;">
+        <img src="../../../common/image/empty.png" id="xj1" />
+    </div>
+    <div id="hands_x0_y0_xj2_" style="position: absolute; width: 0px; height: 0px; top: 215px; left: 785px;  z-index: 1;">
+        <img src="../../../common/image/empty.png" id="xj2" />
+    </div>
+    <div id="hands_x0_y0_xj3_" style="position: absolute; width: 0px; height: 0px; top: 258px; left: 785px;  z-index: 1;">
+        <img src="../../../common/image/empty.png" id="xj3" />
+    </div>
+    <div id="hands_x0_y0_xj4_" style="position: absolute; width: 0px; height: 0px; top: 304px; left: 785px;  z-index: 1;">
+        <img src="../../../common/image/empty.png" id="xj4" />
+    </div>
+    <div id="hands_x0_y0_xj5_" style="position: absolute; width: 0px; height: 0px; top: 350px; left: 785px;  z-index: 1;">
+        <img src="../../../common/image/empty.png" id="xj5" />
+    </div>
+    <div id="hands_x0_y0_xj6_" style="position: absolute; width: 0px; height: 0px; top: 396px; left: 785px;  z-index: 1;">
+        <img src="../../../common/image/empty.png" id="xj6" />
+    </div>
+
+
+    <!--分页-->
+
+    <div class="position" style="width: 97px; height: 35px; top: 468px; left: 781px; z-index: 1;">
+        <img  src="image/pageup.png"  />
+    </div>
+    <div class="position" style="width: 97px; height: 35px; top: 468px; left: 1070px; z-index: 1;">
+        <img src="image/pagedown.png"  />
+    </div>
+    <div id="hands_x0_y0_pageup_" style="position: absolute; width: 97px; height: 35px; top: 468px; left: 781px; z-index: 2;">
+        <img src="image/pageup_.png" id="pageup"  style="visibility: hidden;"/>
+    </div>
+    <div id="hands_x0_y0_pagedown_" style="position: absolute; width: 97px; height: 35px; top: 468px; left: 1070px; z-index: 2;">
+        <img src="image/pagedown_.png" id="pagedown"  style="visibility: hidden;"/>
+    </div>
+
+    <div id="curPage" class="pageFontColor" style="width: 35px; height: 20px; line-height: 20px; position: absolute; z-index: 2; text-align: center; left: 910px; top: 475px;"></div>
+    <div id="pageCount" class="pageFontColor" style="width: 35px; height: 20px; line-height: 20px; position: absolute; z-index: 2; text-align: center;  left: 1003px; top: 475px;"></div>
+
+
+    <!--热门推荐-->
+    <div class="position" style="width: 298px; height: 211px; top: 527px; left: 198px; z-index: 2;">
+        <img id="jp1_img" src="../../../common/image/empty.png" class="position" />
+    </div>
+    <div id="hands_x0_y0_jp1_" style="position: absolute; width: 298px; height: 211px; top: 502px; left: 173px; z-index: 2;">
+        <img src="image/con_.png" id="jp1" class="position" style="visibility: hidden;"/>
+    </div>
+
+    <div class="position" style="width: 298px; height: 211px; top: 527px; left: 462px; z-index: 2;">
+        <img id="jp2_img" src="../../../common/image/empty.png" class="position" />
+    </div>
+    <div id="hands_x0_y0_jp2_" style="position: absolute; width: 298px; height: 211px; top: 502px; left: 437px; z-index: 2;">
+        <img src="image/con_.png" id="jp2" class="position" style="visibility: hidden;"/>
+    </div>
+
+    <div class="position" style="width: 298px; height: 211px; top: 527px; left: 725px; z-index: 2;">
+        <img id="jp3_img" src="../../../common/image/empty.png" class="position" />
+    </div>
+    <div id="hands_x0_y0_jp3_" style="position: absolute; width: 298px; height: 211px; top: 502px; left: 700px; z-index: 2;">
+        <img src="image/con_.png" id="jp3" class="position" style="visibility: hidden;"/>
+    </div>
+
+    <div class="position" style="width: 298px; height: 211px; top: 527px; left: 989px; z-index: 2;">
+        <img id="jp4_img" src="../../../common/image/empty.png" class="position" />
+    </div>
+    <div id="hands_x0_y0_jp4_" style="position: absolute; width: 298px; height: 211px; top: 502px; left: 963px; z-index: 2;">
+        <img src="image/con_.png" id="jp4" class="position" style="visibility: hidden;"/>
+    </div>
+
+
+
+</div>
+
+
+</body>
+</html>

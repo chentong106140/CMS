@@ -135,6 +135,10 @@
                 success: function (d) {
                     d = eval("(" + d + ")");
                     if (d && d.code == 0) {
+                        if(d.pageData && d.pageData.pageInfo)
+                        {
+                            d.pageData.pageInfo.pageSrc=iptv.config.ContextPath + d.pageData.pageInfo.pageSrc;
+                        }
                         success && success(d);
                     }
                 },
@@ -159,8 +163,21 @@
                 success: function (d) {
                     d = eval("(" + d + ")");
                     if (d && d.code == 0) {
-                        success && success(d["pageData"]["pageInfo"]);
-                    } else if (d && d.code == 1002 && d["pageData"] && d["pageData"]["pageInfo"]) {
+                        var pageInfo = null;
+                        if(d["pageData"] && d["pageData"]["pageInfo"])
+                        {
+                            pageInfo = d["pageData"]["pageInfo"];
+                            pageInfo.pageSrc = iptv.config.ContextPath + pageInfo.pageSrc;
+                        }
+                        success && success(pageInfo);
+                    } else if (d && d.code == 1002) {
+                        var pageInfo = null;
+                        if(d["pageData"] && d["pageData"]["pageInfo"])
+                        {
+                            pageInfo = d["pageData"]["pageInfo"];
+                            pageInfo.pageSrc = iptv.config.ContextPath + pageInfo.pageSrc;
+                            pageInfo.nextUrl = iptv.config.ContextPath + pageInfo.nextUrl;
+                        }
                         //鉴权失败
                         authOrder && authOrder(d["pageData"]["pageInfo"]);
                     }
@@ -185,13 +202,18 @@
                 url: iptv.config.PlatFormApiPath + "recommonDetail.json",
                 success: function (d) {
                     d = eval("(" + d + ")");
-                    if (d && d.code == 0) {
-                        success && success(d.data);
-                    } else if (d && d.code == 1002) {
+                    if (d && d.code == 0 && d.data) {
+                        var data = d.data;
+                        data.url = iptv.config.ContextPath + data.url;
+                        success && success(data);
+                    } else if (d && d.code == 1002 && d.data) {
                         //鉴权失败
                         //url:订购页面地址
                         //nextUrl:被拦截地址
-                        authOrder && authOrder(d.data);
+                        var data = d.data;
+                        data.url = iptv.config.ContextPath + data.url;
+                        data.nextUrl = iptv.config.ContextPath + data.nextUrl;
+                        authOrder && authOrder(data);
                     }
                 },
                 error: function (status, statusText) {

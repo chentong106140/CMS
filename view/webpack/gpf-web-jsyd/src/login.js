@@ -2,10 +2,7 @@
  * Created by cherish on 2018/11/29.
  */
 
-import iptv from 'morgan-iptv-core'
-import './common/js/iptv.config.js'
-import './common/js/iptv.api.js'
-
+import iptv from './720p/edu/common/iptv.platform.js'
 
 var platFormContextPath = iptv.config.PlatFormApiPath;
 var platFormWebContextPath = iptv.config.PlatFormWebContextPath;
@@ -155,7 +152,7 @@ function findLoginData(initData) {
             //判断是否需要直接进入详情页面
             if (cid != null && cid != '') {
                 iptv.api.page.findPageInfo({actionName: "edu_videodetail"}, function (d2) {
-                    window.location.href = d2.pageSrc + "&cid=" + cid;
+                    iptv.redirect(d2.pageSrc + "&cid=" + cid);
                     iptv.androidJS.LoginCallBack(0);
                 });
             } else {
@@ -181,23 +178,23 @@ function toNext(d) {
     iptv.api.page.recommendNext({recommendId: data.recommendId},
         function (rdata) {
             if (rdata && rdata.url) {
-                var href = platFormWebContextPath + rdata.url;
+                var href = rdata.url;
                 href = iptv.api.url.getNextUrl(href, '', cid, payBackUrl, backUrl, playUrl);
-                window.location.href = href;
+                iptv.redirect(href);
                 iptv.androidJS.LoginCallBack(0);
             }
         }, function (rdata) {
             //有鉴权
             if (rdata && rdata.url && rdata.nextUrl) {
                 //获取订购地 址
-                var orderUrl = platFormWebContextPath + rdata.url;
+                var orderUrl = rdata.url;
                 //获取被拦截地址,也就是订购成功之后需要前往的地址
-                var nextUrl = platFormWebContextPath + rdata.nextUrl;
+                var nextUrl = rdata.nextUrl;
                 //下级页面地址
                 nextUrl = encodeURIComponent(iptv.api.url.getNextUrl(nextUrl, '', cid, payBackUrl, backUrl, playUrl));
                 //订购地址
                 orderUrl = iptv.api.url.getOrderPageUrl(orderUrl, data.recommendId, cid, backUrl, nextUrl);
-                window.location.href = orderUrl;
+                iptv.redirect(orderUrl);
                 iptv.androidJS.LoginCallBack(0);
             }
         });
@@ -209,7 +206,9 @@ function init(initData) {
     iptv.config.ActionName = initData.actionName;
     login(initData);
 }
+window.onload = function () {
+    init({
+        actionName: iptv.requestValue("actionName")
+    });
+};
 
-init({
-    actionName: iptv.requestValue("actionName")
-});

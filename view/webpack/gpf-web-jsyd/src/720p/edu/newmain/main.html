@@ -1,10 +1,443 @@
 <!DOCTYPE html>
 <html>
 <head>
-    #include("../../../common/html/header.html")
-</head>
-<body>
+    ${ require("html-loader!../../../common/html/header.html")}
+    <style type="text/css">
+        #wrapper1_ {
+            overflow: hidden;
+        }
 
-首页
+        #wrapper2_ {
+            overflow: hidden;
+        }
+
+        .videoText {
+            font-family: "Microsoft Yahei";
+            font-weight: bolder;
+            font-size: 16px;
+            color: #ffffff;
+            width: 280px;
+            height: 26px;
+            top: 227px;
+            left: 90px;
+            overflow: hidden;
+            /*text-overflow:ellipsis;*/
+            white-space: nowrap;
+            line-height: 26px;
+            z-index: 2;
+        }
+
+        body {
+            background: transparent;
+            background-repeat: no-repeat;
+        }
+
+        .ipStyle {
+            position: absolute;
+            width: 179px;
+            height: 186px;
+            top: -7px;
+        }
+
+        .headStyle {
+            position: absolute;
+            width: 93px;
+            height: 107px;
+            top: 0px;
+        }
+    </style>
+</head>
+    <!--所有有视屏窗口的页面都要执行下面的onunload="javascript:iptv.common.closeVideo()"方法-->
+<body id="bodyId" onunload="javascript:iptv.common.closeVideo()">
+<!--视频-->
+<div id="smallvod" style="position:absolute; left:427px; top:147px; width:382px; height:225px;z-index:1;  ">
+</div>
+
+<!--背景图-->
+<div style="position:absolute; top:0px; left:0px; width:1px; height:1px; overflow: hidden; visibility: hidden;z-index:0;">
+    <img id="bg" src="../../../common/image/empty.png" width="1" height="1" style="visibility: hidden;">
+</div>
+
+<!--logo图-->
+<div style="position:absolute; top:0px; left:0px; width:350px; height:116px; z-index:0;">
+    <img id="logo" src="../../../common/image/empty.png">
+</div>
+<!--头部菜单-->
+<div id="header" style="position:absolute;width: 1280px; height: 140px;top: 11px;right:176px;z-index: 2;">
+
+</div>
+
+<!--退订与咨询-->
+<div id="hands_x0_y0_tuiding_" style="position:absolute; top:23px; left:1097px; width:174px; height:103px; z-index:2;">
+    <img id="tuiding" src="../../../common/image/empty.png" style="visibility: hidden;">
+</div>
+<div style="position:absolute; top:23px; left:1097px; width:174px; height:103px; z-index:3;">
+    <img id="tuiding_img" src="../../../common/image/empty.png">
+</div>
+
+<!--最近观看-->
+<div id="hands_x0_y0_latest_" style="position:absolute; top:23px; left:1097px;width:174px; height:103px; z-index:2;">
+    <img id="latest" src="../../../common/image/empty.png" style="visibility: hidden;">
+</div>
+<div style="position:absolute; top:23px; left:1097px;width:174px; height:103px; z-index:3;">
+    <img id="latest_img" src="../../../common/image/empty.png">
+</div>
+
+<!--我的收藏-->
+<div id="hands_x0_y0_collect_" style="position:absolute;top:23px; left:1097px; width:174px; height:103px; z-index:2;">
+    <img id="collect" src="../../../common/image/empty.png" style="visibility: hidden;">
+</div>
+<div style="position:absolute;top:23px; left:1097px; width:174px; height:103px; z-index:3;">
+    <img id="collect_img" src="../../../common/image/empty.png">
+</div>
+<!--电话号码-->
+
+<div style="position:absolute;top:23px; left:1097px; width:174px; height:103px; z-index:3;">
+    <img  id="phone_num" src="../../../common/image/empty.png">
+</div>
+
+<!-- 中层滚动区域  每一列col为一组 -->
+<div id="wrapper1_" style="position:absolute;width:1280px;height:400px;top: 140px;left:0;z-index:2;">
+    <div id="wrapper1" class="transitions0_5"
+         style="position:absolute;width:3700px;height:400px;top:0;left:0;z-index:1;">
+        <!--col1 GIF1-->
+        <div style="position: absolute; width: 215px; height: 385px; top: 7px; left: 14px; z-index: 1;">
+            <img src="../../../common/image/empty.png" id="T1_img">
+            <div style="position: absolute; width: 65px; height: 55px; top: 0px; left: 0px; z-index: 1;">
+                <img src="../../../common/image/empty.png" id="T1_label">
+            </div>
+        </div>
+        <!--col2-->
+        <div style="position: absolute; width: 188px; height: 253px; top: 7px; left: 234px; z-index: 1;">
+            <img src="../../../common/image/empty.png" id="T2_img">
+            <div style="position: absolute; width: 65px; height: 55px; top:0px; left: 0px; z-index: 1;">
+                <img src="../../../common/image/empty.png" id="T2_label">
+            </div>
+        </div>
+        <div style="position: absolute; width: 188px; height: 126px; top: 266px; left: 234px; z-index: 1;">
+            <img src="../../../common/image/empty.png" id="T3_img">
+            <div style="position: absolute; width: 65px; height: 55px; top: 0px; left: 0px; z-index: 1;">
+                <img src="../../../common/image/empty.png" id="T3_label">
+            </div>
+        </div>
+        <!--col3-->
+        <div style="position: absolute; width: 382px; height: 253px; top: 7px; left: 427px; z-index: 1;">
+            <img src="../../../common/image/empty.png" id="T4_img">
+            <div style="position: absolute; width: 382px; height: 35px; top: 218px; left: 0px; z-index: 1;">
+                <img src="../../../common/image/empty.png" id="T4_label">
+            </div>
+            <div class="videoText position" id="T4_txt"></div>
+        </div>
+
+        <!--最近观看-->
+        <div style="position: absolute; width: 188px; height: 126px; top: 266px; left: 427px; z-index: 1;overflow:hidden;">
+            <img src="../../../common/image/empty.png" id="T5_img">
+            <div style="position: absolute; width: 188px; height: 34px; top: 91px; left: 0px; z-index: 1;">
+                <img src="../../../common/image/empty.png" id="T5_labelBottom">
+            </div>
+            <div style="position: absolute; width: 65px; height: 55px; top: 0px; left: 0px; z-index: 1;">
+                <img src="../../../common/image/empty.png" id="T5_label">
+            </div>
+        </div>
+        <!--我的收藏-->
+        <div style="position: absolute; width: 188px; height: 126px; top: 266px; left: 621px; z-index: 1;overflow: hidden;">
+            <img src="../../../common/image/empty.png" id="T6_img">
+            <div style="position: absolute; width: 188px; height: 34px; top: 91px; left: 0px; z-index: 1;">
+                <img src="../../../common/image/empty.png" id="T6_labelBottom">
+            </div>
+            <div style="position: absolute; width: 65px; height: 55px; top: 0px; left: 0px; z-index: 1;">
+                <img src="../../../common/image/empty.png" id="T6_label">
+            </div>
+        </div>
+
+        <!--col4-->
+        <div style="position: absolute; width: 188px; height: 253px; top: 7px; left: 814px; z-index: 1;">
+            <img src="../../../common/image/empty.png" id="T7_img">
+            <div style="position: absolute; width: 65px; height: 55px; top: 0px; left: 0px; z-index: 1;">
+                <img src="../../../common/image/empty.png" id="T7_label">
+            </div>
+        </div>
+        <div style="position: absolute; width: 188px; height: 126px; top: 266px; left: 814px; z-index: 1;">
+            <img src="../../../common/image/empty.png" id="T8_img">
+            <div style="position: absolute; width: 188px; height: 34px; top: 0px; left: 0px; z-index: 1;">
+                <img src="../../../common/image/empty.png" id="T8_label">
+            </div>
+        </div>
+        <!--col5 GIF2-->
+        <div style="position: absolute; width: 215px; height: 385px; top: 7px; left: 1007px; z-index: 1;">
+            <img src="../../../common/image/empty.png" id="T9_img">
+            <div style="position: absolute; width: 65px; height: 55px; top: 0px; left: 0px; z-index: 1;">
+                <img src="../../../common/image/empty.png" id="T9_label">
+            </div>
+        </div>
+        <!--col6 GIF3-->
+        <div style="position: absolute; width: 215px; height: 385px; top: 7px; left: 1227px; z-index: 1;">
+            <img src="../../../common/image/empty.png" id="T10_img">
+            <div style="position: absolute; width: 65px; height: 55px; top: 0px; left: 0px; z-index: 1;">
+                <img src="../../../common/image/empty.png" id="T10_label">
+            </div>
+        </div>
+        <!--col7 -->
+        <div style="position: absolute; width: 382px; height: 253px; top: 7px; left: 1449px; z-index: 1;">
+            <img src="../../../common/image/empty.png" id="T11_img">
+            <div style="position: absolute; width: 382px; height: 35px; top: 218px; left: 0px; z-index: 1;">
+                <img src="../../../common/image/empty.png" id="T11_label">
+            </div>
+            <div class="videoText position" id="T11_txt"></div>
+        </div>
+        <div style="position: absolute; width: 188px; height: 126px; top: 266px; left: 1449px; z-index: 1;">
+            <img src="../../../common/image/empty.png" id="T12_img">
+            <div style="position: absolute; width: 188px; height: 34px; top:0px; left: 0px; z-index: 1;">
+                <img src="../../../common/image/empty.png" id="T12_label">
+            </div>
+        </div>
+        <div style="position: absolute; width: 188px; height: 126px; top: 266px; left: 1644px; z-index: 1;">
+            <img src="../../../common/image/empty.png" id="T13_img">
+            <div style="position: absolute; width: 188px; height: 34px; top: 0px; left: 0px; z-index: 1;">
+                <img src="../../../common/image/empty.png" id="T13_label">
+            </div>
+        </div>
+        <!--col8-->
+        <div style="position: absolute; width: 188px; height: 253px; top: 7px; left: 1838px; z-index: 1;">
+            <img src="../../../common/image/empty.png" id="T14_img">
+            <div style="position: absolute; width: 65px; height: 55px; top: 0px; left: 0px; z-index: 1;">
+                <img src="../../../common/image/empty.png" id="T14_label">
+            </div>
+        </div>
+        <div style="position: absolute; width: 188px; height: 126px; top: 266px; left: 1838px; z-index: 1;">
+            <img src="../../../common/image/empty.png" id="T15_img">
+            <div style="position: absolute; width: 65px; height: 55px; top: 0px; left: 0px; z-index: 1;">
+                <img src="../../../common/image/empty.png" id="T15_label">
+            </div>
+        </div>
+        <!--col9 GIF4-->
+        <div style="position: absolute; width: 215px; height: 385px; top: 7px; left: 2033px; z-index: 1;">
+            <img src="../../../common/image/empty.png" id="T16_img">
+            <div style="position: absolute; width: 65px; height: 55px; top: 0px; left: 0px; z-index: 1;">
+                <img src="../../../common/image/empty.png" id="T16_label">
+            </div>
+        </div>
+        <!--col10 GIF5-->
+        <div style="position: absolute; width: 215px; height: 385px; top: 7px; left: 2255px; z-index: 1;">
+            <img src="../../../common/image/empty.png" id="T17_img">
+            <div style="position: absolute; width: 65px; height: 55px; top: 0px; left: 0px; z-index: 1;">
+                <img src="../../../common/image/empty.png" id="T17_label">
+            </div>
+        </div>
+        <!--col11 GIF6-->
+        <div style="position: absolute; width: 215px; height: 385px; top: 7px; left: 2476px; z-index: 1;">
+            <img src="../../../common/image/empty.png" id="T18_img">
+            <div style="position: absolute; width: 65px; height: 55px; top: 0px; left: 0px; z-index: 1;">
+                <img src="../../../common/image/empty.png" id="T18_label">
+            </div>
+        </div>
+        <!--col12 GIF7-->
+        <div style="position: absolute; width: 215px; height: 385px; top: 7px; left: 2697px; z-index: 1;">
+            <img src="../../../common/image/empty.png" id="T19_img">
+            <div style="position: absolute; width: 65px; height: 55px; top: 0px; left: 0px; z-index: 1;">
+                <img src="../../../common/image/empty.png" id="T19_label">
+            </div>
+        </div>
+        <!--col13-->
+        <div style="position: absolute; width: 188px; height: 253px; top: 7px; left: 2919px; z-index: 1;">
+            <img src="../../../common/image/empty.png" id="T20_img">
+            <div style="position: absolute; width: 65px; height: 55px; top: 0px; left: 0px; z-index: 1;">
+                <img src="../../../common/image/empty.png" id="T20_label">
+            </div>
+        </div>
+        <div style="position: absolute; width: 188px; height: 126px; top: 266px; left: 2919px; z-index: 1;">
+            <img src="../../../common/image/empty.png" id="T21_img">
+            <div style="position: absolute; width: 65px; height: 55px; top: 0px; left: 0px; z-index: 1;">
+                <img src="../../../common/image/empty.png" id="T21_label">
+            </div>
+        </div>
+        <!--col14 -->
+        <div style="position: absolute; width: 382px; height: 253px; top: 7px; left: 3114px; z-index: 1;">
+            <img src="../../../common/image/empty.png" id="T22_img">
+            <div style="position: absolute; width: 382px; height: 35px; top: 218px; left: 0px; z-index: 1;">
+                <img src="../../../common/image/empty.png" id="T22_label">
+            </div>
+            <div class="videoText position" id="T22_txt"></div>
+        </div>
+        <div style="position: absolute; width: 188px; height: 126px; top: 266px; left: 3114px; z-index: 1;">
+            <img src="../../../common/image/empty.png" id="T23_img">
+            <div style="position: absolute; width: 65px; height: 55px; top: 0px; left: 0px; z-index: 1;">
+                <img src="../../../common/image/empty.png" id="T23_label">
+            </div>
+        </div>
+        <div style="position: absolute; width: 188px; height: 126px; top: 266px; left: 3309px; z-index: 1;">
+            <img src="../../../common/image/empty.png" id="T24_img">
+            <div style="position: absolute; width: 65px; height: 55px; top: 0px; left: 0px; z-index: 1;">
+                <img src="../../../common/image/empty.png" id="T24_label">
+            </div>
+        </div>
+        <!--col15-->
+        <div style="position: absolute; width: 188px; height: 253px; top: 7px; left: 3502px; z-index: 1;">
+            <img src="../../../common/image/empty.png" id="T25_img">
+            <div style="position: absolute; width: 65px; height: 55px; top: 0px; left: 0px; z-index: 1;">
+                <img src="../../../common/image/empty.png" id="T25_label">
+            </div>
+        </div>
+        <div style="position: absolute; width: 188px; height: 126px; top: 266px; left: 3502px; z-index: 1;">
+            <img src="../../../common/image/empty.png" id="T26_img">
+            <div style="position: absolute; width: 65px; height: 55px; top: 0px; left: 0px; z-index: 1;">
+                <img src="../../../common/image/empty.png" id="T26_label">
+            </div>
+        </div>
+        <!--焦点-->
+        <!--col1 GIF1焦点-->
+        <div id="hands_x0_y0_T1_"
+             style="position: absolute; width: 255px; height: 426px; top: -13px; left: -6px; z-index: 2;">
+            <img src="../../../common/image/empty.png" id="T1" style="visibility:hidden">
+        </div>
+
+        <!--col2焦点-->
+        <div id="hands_x0_y0_T2_"
+             style="position: absolute; width: 228px; height: 293px; top: -13px; left: 214px; z-index: 2;">
+            <img src="../../../common/image/empty.png" id="T2" style="visibility:hidden">
+        </div>
+        <div id="hands_x0_y0_T3_"
+             style="position: absolute; width: 228px; height: 166px; top: 246px; left: 215px; z-index: 2;">
+            <img src="../../../common/image/empty.png" id="T3" style="visibility:hidden">
+        </div>
+        <!--col3焦点-->
+        <div id="hands_x0_y0_T4_"
+             style="position: absolute; width: 422px; height: 293px; top: -13px; left: 407px; z-index: 2;">
+            <img src="../../../common/image/empty.png" id="T4" style="visibility:hidden;">
+        </div>
+        <div id="hands_x0_y0_T5_"
+             style="position: absolute; width: 228px; height: 166px; top: 247px; left: 408px; z-index: 2;">
+            <img src="../../../common/image/empty.png" id="T5" style="visibility:hidden;">
+        </div>
+        <div id="hands_x0_y0_T6_"
+             style="position: absolute; width: 228px; height: 166px; top: 246px; left: 601px; z-index: 2;">
+            <img src="../../../common/image/empty.png" id="T6" style="visibility:hidden;">
+        </div>
+        <!--col4焦点-->
+        <div id="hands_x0_y0_T7_"
+             style="position: absolute; width: 228px; height: 293px; top: -13px; left: 795px; z-index: 2;">
+            <img src="../../../common/image/empty.png" id="T7" style="visibility:hidden;">
+        </div>
+        <div id="hands_x0_y0_T8_"
+             style="position: absolute; width: 228px; height: 166px; top: 246px; left: 794px; z-index: 2;">
+            <img src="../../../common/image/empty.png" id="T8" style="visibility:hidden;">
+        </div>
+        <!--col5 GIF2焦点-->
+        <div id="hands_x0_y0_T9_"
+             style="position: absolute; width: 255px; height: 426px; top: -13px; left: 987px; z-index: 2;">
+            <img src="../../../common/image/empty.png" id="T9" style="visibility:hidden;">
+        </div>
+        <!--col6 GIF3焦点-->
+        <div id="hands_x0_y0_T10_"
+             style="position: absolute; width: 255px; height: 426px; top: -13px; left: 1207px; z-index: 2;">
+            <img src="../../../common/image/empty.png" id="T10" style="visibility:hidden;">
+        </div>
+        <!--col7焦点 -->
+        <div id="hands_x0_y0_T11_"
+             style="position: absolute; width: 422px; height: 293px; top: -13px; left: 1429px; z-index: 2;">
+            <img src="../../../common/image/empty.png" id="T11" style="visibility:hidden;">
+        </div>
+        <div id="hands_x0_y0_T12_"
+             style="position: absolute; width: 228px; height: 166px; top: 246px; left: 1429px; z-index: 2;">
+            <img src="../../../common/image/empty.png" id="T12" style="visibility:hidden;">
+        </div>
+        <div id="hands_x0_y0_T13_"
+             style="position: absolute; width: 228px; height: 166px; top: 246px; left: 1624px; z-index: 2;">
+            <img src="../../../common/image/empty.png" id="T13" style="visibility:hidden;">
+        </div>
+        <!--col8焦点-->
+        <div id="hands_x0_y0_T14_"
+             style="position: absolute; width: 228px; height: 293px; top: -13px; left: 1818px; z-index: 2;">
+            <img src="../../../common/image/empty.png" id="T14" style="visibility:hidden;">
+        </div>
+        <div id="hands_x0_y0_T15_"
+             style="position: absolute; width: 228px; height: 166px; top: 246px; left: 1818px; z-index: 2;">
+            <img src="../../../common/image/empty.png" id="T15" style="visibility:hidden;">
+        </div>
+        <!--col9 GIF4焦点-->
+        <div id="hands_x0_y0_T16_"
+             style="position: absolute; width: 255px; height: 426px; top: -13px; left: 2013px; z-index: 2;">
+            <img src="../../../common/image/empty.png" id="T16" style="visibility:hidden;">
+        </div>
+        <!--col10 GIF5焦点-->
+        <div id="hands_x0_y0_T17_"
+             style="position: absolute; width: 255px; height: 426px; top: -13px; left: 2235px; z-index: 2;">
+            <img src="../../../common/image/empty.png" id="T17" style="visibility:hidden;">
+        </div>
+        <!--col11 GIF6焦点-->
+        <div id="hands_x0_y0_T18_"
+             style="position: absolute; width: 255px; height: 426px; top: -13px; left: 2456px; z-index: 2;">
+            <img src="../../../common/image/empty.png" id="T18" style="visibility:hidden;">
+        </div>
+        <!--col12 GIF7焦点-->
+        <div id="hands_x0_y0_T19_"
+             style="position: absolute; width: 255px; height: 426px; top: -13px; left: 2677px; z-index: 2;">
+            <img src="../../../common/image/empty.png" id="T19" style="visibility:hidden;">
+        </div>
+        <!--col13焦点-->
+        <div id="hands_x0_y0_T20_"
+             style="position: absolute; width: 228px; height: 293px; top: -13px; left: 2899px; z-index: 2;">
+            <img src="../../../common/image/empty.png" id="T20" style="visibility:hidden;">
+        </div>
+        <div id="hands_x0_y0_T21_"
+             style="position: absolute; width: 228px; height: 166px; top: 246px; left: 2899px; z-index: 2;">
+            <img src="../../../common/image/empty.png" id="T21" style="visibility:hidden;">
+        </div>
+        <!--col14 焦点-->
+        <div id="hands_x0_y0_T22_"
+             style="position: absolute; width: 422px; height: 293px; top: -13px; left: 3094px; z-index: 2;">
+            <img src="../../../common/image/empty.png" id="T22" style="visibility:hidden;">
+        </div>
+        <div id="hands_x0_y0_T23_"
+             style="position: absolute; width: 228px; height: 166px; top: 246px; left: 3094px; z-index: 2;">
+            <img src="../../../common/image/empty.png" id="T23" style="visibility:hidden;">
+        </div>
+        <div id="hands_x0_y0_T24_"
+             style="position: absolute; width: 228px; height: 166px; top: 246px; left: 3289px; z-index: 2;">
+            <img src="../../../common/image/empty.png" id="T24" style="visibility:hidden;">
+        </div>
+        <!--col15焦点-->
+        <div id="hands_x0_y0_T25_"
+             style="position: absolute; width: 228px; height: 293px; top: -13px; left: 3482px; z-index: 2;">
+            <img src="../../../common/image/empty.png" id="T25" style="visibility:hidden;">
+        </div>
+        <div id="hands_x0_y0_T26_"
+             style="position: absolute; width: 228px; height: 166px; top: 246px; left: 3482px; z-index: 2;">
+            <img src="../../../common/image/empty.png" id="T26" style="visibility:hidden;">
+        </div>
+
+    </div>
+    <!--中层左右方向图标-->
+    <div style="position: absolute; width: 84px; height: 84px; top: 136px; left: 0px; z-index: 2;">
+        <img src="image/middleLeft.png" id="leftMiddle_img" style="visibility:hidden;">
+    </div>
+    <div style="position: absolute; width: 84px; height: 84px; top: 136px; left: 1228px; z-index: 2;">
+        <img src="image/middleRight.png" id="rightMiddle_img" style="visibility:hidden;">
+    </div>
+</div>
+
+<!-- 下层滚动区域 -->
+<div id="wrapper2_" style="position:absolute;width:1280px;height:180px;top: 540px;left:0;z-index:2;">
+    <div id="wrapper2" class="transitions0_5"
+         style="position:absolute;width:2705px;height:180px;top:0;left:0;z-index:1;">
+    </div>
+    <!--下层左右方向图标-->
+    <!--左边-->
+    <div style="position: absolute; width: 84px; height: 84px; top: 40px; left: 0px; z-index: 2;">
+        <img src="image/downLeft.png" id="leftDown_img" style="visibility:hidden;">
+    </div>
+    <!--右边-->
+    <div style="position: absolute; width: 84px; height: 84px; top: 40px; left: 1230px; z-index: 2;">
+        <img src="image/downRight.png" id="rightDown_img" style="visibility:hidden;">
+    </div>
+
+</div>
+
+<div id="remind" style="width:252px;height:58px;position:absolute;top:570px;left:514px;z-index:20;visibility: hidden;"
+     class="transitions0_5">
+    <img src="image/remind.png" alt="" style="width:252px;height:58px;">
+</div>
 </body>
 </html>
+
+
