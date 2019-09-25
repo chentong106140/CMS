@@ -66,7 +66,7 @@
                         height = $(".ace_line").height();
                     }
                     //重置父容器的高度
-                    this_.height(len*(height+1));
+                    this_.height(len*(height+1) > 500 ? len*(height+1) :500);
                     //重置编辑器宽高
                     editor.resize();
                     success && success.call(this_,data);

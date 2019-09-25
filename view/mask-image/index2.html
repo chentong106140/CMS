@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>mask-image</title>
+    <style type="text/css">
+        mask-bg, mask-top{
+            position: absolute;
+            width:409px;
+            height:158px;
+            mask-image: url(image/mask.png);
+            -webkit-mask-image: url(image/mask.png);
+            display: block;
+            float: left;
+        }
+        /*
+            底图，真正需要显示的内容
+            而内容无限制，可以是文字，可以是图片，可以是任何元素
+            而本案例中，底图是一个通过-webkit-linear-gradient创建的4个区域不同颜色背景图
+            
+            而底图元素也设置了遮罩层属性mask-image是一个4个文字的遮罩层，再加上底图自身背景图是4个不同的颜色
+            所以最终效果就是呈现以遮罩层属性图形的形状，颜色是元素自身背景图的颜色，也就是4个不同颜色的字母
+            
+            呈现形状是通过mask-image非透明区域决定的，
+            而，颜色是通过元素自身背景图颜色决定的
+            
+            所以底图真正的作用是显示一个4个不同颜色形状的4个字母
+        */
+        mask-bg{
+            /*background-image: linear-gradient(353deg,#89C027,#89C027 28%,#E96036 28%,#E96036 49%,#FEF158 49%,#FEF158 72%,#76C5EE 72%);*/
+            background-image: -webkit-linear-gradient(353deg,#89C027,#89C027 28%,#E96036 28%,#E96036 49%,#FEF158 49%,#FEF158 72%,#76C5EE 72%);
+        }
+        
+        /*
+            遮罩层，元素背景图片为白色 设置了遮罩层为图片，
+            遮罩层图片透明区域显示元素父级元素背景色，也就是红色
+            遮罩层图片非透明区域（mask.png图片非透明区域是白色的，不要与最终效果相混淆，就算mask.png非透明区域是其他颜色，最终效果也不会是其他颜色，只会是元素背景图的颜色，遮罩层的作用只不过是用来控制显示的形状，颜色用底下的颜色），显示元素的背景图片，而元素的背景图片就是白色的，所以非透明区域是一个形状，而该形状显示的样式是元素的背景样式，就是白色样式
+            也就是最终效果是，遮罩层非透明区域是什么形状最终呈现效果就是什么形状，而，对应形状下的元素背景色是什么颜色，就显示什么颜色
+            
+            所以，由于遮罩层的非透明区域是4个字母，最终效果就是4个字母，字母颜色是元素的背景图像的颜色，那就是白色
+        */
+        mask-top{
+            /*由于火狐浏览器不识别linear-gradient，所以，为了不影响调试，暂且先使用-webkit-linear-gradient*/
+            /*background-image: linear-gradient(bottom,#EEEEEE,#EEEEEE 60%,rgba(0,0,0,0) 60%);*/
+            /*背景图片设置为白色,并且设置一半是透明，一般是白色*/
+            background-image: -webkit-linear-gradient(bottom,#EEEEEE,#EEEEEE 60%,rgba(0,0,0,0) 60%);
+            /*background-size: auto 300% ;*/
+            /*将上面背景纵坐标的高度放大3倍，最终效果就是背景一半非透明区域占了整个背景，也就是说，背景就是白色的了*/
+            -webkit-background-size: auto 300% ;
+            /*由于设置了background-size的纵坐标是拉高了3倍高度，所以如下设置background-position的纵坐标是-50%,也就是说，控制背景图显示的位置是背景图总高度的一般位置开始显示*/
+            background-position: 0 -50%;
+            /*添加动画，延迟2秒执行*/
+            transition: all 10s cubic-bezier(0, 0, 0.28, 1) 2s;
+        }
+        
+        /*设置延迟属性*/
+
+        app.loading mask-top{
+            background-position: 0 -8%;
+        }
+        app.loading-done mask-top{
+            /*通过控制背景图片的显示坐标*/
+            background-position: 0 0;
+            transition: all 5s;
+        }
+        app , test{
+            width:500px;
+            height:300px;
+            margin-top: 30px;
+            float: left;
+            background-color: red;
+        }
+        
+    </style>
+</head>
+<body style="background-color: #f2972b">
+
+<app>
+    <mask-bg></mask-bg>
+    <mask-top></mask-top>
+</app>
+
+<test>
+    <mask-bg>底部真正需要显示的内容，也就是显示4个不同颜色的字母</mask-bg>
+</test>
+
+<test>
+    <mask-top>
+        遮罩层用于遮罩，挡住下面的底图4个字母，
+        当控制遮罩层透明区域不断变大，也就能够显示透明区域下面的底图内容了。
+        
+        由于mask-top是遮罩层，mask-bg是底图，mask-top只要控制背景图透明区域不断变大，
+        那么透明区域下面的底图就慢慢显示出来了
+        
+        这里说的透明区域是mask-top整体背景的透明区域，背景透明了，自然会显示当前元素下面的元素了，
+        而我们说的透明区域不会显示元素的内容，
+        指的是，元素mask-top设置了遮罩层属性mask-image，该属性指向的图片，只要该图片存在透明区域，
+        就不显示元素mask-top的背景图，显示的mask-top父级元素的背景图或背景颜色
+        如果该图片存在非透明区域，就会显示元素mask-top的背景图内容，
+        
+        而mask-top的背景图内容是一半白色区域，一半透明区域，
+        所以，当mask-top的背景图都是透明区域的时候，
+        此时，遮罩层图片的非透明区域显示的就是元素的透明区域，
+        而，元素mask-top的透明区域下方元素就是底图，所以最终呈现的就是底图
+        
+        
+        结论：就是可以通过元素mask-top的属性background-position
+        来控制mask-top元素的背景图的透明区域的显示位置，（默认背景图显示位置控制在不透明的区域）
+        以实现遮罩层慢慢消失的效果
+    </mask-top>
+</test>
+
+<script type="text/javascript">
+
+    setTimeout(function(){
+        document.querySelector('app').className='loading';
+        //document.querySelector('app').className='loading-done';
+    },10);
+
+</script>
+</body>
+</html>

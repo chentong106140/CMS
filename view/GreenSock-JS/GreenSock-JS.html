@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>首页</title>
+    <link rel="stylesheet" href="../../resource/plugins/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../../resource/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../resource/plugins/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="../../resource/plugins/AdminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="../../resource/plugins/AdminLTE/css/skins/_all-skins.css">
+    <link rel="stylesheet" href="../../resource/plugins/layui/css/layui.css">
+
+    <script src="../../resource/plugins/html5/html5shiv.min.js"></script>
+    <script src="../../resource/plugins/html5/respond.min.js"></script>
+    <script src="../../resource/plugins/jquery/jquery.min.js"></script>
+    <script src="../../resource/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../../resource/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../resource/plugins/AdminLTE/js/adminlte.js"></script>
+    <script src="../../resource/plugins/layui/layui.all.js"></script>
+
+    <!--GreenSock-JS-->
+    <script src="../../resource/plugins/GreenSock-JS/TweenLite.js"></script>
+    <script src="../../resource/plugins/GreenSock-JS/TimelineLite.js"></script>
+    <!--<script src="../../resource/plugins/GreenSock-JS/TweenMax.js"></script>-->
+    <script src="../../resource/plugins/GreenSock-JS/plugins/CSSPlugin.js"></script>
+    <script src="../../resource/plugins/GreenSock-JS/easing/EasePack.js"></script>
+
+
+
+    <script type="text/javascript">
+
+
+
+    </script>
+
+    <style type="text/css">
+
+        body {
+            font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: 400;
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+
+        .main-header {
+            max-height: 101px;
+        }
+
+        .layadmin-header {
+            display: block;
+            height: 50px;
+            line-height: 50px;
+            margin-bottom: 0;
+            border-radius: 0;
+        }
+
+        .layadmin-header .layui-breadcrumb {
+            border-top: 1px solid #f6f6f6;
+            padding: 0 15px;
+        }
+
+        .layui-breadcrumb {
+            visibility: visible;
+            font-size: 0;
+        }
+
+        .wrapper {
+            height: 100%;
+            position: relative;
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+
+        .content-wrapper {
+            position: relative;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+
+        .content-footer {
+            background: #fff;
+            padding: 15px;
+            color: #444;
+            border-top: 1px solid #d2d6de;
+            z-index: 820;
+            display: block;
+        }
+
+        .box-body button {
+            color: tomato;
+            margin: 20px 50px;
+        }
+
+        .site__title {
+            color: #f35626;
+            /*background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -webkit-animation: hue 60s infinite linear;*/
+            font-size: 3rem;
+            width:100px;
+            line-height: 50px;
+            height:50px;
+            position: relative;
+            top:0px;
+            left:0px;
+        }
+        fieldset {
+            padding: .35em .625em .75em;
+            margin: 50px 0;
+            border: 1px solid #c0c0c0;
+        }
+        legend{
+            font-weight: 600;
+        }
+    </style>
+
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
+<div class="wrapper">
+    <!--头部区域-->
+    <header class="main-header">
+        <!-- Logo -->
+        <a href="index2.html" class="logo">
+            <span class="logo-mini"><b>奇果</b></span>
+            <span class="logo-lg"><b>南京奇果</b>后台管理</span>
+        </a>
+        <!--导航栏，随着页面一起滚动的导航栏-->
+        <nav class="navbar navbar-static-top">
+            <!-- 侧边栏切换按钮-->
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <!--头部导航-自定义菜单栏-->
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li class="">
+                        <a href="javascript:openFullscreen(this)">
+                            <i class="fa fa-yahoo"></i>
+                        </a>
+                    </li>
+                    <!--用户通知信息-->
+                    <li class="dropdown notifications-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-bell-o"></i>
+                            <span class="label label-warning">10</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">你有10个通知</li>
+                            <li>
+                                <ul class="menu">
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-users text-aqua"></i>今天有10个推荐位被设置
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-warning text-yellow"></i>你的密码已过期，需要重置密码
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="footer"><a href="#">查看更多</a></li>
+                        </ul>
+                    </li>
+                    <!--用户任务信息-->
+                    <li class="dropdown tasks-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-flag-o"></i>
+                            <span class="label label-danger">9</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">你有9个任务</li>
+                            <li>
+                                <ul class="menu">
+                                    <li>
+                                        <a href="#">
+                                            <h3>
+                                                推荐位设置进度
+                                                <small class="pull-right">90%</small>
+                                            </h3>
+                                            <div class="progress sm">
+                                                <div class="progress-bar progress-bar-aqua" style="width: 90%"
+                                                     role="progressbar"
+                                                     aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="sr-only">90% 已完成</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <h3>
+                                                项目创建进度
+                                                <small class="pull-right">40%</small>
+                                            </h3>
+                                            <div class="progress xs">
+                                                <div class="progress-bar progress-bar-green" style="width: 40%"
+                                                     role="progressbar"
+                                                     aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="sr-only">40% 已完成</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <h3>
+                                                内容注入进度
+                                                <small class="pull-right">60%</small>
+                                            </h3>
+                                            <div class="progress xs">
+                                                <div class="progress-bar progress-bar-red" style="width: 60%"
+                                                     role="progressbar"
+                                                     aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="sr-only">60% 已完成</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="footer">
+                                <a href="#">查看更多任务</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--用户账户信息-->
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="../../resource/plugins/AdminLTE/img/user2-160x160.jpg" class="user-image"
+                                 alt="用户头像">
+                            <span class="hidden-xs">Morgan</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- 用户头像 -->
+                            <li class="user-header">
+                                <img src="../../resource/plugins/AdminLTE/img/user2-160x160.jpg" class="img-circle"
+                                     alt="用户头像">
+                                <p>
+                                    Morgan - 前端开发人员
+                                    <small>开发人员</small>
+                                </p>
+                            </li>
+                            <!-- Menu Body -->
+                            <li class="user-body">
+                                <div class="row">
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">我的任务</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">我的通知</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">我的信息</a>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </li>
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="#" class="btn btn-default btn-flat">编辑</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="#" class="btn btn-default btn-flat">退出</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--编辑-->
+                    <li>
+                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!--左侧边栏区域-->
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            <!--用户概要信息模块-->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="../../resource/plugins/AdminLTE/img/user2-160x160.jpg" class="img-circle" alt="用户头像">
+                </div>
+                <div class="pull-left info">
+                    <p>Morgan</p>
+                    <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
+                </div>
+            </div>
+            <ul class="sidebar-menu" data-widget="tree">
+                <li>
+                    <a href="/CMS/view/main/main.html"><i class="fa fa-circle-o text-yellow"></i> <span>概览</span></a>
+                </li>
+                <li class="header">案例</li>
+                <!--（1级父菜单）父层定义treeview类  激活使用active-->
+                <li class="treeview active">
+                    <!--父层菜单对应的文字描述-->
+                    <a href="#">
+                        <i class="fa fa-dashboard"></i> <span>animate动画</span>
+                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                    </a>
+                    <!--（1级子菜单）由于父级菜单下面又有很多列表所以，还需要使用ul,同时ul需要使用treeview-menu修饰-->
+                    <ul class="treeview-menu">
+                        <!--正常情况下父类下面的ul下就可以定义每一个子菜单了，一个li就是一个子菜单-->
+                        <!--（2级父菜单）如果希望子菜单也是一个父菜单，就需要将li使用treeview修饰，如果只是普通的子菜单li不用treeview修饰-->
+                        <li class="treeview active">
+                            <!--由于上面使用了treeview修饰了，代表上面的li是一个父菜单，那么下面的a标签也就是父菜单的文字描述-->
+                            <a href="#">
+                                <i class="fa fa-dashboard"></i> <span>animate</span>
+                                <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                            </a>
+                            <!--（2级子菜单）父菜单下点击后，需要有很多子菜单，所以ul下的所有li都是一个子菜单-->
+                            <ul class="treeview-menu">
+                                <li class="active">
+                                    <a href="/CMS/view/animate/animate.html"><i class="fa fa-circle-o"></i>动画</a>
+                                </li>
+                                <!--(3级父菜单)-->
+                                <li class="treeview active">
+                                    <a href="#">
+                                        <i class="fa fa-dashboard"></i> <span>animate</span>
+                                        <span class="pull-right-container"><i
+                                                class="fa fa-angle-left pull-right"></i></span>
+                                    </a>
+                                    <!--(3级子菜单)-->
+                                    <ul class="treeview-menu">
+                                        <li>
+                                            <a href="/CMS/view/animate/animate.html"><i
+                                                    class="fa fa-circle-o"></i>动画</a>
+                                        </li>
+                                        <li>
+                                            <a href="/CMS/view/animate/animate.html"><i
+                                                    class="fa fa-circle-o"></i>动画</a>
+                                        </li>
+                                        <li>
+                                            <a href="/CMS/view/animate/animate.html"><i
+                                                    class="fa fa-circle-o"></i>动画</a>
+                                        </li>
+                                        <li>
+                                            <a href="/CMS/view/animate/animate.html"><i
+                                                    class="fa fa-circle-o"></i>动画</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/CMS/view/animate/animate.html"><i class="fa fa-circle-o"></i>动画</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    </aside>
+    <div class="content-wrapper">
+        <div id="card" class="layui-card layadmin-header">
+            <span class="layui-breadcrumb" lay-separator="/">
+              <a href="#">GreenSock</a>
+               <a href="https://greensock.com/" target="_blank"><cite>GSAP_文档</cite></a>
+            </span>
+        </div>
+        <section class="content">
+            <div class="box box-primary box-solid"><!--默认关闭盒子添加collapsed-box-->
+                <div class="box-header with-border">
+                    <h3 class="box-title">查询结果</h3>
+                </div>
+
+                <div class="box-body" style="height: 20000px;">
+
+                    <div style="height: 200px; max-width: 60%; margin: 0 auto; text-align: center;position: fixed;z-index: 999;left: 0;right: 0;border: 1px solid aquamarine; margin-top:-115px; background-color: black; ">
+                            <h1 id="animationSandbox" class="site__title">GSAP</h1>
+                    </div>
+                    <div style="width:100%; height: auto; position:relative; margin-top: 50px;">
+                        <fieldset class="ease">
+                            <legend>缓冲特效：Power0</legend>
+                            <button class="btn btn-default" value="Power0.easeIn">{left:"500px",ease:Power0.easeIn}</button>
+                            <button class="btn btn-default" value="Power0.easeInOut">{left:"500px",ease:Power0.easeInOut}</button>
+                            <button class="btn btn-default" value="Power0.easeOut">{left:"500px",ease:Power0.easeOut}</button>
+                        </fieldset>
+                        <fieldset class="ease">
+                            <legend>缓冲特效：Power1</legend>
+                            <button class="btn btn-default" value="Power1.easeIn">{left:"500px",ease:Power1.easeIn}</button>
+                            <button class="btn btn-default" value="Power1.easeInOut">{left:"500px",ease:Power1.easeInOut}</button>
+                            <button class="btn btn-default" value="Power1.easeOut">{left:"500px",ease:Power1.easeOut}</button>
+                        </fieldset>
+                        <fieldset class="ease">
+                            <legend>缓冲特效：Back</legend>
+                            <button class="btn btn-default" value="Back.easeIn">{left:"500px",ease:Back.easeIn}</button>
+                            <button class="btn btn-default" value="Back.easeInOut">{left:"500px",ease:Back.easeInOut}</button>
+                            <button class="btn btn-default" value="Back.easeOut">{left:"500px",ease:Back.easeOut}</button>
+                        </fieldset>
+                        <fieldset class="ease">
+                            <legend>缓冲特效：Bounce</legend>
+                            <button class="btn btn-default" value="Bounce.easeIn">{left:"500px",ease:Bounce.easeIn}</button>
+                            <button class="btn btn-default" value="Bounce.easeInOut">{left:"500px",ease:Bounce.easeInOut}</button>
+                            <button class="btn btn-default" value="Bounce.easeOut">{left:"500px",ease:Bounce.easeOut}</button>
+                        </fieldset>
+                        <fieldset class="ease">
+                            <legend>缓冲特效：Circ</legend>
+                            <button class="btn btn-default" value="Circ.easeIn">{left:"500px",ease:Circ.easeIn}</button>
+                            <button class="btn btn-default" value="Circ.easeInOut">{left:"500px",ease:Circ.easeInOut}</button>
+                            <button class="btn btn-default" value="Circ.easeOut">{left:"500px",ease:Circ.easeOut}</button>
+                        </fieldset>
+                        <fieldset class="ease">
+                            <legend>缓冲特效：Cubic</legend>
+                            <button class="btn btn-default" value="Cubic.easeIn">{left:"500px",ease:Cubic.easeIn}</button>
+                            <button class="btn btn-default" value="Cubic.easeInOut">{left:"500px",ease:Cubic.easeInOut}</button>
+                            <button class="btn btn-default" value="Cubic.easeOut">{left:"500px",ease:Cubic.easeOut}</button>
+                        </fieldset>
+                        <fieldset class="pro">
+                            <legend>操作元素属性</legend>
+                            <button class="btn btn-default" value="{left:500,top:200,ease:Back.easeOut}">{left:500,top:200,ease:Back.easeOut}</button>
+                            <button class="btn btn-default" value="{x:500,y:200,ease:Back.easeOut}">{x:500,y:200,ease:Back.easeOut}</button>
+                            <button class="btn btn-default" value="{marginLeft:100,paddingTop:10,ease:Back.easeOut}">{marginLeft:100,paddingTop:10,ease:Back.easeOut}</button>
+                        </fieldset>
+                        <fieldset class="pro">
+                            <legend>大小操作</legend>
+                            <button class="btn btn-default" value="{scaleX:2,scale:1.5,ease:Back.easeOut}">{scaleX:2,scale:1.5,ease:Back.easeOut}</button>
+                            <button class="btn btn-default" value="{scale:2,ease:Back.easeOut}">{scale:2,ease:Back.easeOut}</button>
+                            <button class="btn btn-default" value="{width:200,height:200,ease:Back.easeOut}">{width:200,height:200,ease:Back.easeOut}</button>
+                        </fieldset>
+                        <fieldset class="pro">
+                            <legend>变形操作</legend>
+                            <button class="btn btn-default" value="{rotation:45,ease:Back.easeOut}">{rotation:45,ease:Back.easeOut}</button>
+                            <button class="btn btn-default" value="{skewX:30,ease:Back.easeOut}">{skewX:30,ease:Back.easeOut}</button>
+                            <button class="btn btn-default" value="{skewY:-30,ease:Back.easeOut}">{skewY:-30,ease:Back.easeOut}</button>
+                        </fieldset>
+                        <fieldset class="styles">
+                            <legend>样式操作</legend>
+                            <button class="btn btn-default" value="{borderWidth:10,ease:Back.easeOut}">{borderWidth:10,ease:Back.easeOut}</button>
+                            <button class="btn btn-default" value="{backgroundColor:'#FF00FF',ease:Back.easeOut}">{backgroundColor:"#FF00FF",ease:Back.easeOut}</button>
+                            <button class="btn btn-default" value="{color:'#FFF',ease:Back.easeOut}">{color:"#FFF",ease:Back.easeOut}</button>
+                            <button class="btn btn-default" value="{fontSize:24,ease:Back.easeOut}">{fontSize:24,ease:Back.easeOut}</button>
+                            <button class="btn btn-default" value="{lineHeight:'100px',ease:Back.easeOut}">{lineHeight:"100px",ease:Back.easeOut}</button>
+                            <button class="btn btn-default" value="{opacity:0.5,ease:Back.easeOut}">{opacity:0.5,ease:Back.easeOut}</button>
+                            <button class="btn btn-default" value="{autoAlpha:0,ease:Back.easeOut}">{autoAlpha:0,ease:Back.easeOut}</button>
+                        </fieldset>
+                        <fieldset class="3D">
+                            <legend>3D属性操作</legend>
+                            <button class="btn btn-default" value="{rotationX:30,ease:Back.easeOut}">{rotationX:30,ease:Back.easeOut}</button>
+                            <button class="btn btn-default" value="{rotationY:100,ease:Back.easeOut}">{rotationY:100,ease:Back.easeOut}</button>
+                            <button class="btn btn-default" value="{rotationZ:45,ease:Back.easeOut}">{rotationZ:45,ease:Back.easeOut}</button>
+                        </fieldset>
+
+                        <fieldset class="">
+                            <legend>动画控制与事件</legend>
+                            <button class="btn btn-default" onclick="play()">开始</button>
+                            <button class="btn btn-default" onclick="restart()">重新开始</button>
+                            <button class="btn btn-default" onclick="pause()">暂停</button>
+                            <button class="btn btn-default" onclick="resume()">继续</button>
+                            <button class="btn btn-default" onclick="reverse()">反转</button>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box -->
+            </section>
+            <footer class="content-footer">
+                <div class="pull-right hidden-xs">
+                    <b>Version</b> 2.4.0
+                </div>
+                <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All
+                rights
+                reserved.
+            </footer>
+    </div>
+
+    <aside class="control-sidebar control-sidebar-dark"></aside>
+    <div class="control-sidebar-bg"></div>
+    <script type="text/javascript">
+        layui.element.render({elem: "#card"});
+
+        var layer = layui.layer;
+
+        /**
+         * 页面一加载就打开弹窗，需要在layer.ready()回调函数内执行
+         */
+        layer.ready(function () {
+            layer.msg("页面加载成功！");
+        });
+
+        function onComplete() {
+            console.log("onComplete","动画完成！");
+        }
+        
+        function onStart() {
+            console.log("onStart","动画开始！");
+        }
+        
+        function onUpdate() {
+            console.log("onUpdate","");
+        }
+        
+        function onReverseComplete() {
+            console.log("onReverseComplete","");
+        }
+        
+        
+        var tl = new TimelineLite({onComplete:onComplete,onStart:onStart,onUpdate:onUpdate,onReverseComplete:onReverseComplete});
+        
+        function testEase(ease) {
+            return tl.fromTo("#animationSandbox",2,{left:0},{left:"500px",ease:ease});
+        }
+
+
+        function testPro(pro) {
+            return tl.fromTo("#animationSandbox",2,{width:100,height:50,left:0,top:0,x:0,y:0,marginLeft:0,paddingTop:0,scaleX:1,scale:1,rotation:0,skewX:0,skewY:0},pro);
+        }
+        function testStyle(style) {
+            tl.set("#animationSandbox",{border:"solid 1px #f35626"});//设置边框
+            tl.set("#animationSandbox",{backgroundColor:"null"});//设置边框
+            tl.set("#animationSandbox",{color:"#f35626"});//设置字体
+            tl.set("#animationSandbox",{fontSize:"3rem"});//设置字体
+            tl.set("#animationSandbox",{lineHeight:"50px"});//设置字体
+            tl.set("#animationSandbox",{opacity:1});//设置透明度
+            tl.set("#animationSandbox",{autoAlpha:1});//设置透明度
+            return tl.fromTo("#animationSandbox",2,{width:100,height:50,left:0,top:0,x:0,y:0,marginLeft:0,paddingTop:0,scaleX:1,scale:1,rotation:0,skewX:0,skewY:0},style);
+        }
+
+        function test3D(style) {
+            tl.set("#animationSandbox",{rotationX:0});//设置边框
+            tl.set("#animationSandbox",{rotationY:0});//设置边框
+            tl.set("#animationSandbox",{rotationZ:0});//设置字体
+            return tl.fromTo("#animationSandbox",2,{width:100,height:50,left:0,top:0,x:0,y:0,marginLeft:0,paddingTop:0,scaleX:1,scale:1,rotation:0,skewX:0,skewY:0},style);
+        }
+        
+        function play() {
+            tl.to("#animationSandbox",4,{left:"500px",ease:Bounce.easeOut});
+        }
+        
+        function restart() {
+            tl.restart();
+        }
+
+        function pause() {
+            tl.pause();
+        }
+        
+        function resume() {
+            tl.resume();
+        }
+        
+        function reverse() {
+            tl.reverse();
+        }
+        
+
+        $(document).ready(function () {
+            $('.ease button').click(function (e) {
+                var anim = eval("("+$(this).val()+")");
+                testEase(anim);
+            });
+
+            $('.pro button').click(function (e) {
+                var pro = eval("("+$(this).val()+")");
+                testPro(pro);
+            });
+
+            $('.styles button').click(function (e) {
+                var styles = eval("("+$(this).val()+")");
+                testStyle(styles);
+            });
+
+            $('.3D button').click(function (e) {
+                var styles = eval("("+$(this).val()+")");
+                testStyle(styles);
+            });
+
+
+        });
+        
+    </script>
+</div>
+</body>
+</html>

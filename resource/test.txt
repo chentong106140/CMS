@@ -1,0 +1,114 @@
+
+
+
+
+南京奇果-广东移动-安卓对接需求
+
+引言
+
+项目背景
+
+预期读者
+
+对接南传机顶盒
+说明
+
+根据南传提供的相关技术文档，需要安卓模块针对本文档具体需求进行实现，本章节主要介绍安卓与南传涉及到的对接模块。
+
+获取机顶盒系统信息
+说明
+具体对接方法请参考附件《附件9：南传Launcher提供给第三方应用播放的接口规范V.docx》
+
+
+调用南传小窗口播放能力
+说明
+具体对接方法请参考附件《附件9：南传Launcher提供给第三方应用播放的接口规范V.docx》
+
+调用南传全屏播放能力
+说明
+
+具体对接方法请参考附件《附件9：南传Launcher提供给第三方应用播放的接口规范V.docx》
+
+
+3	APK启动流程
+
+Loading图全屏展示
+说明
+当用户启动APK后，首先需要展示一个加载界面，加载图展示时长为5秒，例如加载如下图片地址：
+http://jsyd.iqiguo.com:28080/gpf-web-jsyd/common/image/edu/edu_loading_bg.png
+首次启动后，将加载图缓存本地，下次启动后，直接读取缓存的加载图
+
+启动H5登陆地址
+说明
+APK在加载loading图过程中，同步通过WebView启动H5页面，页面地址为产品登陆地址，登陆地址需要进行拼接参数后形成完整的登陆链接，并通过WebView打开登陆链接。
+
+例子
+http://IP:PORT/gpf-web-jsyd/login.html?actionName=edu_login&recommendName=edu_login&befrom=test
+
+参数说明
+名称	说明	数据类型	默认值	是否必选
+actionName	页面名称	String	edu_login	Y
+recommendName	推荐位名称	String	edu_login	Y
+befrom	入口类型名称	String	default	Y
+
+4	H5与APK接口交互
+	交互说明
+	接口形式
+Javascript方式
+	H5页面Android接口JS变量名
+njqg_jsbridge
+	调用方向
+H5Android 可以互相调用，但以H5Android为主
+
+
+	获取机顶盒登陆信息
+描述：
+
+	接口名称
+getSTBInfo
+	接口方向
+H5Android
+	调用案例
+
+androidObj.getSTBInfo()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

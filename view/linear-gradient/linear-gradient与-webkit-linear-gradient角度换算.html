@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>linear-gradient</title>
+    <style type="text/css">
+        demo1,demo2,demo3,demo4,demo5,demo6,demo7,demo8,demo9,demo10,demo11,demo12{
+            width:400px;
+            height:300px;
+            border: 2px solid black;
+            position: absolute;
+        }
+        demo1{
+            left:100px;
+            top:100px;
+        }
+
+        demo2{
+            left:800px;
+            top:100px;
+        }
+
+        demo3{
+            left:100px;
+            top:700px;
+        }
+
+        demo4{
+            left:800px;
+            top:700px;
+        }
+
+        demo5{
+            left:100px;
+            top:1300px;
+        }
+
+        demo6{
+            left:800px;
+            top:1300px;
+        }
+
+        demo7{
+            left:100px;
+            top:1900px;
+        }
+
+        demo8{
+            left:800px;
+            top:1900px;
+        }
+
+        demo9{
+            left:100px;
+            top:2500px;
+        }
+
+        demo10{
+            left:800px;
+            top:2500px;
+        }
+
+        demo11{
+            left:100px;
+            top:3100px;
+        }
+
+        demo12{
+            left:800px;
+            top:3100px;
+        }
+        
+        xian{
+            width:4px;
+            height:500px;
+            position: absolute;
+            background-color: black;
+            top:-100px;
+            left:198px;
+            transform-orgin:center;
+        }
+        yuanxin{
+            width:8px;
+            height: 8px;
+            position: absolute;
+            top:146px;
+            left:196px;
+            background-color: red;
+        }
+        body{
+            background-color: #efef87;
+            font-size:24px;
+            color:white;
+            height:4000px;
+            background-image: url("image/demo.jpg");
+            background-size:1980px 2080px;
+        }
+
+</style>
+</head>
+<body>
+<demo1 demo="demo1">
+    linear-gradient：角度正数
+    <xian></xian>
+    <yuanxin></yuanxin>
+    <deg></deg>
+</demo1>
+
+<demo2 demo="demo1">
+    -webkit-linear-gradient：角度正数
+    <xian></xian>
+    <yuanxin></yuanxin>
+    <deg></deg>
+</demo2>
+
+<demo3 demo="demo2">
+    linear-gradient：角度负数
+    <xian></xian>
+    <yuanxin></yuanxin>
+    <deg></deg>
+</demo3>
+
+<demo4 demo="demo2">
+    -webkit-linear-gradient：角度负数
+    <xian></xian>
+    <yuanxin></yuanxin>
+    <deg></deg>
+</demo4>
+
+<demo5 demo="demo3">
+    linear-gradient：角度正数
+    <xian></xian>
+    <yuanxin></yuanxin>
+    <deg></deg>
+    
+</demo5>
+
+<demo6 demo="demo3">
+    linear-gradient：角度负数
+    <xian></xian>
+    <yuanxin></yuanxin>
+    <deg></deg>
+   
+</demo6>
+
+<demo7 demo="demo4">
+    -webkit-linear-gradient：角度正数
+    <xian></xian>
+    <yuanxin></yuanxin>
+    <deg></deg>
+    
+</demo7>
+
+<demo8 demo="demo4">
+    -webkit-linear-gradient：角度负数
+    <xian></xian>
+    <yuanxin></yuanxin>
+    <deg></deg>
+    
+</demo8>
+
+<!--
+    当已知linear-gradient度数时，
+    -webkit-linear-gradient需要保持渐变方向一致，
+    此时-webkit-linear-gradient的数值应该是多少？
+-->
+<demo9 demo="demo5">
+    linear-gradient：已知角度
+    <xian></xian>
+    <yuanxin></yuanxin>
+    <deg></deg>
+</demo9>
+
+<demo10 demo="demo5">
+    -webkit-linear-gradient：未知角度
+    <xian></xian>
+    <yuanxin></yuanxin>
+    <deg></deg>
+</demo10>
+
+<!--
+    当已知-webkit-linear-gradient度数时，
+    linear-gradient需要保持渐变方向一致，
+    此时linear-gradient的数值应该是多少？
+-->
+<demo11 demo="demo6">
+    -webkit-linear-gradient：已知角度
+    <xian></xian>
+    <yuanxin></yuanxin>
+    <deg></deg>
+</demo11>
+
+<demo12 demo="demo6">
+    linear-gradient：未知角度
+    <xian></xian>
+    <yuanxin></yuanxin>
+    <deg></deg>
+</demo12>
+<script type="text/javascript">
+//国外案例https://leaverou.github.io/css3patterns/
+//http://www.zhangxinxu.com/wordpress/2013/09/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3css3-gradient%E6%96%9C%E5%90%91%E7%BA%BF%E6%80%A7%E6%B8%90%E5%8F%98/
+//w3c学习：https://www.w3cplus.com/css3/do-you-really-understand-css-linear-gradients.html
+    var i = 0;
+    
+    setInterval(function () {
+        i+=10;
+        if(i>=360){
+            i = 0;
+        }
+    },500);
+
+    /**
+     * linear-gradient：角度正数
+     * -webkit-linear-gradient：角度正数
+     * 查看都是正数，数值一样，检查转动方向，
+     * 总结：
+     *  linear-gradient：起点是绕着元素中心点，随着数值越大，顺时针变动
+     *  -webkit-linear-gradient：起点是绕着元素中心点，随着数值越大，逆时针变动
+     */
+    var demo1 = setInterval(function () {
+            var demo1 = document.getElementsByTagName("demo1")[0].style;
+            var deg1 = document.getElementsByTagName("deg")[0];
+            var xian1 = document.getElementsByTagName("xian")[0].style;
+    
+            var demo2 = document.getElementsByTagName("demo2")[0].style;
+            var deg2 = document.getElementsByTagName("deg")[1];
+            var xian2 = document.getElementsByTagName("xian")[1].style;
+            
+            xian1.transform = "rotate("+i+"deg)";
+            xian2.transform = "rotate(-"+i+"deg)";
+            demo1.backgroundImage = "linear-gradient("+i+"deg, red 30%,orange 10%, yellow 60%,blue 40%)";
+            demo2.backgroundImage = "-webkit-linear-gradient("+i+"deg, red 30%,orange 10%, yellow 60%,blue 40%)";
+            deg1.innerHTML = i+"deg";
+            deg2.innerHTML = i+"deg";
+            
+        },500);
+
+    /**
+     * linear-gradient：角度负数
+     * -webkit-linear-gradient：角度负数
+     * 查看都是负数，数值一样，检查转动方向，
+     * 总结：
+     *  linear-gradient：起点是绕着元素中心点，随着数值越大，逆时针变动
+     *  -webkit-linear-gradient：起点是绕着元素中心点，随着数值越大，顺时针变动
+     */
+    var demo2 = setInterval(function () {
+    var demo3 = document.getElementsByTagName("demo3")[0].style;
+    var deg3 = document.getElementsByTagName("deg")[2];
+    var xian3 = document.getElementsByTagName("xian")[2].style;
+
+    var demo4 = document.getElementsByTagName("demo4")[0].style;
+    var deg4 = document.getElementsByTagName("deg")[3];
+    var xian4 = document.getElementsByTagName("xian")[3].style;
+
+        xian3.transform = "rotate(-"+i+"deg)";
+        xian4.transform = "rotate("+i+"deg)";
+        demo3.backgroundImage = "linear-gradient(-"+i+"deg, red 30%,orange 10%, yellow 60%,blue 40%)";
+        demo4.backgroundImage = "-webkit-linear-gradient(-"+i+"deg, red 30%,orange 10%, yellow 60%,blue 40%)";
+        deg3.innerHTML = "-"+i+"deg";
+        deg4.innerHTML = "-"+i+"deg";
+},500)
+
+
+    /**
+     * linear-gradient：角度正数
+     * linear-gradient：角度负数
+     * 查看在保持渐变方向一样的情况下，linear-gradient正负值的关系
+     * 总结：
+     *  linear-gradient：当角度正数数值为100时，那么角度负数数值可以为 = -(360-100) = -260 deg
+     */
+    var demo3 = setInterval(function () {
+    var demo5 = document.getElementsByTagName("demo5")[0].style;
+    var deg5 = document.getElementsByTagName("deg")[4];
+    var xian5 = document.getElementsByTagName("xian")[4].style;
+
+    var demo6 = document.getElementsByTagName("demo6")[0].style;
+    var deg6 = document.getElementsByTagName("deg")[5];
+    var xian6 = document.getElementsByTagName("xian")[5].style;
+
+        xian5.transform = "rotate("+i+"deg)";
+        xian6.transform = "rotate("+(360-i)+"deg)";
+        demo5.backgroundImage = "linear-gradient("+i+"deg, red 30%,orange 10%, yellow 60%,blue 40%)";
+        demo6.backgroundImage = "linear-gradient(-"+(360-i)+"deg, red 30%,orange 10%, yellow 60%,blue 40%)";
+        deg5.innerHTML = ""+i+"deg";
+        deg6.innerHTML = "-"+(360-i)+"deg";
+},500)
+
+
+    /**
+     * -webkit-linear-gradient：角度正数
+     * -webkit-linear-gradient：角度负数
+     * 查看在保持渐变方向一样的情况下，-webkit-linear-gradient正负值的关系
+     * 总结：
+     *  -webkit-linear-gradient：当角度正数数值为100时，那么角度负数数值可以为 = -(360-100) = -260 deg
+     */
+    var demo4 = setInterval(function () {
+    var demo7 = document.getElementsByTagName("demo7")[0].style;
+    var deg7 = document.getElementsByTagName("deg")[6];
+    var xian7 = document.getElementsByTagName("xian")[6].style;
+
+    var demo8 = document.getElementsByTagName("demo8")[0].style;
+    var deg8 = document.getElementsByTagName("deg")[7];
+    var xian8 = document.getElementsByTagName("xian")[7].style;
+
+        xian7.transform = "rotate("+i+"deg)";
+        xian8.transform = "rotate("+(360-i)+"deg)";
+        demo7.backgroundImage = "-webkit-linear-gradient("+i+"deg, red 30%,orange 10%, yellow 60%,blue 40%)";
+        demo8.backgroundImage = "-webkit-linear-gradient(-"+(360-i)+"deg, red 30%,orange 10%, yellow 60%,blue 40%)";
+        deg7.innerHTML = ""+i+"deg";
+        deg8.innerHTML = "-"+(360-i)+"deg";
+},500)
+    
+    
+    /*
+        保持渐变方向一致，数值的对应关系表如下，找出规律
+                linear-gradient              -webkit-linear-gradient
+        正数            负数             |   正数          负数
+        0                                   90
+        80      -280【-(360-80)=-280】  |   10      -350【-(360-10)=-350】
+        90      -270【-(360-90)=-270】  |   0       -360【-(360-0)=-360】
+        100     -260【-(360-100)=-260】 |   350     -10【-(360-350)=-10】
+        150     -210【-(360-150)=-210】 |   300     -60【-(360-300)=-60】
+        180                                 270
+        190     -170【-(360-190)=-170】 |   260     -100【-(360-260)=-100】
+        270                                 180
+        300                                 150
+        360                                 90
+        
+        
+        根据如上数值关系，通过画图，
+     linear-gradient的起点变动方向是顺时针变动的，所以，根据元素中心点的向上垂直线，顺时针画出角度
+     的起点变动方向是逆时针变动的，所以，根据元素中心点的向上执行，逆时针画出角度
+     
+     通过画图发现，两个角度形成的扇形重合部分正好是一个直角90度的扇形，根据直角90度的关系，
+     能够得到-webkit-linear-gradient的起点连接元素中心点形成的扇形，这个扇形的角度就是-webkit-linear-gradient的角度
+     
+     
+     总结：
+     经过对象关系表，就能够得出换算关系，如angle方法，只要已知某个角度，就能够得到另一个属性角度值
+
+     当已知linear-gradient度数时，
+     -webkit-linear-gradient需要保持渐变方向一致，
+     此时-webkit-linear-gradient的数值应该是多少？
+    */
+    var demo5 = setInterval(function () {
+            var demo9 = document.getElementsByTagName("demo9")[0].style;
+            var deg9 = document.getElementsByTagName("deg")[8];
+            var xian9 = document.getElementsByTagName("xian")[8].style;
+        
+            var demo10 = document.getElementsByTagName("demo10")[0].style;
+            var deg10 = document.getElementsByTagName("deg")[9];
+            var xian10 = document.getElementsByTagName("xian")[9].style;
+                var webkit = angle(i);
+                xian9.transform = "rotate("+i+"deg)";
+                xian10.transform = "rotate(-"+webkit+"deg)";
+                demo9.backgroundImage = "linear-gradient("+i+"deg, red 30%,orange 10%, yellow 60%,blue 40%)";
+                //demo9.backgroundImage = "linear-gradient("+i+"deg, red, yellow)";
+                demo10.backgroundImage = "-webkit-linear-gradient("+webkit+"deg, red 30%,orange 10%, yellow 60%,blue 40%)";
+                //demo10.backgroundImage = "-webkit-linear-gradient("+webkit+"deg, red, yellow)";
+                deg9.innerHTML = ""+i+"deg";
+                deg10.innerHTML = ""+webkit+"deg";
+    },500);
+
+/**
+ * ag:可为linear-gradient或-webkit-linear-gradient的角度值
+ * 已知linear-gradient角度，求-webkit-linear-gradient的角度
+ * 或者
+ * 已知-webkit-linear-gradient角度，求linear-gradient的角度
+ */ 
+function angle(ag) {
+    //计算linear-gradient等于非直角角度时，相当于判断角度在哪个象限内时，-webkit-linear-gradient应该是多少？
+    var webkit = ag<90 ? 90-ag%90 : ag<180 ? 360-ag%90 : ag<270 ? 270-ag%90 : ag<360 ? 180-ag%90 : 0;
+    //计算linear-gradient等于直角角度时，-webkit-linear-gradient应该是多少？
+    webkit = ag==0 ? 90 : ag==90 ? 0 : ag==180 ? 270 : ag==270 ? 180 : ag==360 ? 90  : webkit;
+    return webkit;
+}
+    
+
+    /*
+     当已知-webkit-linear-gradient度数时，
+     linear-gradient需要保持渐变方向一致，
+     此时linear-gradient的数值应该是多少？
+     */
+var demo6 = setInterval(function () {
+    var demo11 = document.getElementsByTagName("demo11")[0].style;
+    var deg11 = document.getElementsByTagName("deg")[10];
+    var xian11 = document.getElementsByTagName("xian")[10].style;
+
+    var demo12 = document.getElementsByTagName("demo12")[0].style;
+    var deg12 = document.getElementsByTagName("deg")[11];
+    var xian12 = document.getElementsByTagName("xian")[11].style;
+    var webkit = angle(i);
+    xian11.transform = "rotate(-"+i+"deg)";
+    xian12.transform = "rotate("+webkit+"deg)";
+    demo11.backgroundImage = "-webkit-linear-gradient("+i+"deg, red 30%,orange 10%, yellow 60%,blue 40%)";
+    demo12.backgroundImage = "linear-gradient("+webkit+"deg, red 30%,orange 10%, yellow 60%,blue 40%)";
+    deg11.innerHTML = ""+i+"deg";
+    deg12.innerHTML = ""+webkit+"deg";
+},500);
+
+
+for(var i =1;i<=12;i++){
+    document.getElementsByTagName("demo"+i)[0].onclick = function () {
+        clearInterval(window[this.getAttribute("demo")]);
+    }
+}
+    
+</script>
+</body>
+</html>

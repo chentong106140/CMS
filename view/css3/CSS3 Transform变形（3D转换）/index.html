@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS3 Transform变形（3D转换）</title>
+    <style type="text/css">
+        *{
+            border:0px;
+            padding:0px;
+            margin:0px;
+        }
+
+
+        /*3D位移translate*/
+        .container1,.container2,.container3,.container33{
+            width:300px;
+            height:300px;
+            position:absolute;
+            top:20px;
+            left:20px;
+            border:1px solid blue;
+
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+            -o-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+
+            -webkit-perspective: 500px;
+            -moz-perspective: 500px;
+            -ms-perspective: 500px;
+            -o-perspective: 500px;
+            perspective: 500px;
+            /*设置观察者与z轴平面的距离，如果rotateZ,translateZ,scaleZ的值大于等于perspective的值，相当于跑到了观察者，脑门后面去了，也就看不到了*/
+        }
+        .container2{
+            left:370px;
+        }
+
+        .container3{
+            left:720px;
+        }
+        .container33{
+            left:1060px;
+        }
+
+
+        .d1,.d2,.d3,.d33{
+            width:200px;
+            height:200px;
+            postion:absolute;
+            background-color:red;
+            top:0px;
+            left:0px;
+        }
+
+        /*
+        随着px的增加，直观效果上：
+        X：从左向右移动
+        Y：从上向下移动
+        Z：以方框中心为原点，变大
+        */
+        .d1{
+            transform:translateX(50px);
+        }
+
+        .d2{
+            transform:translateY(50px);
+        }
+
+        .d3{
+            transform:translateZ(50px);
+        }
+
+        .d33{
+            transform:translate3d(50px,50px,50px);
+        }
+
+
+
+        /*3D旋转rotate*/
+
+
+        .container4,.container5,.container6,.container66{
+            width:300px;
+            height:300px;
+            position:absolute;
+            top:370px;
+            left:20px;
+            border:1px solid blue;
+
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+            -o-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+
+            -webkit-perspective: 500px;
+            -moz-perspective: 500px;
+            -ms-perspective: 500px;
+            -o-perspective: 500px;
+            perspective: 500px;
+        }
+        .container5{
+            left:370px;
+        }
+
+        .container6{
+            left:720px;
+        }
+
+        .container66{
+            left:1060px;
+        }
+
+
+        .d4,.d5,.d6,.d66{
+            width:200px;
+            height:200px;
+            postion:absolute;
+            background-color:red;
+            top:0px;
+            left:0px;
+        }
+
+        /*
+        随着px的增加，直观效果上：
+        X：以方框X轴，从下向上旋转
+        Y：以方框y轴，从左向右旋转
+        Z：以方框中心为原点，顺时针旋转
+        */
+        .d4{
+            transform:rotateX(45deg);
+        }
+
+        .d5{
+            transform:rotateY(45deg);
+        }
+
+        .d6{
+            transform:rotateZ(45deg);
+        }
+        /*
+        x：是一个0到１之间的数值，主要用来描述元素围绕X轴旋转的矢量值；
+        y：是一个０到１之间的数值，主要用来描述元素围绕Y轴旋转的矢量值；
+        z：是一个０到１之间的数值，主要用来描述元素围绕Z轴旋转的矢量值；
+        a：是一个角度值，主要用来指定元素在3D空间旋转的角度，如果其值为正值，元素顺时针旋转，反之元素逆时针旋转。
+        
+        rotateX(45deg)函数功能等同于rotate3d(1,0,0,45deg)
+        rotateY(45deg)函数功能等同于rotate3d(0,1,0,45deg)
+        rotateZ(45deg)函数功能等同于rotate3d(0,0,1,45deg)
+        */
+
+        .d66{
+            transform:rotate3d(.6,.6,.6,45deg);
+        }
+
+
+        /*3D缩放scale*/
+
+        .container7,.container8,.container9,.container99{
+            width:300px;
+            height:300px;
+            position:absolute;
+            top:740px;
+            left:20px;
+            border:1px solid blue;
+
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+            -o-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+
+            -webkit-perspective: 500px;
+            -moz-perspective: 500px;
+            -ms-perspective: 500px;
+            -o-perspective: 500px;
+            perspective: 500px;
+        }
+        .container8{
+            left:370px;
+        }
+
+        .container9{
+            left:720px;
+        }
+
+        .container99{
+            left:1060px;
+        }
+
+
+        .d7,.d8,.d9,.d99{
+            width:200px;
+            height:200px;
+            postion:absolute;
+            background-color:red;
+            top:0px;
+            left:0px;
+        }
+
+        /*
+        通过使用3D缩放函数，可以让元素在Z轴上按比例缩放。默认值为１，当值大于１时，元素放大，反之小于１大于0.01时，元素缩小。
+        当scale3d()中X轴和Y轴同时为1，即scale3d(1,1,sz)，其效果等同于scaleZ(sz)。
+        
+        
+        随着放大倍数的增加，直观效果上：
+            X：以方框Y轴，左右变宽
+            Y：以方框X轴，上下变高
+            Z：看不出变换。scaleZ()和scale3d()函数单独使用时没有任何效果。
+        */
+        .d7{
+            transform:scaleX(1.5);
+        }
+
+        .d8{
+            transform:scaleY(1.5);
+        }
+
+        .d9{
+            transform:scaleZ(1.5);
+            /*scaleZ()和scale3d()函数单独使用时没有任何效果，需要配合其他的变形函数一起使用才会有效果*/
+        }
+
+
+        .d99{
+            transform: scaleZ(1.5) rotateX(45deg);
+        }
+        
+    </style>
+</head>
+<body>
+
+<h4 style="display:block;position:absolute;top:0px; left:0px;">3D位移translateX</h4>
+<div class="container1"><div class="d1">transform:translateX(50px);<a href="https://www.cnblogs.com/shenzikun1314/p/6390181.html">参考</a></div></div>
+<div class="container2"><div class="d2">transform:translateY(50px);</div></div>
+<div class="container3"><div class="d3">transform:translateZ(50px);</div></div>
+<div class="container33"><div class="d33">transform:translate3d(50px,50px,50px);</div></div>
+
+
+<h4 style="display:block;position:absolute;top:330px; left:0px;">3D旋转rotateX</h4>
+<div class="container4"><div class="d4">transform:rotateX(45deg);</div></div>
+<div class="container5"><div class="d5">transform:rotateY(45deg);</div></div>
+<div class="container6"><div class="d6">transform:rotateZ(45deg);</div></div>
+<div class="container66"><div class="d66">transform:rotate3d(.6,.6,.6,45deg);</div></div>
+
+<h4 style="display:block;position:absolute;top:700px; left:0px;">3D缩放scale</h4>
+<div class="container7"><div class="d7">transform:scaleX(1.5);</div></div>
+<div class="container8"><div class="d8">transform:scaleY(1.5);</div></div>
+<div class="container9"><div class="d9">transform:scaleZ(1.5);</div></div>
+<div class="container99"><div class="d99">transform: scaleZ(1.5) rotateX(45deg);</div></div>
+</body>
+</html>

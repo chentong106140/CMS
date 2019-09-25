@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>getset</title>
+</head>
+<body>
+<script type="text/javascript">
+
+    //https://www.cnblogs.com/dsitn/p/7074238.html
+    //https://blog.csdn.net/qlwangcong518/article/details/86182992
+    
+    var a1 = {
+        /**
+         * 如下定义缓存属性
+         */ 
+        $name: "陈通",
+        $age: 18,
+        $phone: "15651036277",
+        /**
+         * 如下定义get/set方法
+         */ 
+        get name(){
+            console.log("get a1.name");
+            return "姓名："+this.$name;
+        },
+        get age(){
+            console.log("get a1.age");
+            return "年龄："+this.$age;
+        },
+        set age(val){
+            console.log("set a1.age");
+            this.$age = val;
+        },
+        set phone(val){
+            console.log("set a1.phone");
+            this.$phone = val;
+        },
+        toString:function () {
+            return this.name + ' ' + this.age + ' 手机号码：' + this.$phone;
+        }
+    };
+    //获取对象属性
+    console.log(1,a1.name);
+    console.log(2,a1.age);
+    console.log(3,a1.phone);
+    
+    //设置对象属性
+    a1.name = "Morgan";
+    a1.age = 28;
+    a1.phone = "000000000";
+
+    //再次获取对象属性
+    console.log(4,a1.name);
+    console.log(5,a1.age);
+    console.log(6,a1.$phone);
+
+    console.log(7,a1.toString());
+
+    /**
+     输出如下：
+     get a1.name 
+     1 姓名：陈通            ——》获取对象name属性时，自动执行get方法
+     
+     get a1.age 
+     2 年龄：18             ——》获取对象age属性时，自动执行get方法
+     
+     3 undefined            ——》属性phone只设置了set方法，没有设置get方法，所以属性只写不可读，这边输出undefined
+     
+     set a1.age             ——》设置属性age，自动执行set方法
+     set a1.phone           ——》设置属性phone，自动执行phone方法
+     
+     get a1.name            
+     4 姓名：陈通            ——》获取对象name属性时，自动执行get方法
+     
+     get a1.age 
+     5 年龄：28              ——》获取对象age属性时，自动执行get方法
+     
+     6 000000000            ——》对象的缓存属性可读，可写
+     
+     get a1.name 
+     get a1.age 
+     7 姓名：陈通 年龄：28 手机号码：000000000       ——》toString方法输出
+
+
+     
+     */
+
+    /**
+     * 结论：
+     * 1：对象的属性名不能与getset定义的属性名重复即可，没有什么固定写法，这里只是用了美元符$定义的变量与getset变量做了区分
+     * 2：如果getset属性，只定义了get没有定义set，说明该属性是只读属性
+     * 3：如果getset属性，只定义了set没有定义get,说明该属性是只写属性，不可读
+     */
+
+</script>
+</body>
+</html>

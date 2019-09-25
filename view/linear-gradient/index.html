@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>linear-gradient</title>
+    <style type="text/css">
+        body{
+            background-color: #efef87;
+        }
+        body div{
+            width:400px;
+            height:300px;
+            border: 1px solid black;
+            margin:10px;
+            float: left;
+        }
+        body div::after{
+            content:" ";
+            display: block;
+            clear:both;
+        }
+
+        body div:nth-of-type(1){
+            background:linear-gradient(red, yellow);
+        }
+
+        body div:nth-of-type(2){
+            background:-webkit-linear-gradient(red, yellow);
+        }
+
+        body div:nth-of-type(3){
+            /*顺时针45度方向，以圆点为起点，圆点为左下角*/
+            background:linear-gradient(45deg,red, yellow);
+        }
+
+        body div:nth-of-type(4){
+            /*顺时针45度方向，以圆点为起点，圆点为左下角*/
+            background:-webkit-linear-gradient(45deg,red, yellow);
+        }
+
+        body div:nth-of-type(5){
+            /**
+                left：从左往右
+                right：从右往左
+                top：从上往下
+                bottom：从下往上
+                left top：从左上往右下
+                left bottom：从做下往右上
+                right top：从右上往左下
+                right bottom：从右下往左上
+             */
+            background:-webkit-linear-gradient(right top,red, yellow);
+        }
+
+        body div:nth-of-type(6){
+            background:-webkit-linear-gradient(-45deg, red 100px, yellow 200px);
+        }
+        body div:nth-of-type(7){
+            background:linear-gradient(80deg, red 30%,orange 10%, yellow 60%,blue 40%);
+        }
+
+        body div:nth-of-type(8){
+            background:-webkit-linear-gradient(10deg, red 30%,orange 10%, yellow 60%,blue 40%);
+        }
+
+</style>
+</head>
+<body>
+<div>background:linear-gradient(red, yellow);</div>
+<div>background:-webkit-linear-gradient(red, yellow);</div>
+<div>background:linear-gradient(45deg,red, yellow);</div>
+<div>background:-webkit-linear-gradient(45deg,red, yellow);</div>
+<div>background:-webkit-linear-gradient(right top,red, yellow/div>iv></div>
+<div>background:-webkit-linear-gradient(-45deg, red 100px, yellow 200px);</div>
+<div>background:linear-gradient(80deg, red 30%,orange 10%, yellow 60%,blue 40%);</div>
+<div>background:-webkit-linear-gradient(80deg, red 30%,orange 10%, yellow 60%,blue 40%);</div>
+<script type="text/javascript">
+//国外案例https://leaverou.github.io/css3patterns/
+//http://www.zhangxinxu.com/wordpress/2013/09/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3css3-gradient%E6%96%9C%E5%90%91%E7%BA%BF%E6%80%A7%E6%B8%90%E5%8F%98/
+//w3c学习：https://www.w3cplus.com/css3/do-you-really-understand-css-linear-gradients.html
+    
+</script>
+</body>
+</html>
