@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编译</title>
+</head>
+<body>
+<script type="text/javascript">
+    
+    //学习地址：
+    // https://blog.csdn.net/zuiziyoudexiao/article/details/79928680
+
+    /**
+     * 单文件编译
+     * sass <要编译的Sass文件路径>/style.scss : <要输出CSS文件路径>/style.css
+     */
+    
+    //sass 1-scss.scss:style.css
+
+    /**
+     * 多文件编译
+     * 将sass下面的文件，编译到css目录下
+     * 
+     * sass --watch sass/:css/ --style expanded --sourcemap
+     */
+
+
+    /**
+     * 编译格式
+     * sass --watch input.scss:output.css --style compact
+     * 
+     * 如果你有很多的sass文件的目录，你也可以告诉sass监听整个目录
+     * sass --watch app/sass:public/stylesheets
+     * 
+     * 编译添加调试map
+     * sass --watch input.scss:output.css --sourcemap
+     * 
+     * 选择编译格式并添加调试map
+     * sass --watch input.scss:output.css --style expanded --sourcemap
+     */
+    
+    
+
+
+</script>
+</body>
+</html>

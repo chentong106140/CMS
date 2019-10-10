@@ -6,6 +6,8 @@
     <style type="text/css">
         body{
             background-color: #efef87;
+            color:white;
+            font-size:24px;
         }
         body div{
             width:400px;
@@ -63,6 +65,29 @@
             background:-webkit-linear-gradient(10deg, red 30%,orange 10%, yellow 60%,blue 40%);
         }
 
+        /*渐变色位置控制,下一个颜色是在上一个颜色开始位置，这意味弟浏览器不需要填满两个颜色之余间的空间*/
+        body div:nth-of-type(9){
+            background:linear-gradient(97deg,red,blue 72%);
+        }
+        body div:nth-of-type(10){
+            background:linear-gradient(97deg,red,red 28%,blue 72%);
+        }
+        body div:nth-of-type(11){
+            background:linear-gradient(97deg,red,red 28%,orange 28%,blue 72%);
+        }
+
+        body div:nth-of-type(12){
+            background:linear-gradient(97deg,red,red 28%,orange 28%,orange 49%,blue 72%);
+        }
+
+        body div:nth-of-type(13){
+            background:linear-gradient(97deg,red,red 28%,orange 28%,orange 49%,yellow 49%,blue 72%);
+        }
+
+        body div:nth-of-type(14){
+            background:linear-gradient(97deg,red,red 28%,orange 28%,orange 49%,yellow 49%,yellow 72%,blue 72%);
+        }
+
 </style>
 </head>
 <body>
@@ -73,12 +98,25 @@
 <div>background:-webkit-linear-gradient(right top,red, yellow/div>iv></div>
 <div>background:-webkit-linear-gradient(-45deg, red 100px, yellow 200px);</div>
 <div>background:linear-gradient(80deg, red 30%,orange 10%, yellow 60%,blue 40%);</div>
-<div>background:-webkit-linear-gradient(80deg, red 30%,orange 10%, yellow 60%,blue 40%);</div>
+<div>background:-webkit-linear-gradient(10deg, red 30%,orange 10%, yellow 60%,blue 40%);</div>
+<!--渐变色位置控制如下-->
+<div>background:linear-gradient(97deg,red,blue 72%);</div>
+<div>background:linear-gradient(97deg,red,red 28%,blue 72%);</div>
+<div>background:linear-gradient(97deg,red,red 28%,orange 28%,blue 72%);</div>
+<div>background:linear-gradient(97deg,red,red 28%,orange 28%,orange 49%,blue 72%);</div>
+<div>background:linear-gradient(97deg,red,red 28%,orange 28%,orange 49%,yellow 49%,blue 72%);</div>
+<div>background:linear-gradient(97deg,red,red 28%,orange 28%,orange 49%,yellow 49%,yellow 72%,blue 72%);</div>
 <script type="text/javascript">
 //国外案例https://leaverou.github.io/css3patterns/
 //http://www.zhangxinxu.com/wordpress/2013/09/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3css3-gradient%E6%96%9C%E5%90%91%E7%BA%BF%E6%80%A7%E6%B8%90%E5%8F%98/
 //w3c学习：https://www.w3cplus.com/css3/do-you-really-understand-css-linear-gradients.html
-    
+function angle(ag) {
+    //计算linear-gradient等于非直角角度时，相当于判断角度在哪个象限内时，-webkit-linear-gradient应该是多少？
+    var webkit = ag<90 ? 90-ag%90 : ag<180 ? 360-ag%90 : ag<270 ? 270-ag%90 : ag<360 ? 180-ag%90 : 0;
+    //计算linear-gradient等于直角角度时，-webkit-linear-gradient应该是多少？
+    webkit = ag==0 ? 90 : ag==90 ? 0 : ag==180 ? 270 : ag==270 ? 180 : ag==360 ? 90  : webkit;
+    return webkit;
+}
 </script>
 </body>
 </html>
