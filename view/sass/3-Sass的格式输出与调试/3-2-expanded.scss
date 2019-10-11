@@ -1,0 +1,29 @@
+@charset "utf-8";
+/*
+展开输出方式 expanded
+
+保持源代码不变，区分编译后的输出格式
+
+使用编译命令
+  sass 3-2-expanded.scss:3-2-expanded.css --style expanded
+  
+  
+  通过结果可以看出，expanded与nested的输出格式区别就是大括号都是被展开的，只是大括号在另起一行，其他都一样
+*/
+
+nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li { display: inline-block; }
+
+  
+  a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+  }
+}

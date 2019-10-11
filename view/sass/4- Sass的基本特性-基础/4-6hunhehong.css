@@ -1,0 +1,82 @@
+@charset "UTF-8";
+/**
+    声明一个不带参数的混合宏
+ */
+/**
+    声明一个带一个参数的混合宏
+ */
+/**
+    声明一个带多个参数的混合宏
+ */
+/**
+     声明一个带有多个参数，并且，其中一个参数带有多个值的参数
+ */
+/**
+    验证：
+    调用一个无参数的混合宏，调用混合宏的关键字为：@include
+ */
+.border-radius-no {
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+/**
+    验证：
+    调用一个有一个参数的混合宏，调用混合宏的关键字为：@include
+ */
+.border-radius-one {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-border-radius: 100px;
+  border-radius: 100px;
+}
+
+/**
+    验证：
+    调用一个有多个参数的混合宏
+ */
+.border-radius-more {
+  width: 100px;
+  height: 200px;
+  width: 500px;
+  height: 700px;
+}
+
+/**
+    验证：
+    调用一个有多个参数，并且，带有多个值的参数的混合宏
+ */
+.box-shadow {
+  width: 100px;
+  height: 100px;
+  -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+  
+  width: 8px;
+  height: 8px;
+  -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+  
+  width: 80px;
+  height: 80px;
+  -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.5),1 1 2px rgba(0, 0, 0, 0.6),1 1 2px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.5),1 1 2px rgba(0, 0, 0, 0.6),1 1 2px rgba(0, 0, 0, 0.6);
+}
+
+/**
+    总结：
+      1:混合宏就是类似于js方法的东西，用于将多个样式通过参数拼接后，集成在一个混合宏内，输出字符串，方便多个地方调用。
+      
+      2:好处就是如果有一段被重复使用的样式，可以只需要声明一次，可多次调用
+      
+      3:声明一个混合宏需要的关键字就是 @mixin
+      
+      4：混合宏在有参数的情况下，可以给参数定义默认值，格式为：“参数:默认值”，
+        如：@mixin border-radius-one($radius:10px){}
+        
+      5：混合宏可以定义多个参数
+      
+      
+ */
+
+/*# sourceMappingURL=4-6hunhehong.css.map */

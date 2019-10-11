@@ -1,0 +1,30 @@
+@charset "utf-8";
+/*
+压缩输出方式 compressed
+
+保持源代码不变，区分编译后的输出格式
+
+使用编译命令
+  sass 3-4-compressed.scss:3-4-compressed.css --style compressed
+
+通过结果可以看出
+去掉标准的 Sass 和 CSS 注释及空格
+
+*/
+
+nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li { display: inline-block; }
+
+  
+  a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+  }
+}

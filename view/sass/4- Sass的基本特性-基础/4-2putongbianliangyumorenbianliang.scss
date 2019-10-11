@@ -1,0 +1,15 @@
+//普通变量与默认变量
+
+$fontSize:12px;//定义普通变量
+
+
+$lineHeight:3.5;   //覆盖默认变量
+$lineHeight:1.5 !default;   //定义默认变量，
+
+
+body{
+  font-size: $fontSize;//使用普通变量
+  line-height: $lineHeight;//使用默认变量，该值为3.5，而不是1.5
+}
+
+

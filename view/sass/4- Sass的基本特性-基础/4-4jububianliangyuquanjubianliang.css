@@ -1,0 +1,28 @@
+@charset "UTF-8";
+.block {
+  color: orange;
+}
+
+em a {
+  color: red;
+}
+em a li {
+  width: 1280;
+}
+
+span {
+  color: orange;
+  width: 1280;
+}
+
+/**
+    总结：
+    局部变量只会在局部范围内覆盖全局变量
+    
+    什么时候定义变量？
+    该值至少重复出现了两次；
+    该值至少可能会被更新一次；
+    该值所有的表现都与变量有关（非巧合）。
+ */
+
+/*# sourceMappingURL=4-4jububianliangyuquanjubianliang.css.map */

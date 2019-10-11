@@ -1,0 +1,15 @@
+@charset "UTF-8";
+/*
+紧凑输出方式 compact
+
+保持源代码不变，区分编译后的输出格式
+
+使用编译命令 sass 3-3-compact.scss:3-3-compact.css --style compact
+
+通过结果可以看出，compact的输出方案属于紧凑型，所有的选择器都在同一行内
+*/
+nav ul { margin: 0; padding: 0; list-style: none; }
+nav li { display: inline-block; }
+nav a { display: block; padding: 6px 12px; text-decoration: none; }
+
+/*# sourceMappingURL=3-3-compact.css.map */

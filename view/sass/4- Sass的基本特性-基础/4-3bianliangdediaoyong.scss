@@ -1,0 +1,12 @@
+//变量的调用
+$brand-primary : #337ab7 !default;    //定义变量
+$btn-primary-color: #fff !default;
+$btn-primary-bg : $brand-primary !default;  //定义变量时，引用其他变量，两个变量值都一样的话，省的重复定义值
+$btn-primary-border : darken($btn-primary-bg, 5%) !default;//定义变量时，可以与函数一起使用
+
+
+.btn-primary {
+  background-color: $btn-primary-bg;  //使用变量
+  color: $btn-primary-color;
+  border: 1px solid $btn-primary-border;  //可以与其他属性值共同使用
+}

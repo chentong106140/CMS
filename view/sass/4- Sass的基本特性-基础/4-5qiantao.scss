@@ -1,0 +1,101 @@
+//嵌套
+
+//1:嵌套-选择器嵌套
+// https://www.imooc.com/code/7009
+
+/**
+    html的结构是这样的
+    <header>
+        <nav>
+            <a href=“##”>Home</a>
+            <a href=“##”>About</a>
+            <a href=“##”>Blog</a>
+        </nav>
+    <header>
+    
+    现在想要分别选择nav下的a标签，与，header下的a标签，也就是如下这种方式
+    nav a {
+      color:red;
+    }
+
+    header nav a {
+      color:green;
+    }
+    
+    所以，你会发现，两个选择器中nav a被重复写了，能不能减少nav a的书写量？此时可以通过选择器嵌套的方式解决
+
+ */
+
+nav{
+  a{
+    color:red;
+    header &{ //（header nav a）通过&符号，代替父选择器写在这里，而，父选择器为nav a,也就是说，&其实就是等于nav a，最终生成为header nav a
+      color:green;
+    }
+  }
+}
+
+
+//2:属性嵌套
+/**
+    CSS 有一些属性前缀相同，只是后缀不一样,比如border-top/border-right，margin、padding、font 等属性
+    所以，如果需要生成如下这种样式：
+    .box {
+        border-top: 1px solid red;
+        border-bottom: 1px solid green;
+      }
+      
+      其实就可以使用sass的属性嵌套功能
+ */
+
+.box{
+  border:{    //注意此处，相同的前缀后面写上冒号“:”，这也是区别于是css属性赋值还是属性嵌套
+    top:1px solid red;
+    bottom: 1px solid green;
+  }
+}
+
+//3:伪类嵌套
+
+/**
+      选择器嵌套中，使用了&符号，来代替父选择器，那么&符号还能用其它作用吗？
+      例如，选择器存在多个伪类的时候
+          .clearfix:before, .clearfix:after {
+            content: "";
+            display: table;
+          }
+          .clearfix:after {
+            clear: both;
+            overflow: hidden;
+          }
+          
+        看下上面的css样式，你会发现.clearfix:after被写了2次，存在重复代码
+        为了解决这个问题，伪类嵌套功能可以解决
+ */
+.clearfix{
+  &:before,&:after{   //请注意这边，通过&选择器嵌套节省了父标签clearfix的书写次数，
+    content: "";
+    display: table;
+  }
+  &:after{    //将单独样式的单独写在下面，
+    clear: both;
+    overflow: hidden;
+  }
+}
+
+/**
+    总结：
+    1：选择器嵌套：其实就是可以使用&符号，来代替父选择器的插入，如上案例，header &,最终的效果 就是header nav a
+    
+    2：属性嵌套：其实就是在属性存在前缀相同，后缀不相同的情况下，被使用的，
+    使用方式如下
+              相同的前缀:{
+                    后缀:属性值
+                }
+     这种写法虽然也存在大括号，但是，请注意，大括号前面存在:冒号，只有在给属性赋值的情况下才会使用冒号再大括号:{}
+     
+    
+    3：伪类嵌套：其实与选择器嵌套，没什么区别，只不过着重声明了&符号也能与:after等伪类一起使用
+ */
+
+

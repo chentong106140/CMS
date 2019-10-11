@@ -1,0 +1,22 @@
+@charset "UTF-8";
+/*
+nav 作为父选择器，下面存在ul,li,a  3个子选择器，我们通过nested输出方法按下效果
+所以我们先取消IDEA的自动编译功能
+
+由于当前文件存在中文字符，需要在文件顶部添加@charset "utf-8";
+
+使用编译命令
+  sass 3-1-nested.scss:3-1-nested.css --style nested
+*/
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+nav li {
+  display: inline-block; }
+nav a {
+  display: block;
+  padding: 6px 12px;
+  text-decoration: none; }
+
+/*# sourceMappingURL=3-1-nested.css.map */

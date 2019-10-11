@@ -1,0 +1,28 @@
+@charset "utf-8";
+/*
+嵌套输出方式 nested
+
+保持源代码不变，区分编译后的输出格式
+
+由于当前文件存在中文字符，需要在文件顶部添加@charset "utf-8";
+
+使用编译命令
+  sass 3-1-nested.scss:3-1-nested.css --style nested
+*/
+
+nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li { display: inline-block; }
+
+  
+  a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+  }
+}
