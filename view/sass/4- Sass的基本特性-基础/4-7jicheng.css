@@ -1,0 +1,69 @@
+@charset "UTF-8";
+/**
+    .btn {
+      border: 1px solid #ccc;
+      padding: 6px 10px;
+      font-size: 14px;
+    }
+    
+    .btn-primary {}
+    
+    .btn-second {}
+    
+    如上一个样式块，如果.btn-primary与.btn-second需要继承.btn的所有样式
+    
+    简单说，就是其他的样式，需要复用某一个样式块内的所有样式，这种情况，可以使用@extend来继承
+
+ */
+/**
+    定义一个公共的样式块，用于其他样式快复用
+ */
+.btn, .btn-primary, .btn-second {
+  border: 1px solid #ccc;
+  padding: 6px 10px;
+  font-size: 14px;
+}
+
+/**
+    定义一个需要复用其他样式块的样式
+ */
+.btn-primary {
+  background-color: #f36;
+  color: #fff;
+}
+
+.btn-second {
+  background-color: orange;
+  color: #fff;
+}
+
+/**
+      如下代码，用于验证@extend可以继承哪些样式块
+ */
+#main, .btn-first {
+  font-size: 16px;
+}
+
+#demo span {
+  color: white;
+}
+
+#header.span, .btn-first {
+  margin: 0px;
+}
+
+/**
+    总结：
+      1：通过@extend将某一个样式块的所有样式复制过来，也可以叫继承过来
+      
+      2：@extend（继承），&（选择器嵌套），@include（混合宏）的区别
+        @extend（继承）：它的主要作用是将样式块内的所有样式复制过来
+        &（选择器嵌套）：它的主要作用是将父选择器的名称复制过来
+        @include（混合宏）：它的主要作用是将类似于函数内拼接好的样式复制过来，与@extend继承的区别，主要是，前者是调用函数返回的样式，后者是复制样式块的内样式
+    
+      3：@extend可以继承 类样式块，ID样式块
+      
+      4：@extend不可以继承  嵌套选择器，如#demo span
+ */
+
+/*# sourceMappingURL=4-7jicheng.css.map */

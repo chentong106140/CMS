@@ -1,0 +1,94 @@
+@charset "utf-8";
+//继承    https://www.imooc.com/code/7039
+
+/**
+    .btn {
+      border: 1px solid #ccc;
+      padding: 6px 10px;
+      font-size: 14px;
+    }
+    
+    .btn-primary {}
+    
+    .btn-second {}
+    
+    如上一个样式块，如果.btn-primary与.btn-second需要继承.btn的所有样式
+    
+    简单说，就是其他的样式，需要复用某一个样式块内的所有样式，这种情况，可以使用@extend来继承
+
+ */
+
+/**
+    定义一个公共的样式块，用于其他样式快复用
+ */
+.btn {
+  border: 1px solid #ccc;
+  padding: 6px 10px;
+  font-size: 14px;
+}
+
+/**
+    定义一个需要复用其他样式块的样式
+ */
+.btn-primary {
+  background-color: #f36;
+  color: #fff;
+  @extend .btn; //这边使用@extend关键字，用于将.btn样式块内的所有样式复制过来，可以理解为继承（复制）过来，好处就是，省的重复写那些复用的样式了
+}
+
+.btn-second {
+  background-color: orange;
+  color: #fff;
+  @extend .btn; //同上，复用.btn的所有样式，可以理解为将.btn下的所有样式复制过来
+}
+
+/**
+      如下代码，用于验证@extend可以继承哪些样式块
+      定义一个提供给其他样式继承的样式块
+ */
+#main{
+  font-size:16px;
+}
+/**
+    定义一个提供给其他样式继承的样式块
+ */
+#demo span{
+  color:white;
+}
+/**
+    定义一个提供给其他样式继承的样式块
+ */
+#header.span{
+  margin:0px;
+}
+
+/**
+    如下代码，用于演示是否可以继承其他样式块
+ */
+.btn-first{
+  @extend #main;  //可以继承
+ 
+  //@extend #demo span; 这种是无法继承的,会导致编译报错，所以此处代码被注释掉
+ 
+  //@extend #header.span; 这种虽然可以继承，但sass编译会提示该写法以后会不被支持继承这种符合选择器，所以，不建议使用
+}
+
+
+/**
+    总结：
+      1：通过@extend将某一个样式块的所有样式复制过来，也可以叫继承过来
+      
+      2：@extend（继承），&（选择器嵌套），@include（混合宏）的区别
+        @extend（继承）：它的主要作用是将样式块内的所有样式复制过来
+        &（选择器嵌套）：它的主要作用是将父选择器的名称复制过来
+        @include（混合宏）：它的主要作用是将类似于函数内拼接好的样式复制过来，与@extend继承的区别，主要是，前者是调用函数返回的样式，后者是复制样式块的内样式
+    
+      3：@extend可以继承 类样式块，ID样式块
+      
+      4：@extend不可以继承  嵌套选择器，例如：@extend #demo span;
+      
+      5：@extend不可以继承  符合选择器，例如：@extend #header.span;
+      
+      6：@extend继承：不可以单独写，必须只能写在选择器内，不能在全局作用域内，单独执行@extend,否则会编译失败
+ */
+

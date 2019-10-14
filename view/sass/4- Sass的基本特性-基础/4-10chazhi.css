@@ -1,0 +1,98 @@
+@charset "UTF-8";
+/**
+    我们有些时候，需要将变量与其他字符进行拼接，此时插值就起到作用了
+ */
+/**
+    一：插值的案例1
+      拼接属性名
+ */
+.login-box {
+  margin-top: 5px;
+  padding-top: 5px;
+}
+
+/**
+    插值的案例2
+        拼接样式名
+ */
+.header-text-small {
+  font-size: 12px;
+}
+
+.header-text-medium {
+  font-size: 20px;
+}
+
+.header-text-big {
+  font-size: 40px;
+}
+
+/**
+    二：如下是验证插值是否可以拼接变量名?
+
+$margin-big:40px;
+$size:big;
+
+  .test1{
+       margin-top:$margin-#\{$size};   本意是想拼接为$margin-big这个变量名称,但是编译报错，不可行，不可以拼接变量
+    }
+
+  @mixin test2($size){
+        margin-top:$margin-#\{$size};    本意也是想要拼接为$margin-big这个变量，并，输出这个变量的值，但最终也是编译报错，不可以拼接变量
+    }
+*/
+/**
+
+三：如下是验证插值是否可以拼接混合宏名?
+
+@mixin update-status{   //定义一个混合宏，用于验证是否可以通过插值，拼接这个混合宏的名称
+  margin-top:20px;
+}
+
+$flag:"status";   //定义一个变量，用于拼接混合宏的名称
+
+
+  .test3{
+      @include  update-#\{$flag};  //这边验证下是否可以拼接混合宏的名称，目的是想要拼接为update-status
+  }
+  
+*/
+/**
+      四：如下是验证插值是否可以拼接占位符名与选择器名称
+      
+      主要是想要实现，用户自定义的参数，来拼接具体执行哪个占位符，哪个选择器
+ */
+.test .mt {
+  margin-top: 20px;
+}
+
+.select-status, .test {
+  color: white;
+}
+
+.test {
+  z-index: auto;
+  z-index: auto;
+  animation: name;
+  animation-name: name1;
+  animation-name: "name1";
+  animation-name: name2;
+  animation-name: "name2";
+}
+
+/**
+    总结：
+        1：所谓插值，其实就是拼接字符，通过取变量的值与其他字符进行拼接
+        
+        2：插值可以拼接：样式名，选择器名，属性值，占位符，字符串
+        
+        3：插值不可以拼接：变量名，混合宏的名称
+        
+        4：@extend继承：不可以单独写，必须只能写在选择器内，不能在全局作用域内，单独执行@extend,否则会编译失败
+         
+        5：插值需要拼接占位符的时候，必须要与@extend关键字，共同使用，意思为你拼接好了，我立马执行继承
+        
+        
+ */
+
+/*# sourceMappingURL=4-10chazhi.css.map */
