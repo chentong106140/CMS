@@ -1,0 +1,42 @@
+@charset "UTF-8";
+/**
+      以下是验证变量计算
+ */
+.container {
+  width: 920px;
+  width: 940px;
+}
+
+/**
+      以下是验证复杂的数字运算
+ */
+.container {
+  width: 60px;
+}
+
+/**
+      以下是验证+号在字符串与数字同时存在的时候，拼接是如何拼接字符串的？与计算公式在一起又是什么情况？
+ */
+.container {
+  name: "陈通2019";
+  name: "陈通2019";
+  name: "陈通2019";
+  name: "陈通2019";
+  name: "陈通2019"-27;
+  name: "陈通2019"-54;
+  name: "陈通2019"-27/1;
+  name: "陈通2019"-27;
+}
+
+/**
+      以下验证+号拼接字符还有哪些情况
+ */
+.contaner {
+  content: "你好sass";
+  content: 你好sass;
+  content: "你好sass";
+  z-index: auto;
+  z-index: "auto";
+}
+
+/*# sourceMappingURL=5-2fuzajisuan.css.map */

@@ -1,0 +1,43 @@
+@charset "utf-8";
+//数据类型    https://www.imooc.com/code/8903
+
+/**
+     Sass 中包含以下几种数据类型：
+         数字: 如，1、 2、 13、 10px；
+         字符串：有引号字符串或无引号字符串，如，"foo"、 'bar'、 baz；
+         颜色：如，blue、 #04a3f9、 rgba(255,0,0,0.5)；
+         布尔型：如，true、 false；
+         空值：如，null；
+         值列表：用空格或者逗号分开，如，1.5em 1em 0 2em 、 Helvetica, Arial, sans-serif。
+         
+         
+      字符串分为两种类型：
+          有引号字符串：如 "Lucida Grande" 、'http://sass-lang.com'；
+          无引号字符串 ：如 sans-serifbold。
+          
+          
+      值列表：通过空格或者逗号分隔的一系列的值：
+          margin: 10px 15px 0 0
+          font-face: Helvetica, Arial, sans-serif
+          
+      Sass列表函数赋予了值列表更多功能（Sass进级会有讲解）：
+
+          nth函数： 可以直接访问值列表中的某一项；
+          join函数： 可以将多个值列表连结在一起；
+          append函数： 可以在值列表中添加值； 
+          @each规则： 则能够给值列表中的每个项目添加样式。
+
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+

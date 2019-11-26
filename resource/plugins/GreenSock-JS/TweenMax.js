@@ -27,7 +27,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 				return b;
 			},
 			_applyCycle = function(vars, targets, i) {
-				var alt = vars.cycle,
+				var alt = vars.cycle,25
 					p, val;
 				for (p in alt) {
 					val = alt[p];
