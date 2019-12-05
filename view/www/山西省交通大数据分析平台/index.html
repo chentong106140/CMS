@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>山西省交通大数据分析平台</title>
+    <!--设置是否为缩放模式 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" type="text/css" href="resource/bootstrap.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="resource/jquery.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="resource/bootstrap.js"></script>
+    <!--echarts JS-->
+    <script src="resource/echarts.js"></script>
+    <!-- 轮播swiper文件 -->
+    <link rel="stylesheet" type="text/css" href="resource/swiper.css">
+    <script src="resource/swiper.js"></script>
+    <!--界面样式-->
+    <script src="resource/visual.js"></script>
+    <script src="resource/china.js"></script>
+    <script src="resource/chartMap.js"></script>
+    <link rel="stylesheet" type="text/css" href="resource/visual.css">
+
+</head>
+<body class="ksh" cz-shortcut-listen="true">
+    
+    <div class="head_top"><span>通用大数据可视化展示模版</span></div>
+    <div class="visual">
+        <div class="visual_left">
+            <div class="visual_box">
+                <div class="visual_title">
+                    <span>交通流量</span>
+                    <img src="resource/ksh33.png">
+                </div>
+                <div class="visual_chart" id="main1" style="user-select: none; position: relative;" _echarts_instance_="ec_1574755715249"><div style="position: relative; overflow: hidden; width: 37px; height: 246px; padding: 0px; margin: 0px; border-width: 0px;"><canvas style="position: absolute; left: 0px; top: 0px; width: 37px; height: 246px; user-select: none; padding: 0px; margin: 0px; border-width: 0px;" data-zr-dom-id="zr_0" width="37" height="246"></canvas></div><div></div></div>
+            </div>
+            <div class="visual_box">
+                <div class="visual_title">
+                    <span>交通工具流量</span>
+                    <img src="resource/ksh33.png">
+                </div>
+                <div class="visual_chart" id="main2" style="user-select: none; position: relative;" _echarts_instance_="ec_1574755715250"><div style="position: relative; overflow: hidden; width: 37px; height: 246px; padding: 0px; margin: 0px; border-width: 0px;"><canvas style="position: absolute; left: 0px; top: 0px; width: 37px; height: 246px; user-select: none; padding: 0px; margin: 0px; border-width: 0px;" data-zr-dom-id="zr_0" width="37" height="246"></canvas></div><div></div></div>
+            </div>
+            <div class="visual_box">
+                <div class="visual_title">
+                    <span>收费站车流量</span>
+                    <img src="resource/ksh33.png">
+                </div>
+                <div class="visual_chart sfzcll">
+                    <a>运输方式</a>
+                    <a>客运量</a>
+                    <a>货运量</a>
+                    <div class="sfzcll_pos_box">
+                        <div class="sfzcll_box" style="line-height: 54px;">
+                            <img class="sfzcll_bkJk" src="resource/ksh34.png">
+                            <img class="sfzcll_bkJk" src="resource/ksh34.png">
+                            <img class="sfzcll_bkJk" src="resource/ksh34.png">
+                            <img class="sfzcll_bkJk" src="resource/ksh34.png">
+                            <label><img src="resource/ksh35.png">公路运输</label>
+                            <div class="sfzcll_smallBk">
+                                <div class="ygl" style="line-height: 52px;">
+                                    <span>4347.2万</span>人
+                                </div>
+                            </div>
+                            <div class="sfzcll_smallBk">
+                                <div class="ygh" style="line-height: 52px;">
+                                    <span>4347.2万</span>人
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="sfzcll_box" style="line-height: 54px;">
+                            <img class="sfzcll_bkJk" src="resource/ksh34.png">
+                            <img class="sfzcll_bkJk" src="resource/ksh34.png">
+                            <img class="sfzcll_bkJk" src="resource/ksh34.png">
+                            <img class="sfzcll_bkJk" src="resource/ksh34.png">
+                            <label><img src="resource/ksh35.png">公路运输</label>
+                            <div class="sfzcll_smallBk">
+                                <div class="ygl" style="line-height: 52px;">
+                                    <span>4347.2万</span>人
+                                </div>
+                            </div>
+                            <div class="sfzcll_smallBk">
+                                <div class="ygh" style="line-height: 52px;">
+                                    <span>4347.2万</span>人
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="sfzcll_box" style="line-height: 54px;">
+                            <img class="sfzcll_bkJk" src="resource/ksh34.png">
+                            <img class="sfzcll_bkJk" src="resource/ksh34.png">
+                            <img class="sfzcll_bkJk" src="resource/ksh34.png">
+                            <img class="sfzcll_bkJk" src="resource/ksh34.png">
+                            <label><img src="resource/ksh35.png">公路运输</label>
+                            <div class="sfzcll_smallBk">
+                                <div class="ygl" style="line-height: 52px;">
+                                    <span>4347.2万</span>人
+                                </div>
+                            </div>
+                            <div class="sfzcll_smallBk">
+                                <div class="ygh" style="line-height: 52px;">
+                                    <span>4347.2万</span>人
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="visual_con">
+            <div class="visual_conTop">
+                <div class="visual_conTop_box visual_conTop1">
+                    <div>
+                        <h3>当前警情数(起)</h3>
+                        <p>67</p>
+                        <div class="conTop_smil">
+                            <a class="sz">日环比:<span>+3%</span><i class="fa fa-long-arrow-up"></i></a>
+                            <a class="xd">周环比:<span>-2%</span><i class="fa fa-long-arrow-down"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="visual_conTop_box visual_conTop2">
+                    <div>
+                        <h3>区域拥堵指数</h3>
+                        <p>1.4</p>
+                        <div class="conTop_smil">
+                            <a class="">缓行</a>
+                            <a class="">平均车速<span>120</span>KM/H</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="visual_conTop_box visual_conTop1">
+                    <div>
+                        <h3>当前警情数(起)</h3>
+                        <p>99</p>
+                        <div class="conTop_smil">
+                            <a class="sz">日环比:<span>+3%</span><i class="fa fa-long-arrow-up"></i></a>
+                            <a class="xd">周环比:<span>-2%</span><i class="fa fa-long-arrow-down"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="visual_conTop_box visual_conTop2">
+                    <div>
+                        <h3>当前警情数(起)</h3>
+                        <p>7421</p>
+                        <div class="conTop_smil">
+                            <a class="null">null</a>
+                            <a class="xd">月环比:<span>-2%</span><i class="fa fa-long-arrow-down"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="visual_conBot">
+                <img class="visual_conBot_l" src="resource/ksh42.png">
+                <img class="visual_conBot_2" src="resource/ksh43.png">
+                <img class="visual_conBot_3" src="resource/ksh44.png">
+                <img class="visual_conBot_4" src="resource/ksh45.png">
+                <div class="visual_chart_text">
+                    <h1>出行服务+大数据</h1>
+                    <h2>山西省交通大数据分析平台</h2>
+                </div>
+                <div class="visual_chart" id="main8" style="user-select: none;" _echarts_instance_="ec_1574755715258"><div style="position: relative; overflow: hidden; width: 34px; height: 683px; padding: 0px; margin: 0px; border-width: 0px;"><canvas style="position: absolute; left: 0px; top: 0px; width: 34px; height: 683px; user-select: none; padding: 0px; margin: 0px; border-width: 0px;" data-zr-dom-id="zr_0" width="34" height="683"></canvas><canvas style="position: absolute; left: 0px; top: 0px; width: 34px; height: 683px; user-select: none; padding: 0px; margin: 0px; border-width: 0px;" data-zr-dom-id="zr_2" width="34" height="683"></canvas></div></div>
+                <div class="visual_conBot_bot">
+                    <div class="visualSssf_left">
+                        <h3>今日实时收费</h3>
+                        <a style="display:block">全省数据</a>
+                        <a>大同北</a>
+                        <a>大同南</a>
+                        <a>朔州</a>
+                        <a>吕梁北</a>
+                        <a>吕梁南</a>
+                        <a>太原</a>
+                        <a class="active">晋中</a>
+                        <a>太旧</a>
+                        <a>长治</a>
+                    </div>
+                    <div class="visualSssf_right">
+                        <div class="visualSssf_right_box" id="main5" style="user-select: none;" _echarts_instance_="ec_1574755715255"><div style="position: relative; overflow: hidden; width: 5px; height: 178px; padding: 0px; margin: 0px; border-width: 0px;"><canvas style="position: absolute; left: 0px; top: 0px; width: 5px; height: 178px; user-select: none; padding: 0px; margin: 0px; border-width: 0px;" data-zr-dom-id="zr_0" width="5" height="178"></canvas></div></div>
+                        <div class="visualSssf_right_box" id="main6" style="user-select: none;" _echarts_instance_="ec_1574755715256"><div style="position: relative; overflow: hidden; width: 5px; height: 178px; padding: 0px; margin: 0px; border-width: 0px;"><canvas style="position: absolute; left: 0px; top: 0px; width: 5px; height: 178px; user-select: none; padding: 0px; margin: 0px; border-width: 0px;" data-zr-dom-id="zr_0" width="5" height="178"></canvas></div></div>
+                        <div class="visualSssf_right_box" id="main7" style="user-select: none;" _echarts_instance_="ec_1574755715257"><div style="position: relative; overflow: hidden; width: 5px; height: 178px; padding: 0px; margin: 0px; border-width: 0px;"><canvas style="position: absolute; left: 0px; top: 0px; width: 5px; height: 178px; user-select: none; padding: 0px; margin: 0px; border-width: 0px;" data-zr-dom-id="zr_0" width="5" height="178"></canvas></div></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+        <div class="visual_right">
+            <div class="visual_box">
+                <div class="visual_title">
+                    <span>本月发生事件</span>
+                    <img src="resource/ksh33.png">
+                </div>
+                <div class="swiper-container visual_swiper1 visual_chart swiper-container-horizontal">
+                    <div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
+                        <div class="swiper-slide swiper-slide-active" id="main3" style="user-select: none; position: relative; width: 80px;" _echarts_instance_="ec_1574755715251"><div style="position: relative; overflow: hidden; width: 37px; height: 246px; padding: 0px; margin: 0px; border-width: 0px;"><canvas style="position: absolute; left: 0px; top: 0px; width: 37px; height: 246px; user-select: none; padding: 0px; margin: 0px; border-width: 0px;" data-zr-dom-id="zr_0" width="37" height="246"></canvas></div><div></div></div>
+                        <div class="swiper-slide swiper-slide-next" id="main31" style="user-select: none; position: relative; width: 80px;" _echarts_instance_="ec_1574755715252"><div style="position: relative; overflow: hidden; width: 37px; height: 246px; padding: 0px; margin: 0px; border-width: 0px;"><canvas style="position: absolute; left: 0px; top: 0px; width: 37px; height: 246px; user-select: none; padding: 0px; margin: 0px; border-width: 0px;" data-zr-dom-id="zr_0" width="37" height="246"></canvas></div><div></div></div>
+                    </div>
+                <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+            </div>
+            <div class="visual_box visualSfzsfl">
+                <div class="visual_title">
+                    <span>收费站收费量</span>
+                    <img src="resource/ksh33.png">
+                </div>
+                <div class="visual_chart" id="main9" style="user-select: none; position: relative;" _echarts_instance_="ec_1574755715259"><div style="position: relative; overflow: hidden; width: 37px; height: 246px; padding: 0px; margin: 0px; border-width: 0px;"><canvas style="position: absolute; left: 0px; top: 0px; width: 37px; height: 246px; user-select: none; padding: 0px; margin: 0px; border-width: 0px;" data-zr-dom-id="zr_0" width="37" height="246"></canvas></div><div></div></div>
+                <div class="visual_table">
+                    <table>
+                        <tbody><tr>
+                            <td>小型车</td>
+                            <td>中型车</td>
+                            <td>大型车</td>
+                        </tr>
+                        <tr>
+                            <td>2486万</td>
+                            <td>2486万</td>
+                            <td>2486万</td>
+                        </tr>
+                        <tr>
+                            <td>2486万</td>
+                            <td>2486万</td>
+                            <td>2486万</td>
+                        </tr>
+                        <tr>
+                            <td>2486万</td>
+                            <td>2486万</td>
+                            <td>2486万</td>
+                        </tr>
+                        <tr>
+                            <td>2486万</td>
+                            <td>2486万</td>
+                            <td>2486万</td>
+                        </tr>
+                    </tbody></table>
+                </div>
+            </div>
+            <div class="visual_box">
+                <div class="visual_title">
+                    <span>收费站收费排行</span>
+                    <img src="resource/ksh33.png">
+                </div>
+                <div class="swiper-container visual_swiper2 visual_chart swiper-container-vertical">
+                    <div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(0px, -246px, 0px);">
+                        <div class="swiper-slide swiper-slide-prev" id="main4" style="user-select: none; position: relative; height: 246px;" _echarts_instance_="ec_1574755715253"><div style="position: relative; overflow: hidden; width: 37px; height: 246px; padding: 0px; margin: 0px; border-width: 0px;"><canvas style="position: absolute; left: 0px; top: 0px; width: 37px; height: 246px; user-select: none; padding: 0px; margin: 0px; border-width: 0px;" data-zr-dom-id="zr_0" width="37" height="246"></canvas></div><div></div></div>
+                        <div class="swiper-slide swiper-slide-active" id="main41" style="user-select: none; position: relative; height: 246px;" _echarts_instance_="ec_1574755715254"><div style="position: relative; overflow: hidden; width: 37px; height: 246px; padding: 0px; margin: 0px; border-width: 0px;"><canvas style="position: absolute; left: 0px; top: 0px; width: 37px; height: 246px; user-select: none; padding: 0px; margin: 0px; border-width: 0px;" data-zr-dom-id="zr_0" width="37" height="246"></canvas></div><div></div></div>
+                    </div>
+                <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            var a = $('.visualSssf_left a')
+            for (var i = 0; i < a.length; i++) {
+                a[i].index = i;
+                a[i].onclick = function () {
+                    for (var i = 0; i < a.length; i++) {
+                        a[i].className = ''
+                    }
+                    this.className = 'active'
+                }
+            }
+
+            var sfzcllH = $('.sfzcll_box').height()
+            var sfzcllHtwo = sfzcllH - 2
+            $('.sfzcll_box').css('line-height', sfzcllH + 'px')
+            $('.sfzcll_smallBk>div').css('line-height', sfzcllHtwo + 'px')
+
+            //删除加载动画
+            $('#load').fadeOut(1000)
+            setTimeout(function () {
+                $('#load').remove()
+            }
+    		, 1100);
+        })
+
+        //交通流量
+        var myChart1 = echarts.init(document.getElementById('main1'));
+        myChart1.setOption(option1);
+        //交通工具流量
+        var myChart2 = echarts.init(document.getElementById('main2'));
+        myChart2.setOption(option2);
+        //本月发生事件
+        var myChart3 = echarts.init(document.getElementById('main3'));
+        myChart3.setOption(option3);
+        var myChart31 = echarts.init(document.getElementById('main31'));
+        myChart31.setOption(option31);
+        var mySwiper1 = new Swiper('.visual_swiper1', {
+            autoplay: true,//可选选项，自动滑动
+            speed: 800,//可选选项，滑动速度
+            autoplay: {
+                delay: 5000,//1秒切换一次
+            },
+        })
+        //收费站收费排行
+        var myChart4 = echarts.init(document.getElementById('main4'));
+        myChart4.setOption(option4);
+        var myChart41 = echarts.init(document.getElementById('main41'));
+        myChart41.setOption(option41);
+        var mySwiper2 = new Swiper('.visual_swiper2', {
+            autoplay: true,//可选选项，自动滑动
+            direction: 'vertical',//可选选项，滑动方向
+            speed: 2000,//可选选项，滑动速度
+        })
+        //今日实时收费
+        var myChart5 = echarts.init(document.getElementById('main5'));
+        myChart5.setOption(option5);
+        var myChart6 = echarts.init(document.getElementById('main6'));
+        myChart6.setOption(option6);
+        var myChart7 = echarts.init(document.getElementById('main7'));
+        myChart7.setOption(option7);
+        //中间地图
+        var myChart8 = echarts.init(document.getElementById('main8'));
+        myChart8.setOption(option8);
+        //收费站收费量
+        var myChart9 = echarts.init(document.getElementById('main9'));
+        myChart9.setOption(option9);
+    </script>
+
+
+</body></html>
