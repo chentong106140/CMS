@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>echarts</title>
+
+    <script src="../../resource/plugins/incubator-echarts/dist/echarts.js"></script>
+    <script src="../../resource/plugins/incubator-echarts/map/js/china.js"></script>
+    <script src="../../resource/plugins/incubator-echarts/theme/blue.js"></script>
+
+    <style type="text/css">
+        *{
+            padding: 0;
+            margin:0;
+            border: 0;
+        }
+        body{
+            width:1920px;
+            height: 1080px;
+            overflow: hidden;
+        }
+        #demo{
+            width:1920px;
+            height: 1080px;
+            background:#061436 url("image/ksh41.png") no-repeat;
+            background-size:100% 100%;
+            
+        }
+
+    </style>
+    <script src="js/map.js"></script>
+
+
+</head>
+<body>
+    <div id="demo"></div>
+    <script type="text/javascript">
+            //https://echarts.apache.org/examples/zh/editor.html?c=geo-lines
+        var myChart = echarts.init(document.getElementById('demo'));
+
+
+
+        
+        var allData = {
+            "citys":[],
+            "moveLines":[]
+        };
+        
+        var moveCtity = [
+/*                {
+                    "name": "广东省",
+                    "log": "113.23",
+                    "lat": "23.16",
+                },
+                {
+                    "name": "北京市",
+                    "log": "116.46",
+                    "lat": "39.92",
+                },*/
+                {
+                    "name": "上海市",
+                    "log": "121.48",
+                    "lat": "31.22",
+                }
+            ];
+        
+        for(var i = 0;i<map.length;i++){
+            var city = {
+                "name": map[i].name,
+                "value": [
+                    map[i].log,
+                    map[i].lat,
+                    Math.round(Math.random()*10000)
+                ],
+                "symbolSize": 2,
+                "itemStyle": {
+                    "normal": {
+                        "color": "#58B3CC"
+                    }
+                }
+            };
+            allData.citys.push(city);
+        }
+        
+        for(var i = 0;i<moveCtity.length;i++){
+            for(var j = 0;j<map.length;j++){
+                if(map[j].name === moveCtity[i].name)continue;
+                var move = {
+                    "fromName": moveCtity[i].name,
+                    "toName": map[j].name,
+                    "coords": [
+                        [
+                            moveCtity[i].log,
+                            moveCtity[i].lat
+                        ],
+                        [
+                            map[j].log,
+                            map[j].lat
+                        ]
+                    ]
+                };
+                allData.moveLines.push(move);
+            }
+        }
+        
+        
+        option = {
+
+            title: {
+                text: '一线城市物流图',
+                left: 'center',
+                textStyle: {
+                    color: '#fff'
+                }
+            },
+            legend: {
+                show: false,
+                orient: 'vertical',
+                top: 'bottom',
+                left: 'right',
+                data: ['地点', '线路'],
+                textStyle: {
+                    color: '#fff'
+                }
+            },
+            geo: {
+                map: 'china',
+                label: {
+                    emphasis: {
+                        show: false
+                    }
+                },
+                roam: true,
+                itemStyle: {
+                    normal: {
+                        areaColor: 'rgba(7,21,57,0.5)',
+                        borderColor: '#0177ff'
+                    },
+                    emphasis: {
+                        areaColor: '#071537'//鼠标指上市时的颜色
+                    }
+                }
+            },
+            series: [
+                {
+                    "name": "地点",
+                    "type": "effectScatter",
+                    "coordinateSystem": "geo",
+                    "zlevel": 2,
+                    "rippleEffect": {
+                        "brushType": "stroke",
+                        scale:50,
+                        period:10
+                    },
+                    "label": {
+                        "emphasis": {
+                            "show": true,
+                            "position": "right",
+                            "formatter": "{b}"
+                        }
+                    },
+                    "symbolSize": 20,
+                    "showEffectOn": "render",
+                    "itemStyle": {
+                        "normal": {
+                            "color": "#46bee9"
+                        }
+                    },
+                    "data": allData.citys
+                },
+                {
+                    "name": "线路",
+                    "type": "lines",
+                    /*"coordinateSystem": "geo",*/
+                    "zlevel": 2,
+                    "large": true,
+                    "effect": {
+                        "show": true,
+                        "constantSpeed": 10,
+                        "symbol": "path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z",
+                        "symbolSize": 10,
+                        "trailLength": 0
+                    },  
+                    "lineStyle": {
+                        normal: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1,
+                                [
+                                    {
+                                        offset: 0, color: '#58B3CC'
+                                    },
+                                    {
+                                        offset: 1, color: '#F58158'
+                                    }
+                                ],
+                                false),
+                            width: 1,
+                            opacity: 0.5,
+                            curveness: 0.1
+                        }
+                    },
+                    "data": allData.moveLines
+                }
+            ]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+</body>
+</html>
