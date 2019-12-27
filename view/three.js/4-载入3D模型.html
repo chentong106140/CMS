@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>载入3D模型</title>
+    <script src="../../resource/plugins/three.js/build/three.js"></script>
+    <script src="../../resource/plugins/three.js/examples/js/loaders/GLTFLoader.js"></script>
+    <style type="text/css">
+        body { margin: 0; }
+        canvas { width: 100%; height: 100% }
+    </style>
+</head>
+<body>
+<script type="text/javascript">
+    //设置好renderer（渲染器）、scene（场景）和camera（相机）
+    //创建渲染器
+    var renderer = new THREE.WebGLRenderer();
+    //<canvas> 标签现在已经具有了100%的宽和高，调用setSize(window.innerWidth/2, window.innerHeight/2, false)将使得你的应用程序以一半的分辨率来进行渲染
+    renderer.setSize( window.innerWidth, window.innerHeight );
+
+    document.body.appendChild( renderer.domElement );
+
+    /**
+     * 透视摄像机
+     * 第一个参数是视野角度（FOV）。视野角度就是无论在什么时候，你所能在显示器上看到的场景的范围，它的值是角度单位。
+     * 第二个参数是长宽比（aspect ratio）。 也就是你用一个物体的宽除以它的高的值。比如说，当你在一个宽屏电视上播放老电影时，可以看到图像仿佛是被压扁的。
+     * 接下来的两个参数是近截面（near）和远截面（far）。 当物体某些部分比摄像机的远截面远或者比近截面近的时候，该这些部分将不会被渲染到场景中。
+     * @type {PerspectiveCamera}
+     */
+    var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 100 );
+    camera.position.set( 0, 0, 100 );
+    camera.lookAt( 0, 0, 0 );
+
+    //场景
+    var scene = new THREE.Scene();
+    scene.add(camera);
+
+    var loader = new THREE.GLTFLoader();
+
+    loader.load( '../../resource/plugins/three.js/examples/models/gltf/PrimaryIonDrive.glb', function ( gltf ) {
+        console.log(gltf.scene);
+        scene.add( gltf.scene );
+        renderer.render( scene, camera );
+    }, undefined, function ( error ) {
+
+        console.error( error );
+
+    } );
+
+    
+    
+</script>
+</body>
+</html>

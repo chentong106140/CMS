@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" user-scalable="no">
+    <meta name="description" content="ECharts, a powerful, interactive charting and visualization library for browser">
+    <link rel="shortcut icon" href="images/favicon.png">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries-->
+    <!--[if lt IE 9]>
+    <script src="../../../resource/plugins/IE9/html5shiv.min.js"></script>
+    <script src="../../../resource/plugins/IE9/respond.min.js"></script>
+    <![endif]-->
+
+    <!--jquery 自动补全搜索结果 start-->
+    <script src="../../../resource/plugins/jquery/jquery.js"></script>
+    <link rel="stylesheet" href="../../../resource/plugins/jQuery-autoComplete-1.0.7/jquery.auto-complete.css">
+    <script src="../../../resource/plugins/jQuery-autoComplete-1.0.7/jquery.auto-complete.js"></script>
+
+    <!--jquery end-->
+    
+    <!--bootstrap start-->
+    <link rel="stylesheet" type="text/css" href="../../../resource/plugins/bootstrap-3.3.7/dist/css/bootstrap.css">
+    <script src="../../../resource/plugins/bootstrap-3.3.7/dist/js/bootstrap.js"></script>
+    <!--bootstrap end-->
+    
+
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <!--自动进度条 start-->
+    <link rel="stylesheet" href="../../../resource/plugins/pace-0.7.8/themes/red/pace-theme-barber-shop.css">
+    <script src="../../../resource/plugins/pace-0.7.8/pace.js"></script>
+    <style type="text/css">
+        .pace {
+            -webkit-pointer-events: none;
+            pointer-events: none;
+
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        .pace-inactive {
+            display: none;
+        }
+
+        .pace .pace-progress {
+            background: #ff0000;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            right: 100%;
+            width: 100%;
+            height: 2px;
+        }
+
+    </style>
+    <!--自动进度条 end-->
+    
+    <title>ECharts Documentation</title>
+    <link rel="stylesheet" type="text/css" href="css/ecOption.css">
+
+    <!--图片比较 start-->
+    <link rel="stylesheet" href="../../../resource/plugins/twentytwenty-1.0.1/css/twentytwenty.css">
+    <script src="../../../resource/plugins/jquery.event.move-2.0.1/js/jquery.event.move.js"></script>
+    <script src="../../../resource/plugins/twentytwenty-1.0.1/js/jquery.twentytwenty.js"></script>
+    <!--图片比较 end-->
+    
+    <!--代码高亮 start-->
+    <link rel="stylesheet" href="../../../resource/plugins/code-prettify/src/prettify.css">
+    <script src="../../../resource/plugins/code-prettify/src/prettify.js"></script>
+    <script src="../../../resource/plugins/code-prettify/src/lang-css.js"></script>
+    <!--代码高亮 end-->
+    
+    
+    <!--自定义滚动条 start-->
+    <link rel="stylesheet" href="../../../resource/plugins/perfect-scrollbar-1.4.0/css/perfect-scrollbar.css">
+    <script src="../../../resource/plugins/perfect-scrollbar-1.4.0/dist/perfect-scrollbar.js"></script>
+    <!--自定义滚动条 end-->
+    
+    <!--滚动事件 start-->
+    <script src="../../../resource/plugins/waypoints-latest/lib/jquery.waypoints.js"></script>
+    <!--滚动事件 start-->
+
+    <!--消息提示 start-->
+    <link rel="stylesheet" href="../../../resource/plugins/toastr-2.1.1/toastr.css">
+    <script src="../../../resource/plugins/toastr-2.1.1/toastr.js"></script>
+    <!--消息提示 end-->
+</head>
+<!--[if lte IE 8]>
+<body class="lower-ie">
+<div id="lowie-main"><img src="images/forie.png" alt="ie tip"></div>
+</body>
+<![endif]-->
+<!--[if (gt IE 8)|!(IE)]>
+<body class="undefined">
+</body>
+<![endif]-->
+<body class="">
+<div id="main">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"
+                        class="navbar-toggle collapsed">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="index.html" class="navbar-brand">
+                    <img src="images/logo.png" alt="echarts logo" class="navbar-logo" />
+                </a>
+            </div>
+            <div id="navbar-collapse" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-left">
+                    <li id="nav-index">
+                        <a href="#">首页</a>
+                    </li>
+                    <li id="nav-doc" class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                            文档 <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">特性</a></li>
+                            <li><a href="#">教程</a></li>
+                            <li><a href="#">API</a></li>
+                            <li><a href="#">术语速查手册<span class="new">NEW</span></a></li>
+                            <li><a href="#">配置项手册</a></li>
+                            <li><a href="#">GL 配置项手册</a></li>
+                            <li><a href="#">版本记录</a></li>
+                        </ul>
+                    </li>
+                    <li id="nav-download" class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                            下载 <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">下载</a></li>
+                            <li><a href="#">主题下载</a></li>
+                            <li><a href="#">扩展下载</a></li>
+                        </ul>
+                    </li>
+                    <li id="nav-examples">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                            实例 <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">官方实例</a></li>
+                            <li><a href="#">GL 实例</a></li>
+                        </ul>
+                    </li>
+                    <li id="nav-community">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                            社区<b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Gallery</a></li>
+                            <li><a href="#">博客</a></li>
+                        </ul>
+                    </li>
+                    <li id="nav-tool"><a href="#" data-toggle="dropdown" class="dropdown-toggle">工具<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">表格工具</a></li>
+                            <li><a href="#">主题构建工具</a></li>
+                        </ul>
+                    </li>
+                    <li id="nav-contribute">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                            贡献<b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#" target="_blank">源码（GitHub）</a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">Issues</a>
+                            </li>
+                            <li>
+                                <a href="#">代码规范</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li id="nav-about">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                            关于<b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">贡献者列表</a></li>
+                            <li><a href="#">版权声明</a></li>
+                            <li><a href="#">邮件列表</a></li>
+                            <li><a href="#">依赖项</a></li>
+                            <li><a href="#">常见问题</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li id="nav-github">
+                        <a href="#" target="_blank">
+                            <img src="images/github.png" width="18"/>
+                        </a>
+                    </li>
+                    <li id="nav-homeen">
+                        <a href="#">EN</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="ecdoc-apidoc dtui-cpt">
+        <div class="ecdoc-api-left-area">
+            <div class="ecdoc-api-query-box">
+                <div data-cpt=" type: 'TextInput',  name: 'queryInput', viewModel: { mouseEnterSelect: true, confirmPoint: {blur: false, pressEnter: true} }"
+                     class="dtui-cpt dtui-txipt dtui-cpt-type-text dtui-txipt-type-text">
+                    <input type="text" placeholder="配置项模糊搜索（快捷键'/'）"  autocomplete="off">
+                    <span class="dtui-cpt-alert-mark dtui-txipt-alert-mark" style="display:none"></span>
+                    <span class="dtui-cpt-alert-text dtui-txipt-alert-text" style="display:none"></span>
+                </div>
+                <span class="query-result-info"></span>
+            </div>
+        </div>
+
+        <div class="ecdoc-api-right-area">
+            <div class="ecdoc-api-doc-group-area ps-container ps-active-y" >
+                <div class="ecdoc-api-doc-group-content"  style="height:10000px;">
+                    <div style="width: 100%; height: 300px; border: 2px solid red;">上</div>
+                    <div id="test" style="width: 100%; height: 50px; border: 2px solid red;">中</div>
+                    <div style="width: 100%; height: 200px; border: 2px solid red;">下</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": true,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+        
+        //当某元素在滚动条滚动的时候，控制元素的顶部碰到窗口的顶部时，触发事件
+        var waypoint = new Waypoint({
+            element: $("#test"),
+            handler: function (direction) {
+                console.log('Direction: ' + direction)
+            },
+            //offset : "50%"   //距离顶部50%的距离时触发
+            //offset : "bottom-in-view" //当元素的底部碰到窗口的底部时触发,如果想要实现只有在下拉的时候挺且是底部正好完整的展现出来时，可以加上direction方向参数同时判断
+            offset : 50
+            
+        });
+
+
+        toastr.info("加载完成！")
+        
+        
+    });
+    
+</script>
+</body>
+</html>

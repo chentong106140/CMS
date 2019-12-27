@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>three.js</title>
+    <script src="../../resource/plugins/three.js/build/three.js"></script>
+    <style type="text/css">
+        body { margin: 0; }
+        canvas { width: 100%; height: 100% }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+    //创建场景
+    var scene = new THREE.Scene();
+    //创建摄像机
+    var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+    //创建渲染器
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+
+    document.body.appendChild( renderer.domElement );
+    
+    //创建一个立方体
+    var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+    var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+    var cube = new THREE.Mesh( geometry, material );
+    scene.add( cube );
+
+    camera.position.z = 5;
+
+
+    /**
+     * 在这里我们创建了一个循环——这使得渲染器能够在每次屏幕刷新时对场景进行绘制
+     * （在大多数屏幕上，刷新率一般是60次/秒）
+     */
+    function animate() {
+        requestAnimationFrame( animate );
+        cube.rotation.x += 0.01;
+        cube.rotation.y += 0.01;
+        //渲染场景和摄像机
+        renderer.render( scene, camera );
+    }
+    animate();
+</script>
+
+</body>
+</html>

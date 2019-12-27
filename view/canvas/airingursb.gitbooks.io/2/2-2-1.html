@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2-2度线条形成图形</title>
+</head>
+<body>
+<div id="canvas-warp">
+    <canvas id="canvas" style="border: 1px solid #aaaaaa; display: block; margin: 50px auto;" width="800" height="600">
+        你的浏览器不支持canvas？赶快换一个吧
+    </canvas>
+</div>
+<script type="text/javascript">
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+    
+    //设置画布的宽高
+    canvas.width = 800;
+    canvas.height = 600;
+    
+    /**绘制第一条折线,注意设置颜色为红色**/
+    //设置起点
+    context.moveTo(100,100);
+    //设置第一个线条的终点
+    context.lineTo(300,300);
+    //设置第二个线条的终点
+    context.lineTo(100,500);
+    //设置画笔的宽度
+    context.lineWidth = 5;
+    //设置画笔描边颜色
+    context.strokeStyle = "red";
+    //设置画笔进行描边，最终形成一个线段，只有进行描边了，才能有效果，否则，之前设置起点，终点，都只是计划，并没有实际去画，如果需要画出效果，就得填充或者描边
+    context.stroke();
+
+
+    /**绘制第二条折线,注意设置颜色为蓝色**/
+    //设置起点
+    context.moveTo(300,100);
+    //设置第一个线条的终点
+    context.lineTo(500,300);
+    //设置第二个线条的终点
+    context.lineTo(300,500);
+    //设置画笔的宽度
+    context.lineWidth = 5;
+    //设置画笔描边颜色
+    context.strokeStyle = "blue";
+    //设置画笔进行描边，最终形成一个线段，只有进行描边了，才能有效果，否则，之前设置起点，终点，都只是计划，并没有实际去画，如果需要画出效果，就得填充或者描边
+    context.stroke();
+
+    /**绘制第三条折线,注意设置颜色为黑色**/
+    //设置起点
+    context.moveTo(500,100);
+    //设置第一个线条的终点
+    context.lineTo(700,300);
+    //设置第二个线条的终点
+    context.lineTo(500,500);
+    //设置画笔的宽度
+    context.lineWidth = 5;
+    //设置画笔描边颜色
+    context.strokeStyle = "black";
+    //设置画笔进行描边，最终形成一个线段，只有进行描边了，才能有效果，否则，之前设置起点，终点，都只是计划，并没有实际去画，如果需要画出效果，就得填充或者描边
+    context.stroke();
+
+
+    /**
+     * 总结：
+     * 你会看到是3个折线，颜色都是黑色的，
+     * 但是，却不是我们想要的，我们在绘制每一个2条边的折线的时候，都设置了不同的颜色，按理说，
+     * 第一个是红色，第二个是蓝色，第三个是黑色，
+     * 但，最终效果却是黑色，
+     * 那是因为，我们每次绘制折线的时候，都是使用了stroke()方法，它都会把之前设置的状态再绘制一遍，
+     * 相当于将之前绘制的图，再以当前最新的状态进行绘制。
+     * 
+     * 为了解决这个问题，请看2-2-2.html
+     */
+
+</script>
+</body>
+</html>

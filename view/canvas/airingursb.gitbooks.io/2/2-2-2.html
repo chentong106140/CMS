@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2-2度线条形成图形-使用 beginPath() 开始绘制</title>
+</head>
+<body>
+<div id="canvas-warp">
+    <canvas id="canvas" style="border: 1px solid #aaaaaa; display: block; margin: 50px auto;" width="800" height="600">
+        你的浏览器不支持canvas？赶快换一个吧
+    </canvas>
+</div>
+<script type="text/javascript">
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+    
+    //设置画布的宽高
+    canvas.width = 800;
+    canvas.height = 600;
+    
+    /**绘制第一条折线,注意设置颜色为红色**/
+    context.beginPath();        //绘制设置状态的起始点
+    //设置起点
+    context.moveTo(100,100);
+    //设置第一个线条的终点
+    context.lineTo(300,300);
+    //设置第二个线条的终点
+    context.lineTo(100,500);
+    //设置画笔的宽度
+    context.lineWidth = 5;
+    //设置画笔描边颜色
+    context.strokeStyle = "red";
+    //设置画笔进行描边，最终形成一个线段，只有进行描边了，才能有效果，否则，之前设置起点，终点，都只是计划，并没有实际去画，如果需要画出效果，就得填充或者描边
+    context.stroke();
+
+
+    /**绘制第二条折线,注意设置颜色为蓝色**/
+    context.beginPath();        //绘制设置状态的起始点
+    //设置起点
+    context.moveTo(300,100);
+    //设置第一个线条的终点
+    context.lineTo(500,300);
+    //设置第二个线条的终点
+    context.lineTo(300,500);
+    //设置画笔的宽度
+    context.lineWidth = 5;
+    //设置画笔描边颜色
+    context.strokeStyle = "blue";
+    //设置画笔进行描边，最终形成一个线段，只有进行描边了，才能有效果，否则，之前设置起点，终点，都只是计划，并没有实际去画，如果需要画出效果，就得填充或者描边
+    context.stroke();
+
+    /**绘制第三条折线,注意设置颜色为黑色**/
+    context.beginPath();        //绘制设置状态的起始点
+    //设置起点
+    context.moveTo(500,100);
+    //设置第一个线条的终点
+    context.lineTo(700,300);
+    //设置第二个线条的终点
+    context.lineTo(500,500);
+    //设置画笔的宽度
+    context.lineWidth = 5;
+    //设置画笔描边颜色
+    context.strokeStyle = "black";
+    //设置画笔进行描边，最终形成一个线段，只有进行描边了，才能有效果，否则，之前设置起点，终点，都只是计划，并没有实际去画，如果需要画出效果，就得填充或者描边
+    context.stroke();
+
+
+    /**
+     * 总结：
+     *      为了让绘制方法不重复绘制，我们可以在每次绘制之前加上beginPath()，
+     *      代表下次绘制的起始之处为beginPath()之后的代码
+     *      
+     *      context.beginPath()绘制设置状态的起始点，
+     *      它之后代码设置的绘制状态的作用域结束于绘制方法stroke()、fill()或者closePath()
+     */
+
+</script>
+</body>
+</html>
