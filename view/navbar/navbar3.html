@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" user-scalable="no">
+    <meta name="description" content="ECharts, a powerful, interactive charting and visualization library for browser">
+    <link rel="shortcut icon" href="images/favicon.png">
+    <title>ECharts Documentation</title>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries-->
+    <!--[if lt IE 9]>
+    <script src="../../resource/plugins/IE9/html5shiv.min.js"></script>
+    <script src="../../resource/plugins/IE9/respond.min.js"></script>
+    <![endif]-->
+    
+    
+    <!--自动进度条 start-->
+    <link rel="stylesheet" href="../../resource/plugins/pace-0.7.8/themes/red/pace-theme-barber-shop.css">
+    <script src="../../resource/plugins/pace-0.7.8/pace.js"></script>
+    <style type="text/css">
+        /* 自定义网络进度条皮肤 */
+        .pace {
+            -webkit-pointer-events: none;
+            pointer-events: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none
+        }
+
+        .pace-inactive {
+            display: none
+        }
+
+        .pace .pace-progress {
+            background: #e43c59;
+            position: fixed;
+            z-index: 100000;
+            top: 0;
+            right: 100%;
+            width: 100%;
+            height: 2px
+        }
+
+        .pace .pace-progress-inner {
+            display: block;
+            position: absolute;
+            right: 0px;
+            width: 100px;
+            height: 100%;
+            -webkit-box-shadow: 0 0 10px #e43c59, 0 0 5px #e43c59;
+            box-shadow: 0 0 10px #e43c59, 0 0 5px #e43c59;
+            opacity: 1.0;
+            -webkit-transform: rotate(3deg) translate(0px, -4px);
+            -ms-transform: rotate(3deg) translate(0px, -4px);
+            transform: rotate(3deg) translate(0px, -4px)
+        }
+
+    </style>
+    <!--自动进度条 end-->
+
+    <!--font-awesome字体 start-->
+    <link rel="stylesheet" href="../../resource/plugins/font-awesome/css/font-awesome.css">
+    <!--font-awesome字体 end-->
+
+    <!--jquery 自动补全搜索结果 start-->
+    <script src="../../resource/plugins/jquery/jquery.js"></script>
+    <link rel="stylesheet" href="../../resource/plugins/jQuery-autoComplete-1.0.7/jquery.auto-complete.css">
+    <script src="../../resource/plugins/jQuery-autoComplete-1.0.7/jquery.auto-complete.js"></script>
+    <!--jquery 自动补全搜索结果 end-->
+    
+    <!--bootstrap start-->
+    <link rel="stylesheet" type="text/css" href="../../resource/plugins/bootstrap-3.3.7/dist/css/bootstrap.css">
+    <script src="../../resource/plugins/bootstrap-3.3.7/dist/js/bootstrap.js"></script>
+    <!--bootstrap end-->
+    
+
+
+
+    <!--图片比较 start-->
+    <link rel="stylesheet" href="../../resource/plugins/twentytwenty-1.0.1/css/twentytwenty.css">
+    <script src="../../resource/plugins/jquery.event.move-2.0.1/js/jquery.event.move.js"></script>
+    <script src="../../resource/plugins/twentytwenty-1.0.1/js/jquery.twentytwenty.js"></script>
+    <!--图片比较 end-->
+    
+    <!--代码高亮 start-->
+    <link rel="stylesheet" href="../../resource/plugins/code-prettify/src/prettify.css">
+    <script src="../../resource/plugins/code-prettify/src/prettify.js"></script>
+    <script src="../../resource/plugins/code-prettify/src/lang-css.js"></script>
+    <!--代码高亮 end-->
+    
+    
+    <!--自定义滚动条 start-->
+    <link rel="stylesheet" href="../../resource/plugins/perfect-scrollbar-1.4.0/css/perfect-scrollbar.css">
+    <script src="../../resource/plugins/perfect-scrollbar-1.4.0/dist/perfect-scrollbar.js"></script>
+    <!--自定义滚动条 end-->
+    
+    <!--滚动事件 start-->
+    <script src="../../resource/plugins/waypoints-latest/lib/jquery.waypoints.js"></script>
+    <!--滚动事件 end-->
+
+    <!--消息提示 start-->
+    <link rel="stylesheet" href="../../resource/plugins/toastr-2.1.1/toastr.css">
+    <script src="../../resource/plugins/toastr-2.1.1/toastr.js"></script>
+    <!--消息提示 end-->
+
+    <!--左侧导航下拉框 start-->
+    <link rel="stylesheet" href="../../resource/plugins/jquery-accordion-menu/css/jquery-accordion-menu.css">
+    <script src="../../resource/plugins/jquery-accordion-menu/js/jquery-accordion-menu.js"></script>
+    <style type="text/css">
+        .left-nav{
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        .left-nav-form{
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        .left-nav-list{
+            position: absolute;
+            top:50px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            overflow: hidden;
+        }
+        .left-nav-footer{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            border-bottom: solid 1px #f0f0f0;
+            border-top: solid 1px #f0f0f0;
+            
+        }
+        .filterinput{
+            background-color:rgba(249, 244, 244, 0);
+            text-indent:0.5em;
+            font-weight:bold;
+            vertical-align: middle;
+            display: table-cell;
+            height: 32px;
+            line-height: 32px;
+
+
+            -webkit-appearance: none;
+            background-image: none;
+            border-radius: 4px;
+            border: 1px solid #DCDFE6;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            color: #606266;
+            display: inline-block;
+            font-size: inherit;
+            outline: 0;
+            padding: 0 15px;
+            -webkit-transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+            transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+            width: 100%;
+        }
+
+        .filterinput:hover {
+            border-color:#C0C4CC;
+        }
+
+        .filterinput:focus {
+            border-color:#409EFF;
+            outline: 0;
+        }
+        
+        #menu-list a{
+            overflow:hidden;
+            text-overflow:ellipsis;
+            -o-text-overflow:ellipsis;
+            white-space:nowrap;
+            width:100%;
+        }
+    </style>
+    <!--左侧导航下拉框 end-->
+
+    <script type="text/javascript">
+        $.browser = false;
+    </script>
+    <script src="../../resource/plugins/jquery-hashchange-1.3/jquery.ba-hashchange.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
+<style type="text/css">
+    body {
+        background: #FAFAFC;
+        color: #333;
+    }
+    .ecdoc-apidoc {
+        position: absolute;
+        top: 50px;
+        bottom: 0;
+        width: 100%;
+        overflow: hidden;
+    }
+    .left-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        margin-left: 0px;
+        height: 100%;
+        width: 280px;
+    }
+    .right-area {
+        position: absolute;
+        right: 0;
+        height: 100%;
+        left: 290px;
+        border-left: 1px solid #ddd;
+        padding: 20px;
+        overflow: hidden;
+       
+
+    }
+
+    .group-area {
+        text-align: left;
+        width: 100%;
+        height: 100%;
+        float: left;
+        display: block;
+    }
+    
+    .group-area iframe{
+        width:100%;
+        height: 100%;
+        overflow: visible;
+    }
+    
+    @media (max-width: 600px) {
+        .left-area {
+            display: none;
+        }
+        .right-area {
+            left: 0px;
+        }
+        .group-content iframe {
+            max-width: 100%;
+        }
+        .group-content {
+            padding: 14px 30px;
+        }
+    }
+</style>
+</head>
+<!--[if lte IE 8]>
+<body class="lower-ie">
+<div id="lowie-main"><img src="images/forie.png" alt="ie tip"></div>
+</body>
+<![endif]-->
+<!--[if (gt IE 8)|!(IE)]>
+<body class="undefined">
+</body>
+<![endif]-->
+<body class="">
+<div id="main">
+    <!--头部导航-->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"
+                        class="navbar-toggle collapsed">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="index.html" class="navbar-brand">
+                    <img src="images/logo.png" alt="echarts logo" class="navbar-logo" />
+                </a>
+            </div>
+            <div id="navbar-collapse" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-left">
+                    <li id="nav-index">
+                        <a href="#">首页</a>
+                    </li>
+                    <li id="nav-doc" class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                            文档 <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">特性</a></li>
+                            <li><a href="#">教程</a></li>
+                            <li><a href="#">API</a></li>
+                            <li><a href="#">术语速查手册<span class="new">NEW</span></a></li>
+                            <li><a href="#">配置项手册</a></li>
+                            <li><a href="#">GL 配置项手册</a></li>
+                            <li><a href="#">版本记录</a></li>
+                        </ul>
+                    </li>
+                    <li id="nav-download" class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                            下载 <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">下载</a></li>
+                            <li><a href="#">主题下载</a></li>
+                            <li><a href="#">扩展下载</a></li>
+                        </ul>
+                    </li>
+                    <li id="nav-examples">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                            实例 <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">官方实例</a></li>
+                            <li><a href="#">GL 实例</a></li>
+                        </ul>
+                    </li>
+                    <li id="nav-community">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                            社区<b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Gallery</a></li>
+                            <li><a href="#">博客</a></li>
+                        </ul>
+                    </li>
+                    <li id="nav-tool"><a href="#" data-toggle="dropdown" class="dropdown-toggle">工具<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">表格工具</a></li>
+                            <li><a href="#">主题构建工具</a></li>
+                        </ul>
+                    </li>
+                    <li id="nav-contribute">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                            贡献<b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#" target="_blank">源码（GitHub）</a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">Issues</a>
+                            </li>
+                            <li>
+                                <a href="#">代码规范</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li id="nav-about">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                            关于<b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">贡献者列表</a></li>
+                            <li><a href="#">版权声明</a></li>
+                            <li><a href="#">邮件列表</a></li>
+                            <li><a href="#">依赖项</a></li>
+                            <li><a href="#">常见问题</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <ul class="nav navbar-nav navbar-right">
+                    <li id="nav-github">
+                        <a href="#" target="_blank">
+                            <img src="images/github.png" width="18"/>
+                        </a>
+                    </li>
+                    <li id="nav-homeen">
+                        <a href="#">EN</a>
+                    </li>
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+    <!--主体-->
+    <div class="ecdoc-apidoc dtui-cpt">
+        <!--左侧导航-->
+        <div class="left-area">
+                <div id="left-menu" class="jquery-accordion-menu left-nav white">
+                    <div class="jquery-accordion-menu-header left-nav-form" id="menu-form">
+                        <form action="#" class="filterform">
+                            <input class="filterinput" type="text" />
+                        </form>
+                    </div>
+                    <ul id="menu-list" class=" left-nav-list"></ul>
+                    <div class="jquery-accordion-menu-footer left-nav-footer">
+                        Footer
+                    </div>
+            </div>
+        </div>
+
+        <!--右侧内容-->
+        <div class="right-area">
+            <div class="group-area" >
+                <iframe scrolling="auto" allowtransparency="true" id="" name="iframeContent" onload="" class="" src="" style="" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+
+        //消息提示工具公共配置
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": true,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+
+        //使用Pace插件，监控页面请求完成后，提示加载完成
+        Pace.on("done",function(){
+            toastr.info("加载完成！");
+        });
+    });
+
+</script>
+<script type="text/javascript">
+    (function($) {
+        //过滤所有a标签下的字符是否存在用户指定的字符
+        $.expr[":"].Contains = function(element, index, matches) {
+            return (element.textContent || element.innerText || "").toUpperCase().indexOf(matches[3].toUpperCase()) >= 0;
+        };
+
+        /**
+         * 创建一个搜素表单
+         * @param list 无序列表
+         */
+        function filterList(list) {
+            var form = $(".filterform"), input = $(".filterinput");
+            $(input).change(function() {
+                var filter = $(this).val();
+                if (filter) {
+                    //在用户指定的下拉列表(ul标签)下的a标签下过滤是否存在用户需要搜索的字符，如果存在指定过滤字符，将a标签的父元素li标签集合返回
+                    $matches = $(list).find("a:Contains(" + filter + ")").parent();
+                    //将所有li标签下，去除存在用户指定字符的li标签，其余标签设置slideUp滑动事件，进行消失，最终效果就是存在指定字符的li标签依然显示，不存在的都被隐藏了
+                    $("li", list).slideUp(0);
+                    //将存在字符的li标签添加滑动事件，显示出来
+                    $matches.slideDown();
+                    $matches.parents().slideDown(0);
+                    $matches.parents(".submenu").siblings("a").addClass("submenu-indicator-minus");
+                } else {
+                    //如果用户没有输入字符，将所有li标签显示出来
+                    $(list).find("li").slideDown();
+                }
+                return false;
+            }).keyup(function() {
+                $(this).change();
+            });
+            $(".filterinput").change();
+        }
+
+        var domain = "http://"+location.host;
+        $(function() {
+            var xhr = null;
+            //左侧栏输入框自动完成搜索结果
+            $('.filterinput').autoComplete({
+                    /**
+                     * 最少输入字符数
+                     */
+                    minChars:1,
+                    /**
+                     * 输入字符后，延迟多久发送请求
+                     */
+                    delay:150,
+                    /**
+                     * 菜单自定义样式
+                     */
+                    menuClass:'',
+                    /**
+                     * 搜索数据
+                     * term：用户输入的字符
+                     * response：将数据集回传给插件
+                     */
+                    source:function (search,response) {
+                        search = search.toLowerCase();
+                        xhr = $.getJSON(domain+"/CMS/view/navbar/json/data.json",{q:search},function (data) {
+                            //减轻服务器负载，防止连续发送请求
+                            //try { xhr.abort(); } catch(e){}
+                            var newData = [];
+                            
+                            function traver(item,search,label){
+                                var newData = [];
+                                label = !label ? "" : label+"-";
+                                if(item["label"].toLowerCase().indexOf(search) > -1){
+                                    label = label + item["label"];
+                                    item["label_"] = label;
+                                    newData.push(item);
+                                }
+                                var childs = item["childrens"];
+                                if(childs && childs.length>0){
+                                    $.each(childs,function (ix, it) {
+                                        newData = newData.concat(traver(it,search,label));
+                                    });
+                                }
+                                return newData;
+                            }
+                            
+                            $.each(data,function (index,item) {
+                                newData = newData.concat(traver(item,search));
+                            });
+                            response(newData);
+                        });
+                    },
+                    /**
+                     * 渲染每一项
+                     * item:每一项数据
+                     * search:用户输入数据
+                     */
+                    renderItem: function (item, search){
+                        search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+                        var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
+                        return '<div class="autocomplete-suggestion" data-link="' + item["value"] + '" data-val="' + item["label"] + '">' + item["label_"].replace(re, "<b>$1</b>") + '</div>';
+                    },
+                    onSelect:function (e, term, item) {
+                        //$("iframe").attr("src",domain+$(item).data("link"));
+                        
+                    }
+
+                });
+
+            //左侧栏自动创建所有菜单
+            $.getJSON(domain+"/CMS/view/navbar/json/data.json",function (data) {
+                //递归创建节点
+                function getHtml(t) {
+                    var url = domain+t["value"];
+                    var icon = t["icon"];
+                    var target = t["target"];
+                    var label = t["label"];
+                    var childrens = t["childrens"];
+                    var html = '<li><a href="'+url+'" target="'+target+'">'+icon+label+'</a>';
+                    if(childrens && childrens.length>0){
+                        html+='<ul class="submenu">';
+                            $.each(childrens,function (i, t) {
+                                html+= getHtml(t);
+                            });
+                        html+='</ul>';
+                    }
+                    html+='</li>';
+                    return html;
+                }
+                
+                var html = "";
+                $.each(data,function (i, t) {
+                    //根节点创建
+                    html+=getHtml(t);
+                });
+                $("#menu-list").html(html);
+                //绑定需要实现过滤列表的容器
+                filterList($("#menu-list"));
+                //注册多层菜单
+                jQuery("#left-menu").jqueryAccordionMenu();
+                //左侧导航点击控制当前导航内容被选中
+                $("#menu-list li a").click(function(e){
+                    $("#menu-list li a.active").removeClass("active");
+                    $(this).addClass("active");
+                });
+            });
+        });
+
+
+        new PerfectScrollbar('#menu-list');
+        new PerfectScrollbar('.right-area');
+    })(jQuery);
+</script>
+
+</body>
+</html>

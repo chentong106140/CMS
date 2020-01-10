@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>jQuery 3D 垂直多级菜单 可筛选菜单项DEMO演示</title>
+
+<link href="css/jquery-accordion-menu.css" rel="stylesheet" type="text/css" />
+<link href="css/font-awesome.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+*{box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;}
+body{background:#f0f0f0;}
+.content{width:260px;margin:20px auto;}
+.filterinput{
+	background-color:rgba(249, 244, 244, 0);
+	border-radius:15px;
+	width:90%;
+	height:30px;
+	border:thin solid #FFF;
+	text-indent:0.5em;
+	font-weight:bold;
+	color:#FFF;
+}
+#demo-list a{
+	overflow:hidden;
+	text-overflow:ellipsis;
+	-o-text-overflow:ellipsis;
+	white-space:nowrap;
+	width:100%;
+}
+</style>
+
+<script src="js/jquery-1.11.2.min.js" type="text/javascript"></script>
+<script src="js/jquery-accordion-menu.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+$(function(){	
+	//顶部导航切换
+	$("#demo-list li").click(function(){
+		$("#demo-list li.active").removeClass("active")
+		$(this).addClass("active");
+	})	
+})	
+</script>
+</head>
+<body>
+<div class="content">
+
+	<div id="jquery-accordion-menu" class="jquery-accordion-menu white">
+		<div class="jquery-accordion-menu-header" id="form"></div>
+		<ul id="demo-list">
+		 
+		   <li class="active"><a href="#"><i class="fa fa-home"></i>Home </a></li>
+			<li><a href="#"><i class="fa fa-glass"></i>Events </a></li>
+			<li><a href="#"><i class="fa fa-file-image-o"></i>Gallery</a>
+				<span class="jquery-accordion-menu-label">12 </span>
+			</li>
+			<li data-chentong="测试1">
+				<a href="#"><i class="fa fa-cog"></i>Services </a>
+				<ul class="submenu">
+					<li><a href="#">Web Design </a></li>
+					<li><a href="#">Hosting </a></li>
+					<li><a href="#">Design </a>
+						<ul class="submenu">
+							<li><a href="#">Graphics </a></li>
+							<li><a href="#">Vectors </a></li>
+							<li><a href="#">Photoshop </a></li>
+							<li><a href="#">Fonts </a></li>
+						</ul>
+					</li>
+					<li><a href="#">Consulting </a></li>
+				</ul>
+			</li>
+			<li data-chentong="测试2">
+				<a href="#"><i class="fa fa-home"></i>系统管理 </a>
+			</li>
+			<li data-chentong="发布3">
+				<a href="#"><i class="fa fa-suitcase"></i>Portfolio </a>
+				<ul class="submenu">
+					<li><a href="#">Web Design </a></li>
+					<li><a href="#">Graphics </a><span class="jquery-accordion-menu-label">10 </span>
+					</li>
+					<li><a href="#">Photoshop </a></li>
+					<li><a href="#">Programming </a></li>
+				</ul>
+			</li>
+			<li><a href="#"><i class="fa fa-user"></i>About </a></li>
+			<li><a href="#"><i class="fa fa-envelope"></i>Contact </a></li>
+		   
+		</ul>
+		<div class="jquery-accordion-menu-footer">
+			Footer
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+(function($) {
+	//过滤所有a标签下的字符是否存在用户指定的字符
+$.expr[":"].Contains = function(element, index, matches) {
+	return (element.textContent || element.innerText || "").toUpperCase().indexOf(matches[3].toUpperCase()) >= 0;
+};
+
+	/**
+	 * 扩展伪类选择器
+	 */
+	$.extend($.expr[":"],{
+		/**
+		 * 
+		 * @param element	被过滤的节点
+		 * @param index		被过滤节点的索引值，一般都为0
+		 * @param matches	用户传递的过滤字符数组对象,例如：$("li:chentong(测试)")，那就是：[ "chentong", "chentong", "", "测试" ]
+		 * @returns {boolean} 返回true/false,true为符合过滤要求，false为不符合要求
+		 */
+		chentong:function(element, index, matches ) {
+			//this指向的是window对象
+			console.log(element,index,matches,this,$(element).data("chentong"));
+			//判断存在data-chentong属性的节点,并且属性值包含用户传递的字符就返回true，否则返回false
+			return $(element).data("chentong") !==undefined ? $(element).data("chentong").indexOf(matches[3]) >=0 : false ;
+		}
+	});
+
+
+	/**
+	 * 使用自定义伪类选择器
+	 */
+	/*
+	$("li:chentong(测试)").each(function () {
+		console.log("result",this);
+	});
+	*/
+
+
+
+function filterList(header, list) {
+	//@header 头部元素
+	//@list 无需列表
+	//创建一个搜素表单
+	var form = $("<form>").attr({
+		"class":"filterform",
+		action:"#"
+	}), input = $("<input>").attr({
+		"class":"filterinput",
+		type:"text"
+	});
+	$(form).append(input).appendTo(header);
+	$(input).change(function() {
+		var filter = $(this).val();
+		if (filter) {
+			//在用户指定的下拉列表(ul标签)下的a标签下过滤是否存在用户需要搜索的字符，如果存在指定过滤字符，将a标签的父元素li标签集合返回
+			$matches = $(list).find("a:Contains(" + filter + ")").parent();
+			//将所有li标签下，去除存在用户指定字符的li标签，其余标签设置slideUp滑动事件，进行消失，最终效果就是存在指定字符的li标签依然显示，不存在的都被隐藏了
+			$("li", list).not($matches).slideUp();
+			//将存在字符的li标签添加滑动事件，显示出来
+			$matches.slideDown();
+		} else {
+			//如果用户没有输入字符，将所有li标签显示出来
+			$(list).find("li").slideDown();
+		}
+		return false;
+	}).keyup(function() {
+		$(this).change();
+	});
+}
+$(function() {
+	//绑定需要实现过滤列表的容器
+	filterList($("#form"), $("#demo-list"));
+});
+})(jQuery);	
+</script>
+
+<script type="text/javascript">
+
+	//注册多层菜单
+	jQuery("#jquery-accordion-menu").jqueryAccordionMenu();
+	
+</script>
+
+</body>
+</html>

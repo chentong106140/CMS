@@ -1,0 +1,23 @@
+[
+  {
+    "value": "/CMS/view/navbar/navbar.html",
+    "label": "Home",
+    "icon": "<i class=\"fa fa-home\"></i>",
+    "target": "_self"
+  },
+  {
+    "value": "#",
+    "label": "ES6",
+    "icon": "<i class=\"fa fa-home\"></i>",
+    "target": "iframeContent",
+    "childrens": [
+      {
+        "value": "/CMS/view/ES6/21.Class的基本语法.html",
+        "label": "21.Class的基本语法",
+        "icon": "",
+        "target": "iframeContent"
+      }
+    ]
+  }
+  
+]

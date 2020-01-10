@@ -1,0 +1,372 @@
+@font-face {
+    font-family: 'iconfont';
+    src: url("font/iconfont.eot");
+    src: url("font/iconfont.eot@#iefix") format("embedded-opentype"), 
+    url("font/iconfont.woff") format("woff"), 
+    url("font/iconfont.ttf") format("truetype"), 
+    url("font/iconfont.svg#iconfont") format("svg");
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+html {
+    height: 100%
+}
+
+body {
+    height: 100%;
+    font-family: KaiTi, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", "Helvetica Neue", Helvetica, Arial, sans-serif
+}
+
+body #main {
+    height: 100%
+}
+
+#lowie-main {
+    display: none
+}
+
+.lower-ie #main {
+    display: none
+}
+
+.lower-ie #lowie-main {
+    display: block;
+    height: 100%;
+    width: 100%;
+    padding: 200px 0 100px;
+    background-color: #2a3c54
+}
+
+.lower-ie #lowie-main img {
+    display: block;
+    width: 60%;
+    margin: 0 auto
+}
+
+.navbar-default {
+    border: none;
+    background-color: #293c55;
+    z-index: 10000;
+    -webkit-transition: background-color 0.5s linear;
+    transition: background-color 0.5s linear;
+    height: 50px
+}
+
+.navbar-default .navbar-nav {
+    -webkit-transition: background-color 0.5s linear;
+    transition: background-color 0.5s linear
+}
+
+.navbar-default .navbar-nav li {
+    position: relative
+}
+
+.navbar-default .navbar-nav li a {
+    color: rgba(255, 255, 255, 0.45);
+    background-color: none !important;
+    padding: 15px 20px;
+    -webkit-transition: 0.5s background-color;
+    transition: 0.5s background-color;
+    font-size: 14px;
+    font-size: 0.875rem;
+}
+
+.navbar-default .navbar-nav li a:before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    top: 0;
+    background: #a9334c;
+    height: 4px;
+    -webkit-transition-property: 'left, right';
+    transition-property: 'left, right';
+    -webkit-transition-duration: .3s;
+    transition-duration: .3s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out
+}
+
+.navbar-default .navbar-nav li a:hover, .navbar-default .navbar-nav li a:focus {
+    color: #f9f9f9;
+    background-color: #162436
+}
+
+.navbar-default .navbar-nav li a:hover:before, .navbar-default .navbar-nav li a:focus:before {
+    left: 0;
+    right: 0
+}
+
+.navbar-default .navbar-nav li a .iconfont {
+    font-size: 12px;
+    font-size: 0.750rem;
+}
+
+.navbar-default .navbar-nav li a .new {
+    display: inline-block;
+    padding: 2px 5px;
+    background-color: #a9334c;
+    color: #fff;
+    font-size: 12px;
+    font-size: 0.750rem;
+    border-radius: 3px;
+    -webkit-transform: scale(0.65);
+    -ms-transform: scale(0.65);
+    transform: scale(0.65)
+}
+
+.navbar-default .navbar-nav li.open {
+    background-color: #162436;
+    color: #fff
+}
+
+.navbar-default .navbar-nav li.open > a:focus, .navbar-default .navbar-nav li.open > a:hover {
+    color: #eee;
+    background-color: #162436
+}
+
+.navbar-default .navbar-nav li.active > a {
+    padding-top: 11px;
+    border-top: 4px solid #a9334c;
+    color: #fff;
+    background-color: #0e151f;
+    -webkit-transition: 0.5s background-color;
+    transition: 0.5s background-color
+}
+
+.navbar-default .navbar-nav li.active > a:before {
+    display: none
+}
+
+.navbar-default .navbar-nav li.active > a:hover, .navbar-default .navbar-nav li.active > a:focus {
+    color: #f9f9f9;
+    background-color: #162436
+}
+
+.navbar-default .navbar-nav li .dropdown-menu {
+    width: 210px;
+    padding: 0;
+    background-color: #162436;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: none
+}
+
+.navbar-default .navbar-nav li .dropdown-menu li {
+    background-color: #162436;
+    border-top: none;
+    padding: 5px 0
+}
+
+.navbar-default .navbar-nav li .dropdown-menu li a {
+    padding: 8px 20px
+}
+
+.navbar-default .navbar-nav li .dropdown-menu li:hover, .navbar-default .navbar-nav li .dropdown-menu li:focus {
+    background-color: #a9334c
+}
+
+.navbar-default .navbar-nav li .dropdown-menu li:hover a, .navbar-default .navbar-nav li .dropdown-menu li:focus a {
+    background-color: #a9334c
+}
+
+.navbar-default .navbar-nav li ul a:before {
+    display: none
+}
+
+.navbar-default .navbar-logo {
+    height: 32px;
+    margin-top: -6px;
+    margin-left: -2px
+}
+
+.navbar-default .navbar-collapse {
+    border-top: none
+}
+
+.navbar-default .navbar-toggle {
+    padding: 1px 5px;
+    margin: 7px 16px 0 0;
+    border-color: #384E6B;
+    background-color: #384E6B
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    margin: 7px 0 !important;
+    height: 1px;
+    background-color: #fff
+}
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    border-color: #384E6B;
+    background-color: #384E6B
+}
+
+
+
+
+#nav-github {
+    opacity: 0.4;
+    -webkit-transition: 0.5s;
+    transition: 0.5s
+}
+
+#nav-github img {
+    position: relative;
+    top: -1px
+}
+
+#nav-github:hover {
+    opacity: 1
+}
+
+@media (max-width: 768px) {
+    .navbar-default .navbar-nav {
+        background-color: #293c55;
+        -webkit-transition: background-color 0.5s linear;
+        transition: background-color 0.5s linear;
+        margin-top: 0;
+        margin-bottom: 0
+    }
+
+    .navbar-default .navbar-nav .open .dropdown-menu {
+        padding: 0
+    }
+
+    .navbar-default .navbar-nav .open .dropdown-menu li a {
+        color: #fff
+    }
+
+    .navbar-default .navbar-nav li.active > a {
+        border-left: 4px solid #a9334c;
+        border-top: none;
+        padding: 10px 15px 10px 11px
+    }
+
+    #menu-btn {
+        display: block
+    }
+
+    #nav-download {
+        display: none
+    }
+}
+
+@media (max-width: 992px) and (min-width: 768px) {
+    .navbar-default .navbar-nav li a {
+        padding: 15px 15px
+    }
+}
+
+
+
+
+body {
+    background: #FAFAFC;
+    color: #333;
+}
+.ecdoc-apidoc {
+    position: absolute;
+    top: 50px;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+}
+.left-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin-left: 0px;
+    height: 100%;
+    width: 280px;
+    overflow: hidden;
+}
+.right-area {
+    position: absolute;
+    right: 0;
+    height: 100%;
+    left: 290px;
+    border-left: 1px solid #ddd;
+    overflow: hidden;
+
+
+}
+
+.group-area {
+    text-align: left;
+    width: 100%;
+    height: 100%;
+    float: left;
+    display: block;
+    overflow: hidden;
+}
+
+.group-area iframe{
+    width:100%;
+    height: 100%;
+    overflow: visible;
+}
+
+@media (max-width: 768px) {
+    .group-content iframe {
+        max-width: 100%;
+    }
+    .group-content {
+        padding: 14px 30px;
+    }
+
+    .left-area{
+        width:0;
+    }
+
+    .right-area {
+        left:0;
+    }
+}
+
+/*屏幕字体适配*/
+@media screen and (min-width: 320px) {
+    html {
+        font-size: 13.65333px;
+    }
+}
+
+@media screen and (min-width: 360px) {
+    html {
+        font-size: 15.36px;
+    }
+}
+
+@media screen and (min-width: 375px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+@media screen and (min-width: 384px) {
+    html {
+        font-size: 16.384px;
+    }
+}
+
+@media screen and (min-width: 412px) {
+    html {
+        font-size: 17.5787px;
+    }
+}
+
+@media screen and (min-width: 414px) {
+    html {
+        font-size: 17.664px;
+    }
+}
