@@ -35,6 +35,8 @@
                 if ($(this).children(".submenu").length > 0) {
                     if ($(this).children(".submenu").css("display") == "none") {
                         $(this).children(".submenu").delay(defaults.showDelay).slideDown(defaults.speed);
+                        //如果当前菜单下存在子菜单列表，也要手动控制显示出来
+                        $(this).children(".submenu").children("li").delay(defaults.showDelay).slideDown(defaults.speed);
                         //添加a标签submenu-indicator-minus样式名，目的是为了将该样式名下的+号字符，添加旋转动画，使+号变成x号，该动画提前在css文件中约定好，只有父元素具有submenu-indicator-minus样式名的元素才添加动画，
                         $(this).children(".submenu").siblings("a").addClass("submenu-indicator-minus");
                         //判断是否需要单独打开，如果需要单独打开，那么当前li的同辈li元素下的下级菜单都被关闭，只打开当前的li

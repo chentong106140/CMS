@@ -105,6 +105,64 @@
     <script src="../../resource/plugins/code-prettify/src/lang-css.js"></script>
     <link rel="stylesheet" href="../../resource/plugins/code-prettify/src/prettify.css">
     <link rel="stylesheet" href="../../resource/plugins/code-prettify/styles/sunburst.css">
+    <style type="text/css">
+        pre.prettyprint{
+            width:99% !important;
+            position: relative;
+        }
+        .prettyprint.linenums, pre.prettyprint.linenums{
+            /*-webkit-box-shadow: inset 40px 0 0 #39382E, inset 41px 0 0 #464741;
+            -moz-box-shadow: inset 40px 0 0 #39382E, inset 41px 0 0 #464741;
+            box-shadow: inset 40px 0 0 #39382E, inset 41px 0 0 #464741;*/
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+        }
+
+        .prettyprint.linenums ol, pre.prettyprint.linenums ol{
+            overflow-x: scroll;
+            margin: 0;
+        }
+        
+        .prettyprint.linenums ol li, pre.prettyprint.linenums ol li{
+            width:100%;
+            min-width: 1000px;
+            list-style-type: decimal;
+            list-style-position: inside;/*将列表数字显示在内测*/
+        }
+
+        /*滚动条整体样式*/
+        pre.prettyprint.linenums ol::-webkit-scrollbar {
+            width: 1px; /*对垂直流动条有效*/
+            height: 1px; /*对水平流动条有效*/
+        }
+
+        /*定义滚动条的轨道颜色、内阴影及圆角*/
+        pre.prettyprint.linenums ol::-webkit-scrollbar-track{
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color: rosybrown;
+            border-radius: 3px;
+        }
+
+
+        /*定义滑块颜色、内阴影及圆角*/
+        pre.prettyprint.linenums ol::-webkit-scrollbar-thumb{
+            border-radius: 7px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color: #E8E8E8;
+        }
+
+        /*定义两端按钮的样式*/
+        pre.prettyprint.linenums ol::-webkit-scrollbar-button {
+            /*background-color:cyan;*/
+        }
+
+        /*定义右下角汇合处的样式*/
+        pre.prettyprint.linenums ol::-webkit-scrollbar-corner {
+            background:khaki;
+        }
+
+    </style>
     <script type="text/javascript">
         $(function () {
             //代码高亮
@@ -116,84 +174,34 @@
     
     <script type="text/javascript">
 
-        $(function () {
-            var w = null;
-            w = top === self ? self : top;
-            //消息提示工具公共配置
-            toastr.options = {
-                "closeButton": true,
-                "debug": false,
-                "newestOnTop": true,
-                "progressBar": true,
-                "positionClass": "toast-bottom-right",
-                "preventDuplicates": false,
-                "onclick": null,
-                "showDuration": "300",
-                "hideDuration": "1000",
-                "timeOut": "5000",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-            };
-
-            //使用Pace插件，监控页面请求完成后，提示加载完成
-            Pace.on("done",function(){
-                w.toastr.info("加载完成！");
-            });
-
-
-            setTimeout(function () {
-                //添加复制按钮
-                $('<a class=\"code-copy\" title=\"复制到剪切板\" style="display: block; position: absolute; top: 50px;left:-15px;"><i class=\"fa fa-copy\"></i></a>').insertBefore("pre");
-            },1000);
-
-
-            if(Clipboard){
-                /***** 复制按钮 开始*******/
-                var clipboardSnippets = new Clipboard('.code-copy', {
-                    'text': function (trigger) {
-                        return $(trigger).siblings("pre").text();
-                    }
-                });
-                clipboardSnippets.on('success', function (e) {
-                    e.clearSelection();
-                    w.toastr.info("复制成功")
-                });
-                clipboardSnippets.on('error', function (e) {
-                    w.toastr.info("复制失败");
-
-                });
-            }
-        });
+        
     </script>
-    
+    <script src="../navbar/js/content.js"></script>
+
 </head>
 <body>
 <main class="el-main">
     <div class="doc-content">
         <h2 id="doc-content-title">21.Class的基本语法</h2>
-        <div class="page-description">
-            <p>类的由来</p>
-            <p>ES6 提供了更接近传统语言的写法，引入了 Class（类）这个概念，作为对象的模板。通过class关键字，可以定义类。</p>
-            <p><strong>基本上，ES6 的class可以看作只是一个语法糖，它的绝大部分功能，ES5 都可以做到，新的class写法只是让对象原型的写法更加清晰、更像面向对象编程的语法而已。上面的代码用 ES6 的class改写，就是下面这样：</strong></p>
-            <iframe height="727" style="width: 100%;" scrolling="no" title="Class 的基本语法" src="https://codepen.io/chentong106140/embed/rNadLop?height=727&theme-id=dark&default-tab=js" frameborder="no" allowtransparency="true" allowfullscreen="true">
-                See the Pen <a href='https://codepen.io/chentong106140/pen/rNadLop'>Class 的基本语法</a> by chentong106140
-                (<a href='https://codepen.io/chentong106140'>@chentong106140</a>) on <a href='https://codepen.io'>CodePen</a>.
-            </iframe>
-
-
-        </div>
         <div>
-            <h3>总结</h3>
             <div class="doc-content-item-card">
                 <h4>
-                    <span class="path-parent"><a href="#title">定义</a></span>
+                    <span class="path-parent"><a href="#21.1.类的由来">类的由来</a></span>
                 </h4>
                 <div class="item-description">
-                    <p>注意点：</p>
-                    <p><strong>如下：</strong></p>
+                    <p>ES6 提供了更接近传统语言的写法，引入了 Class（类）这个概念，作为对象的模板。通过class关键字，可以定义类。</p>
+                    <p>基本上，ES6 的class可以看作只是一个语法糖，它的绝大部分功能，ES5 都可以做到，新的class写法只是让对象原型的写法更加清晰、更像面向对象编程的语法而已。上面的代码用 ES6 的class改写，就是下面这样：</p>
+                    <iframe height="727" style="width: 100%;" scrolling="no" title="Class 的基本语法" src="https://codepen.io/chentong106140/embed/rNadLop?height=727&theme-id=dark&default-tab=js" frameborder="no" allowtransparency="true" allowfullscreen="true">
+                        See the Pen <a href='https://codepen.io/chentong106140/pen/rNadLop'>Class 的基本语法</a> by chentong106140
+                        (<a href='https://codepen.io/chentong106140'>@chentong106140</a>) on <a href='https://codepen.io'>CodePen</a>.
+                    </iframe>
+                </div>
+            </div>
+            <div class="doc-content-item-card">
+                <h4>
+                    <span class="path-parent"><a href="#">总结</a></span>
+                </h4>
+                <div class="item-description">
                     <ul class="item-description-list">
                         <li>
                             <p><code class="codespan">constructor</code>构造方法内的this关键字代表实例对象，ES5的构造函数Point1,对应ES6的Point2类的构造方法</p>
@@ -217,34 +225,75 @@
                 </div>
             </div>
             <div class="doc-content-item-card">
-                <h4>
-                    <span class="path-parent"><a href="#title">定义</a></span>
-                </h4>
                 <div class="item-description">
+                    <p>事实上，类的所有方法都定义在类的prototype属性上面</p>
                     <pre class="prettyprint linenums">
 class Point {
   constructor() {
     // ...
   }
-
   toString() {
     // ...
   }
-
   toValue() {
     // ...
   }
 }
 
 // 等同于
-
 Point.prototype = {
   constructor() {},
   toString() {},
   toValue() {},
 };
                     </pre>
-                    <p><strong>如下：</strong></p>
+                    <p>在类的实例上面调用方法，其实就是调用原型上的方法</p>
+                    <pre class="prettyprint linenums">
+class B{}
+let b = new B();
+b.constructor === B.prototype.constructor; // true
+                    </pre>
+                    <p>由于类的方法都定义在prototype对象上面，所以类的新方法可以添加在prototype对象上面。Object.assign方法可以很方便地一次向类添加多个方法。</p>
+                    <pre class="prettyprint linenums">
+class Point{
+    constructor(){
+    }
+    toString(){
+        return "p1";
+    }
+}
+//由于类的方法都定义在prototype对象上面，所以类的新方法可以添加在prototype对象上面。
+// Object.assign方法可以很方便地一次向类添加多个方法。
+Object.assign(Point.prototype,{
+    //通过Object.assign在Point.prototype添加方法，来覆盖类Point下的toString方法
+    toString(){
+        return "p2";
+    }
+});
+
+var p = new Point();
+
+console.log(Point.prototype.constructor === Point);//true
+console.log(Point.prototype.constructor === p.constructor);//true
+console.log(p.toString());//p2  调用实例上面的方法，其实就是调用prototype下的方法
+                    </pre>
+                </div>
+            </div>
+            <div class="doc-content-item-card">
+                <h4>
+                    <span class="path-parent"><a href="#21.2.constructor方法"><strong>constructor 方法</strong></a></span>
+                </h4>
+                <div class="item-description">
+                    <p><code class="codespan">constructor</code>方法是类的默认方法，通过new命令生成对象实例时，自动调用该方法。一个类必须有constructor方法，<code class="codespan">如果没有显式定义，一个空的constructor方法会被默认添加。</code></p>
+                    <pre class="prettyprint linenums">
+class Point{
+    
+}
+//等同于
+class Point{
+    constructor(){}
+}
+</pre>
                 </div>
             </div>
         </div>

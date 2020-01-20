@@ -161,8 +161,10 @@ iframe {
     padding: 2px 4px;
     font-size: 16px;
     font-size: 1rem;
-    color:#293C55;
-    background-color:#f9f2f4;
+    /*color:#293C55;
+    background-color:#f9f2f4;*/
+    color: #c7254e;
+    background: #f9f2f4;
     border-radius: 4px;
 }
 
@@ -193,6 +195,19 @@ main ul.item-description-list, main ol.item-description-list {
     width: 10px;
     border-left: 1px solid #C592A0;
     border-bottom: 1px solid #C592A0;
+}
+
+.doc-content>div>.doc-content-item-card:first-child{
+    border:none;
+}
+
+.prettyprint .fa{
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 

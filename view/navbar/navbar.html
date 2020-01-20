@@ -103,6 +103,28 @@
     <!--消息提示 start-->
     <link rel="stylesheet" href="../../resource/plugins/toastr-2.1.1/toastr.css">
     <script src="../../resource/plugins/toastr-2.1.1/toastr.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //消息提示工具公共配置
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": true,
+                "positionClass": "toast-bottom-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
+        });
+    </script>
     <!--消息提示 end-->
 
     <!--左侧导航下拉框 start-->
@@ -188,23 +210,13 @@
     <script type="text/javascript">
         $.browser = false;
     </script>
+    <!--hashchange事件插件 start-->
     <script src="../../resource/plugins/jquery-hashchange-1.3/jquery.ba-hashchange.js"></script>
-
+    <!--hashchange事件插件 end-->
     <link rel="stylesheet" type="text/css" href="css/main.css">
 
 <style type="text/css">
-   .navbar-toggle-left{
-       float: left;
-       margin-left: 15px !important;
-   }
 
-   .left-area, .right-area {
-       -webkit-transition: -webkit-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
-       -moz-transition: -moz-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
-       -o-transition: -o-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
-       transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
-       z-index: 820;
-   }
 </style>
 </head>
 <!--[if lte IE 8]>
@@ -231,7 +243,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                
+                <p class="navbar-brand center-block text-success" href="#">学习笔记</p>
                 
                 <button type="button" 
                         data-toggle="collapse" 
@@ -363,37 +375,12 @@
 
         <!--右侧内容-->
         <div id="right-area" class="right-area">
-            <div class="group-area" >
-                <iframe scrolling="auto" allowtransparency="true" id="" name="iframeContent" onload="" class="" src="" style="" frameborder="0"></iframe>
+            <div class="group-area" id="group-area">
             </div>
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    $(function () {
 
-        //消息提示工具公共配置
-        toastr.options = {
-            "closeButton": true,
-            "debug": false,
-            "newestOnTop": true,
-            "progressBar": true,
-            "positionClass": "toast-bottom-right",
-            "preventDuplicates": false,
-            "onclick": null,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        };
-        
-    });
-
-</script>
 <script type="text/javascript">
     (function($) {
         //过滤所有a标签下的字符是否存在用户指定的字符
@@ -401,8 +388,8 @@
             return (element.textContent || element.innerText || "").toUpperCase().indexOf(matches[3].toUpperCase()) >= 0;
         };
         
+        //控制左侧边栏显示隐藏
         $("#navbar-toggle-left").bind("click",function () {
-           var collapsed = $(this).hasClass("collapsed");
            //如果已经折叠则展开
            if($("#left-area").width() ===0){
                $("#left-area").width(280);
@@ -415,26 +402,32 @@
         });
 
         /**
+         * 过滤菜单
+         */ 
+        function filterMenu(list,filter){
+            if(filter){
+                //在用户指定的下拉列表(ul标签)下的a标签下过滤是否存在用户需要搜索的字符，如果存在指定过滤字符，将a标签的父元素li标签集合返回
+                var $matches = $(list).find("a:Contains(" + filter + ")").parent();
+                //将所有li标签下，去除存在用户指定字符的li标签，其余标签设置slideUp滑动事件，进行消失，最终效果就是存在指定字符的li标签依然显示，不存在的都被隐藏了
+                $("li", list).slideUp(0);
+                //将存在字符的li标签添加滑动事件，显示出来
+                $matches.slideDown();
+                $matches.parents().slideDown(0);
+                $matches.parents(".submenu").siblings("a").addClass("submenu-indicator-minus");
+            }else{
+                //如果用户没有输入字符，将所有li标签显示出来
+                $(list).find("li").slideDown();
+            }
+        }
+        
+        /**
          * 创建一个搜素表单
          * @param list 无序列表
          */
         function filterList(list) {
-            var form = $(".filterform"), input = $(".filterinput");
-            $(input).change(function() {
+            $(".filterinput").change(function() {
                 var filter = $(this).val();
-                if (filter) {
-                    //在用户指定的下拉列表(ul标签)下的a标签下过滤是否存在用户需要搜索的字符，如果存在指定过滤字符，将a标签的父元素li标签集合返回
-                    $matches = $(list).find("a:Contains(" + filter + ")").parent();
-                    //将所有li标签下，去除存在用户指定字符的li标签，其余标签设置slideUp滑动事件，进行消失，最终效果就是存在指定字符的li标签依然显示，不存在的都被隐藏了
-                    $("li", list).slideUp(0);
-                    //将存在字符的li标签添加滑动事件，显示出来
-                    $matches.slideDown();
-                    $matches.parents().slideDown(0);
-                    $matches.parents(".submenu").siblings("a").addClass("submenu-indicator-minus");
-                } else {
-                    //如果用户没有输入字符，将所有li标签显示出来
-                    $(list).find("li").slideDown();
-                }
+                filterMenu(list,filter);
                 return false;
             }).keyup(function() {
                 $(this).change();
@@ -443,115 +436,226 @@
         }
 
         var domain = "http://"+location.host;
+        
+
+
+        new PerfectScrollbar('#menu-list');
+
+        console.log("加载完成！");
+
         $(function() {
             var xhr = null;
             //左侧栏输入框自动完成搜索结果
             $('.filterinput').autoComplete({
-                    /**
-                     * 最少输入字符数
-                     */
-                    minChars:1,
-                    /**
-                     * 输入字符后，延迟多久发送请求
-                     */
-                    delay:150,
-                    /**
-                     * 菜单自定义样式
-                     */
-                    menuClass:'',
-                    /**
-                     * 搜索数据
-                     * term：用户输入的字符
-                     * response：将数据集回传给插件
-                     */
-                    source:function (search,response) {
-                        search = search.toLowerCase();
-                        xhr = $.getJSON(domain+"/CMS/view/navbar/json/data.json",{q:search},function (data) {
-                            //减轻服务器负载，防止连续发送请求
-                            //try { xhr.abort(); } catch(e){}
-                            var newData = [];
-                            
-                            function traver(item,search,label){
-                                var newData = [];
-                                label = !label ? "" : label+"-";
-                                if(item["label"].toLowerCase().indexOf(search) > -1){
-                                    label = label + item["label"];
-                                    item["label_"] = label;
-                                    newData.push(item);
-                                }
-                                var childs = item["childrens"];
-                                if(childs && childs.length>0){
-                                    $.each(childs,function (ix, it) {
-                                        newData = newData.concat(traver(it,search,label));
-                                    });
-                                }
-                                return newData;
-                            }
-                            
-                            $.each(data,function (index,item) {
-                                newData = newData.concat(traver(item,search));
-                            });
-                            response(newData);
-                        });
-                    },
-                    /**
-                     * 渲染每一项
-                     * item:每一项数据
-                     * search:用户输入数据
-                     */
-                    renderItem: function (item, search){
-                        search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-                        var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
-                        return '<div class="autocomplete-suggestion" data-link="' + item["value"] + '" data-val="' + item["label"] + '">' + item["label_"].replace(re, "<b>$1</b>") + '</div>';
-                    },
-                    onSelect:function (e, term, item) {
-                        //$("iframe").attr("src",domain+$(item).data("link"));
-                        $(".filterinput").change();
-                    }
+                /**
+                 * 最少输入字符数
+                 */
+                minChars:1,
+                /**
+                 * 输入字符后，延迟多久发送请求
+                 */
+                delay:150,
+                /**
+                 * 菜单自定义样式
+                 */
+                menuClass:'',
+                /**
+                 * 搜索数据
+                 * term：用户输入的字符
+                 * response：将数据集回传给插件
+                 */
+                source:function (search,response) {
+                    search = search.toLowerCase();
+                    xhr = $.getJSON(domain+"/CMS/view/navbar/json/data.json",{q:search},function (data) {
+                        //减轻服务器负载，防止连续发送请求
+                        //try { xhr.abort(); } catch(e){}
+                        var newData = [];
 
-                });
+                        function traver(item,search,label){
+                            var newData = [];
+                            label = !label ? "" : label+"-";
+                            if(item["label"].toLowerCase().indexOf(search) > -1){
+                                label = label + item["label"];
+                                item["label_"] = label;
+                                newData.push(item);
+                            }
+                            var childs = item["childrens"];
+                            if(childs && childs.length>0){
+                                $.each(childs,function (ix, it) {
+                                    newData = newData.concat(traver(it,search,label));
+                                });
+                            }
+                            return newData;
+                        }
+
+                        //过滤结果集
+                        $.each(data,function (index,item) {
+                            newData = newData.concat(traver(item,search));
+                        });
+                        //过滤后的结果集会传给autoComplete插件，进行展示搜索结果集列表
+                        response(newData);
+                    });
+                },
+                /**
+                 * 渲染每一项
+                 * item:每一项数据
+                 * search:用户输入数据
+                 */
+                renderItem: function (item, search){
+                    search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+                    var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
+                    return '<div class="autocomplete-suggestion" data-link="' + item["value"] + '" data-val="' + item["label"] + '">' + item["label_"].replace(re, "<b>$1</b>") + '</div>';
+                },
+                /**
+                 * 用户选择某一个结果项回调如下
+                 * @param e
+                 * @param term
+                 * @param item
+                 */
+                onSelect:function (e, term, item) {
+                    //$("iframe").attr("src",domain+$(item).data("link"));
+                    $(".filterinput").change();
+                }
+
+            });
 
             //左侧栏自动创建所有菜单
             $.getJSON(domain+"/CMS/view/navbar/json/data.json",function (data) {
                 //递归创建节点
                 function getHtml(t) {
-                    var url = t["value"] && t["value"]==="#" || t["value"]===undefined? "javascript:void(0);" : domain+t["value"] ;
+                    var url = !t["value"]  || t["value"] === undefined || t["value"]==="#" || t["value"]=== '' ? "javascript:void(0);" : (t["value"].indexOf("http")>-1 ? t["value"] : domain+t["value"]);
                     var icon = t["icon"] ? t["icon"] : "";
                     var target = t["target"] ? t["target"] : "";
                     var label = t["label"] ? t["label"] : "";
                     var childrens = t["childrens"] ? t["childrens"] : [];
-                    var html = '<li><a href="'+url+'" target="'+target+'">'+icon+label+'</a>';
+                    var html = '<li><a href="'+url+'" target="'+target+'" data-label="'+label+'">'+icon+label+'</a>';
                     if(childrens && childrens.length>0){
                         html+='<ul class="submenu">';
-                            $.each(childrens,function (i, t) {
-                                html+= getHtml(t);
-                            });
+                        $.each(childrens,function (i, t) {
+                            html+= getHtml(t);
+                        });
                         html+='</ul>';
                     }
                     html+='</li>';
                     return html;
                 }
-                
                 var html = "";
                 $.each(data,function (i, t) {
                     //根节点创建
                     html+=getHtml(t);
                 });
                 $("#menu-list").html(html);
+                
+                
                 //绑定需要实现过滤列表的容器
                 filterList($("#menu-list"));
                 //注册多层菜单
                 jQuery("#left-menu").jqueryAccordionMenu();
-                //左侧导航点击控制当前导航内容被选中
+                //左侧菜单点击控制当前菜单内容被选中
+                //同时控制菜单对应的内容采取什么方式进行渲染
                 $("#menu-list li a").click(function(e){
+                    //e.stopPropagation();
                     $("#menu-list li a.active").removeClass("active");
                     $(this).addClass("active");
+                    var label = $(this).data("label");
+                    var hash = location.hash && decodeURIComponent(location.hash).substr(1);
+                    var url = $(this).attr("href");
+                    var target = $(this).attr("target");
+                    
+                    //保证当前菜单不是空链接，并且当前label值与当前页面hash值不能一样，不是重复打开该菜单,并且target渲染方式是当前页面内渲染，不是新打开一个页面或刷新当前页面
+                    if( "javascript:void(0);" != url && label != hash && target === '' ){
+                        hash = "#"+label;
+                        HashUtil.pushState(hash,url,label,{title:label,url:url});
+                        console.log("新增日志");
+                        e.preventDefault();
+                    }else if( "javascript:void(0);" != url && label === hash && target === '' ){
+                        //如果是重复打开一个渲染iframe页面，就阻止默认事件
+                        e.preventDefault();
+                    }
+                    //如果是需要刷新页面或者新打开一个页面，就不阻止浏览器默认事件
                 });
+                //页面刷新后，如果被刷新的页面存在hash值，就必须要控制hash值对于的内容被渲染出来
+                if(location.hash){
+                    var hash = decodeURIComponent(location.hash).substr(1);
+                    var menu = $("#menu-list li a[data-label='"+hash+"']")[0];
+                    HashUtil.hostoryLoad({
+                        url:$(menu).attr("href"),
+                        title:hash
+                    });
+                }
+                
             });
         });
+        
+        var HashUtil = {
+            hostoryLoad:function(e){
+                //e:指的是jquery封装好的事件对象
+                //e.originalEvent：指向原始的事件对象
+                //state：该值为使用history.pushState方法传入的第一个参数的数据，每一个历史记录页面都各自保留着state属性
+                var state = null;
+                if(e && e.originalEvent && e.originalEvent.state){
+                    state = e.originalEvent.state;
+                }else if(e && e.originalEvent && !e.originalEvent.state){
+                    //通过浏览器前后键，回调首页时，此时是不存在state的
+                    state = null;
+                }else if(e && !e.originalEvent){
+                    //如果不存在originalEvent属性，说明不是通过浏览器触发的事件，是通过刷新页面进来的，此时，参数e为人工传入的state数据
+                    state = e;
+                }
+                //如果历史记录内存在状态数据，就加载链接
+                if(state && state.url){
+                    HashUtil.loadUrl(state.url,state.title);
+                }
+                //如果历史记录内存在标题数据，就过滤左侧菜单展示，否则全部展开
+                if(state && state.title){
+                    filterMenu($("#menu-list"),state.title);
+                    $("#menu-list li a.active").removeClass("active");
+                    $("#menu-list li a[data-label='"+state.title+"']").addClass("active");
+                }else if(!state){
+                    filterMenu($("#menu-list"),'');
+                }
 
-
-        new PerfectScrollbar('#menu-list');
+                console.log(location.hash);
+            },
+            /**
+             * 浏览器前进后退，页面URL的hash值被改变时，会回调如下popstate事件
+             */
+            popstate:function(){
+                $(window).on("popstate",function (e) {
+                   HashUtil.hostoryLoad(e);
+                });
+            },
+            loadUrl:function(url,title){
+                var iframe = '<iframe scrolling="auto" allowtransparency="true" id="iframeContent" name="iframeContent" onload="" class="" src="" style="" frameborder="0"></iframe>';
+                var iframeDom = $("#iframeContent");
+                //如果存在就移除
+                if(iframeDom[0]){
+                    iframeDom.remove();
+                }
+                if(url){
+                    //为了保证iframe加载页面，不会被记录到hostory历史记录内，所以每次都要重新新建iframe
+                    $(iframe).appendTo("#group-area").attr("src",url);
+                }
+                
+                if(title){
+                    document.title=title;
+                }
+            },
+            pushState:function (hash,url,title,data) {
+                if(!hash || hash.indexOf("#") === -1)return;
+                data = data ? data : {};
+                //新建iframe加载页面地址，iframe的src不会被记录到hostory内
+                HashUtil.loadUrl(url,title);
+                //将当前页面hash值存入历史记录内，并修改当前URL
+                if(history.pushState){
+                    history.pushState(data, null, hash);
+                }
+            },
+            
+        };
+        HashUtil.popstate();
+        
+        
     })(jQuery);
 </script>
 
