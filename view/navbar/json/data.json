@@ -19,32 +19,50 @@
         "childrens": [
           {
             "value": "/CMS/view/ES6/21.Class的基本语法.html#1.类的由来",
-            "label": "21.1.类的由来",
+            "label": "1.类的由来",
             "icon": "<i class=\"fa fa-weixin\" aria-hidden=\"true\"></i>",
             "target": ""
           },
           {
             "value": "/CMS/view/ES6/21.Class的基本语法.html#2.constructor方法",
-            "label": "21.2.constructor方法",
+            "label": "2.constructor方法",
+            "icon": "<i class=\"fa fa-weixin\" aria-hidden=\"true\"></i>",
+            "target": ""
+          },
+          {
+            "value": "/CMS/view/ES6/21.Class的基本语法.html#21.3.类的实例",
+            "label": "3.类的实例",
             "icon": "<i class=\"fa fa-weixin\" aria-hidden=\"true\"></i>",
             "target": ""
           }
           ]
-      },
+      }
+    ]
+  },
+  {
+    "value": "#",
+    "label": "javascript排序",
+    "icon": "<i class=\"fa fa-home\"></i>",
+    "target": "",
+    "childrens": [
       {
-        "value": "/CMS/view/ES6/Array_.html",
-        "label": "Array",
+        "value": "/CMS/view/排序/index.html#冒泡排序",
+        "label": "1.冒泡排序",
         "icon": "<i class=\"fa fa-weixin\" aria-hidden=\"true\"></i>",
         "target": ""
       },
       {
-        "value": "http://www.baidu.com",
-        "label": "Baidu",
+        "value": "/CMS/view/排序/index.html#选择排序",
+        "label": "2.选择排序",
+        "icon": "<i class=\"fa fa-weixin\" aria-hidden=\"true\"></i>",
+        "target": ""
+      },
+      {
+        "value": "/CMS/view/排序/index.html#插入排序",
+        "label": "3.插入排序",
         "icon": "<i class=\"fa fa-weixin\" aria-hidden=\"true\"></i>",
         "target": ""
       }
-      
     ]
   }
-  
 ]

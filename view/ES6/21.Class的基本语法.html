@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Class的基本语法</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1, maximum-scale=1, user-scalable=no"/>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries-->
     <!--[if lt IE 9]>
@@ -191,10 +191,40 @@
                 <div class="item-description">
                     <p>ES6 提供了更接近传统语言的写法，引入了 Class（类）这个概念，作为对象的模板。通过class关键字，可以定义类。</p>
                     <p>基本上，ES6 的class可以看作只是一个语法糖，它的绝大部分功能，ES5 都可以做到，新的class写法只是让对象原型的写法更加清晰、更像面向对象编程的语法而已。上面的代码用 ES6 的class改写，就是下面这样：</p>
-                    <iframe height="727" style="width: 100%;" scrolling="no" title="Class 的基本语法" src="https://codepen.io/chentong106140/embed/rNadLop?height=727&theme-id=dark&default-tab=js" frameborder="no" allowtransparency="true" allowfullscreen="true">
-                        See the Pen <a href='https://codepen.io/chentong106140/pen/rNadLop'>Class 的基本语法</a> by chentong106140
-                        (<a href='https://codepen.io/chentong106140'>@chentong106140</a>) on <a href='https://codepen.io'>CodePen</a>.
-                    </iframe>
+                    <pre class="prettyprint linenums">
+//传统定义类的写法
+function Point1(x,y){
+  this.x = x;
+  this.y = y;
+}
+
+Point1.prototype.toString = function(){
+  return '(' + this.x + ', ' + this.y + ')';
+}
+var p1 = new Point1(1,2);
+console.log(p1 == "(1, 2)"); // true
+
+
+
+//使用Class类的写法
+class Point2{ //  注意class要小写
+  constructor(x,y){
+    this.x = x;   //this指向的实例对象
+    this.y = y;
+  }
+              // 方法之间不需要逗号分隔，加了会报错
+  toString(){ // 注意不需要写function关键字，直接方法写在这里即可
+    return '(' + this.x + ', ' + this.y + ')';
+  }
+}
+var p2 = new Point2(1,2);
+console.log(p2 == "(1, 2)");//true 
+
+console.log(typeof Point2);// function 说明：Class定义的类与ES5定义函数，作用一样，都是function
+console.log(Point2 === Point2.prototype.constructor); // true  一样说明：Class定义的类指向的其实也是ES5里面构造函数
+
+
+</pre>
                 </div>
             </div>
             <div class="doc-content-item-card">
@@ -204,22 +234,29 @@
                 <div class="item-description">
                     <ul class="item-description-list">
                         <li>
-                            <p><code class="codespan">constructor</code>构造方法内的this关键字代表实例对象，ES5的构造函数Point1,对应ES6的Point2类的构造方法</p>
+                            <p><codespan>constructor</codespan>构造方法内的this关键字代表实例对象，ES5的构造函数Point1,对应ES6的Point2类的构造方法</p>
                         </li>
                         <li>
                             <p>定义“类”的方法的时候，前面不需要加上function这个关键字，直接把函数定义放进去了就可以了</p>
                         </li>
                         <li>
-                            <p><code class="codespan">Class</code>定义类的时候，class关键字必须是小写，否则报错</p>
+                            <p><codespan>Class</codespan>定义类的时候，class关键字必须是小写，否则报错</p>
                         </li>
                         <li>
                             <p>方法之间不需要逗号分隔，加了会报错</p>
                         </li>
                         <li>
-                            <p><code class="codespan">console.log(typeof Point2);// function</code>说明：Class定义的类与ES5定义函数，作用一样，都是function</p>
+                            <p><codespan>console.log(typeof Point2);// function</codespan>说明：Class定义的类与ES5定义函数，作用一样，都是function</p>
                         </li>
                         <li>
-                            <p><code class="codespan">console.log(Point2 === Point2.prototype.constructor); // true</code>一样说明：Class定义的类指向的其实也是ES5里面构造函数</p>
+                            <p><codespan>console.log(Point2 === Point2.prototype.constructor); // true</codespan>一样说明：Class定义的类指向的其实也是ES5里面构造函数</p>
+                        </li>
+
+                        <li>
+                            <p><codespan>class</codespan>定义的类名，是一个被let声明的方法名，不可以被重复声明，否则报错</p>
+                        </li>
+                        <li>
+                            <p>类必须使用<codespan>new</codespan>调用，否则会报错。这是它跟普通构造函数的一个主要区别，后者不用<codespan>new</codespan>也可以执行</p>
                         </li>
                     </ul>
                 </div>
@@ -284,7 +321,7 @@ console.log(p.toString());//p2  调用实例上面的方法，其实就是调用
                     <span class="path-parent"><a href="#21.2.constructor方法"><strong>constructor 方法</strong></a></span>
                 </h4>
                 <div class="item-description">
-                    <p><code class="codespan">constructor</code>方法是类的默认方法，通过new命令生成对象实例时，自动调用该方法。一个类必须有constructor方法，<code class="codespan">如果没有显式定义，一个空的constructor方法会被默认添加。</code></p>
+                    <p><codespan>constructor</codespan>方法是类的默认方法，通过new命令生成对象实例时，自动调用该方法。一个类必须有constructor方法，<codespan>如果没有显式定义，一个空的constructor方法会被默认添加。</codespan></p>
                     <pre class="prettyprint linenums">
 class Point{
     
@@ -294,6 +331,123 @@ class Point{
     constructor(){}
 }
 </pre>
+                    <p>上面代码中，定义了一个空的类Point，JavaScript 引擎会自动为它添加一个空的constructor方法</p>
+                    <p></p>
+                    <p><codespan>constructor</codespan>方法默认返回实例对象（即<codespan>this</codespan>），完全可以指定返回另外一个对象</p>
+                    <pre class="prettyprint linenums">
+class Foo{
+    constructor(){
+        return new Array(null);
+    }
+}
+
+console.log(new Foo() instanceof Foo); // false
+</pre>
+                    <p>上面代码中，<codespan>constructor</codespan>函数返回一个全新的对象，结果导致实例对象不是Foo类的实例。</p>
+                    <br/>
+                    <p>类必须使用<codespan>new</codespan>调用，否则会报错。这是它跟普通构造函数的一个主要区别，后者不用<codespan>new</codespan>也可以执行</p>
+                    <pre class="prettyprint linenums">
+class Foo{
+    constructor(){
+        return new Array(null);
+    }
+}
+
+console.log(Foo()); // TypeError: class constructors must be invoked with 'new'
+</pre>
+                </div>
+            </div>
+            <div class="doc-content-item-card">
+                <h4>
+                    <span class="path-parent"><a href="#21.3.类的实例"><strong>类的实例</strong></a></span>
+                </h4>
+                <div class="item-description">
+                    <p>生成类的实例的写法，与 ES5 完全一样，也是使用<codespan>new</codespan>命令。前面说过，如果忘记加上new，像函数那样调用<codespan>Class</codespan>，将会报错。</p>
+                    <pre class="prettyprint linenums">
+class Foo{
+    constructor(){
+        return new Array(null);
+    }
+}
+console.log(new Foo());//正确
+console.log(Foo()); // 报错：TypeError: class constructors must be invoked with 'new'
+</pre>
+                    <p>与 ES5 一样，实例的属性除非显式定义在其本身（即定义在<codespan>this</codespan>对象上），否则都是定义在原型上（即定义在<codespan>class上</codespan>）。</p>
+                    <pre class="prettyprint linenums">
+class Foo{
+    constructor(x,y){
+        this.x = x;
+        this.y = y;
+    }
+    
+    toString(){
+        return this.x+" "+this.y;
+    }
+}
+
+var f = new Foo(1,2);
+f.toString();
+console.log(f.hasOwnProperty('x'));//true,由于是显式的在构造函数内，给this对象赋值的属性，所以该属性是实例对象的
+console.log(f.hasOwnProperty('y'));//true,同上
+console.log(f.hasOwnProperty('toString'));//false,由于toString是定义在原型上的（直接在class类下面定义的方法都是在原型上定义的）,所以toString并不属于实例对象自己的属性
+console.log(f.__proto__.hasOwnProperty('toString'));//true,通过实例对象得到原型对象，并通过原型对象检测是否存在toString方法，最终返回true，说明，toString不是实例自己的属性，而是原型上面的
+</pre>
+                    <p>上面代码中，<codespan>x</codespan>和<codespan>y</codespan>都是实例对象point自身的属性（因为定义在<codespan>this</codespan>变量上），所以<codespan>hasOwnProperty</codespan>方法返回true，而toString是原型对象的属性（因为定义在Point类上），所以<codespan>hasOwnProperty</codespan>方法返回false。这些都与 ES5 的行为保持一致。</p>
+                    <br/>
+                    <p>ES5 一样，类的所有实例共享一个原型对象</p>
+                    <pre class="prettyprint linenums">
+class Foo{
+    constructor(x,y){
+        this.x = x;
+        this.y = y;
+    }
+    
+    toString(){
+        return this.x+" "+this.y;
+    }
+}
+
+var f1 = new Foo(1,2);
+var f2 = new Foo(3,4);
+console.log(f1.__proto__ === f2.__proto__);//true
+</pre>
+                    <p>上面代码中，<codespan>f1</codespan>和<codespan>f2</codespan>都是<codespan>Point</codespan>的实例，它们的原型都是<codespan>Foo.prototype</codespan>，所以<codespan>__proto__</codespan>属性是相等的</p>
+                    <br/>
+                    <p>
+                        <codespan>__proto__</codespan> 并不是语言本身的特性，这是各大厂商具体实现时添加的私有属性，虽然目前很多现代浏览器的 JS 引擎中都提供了这个私有属性，但依旧不建议在生产中使用该属性，避免对环境产生依赖。生产环境中，我们可以使用 <codespan>Object.getPrototypeOf</codespan> 方法来获取实例对象的原型，然后再来为原型添加方法/属性。
+                    </p>
+                    <pre class="prettyprint linenums">
+class Foo{
+    constructor(x,y){
+        this.x = x;
+        this.y = y;
+    }
+    
+    toString(){
+        return this.x+" "+this.y;
+    }
+}
+
+var f1 = new Foo(1,2);
+var f2 = new Foo(3,4);
+
+//在实例对象的原型上面新增一个方法
+f1.__proto__.printName = function () {
+  return this.x+'-'+this.y;
+};
+
+//验证在单个实例对象的原型上面新增方法后，其他的实例对象是否也能调用
+console.log(f1.printName());// 1-2
+console.log(f2.printName());//3-4
+
+//验证新创建一个实例对象，是否也能调用到其他实例对象的原型上新增的方法
+var f3 = new Foo(5,6);
+console.log(f3.printName());//5-6
+                    </pre>
+                    <p>
+                        上面代码在<codespan>f1</codespan>的原型上添加了一个<codespan>printName</codespan>方法，由于f1的原型就是f2的原型，因此<codespan>f2</codespan>也可以调用这个方法。而且，此后新建的实例<codespan>f3</codespan>也可以调用这个方法。这意味着，使用实例的<codespan>__proto__</codespan>属性改写原型，必须相当谨慎，不推荐使用，因为这会改变“类”的原始定义，影响到所有实例。
+                    </p>
+                </div>
                 </div>
             </div>
         </div>

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js十大排序算法</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries-->
+    <!--[if lt IE 9]>
+    <script src="../../resource/plugins/IE9/html5shiv.min.js"></script>
+    <script src="../../resource/plugins/IE9/respond.min.js"></script>
+    <![endif]-->
+
+
+    <!--自动进度条 start-->
+    <link rel="stylesheet" href="../../resource/plugins/pace-0.7.8/themes/red/pace-theme-barber-shop.css">
+    <script src="../../resource/plugins/pace-0.7.8/pace.js"></script>
+    <style type="text/css">
+        /* 自定义网络进度条皮肤 */
+        .pace {
+            -webkit-pointer-events: none;
+            pointer-events: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none
+        }
+
+        .pace-inactive {
+            display: none
+        }
+
+        .pace .pace-progress {
+            background: #e43c59;
+            position: fixed;
+            z-index: 100000;
+            top: 0;
+            right: 100%;
+            width: 100%;
+            height: 2px
+        }
+
+        .pace .pace-progress-inner {
+            display: block;
+            position: absolute;
+            right: 0px;
+            width: 100px;
+            height: 100%;
+            -webkit-box-shadow: 0 0 10px #e43c59, 0 0 5px #e43c59;
+            box-shadow: 0 0 10px #e43c59, 0 0 5px #e43c59;
+            opacity: 1.0;
+            -webkit-transform: rotate(3deg) translate(0px, -4px);
+            -ms-transform: rotate(3deg) translate(0px, -4px);
+            transform: rotate(3deg) translate(0px, -4px)
+        }
+
+    </style>
+    <!--自动进度条 end-->
+
+    <!--font-awesome字体 start-->
+    <link rel="stylesheet" href="../../resource/plugins/font-awesome/css/font-awesome.css">
+    <!--font-awesome字体 end-->
+
+    <!--jquery 自动补全搜索结果 start-->
+    <script src="../../resource/plugins/jquery/jquery.js"></script>
+    <link rel="stylesheet" href="../../resource/plugins/jQuery-autoComplete-1.0.7/jquery.auto-complete.css">
+    <script src="../../resource/plugins/jQuery-autoComplete-1.0.7/jquery.auto-complete.js"></script>
+    <!--jquery 自动补全搜索结果 end-->
+
+    <!--bootstrap start-->
+    <link rel="stylesheet" type="text/css" href="../../resource/plugins/bootstrap-3.3.7/dist/css/bootstrap.css">
+    <script src="../../resource/plugins/bootstrap-3.3.7/dist/js/bootstrap.js"></script>
+    <!--bootstrap end-->
+
+    <!--图片比较 start-->
+    <link rel="stylesheet" href="../../resource/plugins/twentytwenty-1.0.1/css/twentytwenty.css">
+    <script src="../../resource/plugins/jquery.event.move-2.0.1/js/jquery.event.move.js"></script>
+    <script src="../../resource/plugins/twentytwenty-1.0.1/js/jquery.twentytwenty.js"></script>
+    <!--图片比较 end-->
+
+    <!--自定义滚动条 start-->
+    <link rel="stylesheet" href="../../resource/plugins/perfect-scrollbar-1.4.0/css/perfect-scrollbar.css">
+    <script src="../../resource/plugins/perfect-scrollbar-1.4.0/dist/perfect-scrollbar.js"></script>
+    <!--自定义滚动条 end-->
+
+    <!--滚动事件 start-->
+    <script src="../../resource/plugins/waypoints-latest/lib/jquery.waypoints.js"></script>
+    <!--滚动事件 end-->
+
+    <!--消息提示 start-->
+    <link rel="stylesheet" href="../../resource/plugins/toastr-2.1.1/toastr.css">
+    <script src="../../resource/plugins/toastr-2.1.1/toastr.js"></script>
+    <!--消息提示 end-->
+
+    <!--复制插件 start-->
+    <script src="../../resource/plugins/clipboard/clipboard.js"></script>
+    <!--复制插件 end-->
+
+    <link rel="stylesheet" href="../navbar/css/content.css">
+    <style type="text/css">
+
+    </style>
+
+    <!--代码高亮 start-->
+    <script src="../../resource/plugins/code-prettify/src/prettify.js?a=2"></script>
+    <script src="../../resource/plugins/code-prettify/src/lang-css.js"></script>
+    <link rel="stylesheet" href="../../resource/plugins/code-prettify/src/prettify.css">
+    <link rel="stylesheet" href="../../resource/plugins/code-prettify/styles/sunburst.css">
+    <style type="text/css">
+        pre.prettyprint{
+            width:99% !important;
+            position: relative;
+        }
+        .prettyprint.linenums, pre.prettyprint.linenums{
+            /*-webkit-box-shadow: inset 40px 0 0 #39382E, inset 41px 0 0 #464741;
+            -moz-box-shadow: inset 40px 0 0 #39382E, inset 41px 0 0 #464741;
+            box-shadow: inset 40px 0 0 #39382E, inset 41px 0 0 #464741;*/
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+        }
+
+        .prettyprint.linenums ol, pre.prettyprint.linenums ol{
+            overflow-x: scroll;
+            margin: 0;
+        }
+
+        .prettyprint.linenums ol li, pre.prettyprint.linenums ol li{
+            width:100%;
+            min-width: 1000px;
+            list-style-type: decimal;
+            list-style-position: inside;/*将列表数字显示在内测*/
+        }
+
+        /*滚动条整体样式*/
+        pre.prettyprint.linenums ol::-webkit-scrollbar {
+            width: 1px; /*对垂直流动条有效*/
+            height: 1px; /*对水平流动条有效*/
+        }
+
+        /*定义滚动条的轨道颜色、内阴影及圆角*/
+        pre.prettyprint.linenums ol::-webkit-scrollbar-track{
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color: rosybrown;
+            border-radius: 3px;
+        }
+
+
+        /*定义滑块颜色、内阴影及圆角*/
+        pre.prettyprint.linenums ol::-webkit-scrollbar-thumb{
+            border-radius: 7px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color: #E8E8E8;
+        }
+
+        /*定义两端按钮的样式*/
+        pre.prettyprint.linenums ol::-webkit-scrollbar-button {
+            /*background-color:cyan;*/
+        }
+
+        /*定义右下角汇合处的样式*/
+        pre.prettyprint.linenums ol::-webkit-scrollbar-corner {
+            background:khaki;
+        }
+
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            //代码高亮
+            prettyPrint();
+        });
+    </script>
+    <!--代码高亮 end-->
+
+
+    <script type="text/javascript">
+
+
+    </script>
+    <script src="../navbar/js/content.js"></script>
+
+</head>
+<body>
+<main class="el-main">
+    <div class="doc-content">
+        <h2 id="doc-content-title">javascript排序</h2>
+        <div>
+            <div class="doc-content-item-card">
+                <h4>
+                    <span class="path-parent"><a href="#冒泡排序"><strong>冒泡排序</strong></a></span>
+                </h4>
+                <div class="item-description">
+                    <p>什么时候最快<codespan>数据是正序时</codespan>，什么时候最慢<codespan>数据是反序时</codespan></p>
+                    <p>如下演示，每次循环两个数据之间进行比较，最大的数据是如何被移动到最后的：</p>
+                    <p><img src="image/冒泡排序.gif"/> </p>
+                    <pre class="prettyprint linenums">
+    var arr = [3,2,8,1,4,7,9,5,6];
+    var len = arr.length;
+    for(var i = 0;i < len;i++){
+        console.log("-----"+len+"-1-"+i+"-----"+(len-1-i)+"-----"+arr[len-1-i]+"-----")
+        //为什么要len-1？例如总的数据有9个，j < len-1 也就是 j < 9 -1, 也就是j最大数只能是7，第7个的索引对应的是第8个数据
+        //那为什么j最大数只能遍历到第8个数据呢？
+        //由于内部需要j与j+1的两个数据进行比较,arr[j+1]当j为最大值时，也就是arr[7+1]，
+        //为了保证j为最大值索引时，正好能比较后一个数据，
+        //所以必须预留一个位置给最后一次循环与下一个数据进行比较才使用j < len-1
+
+        //那为什么j要 j < len - 1 -i ,len-1的基础上再减去i呢？
+        //由于，每次内部循环之后，内部循环进行当前j对应的数据与下一个数据进行比较，大的数据往后排一个位置
+        //也就是说，每次内部循环后，arr数组最后一个数据就是得到的最大数
+        //为什么要减去i呢？因为既然每次循环都会将最大数排到最后了，
+        //下一次内部循环就不需要再重复比较已经遍历好并排在最后位置上的那个数据了
+        //所以，为了避免重复比较，才需要减去i，也就是说，每次内部循环都要少遍历一次的目的
+       
+        //总结：
+        //为什么要用双层循环，外层循环有什么作用，内层循环有什么作用？
+        //内部循环一共要执行len次，每一次循环后，就能得到一个最大值或者最小值放到len-1-i这个位置上
+        //所以内层循环只有一个目的，就是内层循环完毕后，就能得到一个最大值或者最小值，
+        //如何确定这个最大值或者最小值不会重复被判断为最大数或者最小数呢？
+        //所以就是通过j < len-1-i来控制，将已经明确为最大数或者最小数的数移动到最后，控制j只能遍历到没有确定的数上
+        for(var j = 0;j < len - 1 -i;j++){
+            console.log("-----"+j+'-'+arr[j]+'-'+arr[j+1]+'-');
+            //使用 > 大于号，进行升序排序，使用 < 小于号，进行降序排序
+            if(arr[j] > arr[j+1]){
+                var temp = arr[j+1];
+                arr[j+1] = arr[j];
+                arr[j] = temp;
+            }
+        }
+        console.log("-----"+len+"-1-"+i+"-----"+(len-1-i)+"-----"+arr[len-1-i]+"-----")
+        console.log()
+    }
+    console.log(arr);
+                    </pre>
+                    <p>正序排序时，每次内部循环完毕，必定会将最大的数往后排</p>
+                    <p><codespan>使用 > 大于号，进行升序排序</codespan></p>
+                    <p><codespan>使用 < 小于号，进行降序排序</codespan></p>
+                </div>
+            </div>
+            <div class="doc-content-item-card">
+                <h4>
+                    <span class="path-parent"><a href="#选择排序"><strong>选择排序</strong></a></span>
+                </h4>
+                <div class="item-description">
+                    <p>数据规模越小越好，唯一的好处可能就是不占用额外的内存空间了吧。</p>
+                    <p>内部循环，不用每次都要创建新的变量，而冒泡排序，在内部每次都要新建变量，所以不用占用额外的内存空间</p>
+                    <p><img src="image/选择排序.gif"/> </p>
+                    <pre class="prettyprint linenums">
+    var arr = [3,2,8,1,4,7,9,5,6];
+    var len = arr.length,temp,minIndex;
+    //由于每次外部循环，都会确认当前索引i位置一定会是比后面的数字小，所以当倒数第二个数的索引为i=7 , 7<9-1 , 7<8（最后一个数的索引为8） ，
+    //也就是说，数组总长度为9，最大索引为8，最后一个数的索引为8，所以，循环到索引为7的时候，也就是当前遍历数据为倒数第2个数据时，已经能够确定，索引为7,肯定比索引为8的数要小，
+    //所以外部循环i需要小于len-1即可，这样会少一次外部循环
+    for(var i = 0;i < len -1 ;i++){
+        console.log("-----"+"-----"+i+"-----"+len+"-1-"+"-----"+(len-1)+"-----")
+        //缓存当前最小数值的索引
+        minIndex = i;
+        //由于每次循环都会将数组当前索引i指向的位置，变成最小数，所以，内部循环就不需要再遍历前几个位置了，
+        //所以j需要等于i+1,也就是0-i之间的位置已经被遍历为从小到大的数了，所以需要j需要在i+1位置开始遍历
+        //每次内部循环都会减少遍历次数
+        for(var j = i+1;j < len;j++){
+            //如果是需要升序排序就是使用 < 小于号，如果是需要降序排序就是使用 > 大于号
+            //arr[j]为需要判断的下一个数，大于或者小于 arr[minIndex]为当前的最小数或为当前的最大数，如果判断有效，minIndex就是当前遍历后的最小数或者为最大数
+            if(arr[j] > arr[minIndex]){
+               minIndex = j;
+            }
+        }
+        //arr[minIndex]就是每次内部循环完毕之后，得到的最小数
+        console.log("-----"+'-'+arr[minIndex]+'-');
+        temp = arr[i];
+        arr[i] = arr[minIndex];
+        arr[minIndex] = temp;
+        console.log("-----"+'-'+arr[minIndex]+'-');
+
+        console.log()
+    }
+    console.log(arr);
+                    </pre>
+                </div>
+            </div>
+            <div class="doc-content-item-card">
+                <h4>
+                    <span class="path-parent"><a href="#插入排序"><strong>插入排序</strong></a></span>
+                </h4>
+                <div class="item-description">
+                    <p>插入排序的代码实现虽然没有冒泡排序和选择排序那么简单粗暴，但它的原理应该是最容易理解的了，因为只要打过扑克牌的人都应该能够秒懂。当然，如果你说你打扑克牌摸牌的时候从来不按牌的大小整理牌，那估计这辈子你对插入排序的算法都不会产生任何兴趣了。。。
+                        插入排序和冒泡排序一样，也有一种优化算法，叫做拆半插入。对于这种算法，得了懒癌的我就套用教科书上的一句经典的话吧：感兴趣的同学可以在课后自行研究。。。</p>
+                    <p><img src="image/插入排序.gif"/> </p>
+                    <pre class="prettyprint linenums">
+    var arr = [8,4,3,2,1,7,9,5,6];
+    //preIndex = 0 （对应数据8）; i = 1（对应数据4）
+    //8,8,3,2,1,7,9,5,6 第一次外部循环，内部循环第一次循环结果    你会发现当前被遍历的索引值为1的数据4被替换为了前一个位置的数据8，导致当前索引的数据被前一个索引的数据覆盖，前一个索引的数据与当前索引的数据一样了
+    //4,8,3,2,1,7,9,5,6 第一次外部循环，最终结果                arr[preIndex+1] = current;进行修复，将当前被遍历的数据，重置给上一个位置数据 
+
+    //preIndex = 1 （对应数据8）; i = 2（对应数据3）
+    //4,8,8,2,1,7,9,5,6 第二次外部循环，内部循环第一次循环结果     你会发现，此时前一个数据索引值为1数据为8，当前被遍历的索引值2的数据3，被前一个索引值的数据8覆盖，导致两个数据一样了
+    //4,4,8,2,1,7,9,5,6 第二次外部循环，内部循环第二次循环结果     内部第二次循环后，preIndex减少1，此时，前一个数据索引值为0数据为4，由于前一个数据比当前被遍历的数据3要大，导致前一个preIndex索引值为0数据为4的数据，覆盖了preIndex+1的数据，原本为数据8，现在变成4了，此时你会发现，内部第二次循环后，索引值为0上的数据与索引值为1的数据重复了
+    //3,4,8,2,1,7,9,5,6 第二次 外部循环，最终结果                arr[preIndex+1] = current;进行修复，将当前被遍历的数据，重置给上一个位置数据
+    
+    //preIndex = 2 (对应数据8); i = 3（对应数据2）第三次外部循环
+    //3,4,8,8,1,7,9,5,6
+    //3,4,4,8,1,7,9,5,6
+    //3,3,4,8,1,7,9,5,6
+    //2,3,4,8,1,7,9,5,6
+    
+    //preIndex = 3（对应数据8）; i = 4（对应数据1）第四次外部循环
+    //2,3,4,8,8,7,9,5,6
+    //2,3,4,4,8,7,9,5,6
+    //2,3,3,4,8,7,9,5,6
+    //2,2,3,4,8,7,9,5,6
+    //1,2,3,4,8,7,9,5,6
+    
+    //如上循环，你会发现，只要前一个数据比当前遍历的数据值，小，就会一直循环下去，
+    //同时由于preIndex在内部循环每次循环减少1的情况下，
+    // 也就是上一个索引一直在往前检索，导致preIndex+1的位置的数据被preIndex位置的数据覆盖
+    
+    //preIndex = 4（对应数据为8）; i = 5（对应数据为7）第五次外部循环
+    //1,2,3,4,8,8,9,5,6      你会发现当preIndex = 3时，对应的数据是4,当前遍历的数据值为7，此时不满足内部循环条件arr[preIndex] > current 也就是4 > 7 不满足条件
+                             //此时内部循环被终止
+    //1,2,3,4,7,8,9,5,6      arr[preIndex+1] = current; 由于以上内部循环被终止，此时的preIndex等于3，通过arr[preIndex+1] = current; 后，原本被重复的索引值为4的数据8 ，被替换为当前遍历数据7
+    
+    var len = arr.length;
+    var preIndex, current;
+    for (var i = 1; i < len; i++) {
+        //得到上一个数据的索引值
+        preIndex = i - 1;
+        console.log("i:"+i+"（对应数据"+arr[i]+"）,preIndex:"+preIndex+"（对数据"+arr[preIndex]+"）");
+        //得到当前的数据，current值很重要，
+        // 用于判断比它大的数据，才进行数据交换，而数据交换并没有进行位置交换，所以必然会导致数据重复，
+        // 所以，该值也用于解决替换被重复的数据
+        current = arr[i];
+        //循环条件为上一个索引值必须 >= 0 并且 上一个数据的值 大于 当前被遍历的值时，进行循环 
+        while(preIndex >= 0 && arr[preIndex] > current) {
+            //如果上一个数据比当前数据值大的话，将当前数据的位置与上一个数据的位置进行交换
+            arr[preIndex+1] = arr[preIndex];
+            //每次内部循环，上一个数据的索引值减少1，目的是将当前位置的数据，一直与当前索引值前面位置的数据进行比较
+            //当preIndex上一个数据的索引值不符合 > = 的条件时，内部循环将终止，
+            // 也就是说，当前索引值上的数据存在前排的索引值对应的数据比它大的话，就已经进行交换位置了
+            //注意：当preIndex等于0的时候，preIndex-- 会导致该值变成-1，终止内部循环
+            preIndex--;
+            console.log(arr);
+        }
+        //每次循环到这里的时候，preIndex等于-1,所以在这里preIndex+1，原因是
+        //如果内部循环没有进入，那么这里就只是将数据重置，没有做位置交换
+        //如果内部循环进入了，那么此时的arr[preIndex+1]与arr[preIndex+1+1]的数据重复了，
+        //并且，能到外部循环即将结束的地方，说明当前遍历的数据值必然找不到比它大的数据了
+        //既然找不到比当前遍历数据值大，说明，
+        //要么前面的数据都比当前遍历数据值小，
+        //要么已经是遍历到开头了，前面已经没有数据了，
+        //而此时必定会有重复的数据值，所以只需要将arr[preIndex+1]等于当前被遍历的数据值即可
+        arr[preIndex+1] = current;
+        console.log(arr);
+    }
+                    </pre>
+                    <p><codespan>arr[preIndex] > current时，升序排序</codespan></p>
+                    <p><codespan>arr[preIndex] < current时，降序排序</codespan></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</main>
+<script type="text/javascript">
+    var arr = [8,4,3,2,1,7,9,5,6];
+    //preIndex = 0 （对应数据8）; i = 1（对应数据4）
+    //8,8,3,2,1,7,9,5,6 第一次外部循环，内部循环第一次循环结果    你会发现当前被遍历的索引值为1的数据4被替换为了前一个位置的数据8，导致当前索引的数据被前一个索引的数据覆盖，前一个索引的数据与当前索引的数据一样了
+    //4,8,3,2,1,7,9,5,6 第一次外部循环，最终结果                arr[preIndex+1] = current;进行修复，将当前被遍历的数据，重置给上一个位置数据 
+
+    //preIndex = 1 （对应数据8）; i = 2（对应数据3）
+    //4,8,8,2,1,7,9,5,6 第二次外部循环，内部循环第一次循环结果     你会发现，此时前一个数据索引值为1数据为8，当前被遍历的索引值2的数据3，被前一个索引值的数据8覆盖，导致两个数据一样了
+    //4,4,8,2,1,7,9,5,6 第二次外部循环，内部循环第二次循环结果     内部第二次循环后，preIndex减少1，此时，前一个数据索引值为0数据为4，由于前一个数据比当前被遍历的数据3要大，导致前一个preIndex索引值为0数据为4的数据，覆盖了preIndex+1的数据，原本为数据8，现在变成4了，此时你会发现，内部第二次循环后，索引值为0上的数据与索引值为1的数据重复了
+    //3,4,8,2,1,7,9,5,6 第二次 外部循环，最终结果                arr[preIndex+1] = current;进行修复，将当前被遍历的数据，重置给上一个位置数据
+    
+    //preIndex = 2 (对应数据8); i = 3（对应数据2）第三次外部循环
+    //3,4,8,8,1,7,9,5,6
+    //3,4,4,8,1,7,9,5,6
+    //3,3,4,8,1,7,9,5,6
+    //2,3,4,8,1,7,9,5,6
+    
+    //preIndex = 3（对应数据8）; i = 4（对应数据1）第四次外部循环
+    //2,3,4,8,8,7,9,5,6
+    //2,3,4,4,8,7,9,5,6
+    //2,3,3,4,8,7,9,5,6
+    //2,2,3,4,8,7,9,5,6
+    //1,2,3,4,8,7,9,5,6
+    
+    //如上循环，你会发现，只要前一个数据比当前遍历的数据值，小，就会一直循环下去，
+    //同时由于preIndex在内部循环每次循环减少1的情况下，
+    // 也就是上一个索引一直在往前检索，导致preIndex+1的位置的数据被preIndex位置的数据覆盖
+    
+    //preIndex = 4（对应数据为8）; i = 5（对应数据为7）第五次外部循环
+    //1,2,3,4,8,8,9,5,6      你会发现当preIndex = 3时，对应的数据是4,当前遍历的数据值为7，此时不满足内部循环条件arr[preIndex] > current 也就是4 > 7 不满足条件
+                             //此时内部循环被终止
+    //1,2,3,4,7,8,9,5,6      arr[preIndex+1] = current; 由于以上内部循环被终止，此时的preIndex等于3，通过arr[preIndex+1] = current; 后，原本被重复的索引值为4的数据8 ，被替换为当前遍历数据7
+    
+    var len = arr.length;
+    var preIndex, current;
+    for (var i = 1; i < len; i++) {
+        //得到上一个数据的索引值
+        preIndex = i - 1;
+        console.log("i:"+i+"（对应数据"+arr[i]+"）,preIndex:"+preIndex+"（对数据"+arr[preIndex]+"）");
+        //得到当前的数据，current值很重要，
+        // 用于判断比它大的数据，才进行数据交换，而数据交换并没有进行位置交换，所以必然会导致数据重复，
+        // 所以，该值也用于解决替换被重复的数据
+        current = arr[i];
+        //循环条件为上一个索引值必须 >= 0 并且 上一个数据的值 大于 当前被遍历的值时，进行循环 
+        while(preIndex >= 0 && arr[preIndex] < current) {
+            //如果上一个数据比当前数据值大的话，将当前数据的位置与上一个数据的位置进行交换
+            arr[preIndex+1] = arr[preIndex];
+            //每次内部循环，上一个数据的索引值减少1，目的是将当前位置的数据，一直与当前索引值前面位置的数据进行比较
+            //当preIndex上一个数据的索引值不符合 > = 的条件时，内部循环将终止，
+            // 也就是说，当前索引值上的数据存在前排的索引值对应的数据比它大的话，就已经进行交换位置了
+            //注意：当preIndex等于0的时候，preIndex-- 会导致该值变成-1，终止内部循环
+            preIndex--;
+            console.log(arr);
+        }
+        //每次循环到这里的时候，preIndex等于-1,所以在这里preIndex+1，原因是
+        //如果内部循环没有进入，那么这里就只是将数据重置，没有做位置交换
+        //如果内部循环进入了，那么此时的arr[preIndex+1]与arr[preIndex+1+1]的数据重复了，
+        //并且，能到外部循环即将结束的地方，说明当前遍历的数据值必然找不到比它大的数据了
+        //既然找不到比当前遍历数据值大，说明，
+        //要么前面的数据都比当前遍历数据值小，
+        //要么已经是遍历到开头了，前面已经没有数据了，
+        //而此时必定会有重复的数据值，所以只需要将arr[preIndex+1]等于当前被遍历的数据值即可
+        arr[preIndex+1] = current;
+        console.log(arr);
+    }
+</script>
+</body>
+</html>
