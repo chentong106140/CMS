@@ -12,6 +12,13 @@
       <excludeFolder url="file://$MODULE_DIR$/temp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/view/bootstrap/navbar/bak" />
+      <excludeFolder url="file://$MODULE_DIR$/view/nodejs/expres/lesson1/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/view/nodejs/node-lessons/lesson1/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/view/nodejs/node-lessons/lesson10/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/view/nodejs/node-lessons/lesson2/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/view/nodejs/node-lessons/lesson3/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/view/nodejs/node-lessons/lesson4/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/view/nodejs/node-lessons/lesson5/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/view/webpack/1安装/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/view/webpack/gpf-web-jsyd/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/view/webpack/iptv-core/node_modules" />
@@ -31,6 +38,11 @@
     <content url="file://$MODULE_DIR$/resource/plugins/DPlayer/node_modules" />
     <content url="file://$MODULE_DIR$/resource/plugins/incubator-echarts" />
     <content url="file://$MODULE_DIR$/resource/plugins/three.js" />
+    <content url="file://$MODULE_DIR$/view/nodejs/node-lessons/lesson10/node_modules" />
+    <content url="file://$MODULE_DIR$/view/nodejs/node-lessons/lesson2/node_modules" />
+    <content url="file://$MODULE_DIR$/view/nodejs/node-lessons/lesson3/node_modules" />
+    <content url="file://$MODULE_DIR$/view/nodejs/node-lessons/lesson4/node_modules" />
+    <content url="file://$MODULE_DIR$/view/nodejs/node-lessons/lesson5/node_modules" />
     <content url="file://$MODULE_DIR$/view/webpack/webpack-2-ziyuanguanli/node_modules" />
     <content url="file://$MODULE_DIR$/view/webpack/webpack-3-ziyuanshuchu/node_modules" />
     <content url="file://$MODULE_DIR$/view/webpack/webpack-demo/node_modules" />
