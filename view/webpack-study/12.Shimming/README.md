@@ -71,9 +71,24 @@ cnpm install --save-dev file-loader
 //处理xml文件
 cnpm install --save-dev csv-loader xml-loader
 
-cnpm install --save-dev babel-loader @babel/core @babel/preset-env
 
-cnpm install --save-dev babel-preset-es2015
+//babel安装,安装失败，无法使用
+//cnpm install --save-dev babel-loader@8 '@babel/core' '@babel/preset-env' '@babel/plugin-proposal-class-properties' '@babel/plugin-transform-runtime' '@babel/runtime'
+//cnpm install --save-dev @babel/preset-es2015
+//cnpm install --save-dev babel-preset-es2015
+//cnpm install --save-dev babel-preset-stage-0
+
+
+//babel老版本安装，同时需要在根目录新建.balbelrc文件
+"babel-core": "^6.26.0",
+"babel-loader": "^7.1.2",
+"babel-plugin-transform-runtime": "^6.23.0",
+"babel-preset-env": "^1.6.1",
+"babel-preset-es2015": "^6.24.1",
+"babel-preset-stage-0": "^6.24.1",
+
+
+
 
 cnpm install --save-dev  imports-loader
 cnpm install --save-dev  exports-loader

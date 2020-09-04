@@ -6,7 +6,7 @@ const webpack = require('webpack');
 module.exports = {
     entry: {
         index: './src/index.js',
-        window:'./src/window.js'
+        window: './src/window.js'
     },
 
     output: {
@@ -88,7 +88,7 @@ module.exports = {
                         loader: 'imports-loader',
                         options: {
                             //使用commonjs语法导入
-                            type:'commonjs',
+                            type: 'commonjs',
                             imports: [
                                 //注意中间的空格不能多，多一个空格就会报错
                                 'single morgan-iptv-core iptv',//对应导入语句var iptv = require('morgan-iptv-core');
@@ -180,16 +180,16 @@ module.exports = {
                 test: /\.xml$/,
                 use: ['xml-loader']
             },
-            /*{
+            {
                 test: /\.js$/,
                 exclude: /(node_modules)/,
                 use: [{
                     loader: 'babel-loader',
                     options: {
-                        presets: ['es2015']
+                        presets: ['env']
                     }
                 }]
-            }*/
+            },
         ]
     }
 };
