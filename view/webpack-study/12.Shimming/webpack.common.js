@@ -5,7 +5,7 @@ const webpack = require('webpack');
 
 module.exports = {
     entry: {
-        index: './src/index.js',
+       // index: './src/index.js',
         window: './src/window.js'
     },
 
@@ -56,7 +56,7 @@ module.exports = {
 
     module: {
         rules: [
-            /*//如下这种改变模块this指向的方法在当前版本已经无效了
+           /* //如下这种改变模块this指向的方法在当前版本已经无效了
             {
                 test: require.resolve('./src/index.js'),
                 use: 'imports-loader?this=>window',
@@ -66,21 +66,7 @@ module.exports = {
                 test: require.resolve('./src/globals.js'),
                 use: 'exports-loader?file,parse=helpers.parse',
             },*/
-            //https://webpack.docschina.org/loaders/exports-loader/#root
-            {
-                test: require.resolve('./src/globals.js'),
-                loader: 'exports-loader',
-                options: {
-                    //type: commonjs（CommonJS模块语法）或者type：module（ES模块语法）。
-                    type: 'module',
-                    exports: [
-                        'default say',      //对应导出语句：export default say 
-                        'helper',           //对应导出语句：export {helper}
-                        'infos',            //对应导出语句：export {infos}
-                        'named say says',   //对应导出语句：export {say as says}
-                    ],
-                },
-            },
+
             {
                 test: require.resolve('./src/window.js'),
                 use: [
@@ -96,11 +82,27 @@ module.exports = {
                             additionalCode: 'console.log("自动导入模块成功！");',
                             wrapper: {
                                 thisArg: 'window',
-                                args: ['iptv', 'jquery'],
+                                args: ['iptv', 'jquery','window'],
                             }
                         }
                     },
                 ],
+            },
+            
+            //https://webpack.docschina.org/loaders/exports-loader/#root
+            /*{
+                test: require.resolve('./src/globals.js'),
+                loader: 'exports-loader',
+                options: {
+                    //type: commonjs（CommonJS模块语法）或者type：module（ES模块语法）。
+                    type: 'module',
+                    exports: [
+                        'default say',      //对应导出语句：export default say 
+                        'helper',           //对应导出语句：export {helper}
+                        'infos',            //对应导出语句：export {infos}
+                        'named say says',   //对应导出语句：export {say as says}
+                    ],
+                },
             },
             {
                 //给某个模块，自动导入模块，无需手动import xx from 'xx'
@@ -112,7 +114,7 @@ module.exports = {
                             imports: [
                                 'named morgan-iptv-core iptv',//对应导入语句import iptv from morgan-iptv-core
                                 //  
-                                /**
+                                /!**
                                  * 注意：下面解析模块的路径是./print，为什么不是./src/print呢？
                                  * 主要是由于imports-loader插件默认是在./src为根目录开始解析的，所以需要忽略到./src
                                  *
@@ -122,18 +124,18 @@ module.exports = {
                                  * named：使用import {xx as xx} from 'xx'
                                  * namespace：使用import * as xx from 'xx'
                                  * side-effects：使用import 'xx'
-                                 */
+                                 *!/
                                 'default ./print print',//对应导入语句：import print from './print'
                                 'named ./print print p',//对应导入语句：import {print as p} from './print'
                                 'named ./print show s',//对应导入语句：import {show as s} from './print'
                                 'named ./print say',//对应导入语句：import {say} from './print'
                                 'namespace ./print myPrint',//对应导入语句：import * as myPrint from './print'
                                 'side-effects morgan-iptv-key',//对应导入语句：import 'morgan-iptv-key'
-                                /*{
+                                /!*{
                                     syntax: 'default',
                                     moduleName: 'jquery',//对应导入语句：import $ from 'jquery'
                                     name: 'jquery'
-                                },*/
+                                },*!/
                             ],
                             //自动在./src/index.js模块顶部添加如下代码
                             additionalCode: 'var name = "陈通";window.jquery=jquery;',
@@ -145,7 +147,7 @@ module.exports = {
                         }
                     },
                 ],
-            },
+            },*/
             {
                 //以 .css 结尾的全部文件，都将被提供给 style-loader 和 css-loader
                 //这使你可以在依赖于此样式的文件中 import './style.css'。
@@ -180,7 +182,7 @@ module.exports = {
                 test: /\.xml$/,
                 use: ['xml-loader']
             },
-            {
+            /*{
                 test: /\.js$/,
                 exclude: /(node_modules)/,
                 use: [{
@@ -189,7 +191,7 @@ module.exports = {
                         presets: ['env']
                     }
                 }]
-            },
+            },*/
         ]
     }
 };
