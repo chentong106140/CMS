@@ -1,0 +1,5 @@
+{
+  "app.js": "/app.bundle.js",
+  "index.html": "/index.html",
+  "server.html": "/server.html"
+}

@@ -1,8 +1,8 @@
 {
   "name": "morgan-iptv-key",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "电视端遥控器按键库",
-  "main": "index.js",
+  "main": "./dist/iptv-key-1.0.3.js",
   "scripts": {
     "dev": "webpack --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js"

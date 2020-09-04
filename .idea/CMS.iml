@@ -11,6 +11,7 @@
       <excludeFolder url="file://$MODULE_DIR$/resource/plugins/three.js" />
       <excludeFolder url="file://$MODULE_DIR$/temp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/view/Promise/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/view/bootstrap/navbar/bak" />
       <excludeFolder url="file://$MODULE_DIR$/view/nodejs/expres/lesson1/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/view/nodejs/node-lessons/lesson1/node_modules" />
@@ -19,6 +20,17 @@
       <excludeFolder url="file://$MODULE_DIR$/view/nodejs/node-lessons/lesson3/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/view/nodejs/node-lessons/lesson4/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/view/nodejs/node-lessons/lesson5/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/view/vue/1.vue-cli/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/view/webpack-study/1.qibu/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/view/webpack-study/3.ziyuanguanli/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/view/webpack-study/4.guanlishuchu/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/view/webpack-study/5.kaifa/node_modules" />
+	  <excludeFolder url="file://$MODULE_DIR$/view/webpack-study/7.treeshaking/node_modules" />
+	  <excludeFolder url="file://$MODULE_DIR$/view/webpack-study/8.shengchanhuanjinggoujian/node_modules" />
+	  <excludeFolder url="file://$MODULE_DIR$/view/webpack-study/9.daimafenli/node_modules" />
+	  <excludeFolder url="file://$MODULE_DIR$/view/webpack-study/10.huancun/node_modules" />
+	  <excludeFolder url="file://$MODULE_DIR$/view/webpack-study/11.huanjingbianliang/node_modules" />
+	  <excludeFolder url="file://$MODULE_DIR$/view/webpack-study/12.Shimming/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/view/webpack/1安装/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/view/webpack/gpf-web-jsyd/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/view/webpack/iptv-core/node_modules" />
@@ -35,17 +47,6 @@
       <excludeFolder url="file://$MODULE_DIR$/view/webpack/webpack-9-library/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/view/webpack/webpack-demo/node_modules" />
     </content>
-    <content url="file://$MODULE_DIR$/resource/plugins/DPlayer/node_modules" />
-    <content url="file://$MODULE_DIR$/resource/plugins/incubator-echarts" />
-    <content url="file://$MODULE_DIR$/resource/plugins/three.js" />
-    <content url="file://$MODULE_DIR$/view/nodejs/node-lessons/lesson10/node_modules" />
-    <content url="file://$MODULE_DIR$/view/nodejs/node-lessons/lesson2/node_modules" />
-    <content url="file://$MODULE_DIR$/view/nodejs/node-lessons/lesson3/node_modules" />
-    <content url="file://$MODULE_DIR$/view/nodejs/node-lessons/lesson4/node_modules" />
-    <content url="file://$MODULE_DIR$/view/nodejs/node-lessons/lesson5/node_modules" />
-    <content url="file://$MODULE_DIR$/view/webpack/webpack-2-ziyuanguanli/node_modules" />
-    <content url="file://$MODULE_DIR$/view/webpack/webpack-3-ziyuanshuchu/node_modules" />
-    <content url="file://$MODULE_DIR$/view/webpack/webpack-demo/node_modules" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
