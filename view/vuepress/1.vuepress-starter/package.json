@@ -1,0 +1,23 @@
+{
+  "name": "1.vuepress-starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@vuepress/plugin-active-header-links": "^1.5.4",
+    "@vuepress/plugin-back-to-top": "^1.5.4",
+    "@vuepress/plugin-blog": "^1.9.2",
+    "@vuepress/plugin-pwa": "^1.5.4",
+    "@vuepress/theme-blog": "^2.3.2",
+    "vuepress": "^1.5.4"
+  }
+}

@@ -5,7 +5,7 @@ const webpack = require('webpack');
 
 module.exports = {
     entry: {
-       // index: './src/index.js',
+        index: './src/index.js',
         window: './src/window.js'
     },
 
@@ -56,17 +56,7 @@ module.exports = {
 
     module: {
         rules: [
-           /* //如下这种改变模块this指向的方法在当前版本已经无效了
-            {
-                test: require.resolve('./src/index.js'),
-                use: 'imports-loader?this=>window',
-            },*/
-            /*//如下这种方式在当前版本已经失效了
-            {
-                test: require.resolve('./src/globals.js'),
-                use: 'exports-loader?file,parse=helpers.parse',
-            },*/
-
+            
             {
                 test: require.resolve('./src/window.js'),
                 use: [
@@ -90,7 +80,7 @@ module.exports = {
             },
             
             //https://webpack.docschina.org/loaders/exports-loader/#root
-            /*{
+            {
                 test: require.resolve('./src/globals.js'),
                 loader: 'exports-loader',
                 options: {
@@ -105,16 +95,33 @@ module.exports = {
                 },
             },
             {
-                //给某个模块，自动导入模块，无需手动import xx from 'xx'
+                //为模块index.js自动导入iptv模块，使用commonjs模块语法，对应module.exports = xx;导出 require('xx')导入
                 test: require.resolve('./src/index.js'),
                 use: [
                     {
                         loader: 'imports-loader',
                         options: {
+                            //type: commonjs（CommonJS模块语法）或者type：module（ES模块语法）。
+                            type: 'commonjs',
                             imports: [
-                                'named morgan-iptv-core iptv',//对应导入语句import iptv from morgan-iptv-core
-                                //  
-                                /!**
+                                //注意中间的空格不能多，多一个空格就会报错
+                                'single morgan-iptv-core iptv',//对应导入语句var iptv = require('morgan-iptv-core');
+                            ]
+                        }
+                    },
+                ],
+            },
+            {
+                //给某个模块，自动导入模块，使用module模块语法，，对应export xx 导出import xx from xx 导入
+                test: require.resolve('./src/index.js'),
+                use: [
+                    {
+                        loader: 'imports-loader',
+                        options: {
+                            //type: commonjs（CommonJS模块语法）或者type：module（ES模块语法）。
+                            type:'module',
+                            imports: [
+                                /**
                                  * 注意：下面解析模块的路径是./print，为什么不是./src/print呢？
                                  * 主要是由于imports-loader插件默认是在./src为根目录开始解析的，所以需要忽略到./src
                                  *
@@ -124,22 +131,24 @@ module.exports = {
                                  * named：使用import {xx as xx} from 'xx'
                                  * namespace：使用import * as xx from 'xx'
                                  * side-effects：使用import 'xx'
-                                 *!/
+                                 */
                                 'default ./print print',//对应导入语句：import print from './print'
                                 'named ./print print p',//对应导入语句：import {print as p} from './print'
                                 'named ./print show s',//对应导入语句：import {show as s} from './print'
                                 'named ./print say',//对应导入语句：import {say} from './print'
                                 'namespace ./print myPrint',//对应导入语句：import * as myPrint from './print'
                                 'side-effects morgan-iptv-key',//对应导入语句：import 'morgan-iptv-key'
-                                /!*{
+                                /*{
                                     syntax: 'default',
-                                    moduleName: 'jquery',//对应导入语句：import $ from 'jquery'
+                                    moduleName: 'jquery',//对应导入语句：import $ from 'jquery'，由于jquery已经被置为全局变量了，所以这里就无需再重复导入了
                                     name: 'jquery'
-                                },*!/
+                                },*/
                             ],
                             //自动在./src/index.js模块顶部添加如下代码
                             additionalCode: 'var name = "陈通";window.jquery=jquery;',
                             //自动在./src/index.js模块外部使用().call(window,iptv,$)，改变this指向
+                            //如果使用如下通过外部包裹的方式，那么如果被解析的模块内使用import xx from xx就会报错import语句没有置顶的错误
+                            //如果非要解决这个问题，需要使用babel插件去解析
                             wrapper: {
                                 thisArg: 'window',
                                 args: ['iptv', 'jquery'],
@@ -147,7 +156,7 @@ module.exports = {
                         }
                     },
                 ],
-            },*/
+            },
             {
                 //以 .css 结尾的全部文件，都将被提供给 style-loader 和 css-loader
                 //这使你可以在依赖于此样式的文件中 import './style.css'。
@@ -182,7 +191,8 @@ module.exports = {
                 test: /\.xml$/,
                 use: ['xml-loader']
             },
-            /*{
+            {
+                //使用如下解析js语法，会导致this指向的是undefined，并且这个loader插件必须放在rules数组最后面
                 test: /\.js$/,
                 exclude: /(node_modules)/,
                 use: [{
@@ -191,7 +201,7 @@ module.exports = {
                         presets: ['env']
                     }
                 }]
-            },*/
+            },
         ]
     }
 };

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/view/vue" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/view/微信小程序/ helloword-1" vcs="Git" />
   </component>
 </project>

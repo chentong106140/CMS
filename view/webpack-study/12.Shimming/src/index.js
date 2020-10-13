@@ -1,6 +1,8 @@
+    import mysay,{infos as myInfos,helper,says} from './globals'    
     //没有显式的导入lodash,本文件也可以使用lodash的变量_,主要是在webpack.common.js内的ProvidePlugin插件定义了全局变量
     //import _ from 'lodash';
     
+    //你会发现，没有执行如下import语句，却能够调用到print,s,p,say,myPrint变量，因为使用了webpack.common.js模块中定义的imports-loader自动加载模块
     /*import {default as print,show as s,print as p,say} from "./print";*/
     
     /*import * as myPrint from './print'*/
@@ -13,23 +15,22 @@
     console.log(myPrint);//对应规则：'namespace ./print myPrint' =》对应语句：import * as myPrint from './print'
     //Object { print: print(text), show: show(text), say: say(text), default: print(text), … }
     
-    
-    import iptv from 'morgan-iptv-core'
-    
+    console.log("-------------------1----------------------");
+    //验证iptv模块是否导入成功
     console.log(iptv);
     console.log(this);//undefined
-    
-    
+
+    console.log("-------------------2----------------------");
     //如下是验证globals.js文件模拟老版本的库，没有使用export导出变量，
     // 此时如何通过exports-loader插件兼容老版本的库，也就是通过exports-loader插件让没有export导出变量的js库，能够正常导出变量
-    import mysay,{infos as myInfos,helper,says} from './globals'
+    
     console.log(myInfos);//验证：'infos'，这里讲infos重新命名为myInfos进行导入
     mysay('mysays');//验证：'default say'，这里将default say 重新命名为mysay进行导入
     helper.test('test');//验证：'helper'
     helper.info('info');//验证：'helper'
     says('says');//验证：'named say says'
-    
-    
+
+    console.log("-------------------3----------------------");
     console.log(require.resolve('./globals.js'));
     
     //获取环境变量是生产环境还是开发环境

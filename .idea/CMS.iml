@@ -21,6 +21,13 @@
       <excludeFolder url="file://$MODULE_DIR$/view/nodejs/node-lessons/lesson4/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/view/nodejs/node-lessons/lesson5/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/view/vue/1.vue-cli/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/view/vue/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/view/vue/1.vue安装/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/view/vue/2.vue实例/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/view/vue/3.模板方法/node_modules" />
+            <excludeFolder url="file://$MODULE_DIR$/view/vue2/1.vue安装/node_modules" />
+            <excludeFolder url="file://$MODULE_DIR$/view/vue2/2.vue实例/node_modules" />
+            <excludeFolder url="file://$MODULE_DIR$/view/vue2/3.模板方法/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/view/webpack-study/1.qibu/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/view/webpack-study/3.ziyuanguanli/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/view/webpack-study/4.guanlishuchu/node_modules" />
@@ -31,6 +38,8 @@
 	  <excludeFolder url="file://$MODULE_DIR$/view/webpack-study/10.huancun/node_modules" />
 	  <excludeFolder url="file://$MODULE_DIR$/view/webpack-study/11.huanjingbianliang/node_modules" />
 	  <excludeFolder url="file://$MODULE_DIR$/view/webpack-study/12.Shimming/node_modules" />
+	  <excludeFolder url="file://$MODULE_DIR$/view/typescript-webpack/node_modules" />
+	  <excludeFolder url="file://$MODULE_DIR$/view/vuepress/1.vuepress-starter/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/view/webpack/1安装/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/view/webpack/gpf-web-jsyd/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/view/webpack/iptv-core/node_modules" />
